@@ -1,4 +1,6 @@
-# FomBigDataConsultingBerlinMobilityFrontend
+# FOM Big Data Consulting Berlin Mobility Frontend
+
+[![Actions Status](https://github.com/fom-big-data/fom-big-data-consulting-berlin-mobility-frontend/workflows/Build/badge.svg)](https://github.com/fom-big-data/fom-big-data-consulting-berlin-mobility-frontend/actions)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.1.
 
