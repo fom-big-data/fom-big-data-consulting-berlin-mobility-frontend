@@ -8,11 +8,21 @@ import {environment} from '../environments/environment';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {FirebaseModule} from './core/firebase/firebase.module';
 import { MapComponent } from './components/map/map.component';
+import { StoryComponent } from './components/story/story.component';
+import { TextComponent } from './components/text/text.component';
+import { PlaceholderComponent } from './components/placeholder/placeholder.component';
+import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MapComponent
+    MapComponent,
+    StoryComponent,
+    TextComponent,
+    PlaceholderComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
