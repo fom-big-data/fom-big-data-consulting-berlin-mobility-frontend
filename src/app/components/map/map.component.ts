@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-
+import {Component, Input, OnInit} from '@angular/core';
 import * as mapboxgl from 'mapbox-gl';
 import {environment} from '../../../environments/environment';
 import {Place} from '../../core/mapbox/model/place.model';
+import {MapBoxStyle} from '../../core/mapbox/model/map-box-style.enum';
 
 /**
  * Displays a map box
@@ -14,9 +14,13 @@ import {Place} from '../../core/mapbox/model/place.model';
 })
 export class MapComponent implements OnInit {
 
-  style = 'mapbox://styles/mapbox/streets-v11';
-  lng = Place.BRANDENBURG_GATE[0];
-  lat = Place.BRANDENBURG_GATE[1];
+  @Input() height = 150;
+
+  @Input() style = MapBoxStyle.STREETS_V11;
+  @Input() zoom = 10;
+  @Input() center = Place.BRANDENBURG_GATE;
+
+  @Input() navigationEnabled = false;
 
   map: mapboxgl.Map;
 
@@ -33,10 +37,12 @@ export class MapComponent implements OnInit {
     this.map = new mapboxgl.Map({
       container: 'map',
       style: this.style,
-      zoom: 10,
-      center: [this.lng, this.lat]
+      zoom: this.zoom,
+      center: [this.center[0], this.center[1]]
     });
-    // Add map controls
-    this.map.addControl(new mapboxgl.NavigationControl());
+
+    if (this.navigationEnabled) {
+      this.map.addControl(new mapboxgl.NavigationControl());
+    }
   }
 }

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ResultsFirestoreService} from './core/entity/services/results-firestore.service';
 import {takeUntil} from 'rxjs/operators';
 import {Subject} from 'rxjs';
+import {MapBoxStyle} from './core/mapbox/model/map-box-style.enum';
 
 @Component({
   selector: 'app-root',
@@ -13,6 +14,9 @@ export class AppComponent implements OnInit {
 
   /** Helper subject used to finish other subscriptions */
   private unsubscribeSubject = new Subject();
+
+  /** Enum representing map box style */
+  mapBoxStyleEnum = MapBoxStyle;
 
   constructor(private resultsFirestoreService: ResultsFirestoreService) {
   }
