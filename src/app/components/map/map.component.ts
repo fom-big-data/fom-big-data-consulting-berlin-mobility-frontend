@@ -49,7 +49,7 @@ export class MapComponent implements OnInit {
       ],
       view: new ol.View({
         center: ol.proj.fromLonLat(this.startingPosition),
-        zoom: 8
+        zoom: 10
       })
     });
   }
