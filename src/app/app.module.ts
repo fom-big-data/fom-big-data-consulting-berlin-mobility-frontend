@@ -7,12 +7,14 @@ import {AngularFireModule} from '@angular/fire';
 import {environment} from '../environments/environment';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {FirebaseModule} from './core/firebase/firebase.module';
-import { MapComponent } from './components/map/map.component';
-import { StoryComponent } from './components/story/story.component';
-import { TextComponent } from './components/text/text.component';
-import { PlaceholderComponent } from './components/placeholder/placeholder.component';
-import { HeaderComponent } from './components/header/header.component';
-import { FooterComponent } from './components/footer/footer.component';
+import {MapComponent} from './components/map/map.component';
+import {StoryComponent} from './components/story/story.component';
+import {TextComponent} from './components/text/text.component';
+import {PlaceholderComponent} from './components/placeholder/placeholder.component';
+import {HeaderComponent} from './components/header/header.component';
+import {FooterComponent} from './components/footer/footer.component';
+import {MapboxModule} from './core/mapbox/mapbox.module';
+import {EntityModule} from './core/entity/entity.module';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { FooterComponent } from './components/footer/footer.component';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
 
-    FirebaseModule
+    EntityModule,
+    FirebaseModule,
+    MapboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -12,6 +12,9 @@ export const environment = {
     storageBucket: 'berlin-mobility.appspot.com',
     messagingSenderId: '1045600855402',
     appId: '1:1045600855402:web:0c87edd8f91061d3e9b113'
+  },
+  mapbox: {
+    accessToken: 'pk.eyJ1IjoiZm9tLWJpZ2RhdGEiLCJhIjoiY2toZ2wyMnc5MGljdzJ5bWNub256bGJzaSJ9.LziC2dfr9nbShE1V-vRKkg'
   }
 };
 
