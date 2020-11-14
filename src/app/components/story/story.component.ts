@@ -1,4 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {MapBoxStyle} from '../../core/mapbox/model/map-box-style.enum';
+import {Place} from '../../core/mapbox/model/place.model';
 
 declare var ol: any;
 
@@ -12,10 +14,15 @@ declare var ol: any;
 })
 
 export class StoryComponent implements OnInit {
- ngOnInit() {
+
+  /** Enum representing map box style */
+  mapBoxStyleEnum = MapBoxStyle;
+  /** Enum representing place */
+  placeEnum = Place;
+
+  ngOnInit() {
   }
 
   private initializeStory() {
   }
-
 }

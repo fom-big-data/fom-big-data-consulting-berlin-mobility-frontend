@@ -15,9 +15,6 @@ export class AppComponent implements OnInit {
   /** Helper subject used to finish other subscriptions */
   private unsubscribeSubject = new Subject();
 
-  /** Enum representing map box style */
-  mapBoxStyleEnum = MapBoxStyle;
-
   constructor(private resultsFirestoreService: ResultsFirestoreService) {
   }
 
@@ -37,7 +34,7 @@ export class AppComponent implements OnInit {
       takeUntil(this.unsubscribeSubject)
     ).subscribe((value) => {
       if (value != null) {
-        console.log(JSON.stringify(value));
+        // console.log(JSON.stringify(value));
       }
     });
 
