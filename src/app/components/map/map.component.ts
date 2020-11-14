@@ -25,6 +25,7 @@ export class MapComponent implements AfterViewInit {
   @Input() clickableMarkers: Location[] = [];
   @Input() navigationEnabled = false;
   @Input() centerOnClickedEnabled = true;
+  @Input() mapScrollZoomEnabled = true;
 
   map: mapboxgl.Map;
 
@@ -114,6 +115,11 @@ export class MapComponent implements AfterViewInit {
       this.map.on('mouseleave', 'symbols', () => {
         this.map.getCanvas().style.cursor = '';
       });
+    }
+
+    // Add  scroll zoom control
+    if (!this.mapScrollZoomEnabled) {
+      this.map.scrollZoom.disable();
     }
   }
 }
