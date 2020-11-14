@@ -97,6 +97,21 @@ export class MapComponent implements AfterViewInit {
                 'icon-image': 'custom-marker'
               }
             });
+          //START ##NOT FUNCTIONAL##
+          // add source and layer for inhabitants 
+          //this.map.addSource('inhabitants', {
+          //  type: 'geojson',
+          //  });
+          //this.map.addLayer({
+          //  id: 'inhabitants',
+          //  type: 'point',
+          //  source: 'inhabitants',
+          //  layout: {
+            // make layer visible by default
+          //  visibility: 'visible',
+          //  },
+          //});
+          //END ##NOT FUNCTIONAL##
           });
       });
 
