@@ -26,6 +26,7 @@ export class MapComponent implements AfterViewInit {
   @Input() navigationEnabled = false;
   @Input() centerOnClickedEnabled = true;
   @Input() mapScrollZoomEnabled = true;
+  @Input() fullScreenControlEnabled = false;
 
   map: mapboxgl.Map;
 
@@ -120,6 +121,11 @@ export class MapComponent implements AfterViewInit {
     // Add  scroll zoom control
     if (!this.mapScrollZoomEnabled) {
       this.map.scrollZoom.disable();
+    }
+
+    // Add fullscreen control
+    if (this.fullScreenControlEnabled) {
+      this.map.addControl(new mapboxgl.FullscreenControl());
     }
   }
 }

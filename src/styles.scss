@@ -1,5 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-body{
+body {
   margin: 0;
   color: #111;
   min-height: 200vh;
@@ -8,16 +8,18 @@ body{
   overflow-x: hidden;
 }
 
-h1{
+h1 {
   font-family: Roboto;
   font-size: 40pt;
 }
 
-h2{
+h2 {
   font-family: Roboto;
   font-size: 18pt;
 }
 
-.mapboxgl-control-container {
+.mapboxgl-ctrl-top-left,
+.mapboxgl-ctrl-bottom-left,
+.mapboxgl-ctrl-bottom-right {
   display: none;
 }
