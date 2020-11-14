@@ -22,7 +22,9 @@ export class MapComponent implements AfterViewInit {
   @Input() zoom = 10;
   @Input() center: Location = Place.BRANDENBURG_GATE;
   @Input() markers: Location[] = [];
+  @Input() clickableMarkers: Location[] = [];
   @Input() navigationEnabled = false;
+  @Input() centerOnClickedEnabled = true;
 
   map: mapboxgl.Map;
 
@@ -54,5 +56,64 @@ export class MapComponent implements AfterViewInit {
         .setLngLat([marker.longitude, marker.latitude])
         .addTo(this.map);
     });
+
+    // Add center on click
+    if (this.centerOnClickedEnabled) {
+
+      this.map.on('load', () => {
+        this.map.loadImage(
+          'https://docs.mapbox.com/mapbox-gl-js/assets/custom_marker.png',
+          (error, image) => {
+            if (error) {
+              throw error;
+            }
+            this.map.addImage('custom-marker', image);
+            this.map.addSource('points', {
+              type: 'geojson',
+              data: {
+                type: 'FeatureCollection',
+                features: this.clickableMarkers.map(marker => {
+                  return {
+                    type: 'Feature',
+                    properties: {},
+                    geometry: {
+                      type: 'Point',
+                      coordinates: [
+                        marker.longitude,
+                        marker.latitude
+                      ]
+                    }
+                  };
+                })
+              }
+            });
+            this.map.addLayer({
+              id: 'symbols',
+              type: 'symbol',
+              source: 'points',
+              layout: {
+                'icon-image': 'custom-marker'
+              }
+            });
+          });
+      });
+
+      this.map.on('click', 'symbols', e => {
+        this.map.flyTo({
+          // @ts-ignore
+          center: e.features[0].geometry.coordinates
+        });
+      });
+
+      // Change the cursor to a pointer when the it enters a feature in the 'symbols' layer.
+      this.map.on('mouseenter', 'symbols', () => {
+        this.map.getCanvas().style.cursor = 'pointer';
+      });
+
+      // Change it back to a pointer when it leaves.
+      this.map.on('mouseleave', 'symbols', () => {
+        this.map.getCanvas().style.cursor = '';
+      });
+    }
   }
 }
