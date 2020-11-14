@@ -1,4 +1,4 @@
-.app-header{
+:host ::ng-deep .app-header{
   background: #fff;
   box-shadow: 0 0 10px -5px #000;
   font-size: 12pt;
@@ -9,39 +9,42 @@
   width: 100%;
 }
 
-.app-header.docked{
+:host ::ng-deep .app-header.docked{
   position: fixed;
   top:0;
   left:0;
   right:0;
 }
 
-.app-header > ul{
+:host ::ng-deep .app-header > ul{
   margin: auto;
   width: 1200px;
   list-style: none;
   padding: 0;
   display: flex;
   flex-direction: row;
+  align-items: center;
 }
 
 
-.app-header li a{
+:host ::ng-deep .app-header li a{
   color: #111;
   text-decoration: none;
-  padding: 10px 30px;
+  padding: 10px 25px;
+  margin: 5px 5px;
+  background: #fff;
   display: block;
 }
 
-.app-header li.active a{
+:host ::ng-deep .app-header li.active a{
   color: #3D9970 !important;
 }
 
-.app-header li:hover{
+:host ::ng-deep .app-header li:hover{
   transform: scale(1.05);
 }
 
-.app-header li{
+:host ::ng-deep .app-header li{
   display: block;
   transition: .1s ease-in-out transform;
 }

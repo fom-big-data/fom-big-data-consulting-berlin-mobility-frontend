@@ -29,16 +29,16 @@
 }
 
 
-.app-footer li a{
+:host ::ng-deep .app-footer li a{
   color: #999;
   text-decoration: none;
 }
 
-.app-footer li a:hover{
+:host ::ng-deep .app-footer li a:hover{
   opacity: 0.75;
 }
 
-.app-footer li{
+:host ::ng-deep .app-footer li{
   display: block;
   transition: .1s opacity transform;
 }
