@@ -1,5 +1,6 @@
 .story_container{
-  width: 1200px;
+  width: 100%;
+  max-width: 1200px;
   min-height: 100vh;
   display: grid;
   grid-template-columns: 0.5fr 6fr 0.5fr 2fr;
@@ -9,7 +10,7 @@
   padding-top: 100px;
 }
 
-.story_container > app-text{
+.story_container > app-text, .story_container > h1, .story_container > h2, .story_container > h3{
   grid-column-start: 2;
   grid-column-end: 3;
 }
@@ -17,4 +18,26 @@
 .story_container > *{
   grid-column-start: 1;
   grid-column-end: 4;
+}
+
+
+@media (max-width: 1300px) {
+  .story_container {
+    max-width: 900px;
+    grid-template-columns: 0.5fr 6fr 0.5fr 0.5fr;
+  }
+}
+
+
+@media (max-width: 950px) {
+  .story_container {
+    width: auto;
+    grid-template-columns: 0.5fr 6fr 1fr;
+  }
+
+  .story_container > *{
+    grid-column-start: 2;
+    grid-column-end: 3;
+    width: inherit;
+  }
 }
