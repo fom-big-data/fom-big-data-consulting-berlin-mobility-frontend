@@ -16,7 +16,7 @@ import {Location} from '../../core/mapbox/model/location.model';
 export class MapComponent implements AfterViewInit {
 
   @Input() id = 'map';
-  @Input() height = 150;
+  @Input() height = '100px';
 
   @Input() style = MapBoxStyle.STREETS_V11;
   @Input() zoom = 10;
