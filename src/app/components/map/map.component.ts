@@ -114,6 +114,54 @@ export class MapComponent implements AfterViewInit {
             //  },
             // });
             // END ##NOT FUNCTIONAL##
+            this.map.addSource('Testpoints', {
+              type: 'geojson',
+              data: {
+                type: 'FeatureCollection',
+                features: [
+                {
+              // feature for Mapbox Berlin near ARD-Hauptstadtstudio
+                type: 'Feature',
+                geometry: {
+                  type: 'Point',
+                  coordinates: [ 52.518697, 13.380343 ]
+                },
+                properties: {
+                  title: 'Mapbox Berlin TestPoint1'
+                }
+                },
+              {
+              // feature for Mapbox SF
+                type: 'Feature',
+                geometry: {
+                  type: 'Point',
+                  coordinates: [52.6, 13.38]
+                },
+                properties: {
+                title: 'Mapbox Berlin TestPoint2'
+                }
+              }
+              ]
+              }
+              });
+               
+              // Add a symbol layer
+              this.map.addLayer({
+              id: 'points',
+              type: 'symbol',
+              source: 'Testpoints',
+              layout: {
+                'icon-image': 'custom-marker',
+              // get the title name from the source's "title" property
+                'text-field': ['get', 'title'],
+                'text-font': [
+                'TestPoint near ARD-Hauptstadtstudio',
+                'TestPoint2 unknown location'
+                ],
+                'text-offset': [0, 1.25],
+                'text-anchor': 'top'
+              }
+              });
           });
       });
 
