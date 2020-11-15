@@ -15,7 +15,8 @@ import {HeaderComponent} from './components/header/header.component';
 import {FooterComponent} from './components/footer/footer.component';
 import {MapboxModule} from './core/mapbox/mapbox.module';
 import {EntityModule} from './core/entity/entity.module';
-import {LandingOverlayComponent } from './components/landing-overlay/landing-overlay.component';
+import {LandingOverlayComponent} from './components/landing-overlay/landing-overlay.component';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,8 @@ import {LandingOverlayComponent } from './components/landing-overlay/landing-ove
 
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
+
+    HttpClientModule,
 
     EntityModule,
     FirebaseModule,

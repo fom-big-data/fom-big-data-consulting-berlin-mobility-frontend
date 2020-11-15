@@ -1,7 +1,8 @@
 import {Injectable} from '@angular/core';
-import {AngularFirestore, AngularFirestoreCollection} from '@angular/fire/firestore';
-import {Observable, Subject} from 'rxjs';
+import {AngularFirestore} from '@angular/fire/firestore';
+import {Subject} from 'rxjs';
 import {map, takeUntil} from 'rxjs/operators';
+import {Result} from '../model/result.model';
 
 /**
  * Handles Cloud Firestore access
@@ -11,12 +12,8 @@ import {map, takeUntil} from 'rxjs/operators';
 })
 export class FirebaseCloudFirestoreService {
 
-  /** Results collection */
-  resultsCollection: AngularFirestoreCollection<any>;
-  /** Results observable */
-  resultsObservable: Observable<any[]>;
   /** Results subject */
-  resultsSubject: Subject<any[]>;
+  resultsSubject: Subject<Result[]>;
 
   /** Helper subject used to finish other subscriptions */
   private unsubscribeSubject = new Subject();
@@ -41,13 +38,11 @@ export class FirebaseCloudFirestoreService {
    * Reads results of a given user
    */
   readResults() {
-    this.resultsCollection = this.angularFirestore.collection<any>('results');
-    this.resultsObservable = this.resultsCollection.snapshotChanges().pipe(
+    this.angularFirestore.collection<any>('results').snapshotChanges().pipe(
       map(actions => actions.map(a => {
-        return a.payload.doc.data() as any;
+        return new Result(a.payload.doc.id, a.payload.doc.data() as any);
       }))
-    );
-    this.resultsObservable.pipe(
+    ).pipe(
       takeUntil(this.unsubscribeSubject)
     ).subscribe(results => {
         this.resultsSubject.next(results);

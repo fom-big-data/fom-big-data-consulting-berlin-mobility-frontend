@@ -1,44 +1,64 @@
 import {Component, OnInit} from '@angular/core';
-import {ResultsFirestoreService} from './core/entity/services/results-firestore.service';
+import {ResultsService} from './core/entity/services/results.service';
 import {takeUntil} from 'rxjs/operators';
 import {Subject} from 'rxjs';
-import {MapBoxStyle} from './core/mapbox/model/map-box-style.enum';
+import {Result} from './core/firebase/model/result.model';
 
+/**
+ * Displays app component
+ */
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+
+  /** Title */
   title = 'fom-big-data-consulting-berlin-mobility-frontend';
+
+  /** Map of all results */
+  results = new Map<string, any>();
 
   /** Helper subject used to finish other subscriptions */
   private unsubscribeSubject = new Subject();
 
-  constructor(private resultsFirestoreService: ResultsFirestoreService) {
+  /**
+   * Constructor
+   * @param resultsService results service
+   */
+  constructor(private resultsService: ResultsService) {
   }
 
-  ngOnInit() {
-    this.initializeResultSubscription();
-  }
+  //
+  // Lifecycle hooks
+  //
 
   /**
-   * Initializes result subscription
+   * Handles on-init phase
    */
-  private initializeResultSubscription() {
-    // Clear results
-    this.resultsFirestoreService.clearResults();
+  ngOnInit() {
+    this.initializeResultsSubscription();
+  }
+
+  //
+  // Helpers
+  //
+
+  private initializeResultsSubscription() {
 
     // Subscribe results
-    this.resultsFirestoreService.resultsSubject.pipe(
+    this.resultsService.resultSubject.pipe(
       takeUntil(this.unsubscribeSubject)
-    ).subscribe((value) => {
-      if (value != null) {
-        // console.log(JSON.stringify(value));
+    ).subscribe((result: Result) => {
+      if (result != null) {
+        console.log(`received ${result.name}`);
+        this.results.set(result.name, result.payload);
       }
     });
 
     // Find results
-    this.resultsFirestoreService.findResults();
+    // this.resultsService.findResultsCloudFirestore();
+    this.resultsService.findResultsFireStorage();
   }
 }
