@@ -14,14 +14,17 @@ export class HeaderComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    var header_offset = $('.app-header').offset()
     var header_docked = false;
 
    $(window).scroll(function() {
-     if(!header_docked && header_offset.top-window.scrollY <= 0){
+     //console.log(header_offset);
+      // console.log(window.scrollY);
+      // return;
+
+     if(!header_docked && window.innerHeight-window.scrollY <= 0){
        $('.app-header').addClass('docked')
        header_docked = true
-     }else if(header_docked && header_offset.top-window.scrollY >= 0){
+     }else if(header_docked && window.innerHeight-window.scrollY >= 0){
        $('.app-header').removeClass('docked')
        header_docked = false
      }
@@ -39,7 +42,7 @@ private getToc(content: any) {
 
       var li = tableOfContents.appendChild(document.createElement('li'))
       var a = li.appendChild(document.createElement('a'))
-      a.href = "#"
+      a.href = "#"+element.id
       console.log();
       a.innerHTML = element.innerHTML
     })

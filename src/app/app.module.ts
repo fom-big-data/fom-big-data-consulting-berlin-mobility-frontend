@@ -15,6 +15,7 @@ import {HeaderComponent} from './components/header/header.component';
 import {FooterComponent} from './components/footer/footer.component';
 import {MapboxModule} from './core/mapbox/mapbox.module';
 import {EntityModule} from './core/entity/entity.module';
+import {LandingOverlayComponent } from './components/landing-overlay/landing-overlay.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import {EntityModule} from './core/entity/entity.module';
     TextComponent,
     PlaceholderComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    LandingOverlayComponent
   ],
   imports: [
     BrowserModule,
