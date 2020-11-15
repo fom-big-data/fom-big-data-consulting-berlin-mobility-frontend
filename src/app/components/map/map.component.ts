@@ -27,6 +27,7 @@ export class MapComponent implements AfterViewInit {
   @Input() centerOnClickedEnabled = true;
   @Input() mapScrollZoomEnabled = true;
   @Input() fullScreenControlEnabled = false;
+  @Input() interactiveEnabled = true;
 
   map: mapboxgl.Map;
 
@@ -44,7 +45,8 @@ export class MapComponent implements AfterViewInit {
       container: this.id,
       style: this.style,
       zoom: this.zoom,
-      center: [this.center.longitude, this.center.latitude]
+      center: [this.center.longitude, this.center.latitude],
+      interactive: this.interactiveEnabled
     });
 
     // Add navigation
@@ -97,21 +99,21 @@ export class MapComponent implements AfterViewInit {
                 'icon-image': 'custom-marker'
               }
             });
-          //START ##NOT FUNCTIONAL##
-          // add source and layer for inhabitants 
-          //this.map.addSource('inhabitants', {
-          //  type: 'geojson',
-          //  });
-          //this.map.addLayer({
-          //  id: 'inhabitants',
-          //  type: 'point',
-          //  source: 'inhabitants',
-          //  layout: {
+            // START ##NOT FUNCTIONAL##
+            // add source and layer for inhabitants
+            // this.map.addSource('inhabitants', {
+            //  type: 'geojson',
+            //  });
+            // this.map.addLayer({
+            //  id: 'inhabitants',
+            //  type: 'point',
+            //  source: 'inhabitants',
+            //  layout: {
             // make layer visible by default
-          //  visibility: 'visible',
-          //  },
-          //});
-          //END ##NOT FUNCTIONAL##
+            //  visibility: 'visible',
+            //  },
+            // });
+            // END ##NOT FUNCTIONAL##
           });
       });
 
