@@ -1,10 +1,10 @@
 :host ::ng-deep .app-header{
   background: #fff;
-  box-shadow: 0 0 10px -5px #000;
+  box-shadow: 0 10px 20px -20px #000;
   font-size: 12pt;
   font-family: Roboto;
   font-weight: Regular;
-  padding-top: 25px;
+  padding-top: 50px;
   position: absolute;
   top: 100vh;
   width: 100%;
@@ -19,7 +19,8 @@
 
 :host ::ng-deep .app-header > ul{
   margin: auto;
-  width: 1200px;
+  width: auto;
+  max-width: 1200px;
   list-style: none;
   padding: 0;
   display: flex;
@@ -32,20 +33,35 @@
   color: #111;
   text-decoration: none;
   padding: 10px 25px;
-  margin: 5px 5px;
+  //margin: 5px 5px;
   background: #fff;
   display: block;
+  border-bottom: 3px solid rgba(255,255,255,0);
+  transition: 0.2s ease-out background,border;
 }
 
 :host ::ng-deep .app-header li.active a{
-  color: #3D9970 !important;
+  //color: #3D9970 !important;
+  border-bottom: 3px solid #0af;
 }
 
-:host ::ng-deep .app-header li:hover{
-  transform: scale(1.05);
+:host ::ng-deep .app-header li a:hover{
+  background: #eee;
+  border-bottom: 3px solid #ddd;
 }
 
 :host ::ng-deep .app-header li{
   display: block;
-  transition: .1s ease-in-out transform;
+}
+
+.app-header .header-top-row{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 3px 50px;
+  font-size: 8pt;
+  background: #000;
+  color: #ddd;
+  border-bottom: 1px solid #666;
 }

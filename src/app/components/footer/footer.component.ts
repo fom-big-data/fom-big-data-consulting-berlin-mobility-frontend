@@ -24,7 +24,7 @@ export class FooterComponent implements OnInit {
 
         var li = tableOfContents.appendChild(document.createElement('li'))
         var a = li.appendChild(document.createElement('a'))
-        a.href = "#"
+        a.href = "#"+element.id;
         console.log();
         a.innerHTML = element.innerHTML
       })

@@ -15,18 +15,22 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     var header_docked = false;
+    var header_offset = false;
 
    $(window).scroll(function() {
      //console.log(header_offset);
       // console.log(window.scrollY);
       // return;
 
-     if(!header_docked && window.innerHeight-window.scrollY <= 0){
+    header_offset = window.innerHeight-window.scrollY <= 0
+
+     if(!header_docked && header_offset){
+
        $('.app-header').addClass('docked')
-       header_docked = true
-     }else if(header_docked && window.innerHeight-window.scrollY >= 0){
-       $('.app-header').removeClass('docked')
-       header_docked = false
+       header_docked = true;
+     }else if(header_docked && !header_offset){
+       $('.app-header').removeClass('docked');
+       header_docked = false;
      }
 
    });
