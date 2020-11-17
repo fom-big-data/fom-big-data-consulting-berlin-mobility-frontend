@@ -38,6 +38,10 @@ h3 {
   display: none;
 }
 
+*:focus {
+  outline: none;
+}
+
 .mapboxgl-map{
   z-index: -1;
 }
