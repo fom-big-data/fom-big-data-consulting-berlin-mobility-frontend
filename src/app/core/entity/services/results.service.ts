@@ -3,6 +3,8 @@ import {Subject} from 'rxjs';
 import {FirebaseCloudFirestoreService} from '../../firebase/services/firebase-cloud-firestore.service';
 import {FirebaseStorageService} from '../../firebase/services/firebase-storage.service';
 import {Result} from '../../firebase/model/result.model';
+import {HttpClient} from '@angular/common/http';
+import {environment} from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +20,8 @@ export class ResultsService {
    * @param firebaseStorageService Firebase Storage service
    */
   constructor(private firebaseCloudFirestoreService: FirebaseCloudFirestoreService,
-              private firebaseStorageService: FirebaseStorageService) {
+              private firebaseStorageService: FirebaseStorageService,
+              private http: HttpClient) {
     this.initializeCloudFirestoreSubscription();
     this.initializeStorageSubscription();
   }
@@ -65,5 +68,18 @@ export class ResultsService {
    */
   findResultsFireStorage() {
     this.firebaseStorageService.readResults();
+  }
+
+  /**
+   * Downloads results from Github
+   */
+  findResultsGithub() {
+    const baseUrl = environment.github.resultsUrl;
+
+    environment.results.forEach(file => {
+      this.http.get(baseUrl + file, {responseType: 'text' as 'json'}).subscribe(data => {
+        this.resultSubject.next(new Result(file, data));
+      });
+    });
   }
 }
