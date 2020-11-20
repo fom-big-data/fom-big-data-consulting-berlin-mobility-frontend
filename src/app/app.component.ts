@@ -54,6 +54,7 @@ export class AppComponent implements OnInit {
       if (result != null) {
         console.log(`received ${result.name}`);
         this.results.set(result.name, result.payload);
+        this.results = new Map(this.results);
       }
     });
 

@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, Input} from '@angular/core';
+import {AfterViewInit, Component, Input, OnChanges, SimpleChanges} from '@angular/core';
 import * as mapboxgl from 'mapbox-gl';
 import {environment} from '../../../environments/environment';
 import {Place} from '../../core/mapbox/model/place.model';
@@ -13,7 +13,7 @@ import {Location} from '../../core/mapbox/model/location.model';
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.scss']
 })
-export class MapComponent implements AfterViewInit {
+export class MapComponent implements AfterViewInit, OnChanges {
 
   @Input() id = 'map';
   @Input() height = '100px';
@@ -28,6 +28,9 @@ export class MapComponent implements AfterViewInit {
   @Input() mapScrollZoomEnabled = true;
   @Input() fullScreenControlEnabled = false;
   @Input() interactiveEnabled = true;
+
+  /** Map of all results */
+  @Input() geojsons = new Map<string, any>();
 
   map: mapboxgl.Map;
 
@@ -99,69 +102,6 @@ export class MapComponent implements AfterViewInit {
                 'icon-image': 'custom-marker'
               }
             });
-            // START ##NOT FUNCTIONAL##
-            // add source and layer for inhabitants
-            // this.map.addSource('inhabitants', {
-            //  type: 'geojson',
-            //  });
-            // this.map.addLayer({
-            //  id: 'inhabitants',
-            //  type: 'point',
-            //  source: 'inhabitants',
-            //  layout: {
-            // make layer visible by default
-            //  visibility: 'visible',
-            //  },
-            // });
-            // END ##NOT FUNCTIONAL##
-            this.map.addSource('Testpoints', {
-              type: 'geojson',
-              data: {
-                type: 'FeatureCollection',
-                features: [
-                {
-              // feature for Mapbox Berlin near ARD-Hauptstadtstudio
-                type: 'Feature',
-                geometry: {
-                  type: 'Point',
-                  coordinates: [ 52.518697, 13.380343 ]
-                },
-                properties: {
-                  title: 'Mapbox Berlin TestPoint1'
-                }
-                },
-              {
-              // feature for TestPoint2 unknown location
-                type: 'Feature',
-                geometry: {
-                  type: 'Point',
-                  coordinates: [52.6, 13.38]
-                },
-                properties: {
-                title: 'Mapbox Berlin TestPoint2'
-                }
-              }
-              ]
-              }
-              });
-               
-              // Add a symbol layer
-              this.map.addLayer({
-              id: 'points',
-              type: 'symbol',
-              source: 'Testpoints',
-              layout: {
-                'icon-image': 'custom-marker',
-              // get the title name from the source's "title" property
-                'text-field': ['get', 'title'],
-                'text-font': [
-                'TestPoint near ARD-Hauptstadtstudio',
-                'TestPoint2 unknown location'
-                ],
-                'text-offset': [0, 1.25],
-                'text-anchor': 'top'
-              }
-              });
           });
       });
 
@@ -191,6 +131,74 @@ export class MapComponent implements AfterViewInit {
     // Add fullscreen control
     if (this.fullScreenControlEnabled) {
       this.map.addControl(new mapboxgl.FullscreenControl());
+    }
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    // Add geojson
+    if (this.geojsons.size > 0) {
+      this.map.on('load', () => {
+        this.geojsons.forEach((value: any, name: string) => {
+
+          // Clean geojson
+          delete value['crs'];
+
+          this.map.addSource(name,
+            {
+              type: 'geojson',
+              data: JSON.parse(value)
+            }
+          );
+
+          // Add style for berlin-inhabitants
+          // this.map.addLayer({
+          //   id: name + '-berlin-inhabitants',
+          //   type: 'fill',
+          //   source: name,
+          //   layout: {},
+          //   paint: {
+          //     'fill-color': [
+          //       'interpolate',
+          //       ['linear'],
+          //       ['get', 'einwohner'],
+          //       5000,
+          //       'rgba(255, 255, 255, 0.0)',
+          //       40000,
+          //       'rgba(255, 100, 50, 0.2)'
+          //     ],
+          //     'fill-outline-color': [
+          //       'interpolate',
+          //       ['linear'],
+          //       ['get', 'einwohner'],
+          //       5000,
+          //       'rgba(255, 100, 50, 1.0)',
+          //       40000,
+          //       'rgba(255, 100, 50, 1.0)'
+          //     ]
+          //   }
+          // });
+
+          // Add style for test-geo-bicycleedges-small
+          this.map.addLayer({
+            id: name + '-test-geo-bicycleedges-small',
+            type: 'line',
+            source: name,
+            layout: {},
+            paint: {
+              'line-color': [
+                'interpolate',
+                ['linear'],
+                ['get', 'length'],
+                0,
+                'rgba(50, 100, 255, 1.0)',
+                200000,
+                'rgba(50, 100, 255, 1.0)'
+              ],
+              'line-width': 5
+            }
+          });
+        });
+      });
     }
   }
 }
