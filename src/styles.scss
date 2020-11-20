@@ -42,6 +42,10 @@ h3 {
   outline: none;
 }
 
+.app-header {
+  z-index: 100;
+}
+
 .mapboxgl-map{
-  z-index: -1;
+  z-index: 0;
 }
