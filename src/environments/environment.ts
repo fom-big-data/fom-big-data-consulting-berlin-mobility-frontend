@@ -15,7 +15,23 @@ export const environment = {
   },
   mapbox: {
     accessToken: 'pk.eyJ1IjoiZm9tLWJpZ2RhdGEiLCJhIjoiY2toZ2wyMnc5MGljdzJ5bWNub256bGJzaSJ9.LziC2dfr9nbShE1V-vRKkg'
-  }
+  },
+  github: {
+    resultsUrl: 'https://raw.githubusercontent.com/fom-big-data/fom-big-data-consulting-berlin-mobility-model/master/results/'
+  },
+  results: [
+    // 'Berlin-small.geojson',
+    // 'dummy_result.csv',
+    // 'Berlin.geojson',
+    // 'analyse_spatial_drive50.geojson',
+    // 'analyse_spatial_driveX.geojson',
+    // 'analyse_spatial_walk.geojson',
+    // 'berlin-inhabitants.geojson',
+    // 'dummy_result.json',
+    // 'berlin-inhabitants.geojson',
+    // 'test-geo-bicycleedges.geojson',
+    'test-geo-bicycleedges-small.geojson',
+  ]
 };
 
 /*
