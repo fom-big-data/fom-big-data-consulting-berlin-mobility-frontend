@@ -1,12 +1,22 @@
 <div id="story_container" class="story_container">
   <h1>Berlin Mobility<br/><span style="font-weight:200">Nutzung von Daten für die urbane Mobilität
 von morgen</span>​</h1>
-  <h2 id="einleitung">Einleitung</h2>
+  <h2 id="einleitung">Urbane Mobilität als Herausforderung</h2>
 
-  <app-text [text]="'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.'"></app-text>
+  <app-text [text]="'Mobilität befindet sich im ständigen Wandel. Das trifft insbesondere auf urbane Mobilität in immer schnellen wachsenden Städten zu. Die Gestaltung einer urbanen Mobilität, die heute reibungslos funktioniert und zukünftigen Mobilitätsansprüchen gerecht wird ist eine besondere Herausforderung. Investitionsentscheidungen, die heute getroffen werden, prägen langfristig die Mobilität innerhalb einer Stadt. Doch wie können wir sicher sein, dass an den richtigen Stellen investiert wird?'"></app-text>
 
   <h3>Berliner Mobilitätsgesetz</h3>
-  <app-text [text]="'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos etvaccusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.'"></app-text>
+  <app-text [text]="'Im Juni 2018 hat das Berliner Abgeordnetenhaus ein Mobilitätsgesetz beschlossen. Ziel des Berliner Mobilitätsgesetzes ist es, die Grundlage zur Gestaltung einer zukunftsfähigen urbanen Mobilität in der Hauptstadt zu schaffen. Berlin soll mobiler, sicherer und klimafreundlicher werden. Dies kann nur gelingen indem die stärken aller zur Verfügung stehenden Verkehrsmittel genutzt werden. Unterschiedliche Verkehrsmittel sollen stärker miteinander vernetzt werden, um die Leistungsfähigkeit des Verkehrssystem zu steigern und die Lebensqualität der Berliner zu erhöhen. Der PKD-Verkehr soll bis 2050 klimaneutral gestaltet werden. Die Zahl der Schwerverletzten und Verkehrstoten soll auf ein Minimum reduziert werden.'"></app-text>
+  <app-text [text]="'Zuletzt kam vermehrt Kritik an der Umsetzung des Berliner Mobilitätsgesetztes auf. Dabei wurde beanstandet, dass die Maßnahmen unzureichend geplant seien und die Umsetzung nur schleppend voranginge. Die Planung einer stadtweiten und zukunftssicheren Radverkehrsanlage ist beispielweise überfällig und über den Stellenwert, der dem Autoverkehr zukünftig zugeschrieben werden soll, herrscht unter den politischen Akteuren weiterhin Uneinigkeit.'"></app-text>
+  <app-text [text]="'Die Gestaltung der zukünftigen Mobilität setzt voraus, dass der Status quo hinreichend bekannt ist und, dass die drängendsten Probleme identifiziert wurden. Ausgehend davon, können ganzheitliche Ideen und Konzepte entwickelt werden, die der städtischen Mobilität und vor allem den Bürger*innen langfristig zugutekommen. Die Grundlage vielversprechender Mobilitätskonzepte liegt demnach auch in der Analyse der Daten, die den Status quo beschreiben. '"></app-text>
+
+ <h2 id="verkehrsquellen">Quellen des Verkehrs</h2>
+  <app-text [text]="'Die kleinste Einheit der städtischen Mobilität ist der Mensch. Um städtischen Verkehr verstehen zu können, macht es also Sinn menschliches Verhalten im urbanen Raum näher zu betrachten. Dafür werfen wir einen Blick auf die Lebensräume des Menschen – also Wohngebiete – als Ausgangspunkt für einen Großteil der Mobilität in der Stadt. Im zweiten Schritt versuchen wir mögliche Zielorte wie beispielsweise größere Ansammlungen von Arbeitsplätzen innerhalb des Stadtgebiets identifizieren. '"></app-text>
+
+  <h3>Lebensräume</h3>
+ <app-text [text]="'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos etvaccusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.'"></app-text>
+
+  <h3>Zielorte</h3>
   <app-text [text]="'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos etvaccusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.'"></app-text>
 
   <app-map [id]="'story1'"
@@ -20,13 +30,6 @@ von morgen</span>​</h1>
            [geojsons]="geojsons"
   ></app-map>
 
- <h2 id="verkehrsquellen">Quellen des Verkehrs</h2>
- <h3>Lebensräume</h3>
- <app-text [text]="'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos etvaccusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.'"></app-text>
-
-
-  <h3>Zielorte</h3>
-  <app-text [text]="'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos etvaccusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.'"></app-text>
 
   <h2 id="aktuelleSituation">Aktuelle Verkehrssituation</h2>
   <h3>Verkehrsnetze</h3>
