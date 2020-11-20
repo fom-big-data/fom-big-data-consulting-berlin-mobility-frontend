@@ -131,7 +131,7 @@ export class MapComponent implements AfterViewInit {
                 }
                 },
               {
-              // feature for Mapbox SF
+              // feature for TestPoint2 unknown location
                 type: 'Feature',
                 geometry: {
                   type: 'Point',
