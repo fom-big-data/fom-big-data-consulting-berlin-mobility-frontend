@@ -18,6 +18,7 @@ export class ResultsService {
    * Constructor
    * @param firebaseCloudFirestoreService Firebase Cloud Firestore service
    * @param firebaseStorageService Firebase Storage service
+   * @param http http client
    */
   constructor(private firebaseCloudFirestoreService: FirebaseCloudFirestoreService,
               private firebaseStorageService: FirebaseStorageService,

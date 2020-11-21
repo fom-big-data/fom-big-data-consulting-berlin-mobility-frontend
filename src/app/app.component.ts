@@ -61,6 +61,6 @@ export class AppComponent implements OnInit {
     // Find results
     // this.resultsService.findResultsCloudFirestore();
     // this.resultsService.findResultsFireStorage();
-    this.resultsService.findResultsGithub();
+    // this.resultsService.findResultsGithub();
   }
 }

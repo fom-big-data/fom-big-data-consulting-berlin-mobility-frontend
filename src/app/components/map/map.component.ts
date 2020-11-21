@@ -1,10 +1,11 @@
-import {AfterViewInit, Component, Input, OnChanges, SimpleChanges} from '@angular/core';
+import {AfterViewInit, Component, Input} from '@angular/core';
 import * as mapboxgl from 'mapbox-gl';
 import {environment} from '../../../environments/environment';
 import {Place} from '../../core/mapbox/model/place.model';
 import {MapBoxStyle} from '../../core/mapbox/model/map-box-style.enum';
 import {Location} from '../../core/mapbox/model/location.model';
 import {UUID} from '../../core/entity/model/uuid';
+import {HttpClient} from '@angular/common/http';
 
 /**
  * Displays a map box
@@ -14,7 +15,7 @@ import {UUID} from '../../core/entity/model/uuid';
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.scss']
 })
-export class MapComponent implements AfterViewInit, OnChanges {
+export class MapComponent implements AfterViewInit {
 
   /** Unique ID for this map */
   @Input() id = UUID.toString();
@@ -40,11 +41,18 @@ export class MapComponent implements AfterViewInit, OnChanges {
   /** Whether interactive mode is enabled or not */
   @Input() interactiveEnabled = true;
 
-  /** Map of all results */
-  @Input() geojsons = new Map<string, any>();
+  /** List of all results to be displayed  */
+  @Input() results = [];
 
   /** Map Box object */
   map: mapboxgl.Map;
+
+  /**
+   * Constructor
+   * @param http http client
+   */
+  constructor(private http: HttpClient) {
+  }
 
   //
   // Lifecycle hooks
@@ -64,13 +72,9 @@ export class MapComponent implements AfterViewInit, OnChanges {
     this.initializeNavigationControl(this.navigationControlEnabled);
     this.initializeScrollZoomControl(this.mapScrollZoomEnabled);
     this.initializeFullScreenControl(this.fullScreenControlEnabled);
-  }
 
-  /**
-   * Handles on-changes phase
-   */
-  ngOnChanges(changes: SimpleChanges) {
-    this.initializeGeoJson();
+    // Display overlays
+    this.initializeResultOverlays(this.results);
   }
 
   //
@@ -199,72 +203,29 @@ export class MapComponent implements AfterViewInit, OnChanges {
   }
 
   /**
-   * Initializes GeoJSON overlays
+   * Initializes results overlays
    */
-  private initializeGeoJson() {
-    if (this.geojsons.size > 0) {
-      this.map.on('load', () => {
-        this.geojsons.forEach((value: any, name: string) => {
+  private initializeResultOverlays(results: string[]) {
+    this.map.on('load', () => {
 
-          // Clean geojson
-          delete value['crs'];
+      // Base URL for results
+      const baseUrl = environment.github.resultsUrl;
 
-          this.map.addSource(name,
-            {
-              type: 'geojson',
-              data: JSON.parse(value)
-            }
-          );
+      results.forEach(name => {
+        this.map.addSource(name,
+          {
+            type: 'geojson',
+            data: baseUrl + name + '.geojson'
+          }
+        );
 
-          // Add style for berlin-inhabitants
-          // this.map.addLayer({
-          //   id: name + '-berlin-inhabitants',
-          //   type: 'fill',
-          //   source: name,
-          //   layout: {},
-          //   paint: {
-          //     'fill-color': [
-          //       'interpolate',
-          //       ['linear'],
-          //       ['get', 'einwohner'],
-          //       5000,
-          //       'rgba(255, 255, 255, 0.0)',
-          //       40000,
-          //       'rgba(255, 100, 50, 0.2)'
-          //     ],
-          //     'fill-outline-color': [
-          //       'interpolate',
-          //       ['linear'],
-          //       ['get', 'einwohner'],
-          //       5000,
-          //       'rgba(255, 100, 50, 1.0)',
-          //       40000,
-          //       'rgba(255, 100, 50, 1.0)'
-          //     ]
-          //   }
-          // });
+        this.http.get(baseUrl + name + '.json', {responseType: 'text' as 'json'}).subscribe((data: any) => {
+          const style = JSON.parse(data);
+          style['source'] = name;
 
-          // Add style for test-geo-bicycleedges-small
-          this.map.addLayer({
-            id: name + '-test-geo-bicycleedges-small',
-            type: 'line',
-            source: name,
-            layout: {},
-            paint: {
-              'line-color': [
-                'interpolate',
-                ['linear'],
-                ['get', 'length'],
-                0,
-                'rgba(50, 100, 255, 1.0)',
-                200000,
-                'rgba(50, 100, 255, 1.0)'
-              ],
-              'line-width': 5
-            }
-          });
+          this.map.addLayer(style);
         });
       });
-    }
+    });
   }
 }
