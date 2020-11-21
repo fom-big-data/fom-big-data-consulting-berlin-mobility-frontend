@@ -16,7 +16,7 @@ von morgen</span>​</h1>
   <h3>Lebensräume</h3>
  <app-text [text]="'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos etvaccusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.'"></app-text>
 
-  <app-map [id]="'story1'"
+  <app-map [id]="'inhabitants'"
            [height]="'500px'"
            [style]="mapBoxStyleEnum.LIGHT_V10"
            [zoom]=10
@@ -29,8 +29,8 @@ von morgen</span>​</h1>
   <h3>Zielorte</h3>
   <app-text [text]="'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos etvaccusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.'"></app-text>
 
-  <app-map [id]="'story2'"
-           [height]="'500px'"
+  <app-map [id]="'commercial'"
+    [height]="'500px'"
            [style]="mapBoxStyleEnum.LIGHT_V10"
            [zoom]=10
            [center]="placeEnum.BRANDENBURG_GATE"
@@ -42,6 +42,16 @@ von morgen</span>​</h1>
   <h2 id="aktuelleSituation">Aktuelle Verkehrssituation</h2>
   <h3>Verkehrsnetze</h3>
   <app-text [text]="'Überblick Verkehrsnetz (Interaktive Ebenen): Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos etvaccusam et  justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.'"></app-text>
+
+  <app-map [id]="'traffic'"
+           [height]="'500px'"
+           [style]="mapBoxStyleEnum.LIGHT_V10"
+           [zoom]=10
+           [center]="placeEnum.BRANDENBURG_GATE"
+           [markers]=[]
+           [clickableMarkers]=[]
+           [fullScreenControlEnabled]=true
+           [results]="['uber_mean_speed']"></app-map>
 
   <h3>Erreichbarkeit</h3>
   <app-text [text]="'Interaktive Isochrone verschiedene Verkehrsmittel: Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos etvaccusam et  justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.'"></app-text>
