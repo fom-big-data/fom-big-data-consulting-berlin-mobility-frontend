@@ -16,18 +16,28 @@ von morgen</span>​</h1>
   <h3>Lebensräume</h3>
  <app-text [text]="'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos etvaccusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.'"></app-text>
 
-  <h3>Zielorte</h3>
-  <app-text [text]="'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos etvaccusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.'"></app-text>
-
   <app-map [id]="'story1'"
            [height]="'500px'"
            [style]="mapBoxStyleEnum.LIGHT_V10"
            [zoom]=10
-           [center]="placeEnum.ARD_HAUPTSTADTSTUDIO"
-           [markers]=[placeEnum.BRANDENBURG_GATE]
-           [clickableMarkers]="[placeEnum.BRANDENBURG_GATE_STATION]"
+           [center]="placeEnum.BRANDENBURG_GATE"
+           [markers]=[]
+           [clickableMarkers]=[]
            [fullScreenControlEnabled]=true
            [results]="['berlin-inhabitants']"></app-map>
+
+  <h3>Zielorte</h3>
+  <app-text [text]="'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos etvaccusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.'"></app-text>
+
+  <app-map [id]="'story2'"
+           [height]="'500px'"
+           [style]="mapBoxStyleEnum.LIGHT_V10"
+           [zoom]=10
+           [center]="placeEnum.BRANDENBURG_GATE"
+           [markers]=[]
+           [clickableMarkers]=[]
+           [fullScreenControlEnabled]=true
+           [results]="['POI-retail-commercial']"></app-map>
 
   <h2 id="aktuelleSituation">Aktuelle Verkehrssituation</h2>
   <h3>Verkehrsnetze</h3>
