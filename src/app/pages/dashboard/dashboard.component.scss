@@ -1,0 +1,10 @@
+.dashboard-container{
+  width: 100%;
+  max-width: 1200px;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 0.5fr 6fr 0.5fr 2fr;
+  grid-template-rows: auto;
+  margin: 0 auto;
+  padding-top: 100px;
+}
