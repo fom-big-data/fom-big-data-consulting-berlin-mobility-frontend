@@ -28,18 +28,33 @@ export class MapComponent implements AfterViewInit {
   @Input() zoom = 10;
   /** Initial center of map */
   @Input() center: Location = Place.BRANDENBURG_GATE;
+
   /** List of markers to be displayed */
   @Input() markers: Location[] = [];
   /** List of clickable markers to be displayed */
   @Input() clickableMarkers: Location[] = [];
-  /** Whether navigation control is enabled or not */
-  @Input() navigationControlEnabled = false;
-  /** Whether map scroll zoom is enabled or not */
-  @Input() mapScrollZoomEnabled = true;
-  /** Whether full screen control is enabled or not */
-  @Input() fullScreenControlEnabled = false;
+
   /** Whether interactive mode is enabled or not */
   @Input() interactiveEnabled = true;
+  /** Whether navigation control is enabled or not */
+  @Input() navigationControlEnabled = false;
+  /** Whether full screen control is enabled or not */
+  @Input() fullScreenControlEnabled = false;
+
+  /** Whether scroll zoom is enabled or not */
+  @Input() scrollZoomEnabled = true;
+  /** Whether map zoom is enabled or not */
+  @Input() boxZoomEnabled = true;
+  /** Whether drag rotate is enabled or not */
+  @Input() dragRotateEnabled = true;
+  /** Whether drag pan is enabled or not */
+  @Input() dragPanEnabled = true;
+  /** Whether keyboard is enabled or not */
+  @Input() keyboardEnabled = true;
+  /** Whether double click zoom is enabled or not */
+  @Input() doubleClickZoomEnabled = true;
+  /** Whether touch zoom rotate is enabled or not */
+  @Input() touchZoomRotateEnabled = true;
 
   /** List of all results to be displayed  */
   @Input() results = [];
@@ -70,8 +85,16 @@ export class MapComponent implements AfterViewInit {
 
     // Initialize controls
     this.initializeNavigationControl(this.navigationControlEnabled);
-    this.initializeScrollZoomControl(this.mapScrollZoomEnabled);
     this.initializeFullScreenControl(this.fullScreenControlEnabled);
+
+    // Initialize interactivity
+    this.initializeScrollZoom(this.scrollZoomEnabled);
+    this.initializeBoxZoom(this.boxZoomEnabled);
+    this.initializeDragRotate(this.dragRotateEnabled);
+    this.initializeDragPan(this.dragPanEnabled);
+    this.initializeKeyboard(this.keyboardEnabled);
+    this.initializeDoubleClickZoom(this.doubleClickZoomEnabled);
+    this.initializeTouchZoomRotate(this.touchZoomRotateEnabled);
 
     // Display overlays
     this.initializeResultOverlays(this.results);
@@ -181,17 +204,6 @@ export class MapComponent implements AfterViewInit {
   }
 
   /**
-   * Initializes scroll zoom control
-   *
-   * @param mapScrollZoomEnabled whether map scroll zoom should be enabled
-   */
-  private initializeScrollZoomControl(mapScrollZoomEnabled: boolean) {
-    if (!mapScrollZoomEnabled) {
-      this.map.scrollZoom.disable();
-    }
-  }
-
-  /**
    * Initializes fullscreen control
    *
    * @param fullScreenControlEnabled whether full screen control should be enabled
@@ -199,6 +211,76 @@ export class MapComponent implements AfterViewInit {
   private initializeFullScreenControl(fullScreenControlEnabled: boolean) {
     if (fullScreenControlEnabled) {
       this.map.addControl(new mapboxgl.FullscreenControl());
+    }
+  }
+
+  /**
+   * Initializes scroll zoom
+   * @param scrollZoomEnabled whether scroll zoom should be enabled or not
+   */
+  private initializeScrollZoom(scrollZoomEnabled: boolean) {
+    if (!scrollZoomEnabled) {
+      this.map.scrollZoom.disable()
+    }
+  }
+
+  /**
+   * Initializes box zoom
+   * @param boxZoomEnabled whether box zoom should be enabled or not
+   */
+  private initializeBoxZoom(boxZoomEnabled: boolean) {
+    if (!boxZoomEnabled) {
+      this.map.boxZoom.disable()
+    }
+  }
+
+  /**
+   * Initializes drag rotate
+   * @param dragRotateEnabled whether drag rotate should be enabled or not
+   */
+  private initializeDragRotate(dragRotateEnabled: boolean) {
+    if (!dragRotateEnabled) {
+      this.map.dragRotate.disable()
+    }
+  }
+
+  /**
+   * Initializes drag pan
+   * @param dragPanEnabled whether drag pan should be enabled or not
+   */
+  private initializeDragPan(dragPanEnabled: boolean) {
+    if (!dragPanEnabled) {
+      this.map.dragPan.disable()
+    }
+  }
+
+  /**
+   * Initializes keyboard
+   * @param keyboardEnabled whether keyboard should be enabled or not
+   */
+  private initializeKeyboard(keyboardEnabled: boolean) {
+    if (!keyboardEnabled) {
+      this.map.keyboard.disable()
+    }
+  }
+
+  /**
+   * Initializes double click zoom
+   * @param doubleClickZoomEnabled whether double click zoom should be enabled or not
+   */
+  private initializeDoubleClickZoom(doubleClickZoomEnabled: boolean) {
+    if (!doubleClickZoomEnabled) {
+      this.map.doubleClickZoom.disable()
+    }
+  }
+
+  /**
+   * Initializes touch zom rotate
+   * @param touchZoomRotateEnabled whether touch zoom rotate should be enabled or not
+   */
+  private initializeTouchZoomRotate(touchZoomRotateEnabled: boolean) {
+    if (!touchZoomRotateEnabled) {
+      this.map.touchZoomRotate.disable()
     }
   }
 
