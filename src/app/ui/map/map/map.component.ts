@@ -1,10 +1,10 @@
 import {AfterViewInit, Component, Input} from '@angular/core';
 import * as mapboxgl from 'mapbox-gl';
-import {environment} from '../../../environments/environment';
-import {Place} from '../../core/mapbox/model/place.model';
-import {MapBoxStyle} from '../../core/mapbox/model/map-box-style.enum';
-import {Location} from '../../core/mapbox/model/location.model';
-import {UUID} from '../../core/entity/model/uuid';
+import {environment} from '../../../../environments/environment';
+import {Place} from '../../../core/mapbox/model/place.model';
+import {MapBoxStyle} from '../../../core/mapbox/model/map-box-style.enum';
+import {Location} from '../../../core/mapbox/model/location.model';
+import {UUID} from '../../../core/entity/model/uuid';
 import {HttpClient} from '@angular/common/http';
 
 /**
