@@ -10,11 +10,11 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 
 export class TextComponent implements OnInit {
- @Input() text = '';
- @Input() h1 = '';
- @Input() h2 = '';
+  @Input() text = '';
+  @Input() h1 = '';
+  @Input() h2 = '';
 
- ngOnInit() {
+  ngOnInit() {
   }
 
   private initializeText() {

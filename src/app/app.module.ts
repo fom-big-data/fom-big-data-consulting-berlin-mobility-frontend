@@ -7,24 +7,17 @@ import {AngularFireModule} from '@angular/fire';
 import {environment} from '../environments/environment';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {FirebaseModule} from './core/firebase/firebase.module';
-import {MapComponent} from './components/map/map.component';
-import {StoryComponent} from './components/story/story.component';
-import {TextComponent} from './components/text/text.component';
-import {PlaceholderComponent} from './components/placeholder/placeholder.component';
 import {HeaderComponent} from './components/header/header.component';
 import {FooterComponent} from './components/footer/footer.component';
 import {MapboxModule} from './core/mapbox/mapbox.module';
 import {EntityModule} from './core/entity/entity.module';
 import {LandingOverlayComponent} from './components/landing-overlay/landing-overlay.component';
 import {HttpClientModule} from '@angular/common/http';
+import {MapModule} from './ui/map/map.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MapComponent,
-    StoryComponent,
-    TextComponent,
-    PlaceholderComponent,
     HeaderComponent,
     FooterComponent,
     LandingOverlayComponent
@@ -38,6 +31,10 @@ import {HttpClientModule} from '@angular/common/http';
 
     HttpClientModule,
 
+    // UI modules
+    MapModule,
+
+    // Core modules
     EntityModule,
     FirebaseModule,
     MapboxModule

@@ -2,13 +2,11 @@ import {Component, Input, OnInit} from '@angular/core';
 import {MapBoxStyle} from '../../core/mapbox/model/map-box-style.enum';
 import {Place} from '../../core/mapbox/model/place.model';
 
-declare var ol: any;
-
 /**
  * Displays an Open Street Story
  */
 @Component({
-  selector: 'data-story',
+  selector: 'app-story',
   templateUrl: './story.component.html',
   styleUrls: ['./story.component.scss']
 })
