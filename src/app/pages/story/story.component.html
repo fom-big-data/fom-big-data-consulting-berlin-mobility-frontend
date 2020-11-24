@@ -72,4 +72,26 @@ von morgen</span>​</h1>
            [fullScreenControlEnabled]=true
            [parametrizeOpacityEnabled]=true
            [results]="['berlin-inhabitants', 'POI-retail-commercial', 'uber_mean_speed']"></app-map>
+
+  <app-map [id]="'vbb-stations'"
+           [height]="'500px'"
+           [style]="mapBoxStyleEnum.DARK_V10"
+           [zoom]=10
+           [center]="placeEnum.BRANDENBURG_GATE"
+           [markers]=[]
+           [clickableMarkers]=[]
+           [fullScreenControlEnabled]=true
+           [parametrizeOpacityEnabled]=true
+           [results]="['vbb-stations']"></app-map>
+
+  <app-map [id]="'vbb-stations-s-u-bahn'"
+           [height]="'500px'"
+           [style]="mapBoxStyleEnum.DARK_V10"
+           [zoom]=10
+           [center]="placeEnum.BRANDENBURG_GATE"
+           [markers]=[]
+           [clickableMarkers]=[]
+           [fullScreenControlEnabled]=true
+           [parametrizeOpacityEnabled]=true
+           [results]="['vbb-stations-s-u-bahn']"></app-map>
 </div>
