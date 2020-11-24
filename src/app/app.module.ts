@@ -13,6 +13,7 @@ import {MapboxModule} from './core/mapbox/mapbox.module';
 import {EntityModule} from './core/entity/entity.module';
 import {LandingOverlayComponent} from './components/landing-overlay/landing-overlay.component';
 import {HttpClientModule} from '@angular/common/http';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MapModule} from './ui/map/map.module';
 
 @NgModule({
@@ -37,7 +38,9 @@ import {MapModule} from './ui/map/map.module';
     // Core modules
     EntityModule,
     FirebaseModule,
-    MapboxModule
+    MapboxModule,
+
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

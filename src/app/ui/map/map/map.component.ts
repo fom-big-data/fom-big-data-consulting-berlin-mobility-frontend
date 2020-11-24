@@ -6,6 +6,8 @@ import {MapBoxStyle} from '../../../core/mapbox/model/map-box-style.enum';
 import {Location} from '../../../core/mapbox/model/location.model';
 import {UUID} from '../../../core/entity/model/uuid';
 import {HttpClient} from '@angular/common/http';
+import {MatSliderChange} from '@angular/material/slider';
+import {Subject} from 'rxjs';
 
 /**
  * Displays a map box
@@ -56,11 +58,17 @@ export class MapComponent implements AfterViewInit {
   /** Whether touch zoom rotate is enabled or not */
   @Input() touchZoomRotateEnabled = true;
 
+  /** Whether opacity should be parametrized or not */
+  @Input() parametrizeOpacityEnabled = false;
+
   /** List of all results to be displayed  */
   @Input() results = [];
 
   /** Map Box object */
-  map: mapboxgl.Map;
+  private map: mapboxgl.Map;
+
+  /** Internal subject that publishes transparency events */
+  private transparencySubject = new Subject<{ name: string, value: number }>();
 
   /**
    * Constructor
@@ -220,7 +228,7 @@ export class MapComponent implements AfterViewInit {
    */
   private initializeScrollZoom(scrollZoomEnabled: boolean) {
     if (!scrollZoomEnabled) {
-      this.map.scrollZoom.disable()
+      this.map.scrollZoom.disable();
     }
   }
 
@@ -230,7 +238,7 @@ export class MapComponent implements AfterViewInit {
    */
   private initializeBoxZoom(boxZoomEnabled: boolean) {
     if (!boxZoomEnabled) {
-      this.map.boxZoom.disable()
+      this.map.boxZoom.disable();
     }
   }
 
@@ -240,7 +248,7 @@ export class MapComponent implements AfterViewInit {
    */
   private initializeDragRotate(dragRotateEnabled: boolean) {
     if (!dragRotateEnabled) {
-      this.map.dragRotate.disable()
+      this.map.dragRotate.disable();
     }
   }
 
@@ -250,7 +258,7 @@ export class MapComponent implements AfterViewInit {
    */
   private initializeDragPan(dragPanEnabled: boolean) {
     if (!dragPanEnabled) {
-      this.map.dragPan.disable()
+      this.map.dragPan.disable();
     }
   }
 
@@ -260,7 +268,7 @@ export class MapComponent implements AfterViewInit {
    */
   private initializeKeyboard(keyboardEnabled: boolean) {
     if (!keyboardEnabled) {
-      this.map.keyboard.disable()
+      this.map.keyboard.disable();
     }
   }
 
@@ -270,7 +278,7 @@ export class MapComponent implements AfterViewInit {
    */
   private initializeDoubleClickZoom(doubleClickZoomEnabled: boolean) {
     if (!doubleClickZoomEnabled) {
-      this.map.doubleClickZoom.disable()
+      this.map.doubleClickZoom.disable();
     }
   }
 
@@ -280,7 +288,7 @@ export class MapComponent implements AfterViewInit {
    */
   private initializeTouchZoomRotate(touchZoomRotateEnabled: boolean) {
     if (!touchZoomRotateEnabled) {
-      this.map.touchZoomRotate.disable()
+      this.map.touchZoomRotate.disable();
     }
   }
 
@@ -294,6 +302,8 @@ export class MapComponent implements AfterViewInit {
       const baseUrl = environment.github.resultsUrl;
 
       results.forEach(name => {
+
+        // Add source
         this.map.addSource(name,
           {
             type: 'geojson',
@@ -301,13 +311,47 @@ export class MapComponent implements AfterViewInit {
           }
         );
 
+        // Download styling for result
         this.http.get(baseUrl + name + '.json', {responseType: 'text' as 'json'}).subscribe((data: any) => {
-          const style = JSON.parse(data);
-          style['source'] = name;
 
-          this.map.addLayer(style);
+          // Link layer to source
+          const layer = JSON.parse(data);
+          layer['id'] = name + '-layer';
+          layer['source'] = name;
+
+          // Add layer
+          this.map.addLayer(layer);
+
+          // Update layer transparency
+          if (this.parametrizeOpacityEnabled) {
+            this.transparencySubject.subscribe((e: { name, value }) => {
+              const layerId = e.name + '-layer';
+
+              if (layer.id === layerId) {
+                if (layer['paint'].hasOwnProperty('fill-color')) {
+                  this.map.setPaintProperty(layerId, 'fill-opacity', e.value / 100);
+                }
+                if (layer['paint'].hasOwnProperty('line-color')) {
+                  this.map.setPaintProperty(layerId, 'line-opacity', e.value / 100);
+                }
+              }
+            });
+          }
         });
       });
     });
+  }
+
+  //
+  // Actions
+  //
+
+  /**
+   * Handles transparency changes
+   * @param name result name
+   * @param event slider event
+   */
+  onTransparencyChanged(name: string, event: MatSliderChange) {
+    this.transparencySubject.next({name, value: event.value});
   }
 }

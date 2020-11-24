@@ -61,4 +61,15 @@ von morgen</span>​</h1>
 
  <h3>Überschrift Ebene 2</h3>
  <app-text [text]="'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.'"></app-text>
+
+  <app-map [id]="'experiment'"
+           [height]="'500px'"
+           [style]="mapBoxStyleEnum.LIGHT_V10"
+           [zoom]=10
+           [center]="placeEnum.BRANDENBURG_GATE"
+           [markers]=[]
+           [clickableMarkers]=[]
+           [fullScreenControlEnabled]=true
+           [parametrizeOpacityEnabled]=true
+           [results]="['berlin-inhabitants', 'POI-retail-commercial', 'uber_mean_speed']"></app-map>
 </div>
