@@ -334,6 +334,9 @@ export class MapComponent implements AfterViewInit {
                 if (layer['paint'].hasOwnProperty('line-color')) {
                   this.map.setPaintProperty(layerId, 'line-opacity', e.value / 100);
                 }
+                if (layer['paint'].hasOwnProperty('heatmap-color')) {
+                  this.map.setPaintProperty(layerId, 'heatmap-opacity', e.value / 100);
+                }
               }
             });
           }
