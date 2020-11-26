@@ -1,20 +1,12 @@
 <div id="story_container" class="story_container">
-  <h1>Berlin Mobility<br/><span style="font-weight:200">Nutzung von Daten für die urbane Mobilität
-von morgen</span>​</h1>
-  <h2 id="einleitung">Urbane Mobilität als Herausforderung</h2>
-
-  <app-text [text]="'Mobilität befindet sich im ständigen Wandel. Das trifft insbesondere auf urbane Mobilität in immer schnellen wachsenden Städten zu. Die Gestaltung einer urbanen Mobilität, die heute reibungslos funktioniert und zukünftigen Mobilitätsansprüchen gerecht wird ist eine besondere Herausforderung. Investitionsentscheidungen, die heute getroffen werden, prägen langfristig die Mobilität innerhalb einer Stadt. Doch wie können wir sicher sein, dass an den richtigen Stellen investiert wird?'"></app-text>
-
-  <h3>Berliner Mobilitätsgesetz</h3>
-  <app-text [text]="'Im Juni 2018 hat das Berliner Abgeordnetenhaus ein Mobilitätsgesetz beschlossen. Ziel des Berliner Mobilitätsgesetzes ist es, die Grundlage zur Gestaltung einer zukunftsfähigen urbanen Mobilität in der Hauptstadt zu schaffen. Berlin soll mobiler, sicherer und klimafreundlicher werden. Dies kann nur gelingen indem die stärken aller zur Verfügung stehenden Verkehrsmittel genutzt werden. Unterschiedliche Verkehrsmittel sollen stärker miteinander vernetzt werden, um die Leistungsfähigkeit des Verkehrssystem zu steigern und die Lebensqualität der Berliner zu erhöhen. Der PKD-Verkehr soll bis 2050 klimaneutral gestaltet werden. Die Zahl der Schwerverletzten und Verkehrstoten soll auf ein Minimum reduziert werden.'"></app-text>
-  <app-text [text]="'Zuletzt kam vermehrt Kritik an der Umsetzung des Berliner Mobilitätsgesetztes auf. Dabei wurde beanstandet, dass die Maßnahmen unzureichend geplant seien und die Umsetzung nur schleppend voranginge. Die Planung einer stadtweiten und zukunftssicheren Radverkehrsanlage ist beispielweise überfällig und über den Stellenwert, der dem Autoverkehr zukünftig zugeschrieben werden soll, herrscht unter den politischen Akteuren weiterhin Uneinigkeit.'"></app-text>
-  <app-text [text]="'Die Gestaltung der zukünftigen Mobilität setzt voraus, dass der Status quo hinreichend bekannt ist und, dass die drängendsten Probleme identifiziert wurden. Ausgehend davon, können ganzheitliche Ideen und Konzepte entwickelt werden, die der städtischen Mobilität und vor allem den Bürger*innen langfristig zugutekommen. Die Grundlage vielversprechender Mobilitätskonzepte liegt demnach auch in der Analyse der Daten, die den Status quo beschreiben. '"></app-text>
-
- <h2 id="verkehrsquellen">Quellen des Verkehrs</h2>
-  <app-text [text]="'Die kleinste Einheit der städtischen Mobilität ist der Mensch. Um städtischen Verkehr verstehen zu können, macht es also Sinn menschliches Verhalten im urbanen Raum näher zu betrachten. Dafür werfen wir einen Blick auf die Lebensräume des Menschen – also Wohngebiete – als Ausgangspunkt für einen Großteil der Mobilität in der Stadt. Im zweiten Schritt versuchen wir mögliche Zielorte wie beispielsweise größere Ansammlungen von Arbeitsplätzen innerhalb des Stadtgebiets identifizieren. '"></app-text>
-
-  <h3>Lebensräume</h3>
- <app-text [text]="'Berlin ist bekannt für seine Kieze. Die Lebensräume sind demnach stark dezentral gelagert, so dass sich auch die Einwohner weitestgehend gleichmäßig über das Stadtfläche verteilen. Diese Dezentralität stellt eine Herausforderung für die Umsetzung einer umfassenden Mobilitätsinfrastruktur dar. Anders als in stark zentralisierten Städten, gilt es in Berlin die Anbindung der vielen Kieze untereinander sicherzustellen. Mit Fokus auf den aus Brandenburg kommenden Pendlerverkehr muss zudem sichergestellt sein, dass auch der außerstädtische Verkehr gut angebunden ist.'"></app-text>
+  <h1>
+    {{ appTitle }}<br/>
+    <span style="font-weight:200">{{ appSubTitle }}</span>
+    ​</h1>
+  <app-section-header title="Urbane Mobilität als Herausforderung"></app-section-header>
+  <app-section [chapters]="['berliner-mobilitaetsgesetz']"></app-section>
+  <app-section [chapters]="['quellen-des-verkehrs']"></app-section>
+  <app-section [chapters]="['lebensraeume']"></app-section>
 
   <app-map [id]="'inhabitants'"
            [height]="'500px'"
@@ -26,11 +18,10 @@ von morgen</span>​</h1>
            [fullScreenControlEnabled]=true
            [results]="['berlin-inhabitants']"></app-map>
 
-  <h3>Arbeitsräume</h3>
-  <app-text [text]="'Anders als andere Städte hat Berlin kein klassisches Stadtzentrum, welches auch kommerzielles Zentrum der Stadt fungiert. Daher stellt sich im Rahmen des Pendlerverkehrs die Frage, welche Zielorte von besonderer Wichtigkeit für die urbane Mobilität sind. Durch eine Visualisierung des Flächennutzungsplans wird deutlich, dass auch sogenannte Handels- und Dienstleistungszentren dezentral über die Stadt verteilt sind. Zusammen mit den Lebensräumen bilden die Ansammlungen von Arbeitsräumen (Büros, etc.) wichtige Ausgangspunkte für unsere Analyse des städtischen Verkehrs.'"></app-text>
+  <app-section [chapters]="['arbeitsraeume']"></app-section>
 
   <app-map [id]="'commercial'"
-    [height]="'500px'"
+           [height]="'500px'"
            [style]="mapBoxStyleEnum.LIGHT_V10"
            [zoom]=10
            [center]="placeEnum.BRANDENBURG_GATE"
@@ -39,9 +30,9 @@ von morgen</span>​</h1>
            [fullScreenControlEnabled]=true
            [results]="['POI-retail-commercial']"></app-map>
 
-  <h2 id="aktuelleSituation">Aktuelle Verkehrssituation</h2>
-  <h3>Verkehrsnetze</h3>
-  <app-text [text]="'Die Lebensräume und Arbeitsräume der Berliner sind über eine vielschichtige Verkehrsinfrastruktur miteinander verbunden. Die Verkehrsinfrastruktur umfasst Straßen und Fahrradwege genauso wie U-Bahn und S-Bahnstrecken. Diese Infrastruktur wiederum wird von einer Vielzahl unterschiedlicher Akteure genutzt. So nutzt ein Bus die gleiche Infrastruktur wie ein Taxi, oder verschiedene Mikromobilitätsanbieter. Die Summe der Verkehrsteilnehmer prägt die aktuelle Verkehrssituation.'"></app-text>
+  <app-section-header title="Aktuelle Verkehrssituation"></app-section-header>
+
+  <app-section [chapters]="['verkehrsnetze']"></app-section>
 
   <app-map [id]="'traffic'"
            [height]="'500px'"
@@ -53,14 +44,8 @@ von morgen</span>​</h1>
            [fullScreenControlEnabled]=true
            [results]="['uber_mean_speed']"></app-map>
 
-  <h3>Erreichbarkeit</h3>
-  <app-text [text]="'Interaktive Isochrone verschiedene Verkehrsmittel: Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos etvaccusam et  justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.'"></app-text>
-
-  <h3>Auslastung der Infrastruktur</h3>
-  <app-text [text]="'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos etvaccusam et  justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.'"></app-text>
-
- <h3>Überschrift Ebene 2</h3>
- <app-text [text]="'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.'"></app-text>
+  <app-section [chapters]="['erreichbarkeit']"></app-section>
+  <app-section [chapters]="['auslastung-der-infrastruktur']"></app-section>
 
   <app-map [id]="'experiment'"
            [height]="'500px'"
