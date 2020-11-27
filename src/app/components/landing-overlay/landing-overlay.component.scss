@@ -1,41 +1,44 @@
-.landing-overlay{
+.landing-overlay {
   z-index: 1;
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   height: 100vh;
-  background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 30%);
+  background: linear-gradient(0deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 30%);
   pointer-events: none;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr auto;
+  grid-template-rows: repeat(8, 1fr);
   grid-gap: 20px;
   padding: 0 30px;
 }
 
-.landing-overlay a{
-  grid-row: 2;
-  display: block;
-  text-align: center;
-  background: #fff;
+#card-story {
+  grid-column-start: 1;
+  grid-column-end: 1;
+  grid-row-start: 6;
+  grid-row-end: 8;
+}
+
+#card-dashboard {
+  grid-column-start: 2;
+  grid-column-end: 2;
+  grid-row-start: 6;
+  grid-row-end: 8;
+}
+
+mat-card {
+  cursor: pointer;
+  min-height: 70px;
   pointer-events: all;
-  border-radius: 8px;
-  padding: 30px;
-  margin-bottom: 50px;
-  box-shadow: 0 5px 20px -10px rgba(0,0,0,0.5);
-  text-decoration: none;
-  color: #333;
-  transition: .1s ease-out transform;
-    transform: scale(1.0);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.landing-overlay a .heading{
-  font-family: sans-serif;
-  font-weight: bold;
-}
-
-.landing-overlay a:hover{
+mat-card:hover {
   transform: scale(1.01);
-  box-shadow: 0 5px 20px -5px rgba(0,0,0,0.7);
 }

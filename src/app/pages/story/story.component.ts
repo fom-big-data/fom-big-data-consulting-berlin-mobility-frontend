@@ -1,6 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {MapBoxStyle} from '../../core/mapbox/model/map-box-style.enum';
 import {Place} from '../../core/mapbox/model/place.model';
+import {environment} from '../../../environments/environment';
 
 /**
  * Displays a story
@@ -17,9 +18,9 @@ export class StoryComponent {
   @Input() geojsons = new Map<string, any>();
 
   /** App title */
-  appTitle = 'Berlin Mobility';
+  appTitle = environment.appTitle;
   /** App sub-title */
-  appSubTitle = 'Nutzung von Daten für die urbane Mobilität von morgen';
+  appSubTitle = environment.appSubTitle;
 
   /** Enum representing map box style */
   mapBoxStyleEnum = MapBoxStyle;

@@ -1,16 +1,9 @@
-<div class="app-header">
-  <div class="header-top-row">Berlin Mobility <span style="font-weight:200; padding-left:20px;">Nutzung von Daten für die urbane Mobilität
-von morgen</span></div>
-  <ul [innerHTML]="tableOfContents">
-    <li class="active"><a href="#">Einleitung</a></li>
-    <li><a href="#">Mobilitätsgesetz</a></li>
-    <li><a href="#">Gründe für Verkehr (Quellen von Verkehr)</a></li>
-
-    <li><a href="#">Überblick Verkehrsnetz (Interaktive Ebenen)</a></li>
-    <li><a href="#">Interaktive Isochrone verschiedene Verkehrsmittel</a></li>
-
-    <li><a href="#">Pendlerstau</a></li>
-    <li><a href="#">Netzabdeckung</a></li>
-    <li><a href="#">Micromobility Provider</a></li>
-  </ul>
+<div class="header-top-row">
+  <span class="title">{{ appTitle }}</span>
+  <span class="sub-title">{{ appSubTitle }}</span>
 </div>
+<app-map [id]="'header'"
+         [interactiveEnabled]=false
+         [scrollZoomEnabled]=false
+         [height]="'100vh'"></app-map>
+<app-landing-overlay></app-landing-overlay>

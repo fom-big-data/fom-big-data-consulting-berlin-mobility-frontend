@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  firebaseConfig: {
+  appTitle: 'Berlin Mobility',
+  appSubTitle: 'Nutzung von Daten für die urbane Mobilität von morgen',  firebaseConfig: {
     apiKey: 'AIzaSyD445cJu-u1sk0CCHaL4CmCehJtTb0gwcI',
     authDomain: 'berlin-mobility.firebaseapp.com',
     databaseURL: 'https://berlin-mobility.firebaseio.com',

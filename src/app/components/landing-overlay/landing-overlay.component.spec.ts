@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { LandingOverlayComponent } from './landing-overlay.component';
+import {LandingOverlayComponent} from './landing-overlay.component';
 
 describe('LandingOverlayComponent', () => {
   let component: LandingOverlayComponent;
@@ -8,9 +8,9 @@ describe('LandingOverlayComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LandingOverlayComponent ]
+      declarations: [LandingOverlayComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

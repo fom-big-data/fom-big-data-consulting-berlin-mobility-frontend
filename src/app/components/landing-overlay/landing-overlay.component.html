@@ -1,10 +1,18 @@
 <div class="landing-overlay">
-  <a href="#story_container" routerLink="/story">
-    <p class="heading">Zur Mobilitätsanalyse</p>
-    <p class="detail">Erfahren mehr über die wichtigsten Eckdaten und Besonderheiten der Berliner Mobilität.</p>
-  </a>
-  <a href="q" routerLink="/dashboard">
-    <p class="heading">Zum interaktiven Mobilitätskompass</p>
-    <p class="detail">Erkunde die Berliner Mobilität mithilfe des interaktiven Dashboards auf eigene Faust.</p>
-  </a>
+  <mat-card id="card-story" (click)="onCardClicked('story')">
+    <mat-card-header>
+      <mat-card-title>Zur Mobilitätsanalyse</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p>Erfahren mehr über die wichtigsten Eckdaten und Besonderheiten der Berliner Mobilität.</p>
+    </mat-card-content>
+  </mat-card>
+  <mat-card id="card-dashboard" (click)="onCardClicked('dashboard')">
+    <mat-card-header>
+      <mat-card-title>Zum interaktiven Mobilitätskompass</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p>Erkunde die Berliner Mobilität mithilfe des interaktiven Dashboards auf eigene Faust.</p>
+    </mat-card-content>
+  </mat-card>
 </div>
