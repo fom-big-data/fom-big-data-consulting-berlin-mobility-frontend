@@ -1,9 +1,9 @@
-<mat-toolbar #toolbar [ngClass]="{'sticky': toolbarSticky }">
+<mat-toolbar #toolbar [ngClass]="{'sticky-header': toolbarSticky }">
   <button mat-button *ngFor="let sectionHeader of sectionHeaders" (click)="scrollToElement(sectionHeader.id)">
     {{ sectionHeader.title }}
   </button>
 </mat-toolbar>
-<div id="story_container" class="story_container">
+<div id="story_container" class="story_container" [ngClass]="{'sticky-container': toolbarSticky }">
   <app-section-header id="challenge" title="Urbane Mobilität als Herausforderung"></app-section-header>
 
   <app-section [chapters]="['berliner-mobilitaetsgesetz']"></app-section>

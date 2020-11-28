@@ -8,10 +8,17 @@ mat-toolbar {
   z-index: 4;
 }
 
-.sticky {
+.sticky-header {
   position: fixed;
   top: 26px;
   width: 100%;
+}
+
+$story-container-padding-top: 100px;
+$toolbar-height: 64px;
+
+.sticky-container {
+  padding-top: $story-container-padding-top + $toolbar-height !important;
 }
 
 .story_container {
@@ -22,7 +29,7 @@ mat-toolbar {
   grid-template-columns: 0.5fr 6fr 0.5fr 2fr;
   grid-template-rows: auto;
   margin: 0 auto;
-  padding-top: 100px;
+  padding-top: $story-container-padding-top;
 }
 
 .story_container > app-text, .story_container > h1, .story_container > h2, .story_container > h3 {

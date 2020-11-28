@@ -50,7 +50,7 @@ export class StoryComponent implements AfterViewInit, OnDestroy {
    */
   ngAfterViewInit() {
     const toolbarOffsetTop = this.toolbar.nativeElement.offsetTop;
-    const headerTopRowHeight = 26;
+    const headerTopRowHeight = 30;
 
     // Subscribe scroll events
     fromEvent(window, 'scroll')
@@ -74,7 +74,6 @@ export class StoryComponent implements AfterViewInit, OnDestroy {
    * @param anchor anchor
    */
   scrollToElement(anchor): void {
-    console.log(anchor);
     this.viewportScroller.scrollToAnchor(anchor);
   }
 }
