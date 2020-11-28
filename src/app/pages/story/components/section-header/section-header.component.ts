@@ -10,6 +10,8 @@ import {Component, Input} from '@angular/core';
 })
 export class SectionHeaderComponent {
 
+  /** ID */
+  @Input() id = '';
   /** Title */
   @Input() title = '';
 }

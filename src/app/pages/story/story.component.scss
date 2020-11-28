@@ -1,4 +1,12 @@
-.story_container{
+mat-toolbar {
+  background: transparent;
+
+  box-shadow: 0 10px 20px -20px #000;
+  border-bottom: 3px solid rgba(255, 255, 255, 0);
+  transition: 0.2s ease-out background, border;
+}
+
+.story_container {
   width: 100%;
   max-width: 1200px;
   min-height: 100vh;
@@ -9,12 +17,12 @@
   padding-top: 100px;
 }
 
-.story_container > app-text, .story_container > h1, .story_container > h2, .story_container > h3{
+.story_container > app-text, .story_container > h1, .story_container > h2, .story_container > h3 {
   grid-column-start: 2;
   grid-column-end: 3;
 }
 
-.story_container > *{
+.story_container > * {
   grid-column-start: 1;
   grid-column-end: 4;
 }
@@ -34,7 +42,7 @@
     grid-template-columns: 0.5fr 6fr 1fr;
   }
 
-  .story_container > *{
+  .story_container > * {
     grid-column-start: 2;
     grid-column-end: 3;
     width: inherit;

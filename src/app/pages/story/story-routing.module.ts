@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
+import {ExtraOptions, RouterModule, Routes} from '@angular/router';
 
 import {StoryComponent} from './story.component';
 

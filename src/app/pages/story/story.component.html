@@ -1,9 +1,11 @@
+<mat-toolbar>
+  <button mat-button *ngFor="let sectionHeader of sectionHeaders" (click)="scrollToElement(sectionHeader.id)">
+    {{ sectionHeader.title }}
+  </button>
+</mat-toolbar>
 <div id="story_container" class="story_container">
-  <h1>
-    {{ appTitle }}<br/>
-    <span style="font-weight:200">{{ appSubTitle }}</span>
-    ​</h1>
-  <app-section-header title="Urbane Mobilität als Herausforderung"></app-section-header>
+  <app-section-header id="challenge" title="Urbane Mobilität als Herausforderung"></app-section-header>
+
   <app-section [chapters]="['berliner-mobilitaetsgesetz']"></app-section>
   <app-section [chapters]="['quellen-des-verkehrs']"></app-section>
   <app-section [chapters]="['lebensraeume']"></app-section>
@@ -30,7 +32,7 @@
            [fullScreenControlEnabled]=true
            [results]="['POI-retail-commercial']"></app-map>
 
-  <app-section-header title="Aktuelle Verkehrssituation"></app-section-header>
+  <app-section-header id="situation" title="Aktuelle Verkehrssituation"></app-section-header>
 
   <app-section [chapters]="['verkehrsnetze']"></app-section>
 

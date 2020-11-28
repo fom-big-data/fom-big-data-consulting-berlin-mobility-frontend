@@ -8,7 +8,9 @@ import {PlaceholderComponent} from './components/placeholder/placeholder.compone
 import {MapModule} from '../../ui/map/map.module';
 import {SectionComponent} from './components/section/section.component';
 import {MarkdownFragmentModule} from '../../ui/markdown-fragment/markdown-fragment.module';
-import { SectionHeaderComponent } from './components/section-header/section-header.component';
+import {SectionHeaderComponent} from './components/section-header/section-header.component';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,10 @@ import { SectionHeaderComponent } from './components/section-header/section-head
     CommonModule,
     StoryRoutingModule,
     MapModule,
-    MarkdownFragmentModule
+    MarkdownFragmentModule,
+
+    MatButtonModule,
+    MatToolbarModule
   ]
 })
 export class StoryModule {

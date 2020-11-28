@@ -41,7 +41,6 @@ export class SectionComponent implements OnInit {
     const baseUrl = environment.github.resultsUrl;
 
     this.chapters.forEach(name => {
-      console.log(name);
       this.http.get(baseUrl + 'chapters/' + name + '.md', {responseType: 'text' as 'text'}).subscribe((data: any) => {
         this.contents.push(data);
       });
