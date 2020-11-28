@@ -1,4 +1,4 @@
-<mat-toolbar>
+<mat-toolbar #toolbar [ngClass]="{'sticky': toolbarSticky }">
   <button mat-button *ngFor="let sectionHeader of sectionHeaders" (click)="scrollToElement(sectionHeader.id)">
     {{ sectionHeader.title }}
   </button>
