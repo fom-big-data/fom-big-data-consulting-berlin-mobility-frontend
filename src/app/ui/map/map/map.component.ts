@@ -22,7 +22,7 @@ export class MapComponent implements AfterViewInit {
   /** Unique ID for this map */
   @Input() id = UUID.toString();
   /** Height of the map */
-  @Input() height = '100px';
+  @Input() height = '500px';
 
   /** Render style for Map */
   @Input() style = MapBoxStyle.STREETS_V11;

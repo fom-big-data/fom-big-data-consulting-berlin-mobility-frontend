@@ -4,82 +4,46 @@
   </button>
 </mat-toolbar>
 <div id="story_container" class="story_container" [ngClass]="{'sticky-container': toolbarSticky }">
-  <app-section-header #challenge id="challenge" title="Urbane Mobilität als Herausforderung"></app-section-header>
+  <app-section-header #challenge id="challenge"
+                      title="Urbane Mobilität als Herausforderung"></app-section-header>
 
-  <app-section [chapters]="['berliner-mobilitaetsgesetz']"></app-section>
-  <app-section [chapters]="['quellen-des-verkehrs']"></app-section>
-  <app-section [chapters]="['lebensraeume']"></app-section>
+  <ng-container>
+    <app-section [chapters]="['berliner-mobilitaetsgesetz']"></app-section>
+    <app-section [chapters]="['quellen-des-verkehrs']"></app-section>
+    <app-section [chapters]="['lebensraeume']"></app-section>
+    <app-map [id]="'inhabitants'" [style]="mapBoxStyleEnum.LIGHT_V10" [results]="['berlin-inhabitants']"></app-map>
+    <app-section [chapters]="['arbeitsraeume']"></app-section>
+    <app-map [id]="'commercial'" [style]="mapBoxStyleEnum.LIGHT_V10" [results]="['POI-retail-commercial']"></app-map>
+  </ng-container>
 
-  <app-map [id]="'inhabitants'"
-           [height]="'500px'"
-           [style]="mapBoxStyleEnum.LIGHT_V10"
-           [zoom]=10
-           [center]="placeEnum.BRANDENBURG_GATE"
-           [markers]=[]
-           [clickableMarkers]=[]
-           [fullScreenControlEnabled]=true
-           [results]="['berlin-inhabitants']"></app-map>
+  <app-section-header #situation id="situation"
+                      title="Aktuelle Verkehrssituation"></app-section-header>
 
-  <app-section [chapters]="['arbeitsraeume']"></app-section>
+  <ng-container>
+    <app-section [chapters]="['verkehrsnetze']"></app-section>
+    <app-map [id]="'traffic'" [style]="mapBoxStyleEnum.LIGHT_V10" [results]="['uber_mean_speed']"></app-map>
+    <app-section [chapters]="['erreichbarkeit']"></app-section>
+    <app-section [chapters]="['auslastung-der-infrastruktur']"></app-section>
+  </ng-container>
 
-  <app-map [id]="'commercial'"
-           [height]="'500px'"
-           [style]="mapBoxStyleEnum.LIGHT_V10"
-           [zoom]=10
-           [center]="placeEnum.BRANDENBURG_GATE"
-           [markers]=[]
-           [clickableMarkers]=[]
-           [fullScreenControlEnabled]=true
-           [results]="['POI-retail-commercial']"></app-map>
+  <app-section-header #experiment id="experiment"
+                      title="Work in Progress"></app-section-header>
 
-  <app-section-header #situation id="situation" title="Aktuelle Verkehrssituation"></app-section-header>
+  <ng-container>
+    <app-map [id]="'all'"
+             [style]="mapBoxStyleEnum.LIGHT_V10"
+             [parametrizeOpacityEnabled]=true
+             [results]="['berlin-inhabitants', 'POI-retail-commercial', 'uber_mean_speed']"></app-map>
 
-  <app-section [chapters]="['verkehrsnetze']"></app-section>
+    <app-map [id]="'vbb-stations'"
+             [style]="mapBoxStyleEnum.DARK_V10"
+             [parametrizeOpacityEnabled]=true
+             [results]="['vbb-stations']"></app-map>
 
-  <app-map [id]="'traffic'"
-           [height]="'500px'"
-           [style]="mapBoxStyleEnum.LIGHT_V10"
-           [zoom]=10
-           [center]="placeEnum.BRANDENBURG_GATE"
-           [markers]=[]
-           [clickableMarkers]=[]
-           [fullScreenControlEnabled]=true
-           [results]="['uber_mean_speed']"></app-map>
-
-  <app-section [chapters]="['erreichbarkeit']"></app-section>
-  <app-section [chapters]="['auslastung-der-infrastruktur']"></app-section>
-
-  <app-map [id]="'experiment'"
-           [height]="'500px'"
-           [style]="mapBoxStyleEnum.LIGHT_V10"
-           [zoom]=10
-           [center]="placeEnum.BRANDENBURG_GATE"
-           [markers]=[]
-           [clickableMarkers]=[]
-           [fullScreenControlEnabled]=true
-           [parametrizeOpacityEnabled]=true
-           [results]="['berlin-inhabitants', 'POI-retail-commercial', 'uber_mean_speed']"></app-map>
-
-  <app-map [id]="'vbb-stations'"
-           [height]="'500px'"
-           [style]="mapBoxStyleEnum.DARK_V10"
-           [zoom]=10
-           [center]="placeEnum.BRANDENBURG_GATE"
-           [markers]=[]
-           [clickableMarkers]=[]
-           [fullScreenControlEnabled]=true
-           [parametrizeOpacityEnabled]=true
-           [results]="['vbb-stations']"></app-map>
-
-  <app-map [id]="'vbb-stations-s-u-bahn'"
-           [height]="'500px'"
-           [style]="mapBoxStyleEnum.DARK_V10"
-           [zoom]=10
-           [center]="placeEnum.BRANDENBURG_GATE"
-           [markers]=[]
-           [clickableMarkers]=[]
-           [fullScreenControlEnabled]=true
-           [parametrizeOpacityEnabled]=true
-           [results]="['vbb-stations-s-u-bahn']"></app-map>
+    <app-map [id]="'vbb-stations-s-u-bahn'"
+             [style]="mapBoxStyleEnum.DARK_V10"
+             [parametrizeOpacityEnabled]=true
+             [results]="['vbb-stations-s-u-bahn']"></app-map>
+  </ng-container>
 </div>
 <app-footer [sectionHeaders]="sectionHeaders"></app-footer>
