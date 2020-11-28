@@ -4,7 +4,7 @@
   </button>
 </mat-toolbar>
 <div id="story_container" class="story_container" [ngClass]="{'sticky-container': toolbarSticky }">
-  <app-section-header id="challenge" title="Urbane Mobilität als Herausforderung"></app-section-header>
+  <app-section-header #challenge id="challenge" title="Urbane Mobilität als Herausforderung"></app-section-header>
 
   <app-section [chapters]="['berliner-mobilitaetsgesetz']"></app-section>
   <app-section [chapters]="['quellen-des-verkehrs']"></app-section>
@@ -32,7 +32,7 @@
            [fullScreenControlEnabled]=true
            [results]="['POI-retail-commercial']"></app-map>
 
-  <app-section-header id="situation" title="Aktuelle Verkehrssituation"></app-section-header>
+  <app-section-header #situation id="situation" title="Aktuelle Verkehrssituation"></app-section-header>
 
   <app-section [chapters]="['verkehrsnetze']"></app-section>
 
@@ -82,3 +82,4 @@
            [parametrizeOpacityEnabled]=true
            [results]="['vbb-stations-s-u-bahn']"></app-map>
 </div>
+<app-footer [sectionHeaders]="sectionHeaders"></app-footer>

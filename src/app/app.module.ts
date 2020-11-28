@@ -8,7 +8,6 @@ import {environment} from '../environments/environment';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {FirebaseModule} from './core/firebase/firebase.module';
 import {HeaderComponent} from './components/header/header.component';
-import {FooterComponent} from './components/footer/footer.component';
 import {MapboxModule} from './core/mapbox/mapbox.module';
 import {EntityModule} from './core/entity/entity.module';
 import {LandingOverlayComponent} from './components/landing-overlay/landing-overlay.component';
@@ -16,13 +15,11 @@ import {HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MapModule} from './ui/map/map.module';
 import {MatCardModule} from '@angular/material/card';
-import {MatToolbarModule} from '@angular/material/toolbar';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    FooterComponent,
     LandingOverlayComponent
   ],
   imports: [
