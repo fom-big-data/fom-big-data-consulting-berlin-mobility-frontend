@@ -45,6 +45,9 @@ export class AppComponent implements OnInit {
   // Helpers
   //
 
+  /**
+   * Initializes results subscription
+   */
   private initializeResultsSubscription() {
 
     // Subscribe results

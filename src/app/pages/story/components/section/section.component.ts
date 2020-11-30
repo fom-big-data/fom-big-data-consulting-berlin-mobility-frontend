@@ -14,7 +14,7 @@ export class SectionComponent implements OnInit {
 
   /** List of all sections to be displayed  */
   @Input() chapters = [];
-
+  /** Contents */
   contents = [];
 
   /**
@@ -35,6 +35,13 @@ export class SectionComponent implements OnInit {
     this.initializeSections();
   }
 
+  //
+  // Initialization
+  //
+
+  /**
+   * Initializes sections
+   */
   private initializeSections() {
 
     // Base URL for results

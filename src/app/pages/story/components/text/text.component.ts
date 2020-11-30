@@ -1,23 +1,19 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 
 /**
- * Displays an Open Street Text
+ * Displays a text
  */
 @Component({
   selector: 'app-text',
   templateUrl: './text.component.html',
   styleUrls: ['./text.component.scss']
 })
+export class TextComponent {
 
-export class TextComponent implements OnInit {
+  /** Text */
   @Input() text = '';
+  /** Heading */
   @Input() h1 = '';
+  /** Sub-heading */
   @Input() h2 = '';
-
-  ngOnInit() {
-  }
-
-  private initializeText() {
-  }
-
 }
