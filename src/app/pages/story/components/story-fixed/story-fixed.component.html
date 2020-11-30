@@ -29,7 +29,7 @@
       <app-section [chapters]="['erreichbarkeit']"></app-section>
       <app-section [chapters]="['auslastung-der-infrastruktur']"></app-section>
 
-      <app-layer-marker [layerName]="'vbb-stations-s-u-bahn'"
+      <app-layer-marker [layerName]="'vbb-stations-s-u-bahn'" [transparency]=50
                         (layerMarkerVisibleEventEmitter)="onLayerMarkerVisibilityChanged($event)"></app-layer-marker>
       <app-layer-marker [layerName]="'nextbike-stations'"
                         (layerMarkerVisibleEventEmitter)="onLayerMarkerVisibilityChanged($event)"></app-layer-marker>

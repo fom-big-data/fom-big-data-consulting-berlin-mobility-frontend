@@ -12,8 +12,10 @@ export class LayerMarkerComponent {
 
   /** Layer name */
   @Input() layerName: string;
+  /** Layer transparency */
+  @Input() transparency = 100;
   /** Event emitter indicating changes in layer marker visibility */
-  @Output() layerMarkerVisibleEventEmitter = new EventEmitter<{layerName: string, visible: boolean}>();
+  @Output() layerMarkerVisibleEventEmitter = new EventEmitter<{ layerName: string, transparency: number }>();
 
   //
   // Actions
@@ -25,6 +27,10 @@ export class LayerMarkerComponent {
    * @param visible whether the component is visible or not
    */
   public onIntersection({target, visible}: { target: Element; visible: boolean }) {
-    this.layerMarkerVisibleEventEmitter.emit({layerName: this.layerName, visible});
+    if (visible) {
+      this.layerMarkerVisibleEventEmitter.emit({layerName: this.layerName, transparency: this.transparency});
+    } else {
+      this.layerMarkerVisibleEventEmitter.emit({layerName: this.layerName, transparency: 0});
+    }
   }
 }

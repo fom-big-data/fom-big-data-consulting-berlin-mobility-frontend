@@ -75,7 +75,7 @@ export class StoryFixedComponent implements AfterViewInit {
     // Subscribe scroll events
     fromEvent(window, 'scroll')
       .pipe(takeUntil(this.unsubscribeSubject))
-      .subscribe((e: Event) => {
+      .subscribe(() => {
 
         // Make toolbar sticky if user scrolled far enough
         this.toolbarSticky = window.scrollY > toolbarOffsetTop - headerTopRowHeight;
@@ -107,9 +107,9 @@ export class StoryFixedComponent implements AfterViewInit {
    * Handles visibility of layer markers
    * @param event event
    */
-  onLayerMarkerVisibilityChanged(event: { layerName: string; visible: boolean }) {
+  onLayerMarkerVisibilityChanged(event: { layerName: string; transparency: number }) {
     // Update list of visible layers
-    if (event.visible) {
+    if (event.transparency > 0) {
       this.visibleLayerMarkers.push(event.layerName);
     } else {
       this.visibleLayerMarkers = this.visibleLayerMarkers.filter(value => {
@@ -117,15 +117,9 @@ export class StoryFixedComponent implements AfterViewInit {
       });
     }
 
-    // Make all layers invisible
-    this.layerMarkers.forEach(layerMarker => {
-      this.transparencies.set(layerMarker.layerName, 0);
-    });
+    // Set layer transparency
+    this.transparencies.set(event.layerName, event.transparency);
 
-    // Make layers visible whose layer markers are visible
-    this.visibleLayerMarkers.forEach(visibleLayerMarker => {
-      this.transparencies.set(visibleLayerMarker, 100);
-    });
 
     // Trigger change detection
     this.transparencies = new Map(this.transparencies);
