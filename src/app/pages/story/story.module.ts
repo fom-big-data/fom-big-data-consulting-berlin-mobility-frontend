@@ -14,6 +14,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {FooterComponent} from './components/footer/footer.component';
 import {StoryFixedComponent} from './components/story-fixed/story-fixed.component';
 import {InViewportModule} from 'ng-in-viewport';
+import { LayerMarkerComponent } from './components/layer-marker/layer-marker.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import {InViewportModule} from 'ng-in-viewport';
     TextComponent,
     SectionComponent,
     SectionHeaderComponent,
-    StoryFixedComponent
+    StoryFixedComponent,
+    LayerMarkerComponent
   ], imports: [
     CommonModule,
     StoryRoutingModule,

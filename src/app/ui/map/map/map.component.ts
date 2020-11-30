@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, Input} from '@angular/core';
+import {AfterViewInit, ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges} from '@angular/core';
 import * as mapboxgl from 'mapbox-gl';
 import {environment} from '../../../../environments/environment';
 import {Place} from '../../../core/mapbox/model/place.model';
@@ -15,9 +15,10 @@ import {Subject} from 'rxjs';
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
-  styleUrls: ['./map.component.scss']
+  styleUrls: ['./map.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MapComponent implements AfterViewInit {
+export class MapComponent implements OnChanges, AfterViewInit {
 
   /** Unique ID for this map */
   @Input() id = UUID.toString();
@@ -61,8 +62,12 @@ export class MapComponent implements AfterViewInit {
   /** Whether opacity should be parametrized or not */
   @Input() parametrizeOpacityEnabled = false;
 
-  /** List of all results to be displayed  */
-  @Input() results = [];
+  /** Map of results to be displayed  */
+  @Input() results = new Map<string, string>();
+  /** Map of transparency values */
+  @Input() transparencies = new Map<string, number>();
+  /** Initial transparency */
+  @Input() initialTransparency = 100;
 
   /** Map Box object */
   private map: mapboxgl.Map;
@@ -80,6 +85,16 @@ export class MapComponent implements AfterViewInit {
   //
   // Lifecycle hooks
   //
+
+  /**
+   * Handles on-changes phase
+   * @param changes changes
+   */
+  ngOnChanges(changes: SimpleChanges) {
+    this.transparencies.forEach((value: number, name: string) => {
+      this.transparencySubject.next({name, value});
+    });
+  }
 
   /**
    * Handles after-view-init phase
@@ -294,8 +309,10 @@ export class MapComponent implements AfterViewInit {
 
   /**
    * Initializes results overlays
+   *
+   * @param results results
    */
-  private initializeResultOverlays(results: string[]) {
+  private initializeResultOverlays(results: Map<string, string>) {
     this.map.on('load', () => {
 
       // Base URL for results
@@ -322,24 +339,33 @@ export class MapComponent implements AfterViewInit {
           // Add layer
           this.map.addLayer(layer);
 
-          // Update layer transparency
-          if (this.parametrizeOpacityEnabled) {
-            this.transparencySubject.subscribe((e: { name, value }) => {
-              const layerId = e.name + '-layer';
-
-              if (layer.id === layerId) {
-                if (layer['paint'].hasOwnProperty('fill-color')) {
-                  this.map.setPaintProperty(layerId, 'fill-opacity', e.value / 100);
-                }
-                if (layer['paint'].hasOwnProperty('line-color')) {
-                  this.map.setPaintProperty(layerId, 'line-opacity', e.value / 100);
-                }
-                if (layer['paint'].hasOwnProperty('heatmap-color')) {
-                  this.map.setPaintProperty(layerId, 'heatmap-opacity', e.value / 100);
-                }
-              }
-            });
+          // Initialize layer transparency
+          if (layer['paint'].hasOwnProperty('fill-color')) {
+            this.map.setPaintProperty(layer['id'], 'fill-opacity', this.initialTransparency / 100);
           }
+          if (layer['paint'].hasOwnProperty('line-color')) {
+            this.map.setPaintProperty(layer['id'], 'line-opacity', this.initialTransparency / 100);
+          }
+          if (layer['paint'].hasOwnProperty('heatmap-color')) {
+            this.map.setPaintProperty(layer['id'], 'heatmap-opacity', this.initialTransparency / 100);
+          }
+
+          // Update layer transparency
+          this.transparencySubject.subscribe((e: { name, value }) => {
+            const layerId = e.name + '-layer';
+
+            if (layer.id === layerId) {
+              if (layer['paint'].hasOwnProperty('fill-color')) {
+                this.map.setPaintProperty(layerId, 'fill-opacity', e.value / 100);
+              }
+              if (layer['paint'].hasOwnProperty('line-color')) {
+                this.map.setPaintProperty(layerId, 'line-opacity', e.value / 100);
+              }
+              if (layer['paint'].hasOwnProperty('heatmap-color')) {
+                this.map.setPaintProperty(layerId, 'heatmap-opacity', e.value / 100);
+              }
+            }
+          });
         });
       });
     });
@@ -355,6 +381,8 @@ export class MapComponent implements AfterViewInit {
    * @param event slider event
    */
   onTransparencyChanged(name: string, event: MatSliderChange) {
-    this.transparencySubject.next({name, value: event.value});
+    if (this.parametrizeOpacityEnabled) {
+      this.transparencySubject.next({name, value: event.value});
+    }
   }
 }

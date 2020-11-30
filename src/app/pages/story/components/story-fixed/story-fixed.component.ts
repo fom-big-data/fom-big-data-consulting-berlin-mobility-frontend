@@ -6,6 +6,7 @@ import {takeUntil} from 'rxjs/operators';
 import {SectionHeaderComponent} from '../section-header/section-header.component';
 import {MapComponent} from '../../../../ui/map/map/map.component';
 import {MatToolbar} from '@angular/material/toolbar';
+import {LayerMarkerComponent} from '../layer-marker/layer-marker.component';
 
 /**
  * Displays a story
@@ -23,11 +24,15 @@ export class StoryFixedComponent implements AfterViewInit {
   @ViewChild(MapComponent, {read: ElementRef}) map: ElementRef;
   /** List of section header components */
   @ViewChildren(SectionHeaderComponent) sectionHeaders: QueryList<SectionHeaderComponent>;
-  /** List of section header components */
-  @ViewChildren(SectionHeaderComponent, {read: ElementRef}) sectionHeaders2: QueryList<ElementRef>;
+  /** List of layer marker components */
+  @ViewChildren(LayerMarkerComponent) layerMarkers: QueryList<LayerMarkerComponent>;
 
-  /** List of visible section headers */
-  visibleSectionHeaders = [];
+  /** Map of results to be displayed  */
+  results = new Map<string, string>();
+  /** Map of transparency values */
+  transparencies = new Map<string, number>();
+  /** List of visible layer markers */
+  visibleLayerMarkers: string[] = [];
 
   /** Whether or not the toolbar should be sticky */
   toolbarSticky = false;
@@ -78,6 +83,12 @@ export class StoryFixedComponent implements AfterViewInit {
         // Make map sticky if user scrolled far enough
         this.mapSticky = window.scrollY > mapOffsetTop - 200;
       });
+
+    // Make all layers invisible
+    this.layerMarkers.forEach(layerMarker => {
+      this.results.set(layerMarker.layerName, layerMarker.layerName);
+      this.transparencies.set(layerMarker.layerName, 0);
+    });
   }
 
   //
@@ -92,18 +103,31 @@ export class StoryFixedComponent implements AfterViewInit {
     this.viewportScroller.scrollToAnchor(anchor);
   }
 
-  public onIntersection({target, visible}: { target: Element; visible: boolean }): void {
-    console.log(`${target.id}, ${visible}`);
-
-    if (visible) {
-      this.visibleSectionHeaders.push(target.id);
+  /**
+   * Handles visibility of layer markers
+   * @param event event
+   */
+  onLayerMarkerVisibilityChanged(event: { layerName: string; visible: boolean }) {
+    // Update list of visible layers
+    if (event.visible) {
+      this.visibleLayerMarkers.push(event.layerName);
     } else {
-      this.visibleSectionHeaders = this.visibleSectionHeaders.filter(value => {
-        return value !== target.id;
+      this.visibleLayerMarkers = this.visibleLayerMarkers.filter(value => {
+        return value !== event.layerName;
       });
     }
 
-    // this.renderer.addClass(target, visible ? 'active' : 'inactive');
-    // this.renderer.removeClass(target, visible ? 'inactive' : 'active');
+    // Make all layers invisible
+    this.layerMarkers.forEach(layerMarker => {
+      this.transparencies.set(layerMarker.layerName, 0);
+    });
+
+    // Make layers visible whose layer markers are visible
+    this.visibleLayerMarkers.forEach(visibleLayerMarker => {
+      this.transparencies.set(visibleLayerMarker, 100);
+    });
+
+    // Trigger change detection
+    this.transparencies = new Map(this.transparencies);
   }
 }
