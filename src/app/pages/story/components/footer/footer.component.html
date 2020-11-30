@@ -3,7 +3,7 @@
     <p class="footer_heading">Story</p>
     <ul>
       <li *ngFor="let sectionHeader of sectionHeaders">
-        <a routerLink="story" [fragment]=sectionHeader.id>
+        <a routerLink="." [fragment]=sectionHeader.id>
           {{ sectionHeader.title }}
         </a>
       </li>

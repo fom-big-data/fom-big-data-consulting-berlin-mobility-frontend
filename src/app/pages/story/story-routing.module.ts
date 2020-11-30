@@ -1,9 +1,13 @@
 import {NgModule} from '@angular/core';
-import {ExtraOptions, RouterModule, Routes} from '@angular/router';
+import {RouterModule, Routes} from '@angular/router';
 
 import {StoryComponent} from './story.component';
+import {StoryFixedComponent} from './components/story-fixed/story-fixed.component';
 
-const routes: Routes = [{path: '', component: StoryComponent}];
+const routes: Routes = [
+  {path: 'fixed', component: StoryFixedComponent},
+  {path: '', component: StoryComponent}
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

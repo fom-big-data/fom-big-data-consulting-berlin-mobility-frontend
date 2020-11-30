@@ -14,6 +14,7 @@ $toolbar-height: 64px;
 app-section-header {
   padding-top: 1.5 * $toolbar-height;
   margin-top: - 1.5 * $toolbar-height;
+  display: inline-block
 }
 
 app-map {
@@ -31,7 +32,7 @@ app-map {
   margin-top: $story-container-margin-top + $toolbar-height !important;
 }
 
-.story_container {
+.story-container {
   width: 100%;
   max-width: 1200px;
   min-height: 100vh;
@@ -42,19 +43,19 @@ app-map {
   margin-top: $story-container-margin-top;
 }
 
-.story_container > app-text, .story_container > h1, .story_container > h2, .story_container > h3 {
+.story-container > app-text, .story-container > h1, .story-container > h2, .story-container > h3 {
   grid-column-start: 2;
   grid-column-end: 3;
 }
 
-.story_container > * {
+.story-container > * {
   grid-column-start: 1;
   grid-column-end: 4;
 }
 
 
 @media (max-width: 1300px) {
-  .story_container {
+  .story-container {
     max-width: 900px;
     grid-template-columns: 0.5fr 6fr 0.5fr 0.5fr;
   }
@@ -62,12 +63,12 @@ app-map {
 
 
 @media (max-width: 950px) {
-  .story_container {
+  .story-container {
     width: auto;
     grid-template-columns: 0.5fr 6fr 1fr;
   }
 
-  .story_container > * {
+  .story-container > * {
     grid-column-start: 2;
     grid-column-end: 3;
     width: inherit;

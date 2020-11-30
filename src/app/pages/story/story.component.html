@@ -3,12 +3,18 @@
     {{ sectionHeader.title }}
   </button>
 </mat-toolbar>
-<div id="story_container" class="story_container" [ngClass]="{'sticky-container': toolbarSticky }">
+<div id="story-container" class="story-container" [ngClass]="{'sticky-container': toolbarSticky }">
   <app-section-header #challenge id="challenge"
                       title="Urbane Mobilität als Herausforderung"></app-section-header>
 
   <ng-container>
     <app-section [chapters]="['berliner-mobilitaetsgesetz']"></app-section>
+  </ng-container>
+
+  <app-section-header #sources id="sources"
+                      title="Quellen des Verkehrs"></app-section-header>
+
+  <ng-container>
     <app-section [chapters]="['quellen-des-verkehrs']"></app-section>
     <app-section [chapters]="['lebensraeume']"></app-section>
     <app-map [id]="'inhabitants'" [style]="mapBoxStyleEnum.LIGHT_V10" [results]="['berlin-inhabitants']"></app-map>

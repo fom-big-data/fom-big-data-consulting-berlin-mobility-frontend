@@ -1,0 +1,40 @@
+<mat-toolbar #toolbar [ngClass]="{'sticky-header': toolbarSticky }">
+  <button mat-button *ngFor="let sectionHeader of sectionHeaders" (click)="scrollToElement(sectionHeader.id)">
+    {{ sectionHeader.title }}
+  </button>
+</mat-toolbar>
+<div class="story-container" [ngClass]="{'sticky-container': toolbarSticky }">
+  <div class="text-container">
+    <app-section-header #challenge id="challenge"
+                        title="Urbane Mobilität als Herausforderung"></app-section-header>
+
+    <ng-container>
+      <app-section [chapters]="['berliner-mobilitaetsgesetz']"></app-section>
+    </ng-container>
+
+    <app-section-header #sources id="sources"
+                        title="Quellen des Verkehrs"></app-section-header>
+
+    <ng-container>
+      <app-section [chapters]="['quellen-des-verkehrs']"></app-section>
+      <app-section [chapters]="['lebensraeume']"></app-section>
+      <app-section [chapters]="['arbeitsraeume']"></app-section>
+    </ng-container>
+
+    <app-section-header #situation id="situation"
+                        title="Aktuelle Verkehrssituation"></app-section-header>
+
+    <ng-container>
+      <app-section [chapters]="['verkehrsnetze']"></app-section>
+      <app-section [chapters]="['erreichbarkeit']"></app-section>
+      <app-section [chapters]="['auslastung-der-infrastruktur']"></app-section>
+    </ng-container>
+  </div>
+  <div class="map-container">
+    <app-map [id]="'single-map'"
+             [style]="mapBoxStyleEnum.LIGHT_V10"
+             [interactiveEnabled]=false
+             [results]="['nextbike-stations']"></app-map>
+  </div>
+</div>
+<app-footer [sectionHeaders]="sectionHeaders"></app-footer>

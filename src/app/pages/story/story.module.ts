@@ -12,6 +12,7 @@ import {SectionHeaderComponent} from './components/section-header/section-header
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
 import {FooterComponent} from './components/footer/footer.component';
+import { StoryFixedComponent } from './components/story-fixed/story-fixed.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import {FooterComponent} from './components/footer/footer.component';
     StoryComponent,
     TextComponent,
     SectionComponent,
-    SectionHeaderComponent
+    SectionHeaderComponent,
+    StoryFixedComponent
   ], imports: [
     CommonModule,
     StoryRoutingModule,

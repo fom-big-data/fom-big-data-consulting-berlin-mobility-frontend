@@ -1,10 +1,10 @@
 import {AfterViewInit, Component, ElementRef, Input, OnDestroy, QueryList, ViewChild, ViewChildren} from '@angular/core';
 import {MapBoxStyle} from '../../core/mapbox/model/map-box-style.enum';
-import {Place} from '../../core/mapbox/model/place.model';
 import {SectionHeaderComponent} from './components/section-header/section-header.component';
 import {ViewportScroller} from '@angular/common';
 import {fromEvent, Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
+import {MatToolbar} from '@angular/material/toolbar';
 
 /**
  * Displays a story
@@ -20,16 +20,15 @@ export class StoryComponent implements AfterViewInit, OnDestroy {
   @Input() geojsons = new Map<string, any>();
 
   /** Toolbar component */
-  @ViewChild('toolbar', {read: ElementRef}) toolbar: ElementRef;
+  @ViewChild(MatToolbar, {read: ElementRef}) toolbar: ElementRef;
   /** List of section header components */
   @ViewChildren(SectionHeaderComponent) sectionHeaders: QueryList<SectionHeaderComponent>;
+
   /** Whether or not the toolbar should be sticky */
   toolbarSticky = false;
 
   /** Enum representing map box style */
   mapBoxStyleEnum = MapBoxStyle;
-  /** Enum representing place */
-  placeEnum = Place;
 
   /** Helper subject used to finish other subscriptions */
   private unsubscribeSubject = new Subject();
@@ -68,6 +67,10 @@ export class StoryComponent implements AfterViewInit, OnDestroy {
   ngOnDestroy() {
     this.unsubscribeSubject.next();
   }
+
+  //
+  // Helpers
+  //
 
   /**
    * Scrolls to an element
