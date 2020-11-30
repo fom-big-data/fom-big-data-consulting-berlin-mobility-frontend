@@ -15,6 +15,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MapModule} from './ui/map/map.module';
 import {MatCardModule} from '@angular/material/card';
+import {InViewportModule} from 'ng-in-viewport';
 
 @NgModule({
   declarations: [

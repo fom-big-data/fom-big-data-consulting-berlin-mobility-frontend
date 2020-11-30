@@ -6,6 +6,9 @@
 <div class="story-container" [ngClass]="{'sticky-container': toolbarSticky }">
   <div class="text-container">
     <app-section-header #challenge id="challenge"
+                        inViewport
+                        [inViewportOptions]="{ threshold: [0] }"
+                        (inViewportAction)="onIntersection($event)"
                         title="Urbane Mobilität als Herausforderung"></app-section-header>
 
     <ng-container>
@@ -13,6 +16,9 @@
     </ng-container>
 
     <app-section-header #sources id="sources"
+                        inViewport
+                        [inViewportOptions]="{ threshold: [0] }"
+                        (inViewportAction)="onIntersection($event)"
                         title="Quellen des Verkehrs"></app-section-header>
 
     <ng-container>
@@ -22,6 +28,9 @@
     </ng-container>
 
     <app-section-header #situation id="situation"
+                        inViewport
+                        [inViewportOptions]="{ threshold: [0] }"
+                        (inViewportAction)="onIntersection($event)"
                         title="Aktuelle Verkehrssituation"></app-section-header>
 
     <ng-container>
@@ -33,8 +42,12 @@
   <div class="map-container">
     <app-map [id]="'single-map'"
              [style]="mapBoxStyleEnum.LIGHT_V10"
+             [zoom]="11"
              [interactiveEnabled]=false
              [results]="['nextbike-stations']"></app-map>
+    <ul>
+      <li *ngFor="let v of visibleSectionHeaders" style="color: #BBB">{{v}}</li>
+    </ul>
   </div>
 </div>
 <app-footer [sectionHeaders]="sectionHeaders"></app-footer>

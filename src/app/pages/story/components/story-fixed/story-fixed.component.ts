@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, Inject, QueryList, ViewChild, ViewChildren} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, Inject, QueryList, Renderer2, ViewChild, ViewChildren} from '@angular/core';
 import {MapBoxStyle} from '../../../../core/mapbox/model/map-box-style.enum';
 import {DOCUMENT, ViewportScroller} from '@angular/common';
 import {fromEvent, Subject} from 'rxjs';
@@ -26,12 +26,13 @@ export class StoryFixedComponent implements AfterViewInit {
   /** List of section header components */
   @ViewChildren(SectionHeaderComponent, {read: ElementRef}) sectionHeaders2: QueryList<ElementRef>;
 
+  /** List of visible section headers */
+  visibleSectionHeaders = [];
+
   /** Whether or not the toolbar should be sticky */
   toolbarSticky = false;
   /** Whether or not the map should be sticky */
   mapSticky = false;
-
-  offsets = new Map<number, string>();
 
   /** Helper subject used to finish other subscriptions */
   private unsubscribeSubject = new Subject();
@@ -42,9 +43,11 @@ export class StoryFixedComponent implements AfterViewInit {
   /**
    * Constructor
    * @param document document
+   * @param renderer renderer
    * @param viewportScroller viewport scroller
    */
   constructor(@Inject(DOCUMENT) private document: Document,
+              private renderer: Renderer2,
               private viewportScroller: ViewportScroller) {
   }
 
@@ -56,13 +59,21 @@ export class StoryFixedComponent implements AfterViewInit {
    * Handles after-view-init phase
    */
   ngAfterViewInit() {
-    const mapOffsetTop = this.map.nativeElement.offsetTop;
+
+    // Initial offset of toolbar component
+    const toolbarOffsetTop = this.toolbar.nativeElement.offsetTop;
     const headerTopRowHeight = 30;
+
+    // Initial offset of map component
+    const mapOffsetTop = this.map.nativeElement.offsetTop;
 
     // Subscribe scroll events
     fromEvent(window, 'scroll')
       .pipe(takeUntil(this.unsubscribeSubject))
       .subscribe((e: Event) => {
+
+        // Make toolbar sticky if user scrolled far enough
+        this.toolbarSticky = window.scrollY > toolbarOffsetTop - headerTopRowHeight;
 
         // Make map sticky if user scrolled far enough
         this.mapSticky = window.scrollY > mapOffsetTop - 200;
@@ -79,5 +90,20 @@ export class StoryFixedComponent implements AfterViewInit {
    */
   scrollToElement(anchor) {
     this.viewportScroller.scrollToAnchor(anchor);
+  }
+
+  public onIntersection({target, visible}: { target: Element; visible: boolean }): void {
+    console.log(`${target.id}, ${visible}`);
+
+    if (visible) {
+      this.visibleSectionHeaders.push(target.id);
+    } else {
+      this.visibleSectionHeaders = this.visibleSectionHeaders.filter(value => {
+        return value !== target.id;
+      });
+    }
+
+    // this.renderer.addClass(target, visible ? 'active' : 'inactive');
+    // this.renderer.removeClass(target, visible ? 'inactive' : 'active');
   }
 }
