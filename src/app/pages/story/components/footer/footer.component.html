@@ -3,7 +3,7 @@
     <p class="footer_heading">Story</p>
     <ul>
       <li *ngFor="let sectionHeader of sectionHeaders">
-        <a routerLink="." [fragment]=sectionHeader.id>
+        <a class="link" (click)="scrollToElement(sectionHeader.id)">
           {{ sectionHeader.title }}
         </a>
       </li>
