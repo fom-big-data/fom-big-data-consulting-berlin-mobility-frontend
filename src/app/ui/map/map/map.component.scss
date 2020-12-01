@@ -1,5 +1,9 @@
-.layer-label {
+.layer-label, .flyable-location-label {
   color: #757575;
   display: inline-block;
   width: 150px;
+}
+
+.flyable-location-button {
+  display: block;
 }

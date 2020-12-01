@@ -1,4 +1,4 @@
-import {AfterViewInit, ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges} from '@angular/core';
+import {AfterViewInit, ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import * as mapboxgl from 'mapbox-gl';
 import {environment} from '../../../../environments/environment';
 import {Place} from '../../../core/mapbox/model/place.model';
@@ -61,19 +61,24 @@ export class MapComponent implements OnChanges, AfterViewInit {
 
   /** Whether opacity should be parametrized or not */
   @Input() parametrizeOpacityEnabled = false;
-
-  /** Map of results to be displayed  */
-  @Input() results = new Map<string, string>();
   /** Map of transparency values */
   @Input() transparencies = new Map<string, number>();
   /** Initial transparency */
   @Input() initialTransparency = 100;
+
+  /** List of flyable location */
+  @Input() flyableLocations: Location[] = [];
+
+  /** List of results to be displayed  */
+  @Input() results: string[] = [];
 
   /** Map Box object */
   private map: mapboxgl.Map;
 
   /** Internal subject that publishes transparency events */
   private transparencySubject = new Subject<{ name: string, value: number }>();
+  /** Internal subject that publishes flyable location events */
+  private flyableLocationSubject = new Subject<Location>();
 
   /**
    * Constructor
@@ -312,7 +317,7 @@ export class MapComponent implements OnChanges, AfterViewInit {
    *
    * @param results results
    */
-  private initializeResultOverlays(results: Map<string, string>) {
+  private initializeResultOverlays(results: string[]) {
     this.map.on('load', () => {
 
       // Base URL for results
@@ -366,6 +371,14 @@ export class MapComponent implements OnChanges, AfterViewInit {
               }
             }
           });
+
+          this.flyableLocationSubject.subscribe((location: Location) => {
+            this.map.flyTo({
+              center: [location.longitude, location.latitude],
+              zoom: location.zoom ? location.zoom : this.zoom,
+              essential: true
+            });
+          });
         });
       });
     });
@@ -384,5 +397,13 @@ export class MapComponent implements OnChanges, AfterViewInit {
     if (this.parametrizeOpacityEnabled) {
       this.transparencySubject.next({name, value: event.value});
     }
+  }
+
+  /**
+   * Handles clicks on flyable-location button
+   * @param location location to fly to
+   */
+  onFlyableLocationClicked(location: Location) {
+    this.flyableLocationSubject.next(location);
   }
 }

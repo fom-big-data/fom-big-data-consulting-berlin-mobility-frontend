@@ -5,6 +5,7 @@ import {ViewportScroller} from '@angular/common';
 import {fromEvent, Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
 import {MatToolbar} from '@angular/material/toolbar';
+import {Place} from '../../core/mapbox/model/place.model';
 
 /**
  * Displays a story
@@ -27,6 +28,8 @@ export class StoryComponent implements AfterViewInit, OnDestroy {
   /** Whether or not the toolbar should be sticky */
   toolbarSticky = false;
 
+  /** Enum representing places */
+  placeEnum = Place;
   /** Enum representing map box style */
   mapBoxStyleEnum = MapBoxStyle;
 

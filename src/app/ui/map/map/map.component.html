@@ -16,3 +16,11 @@
   </div>
 </ng-container>
 
+<div *ngIf="flyableLocations.length > 0" class="flyable-locations">
+  <span class="flyable-location-label">fly to</span>
+  <button mat-button color="accent" *ngFor="let location of flyableLocations" class="flyable-location-button"
+          (click)="onFlyableLocationClicked(location)">
+    {{ location.name }}
+  </button>
+</div>
+

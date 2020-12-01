@@ -36,11 +36,6 @@
                       title="Work in Progress"></app-section-header>
 
   <ng-container>
-    <app-map [id]="'all'"
-             [style]="mapBoxStyleEnum.LIGHT_V10"
-             [parametrizeOpacityEnabled]=true
-             [results]="['berlin-inhabitants', 'POI-retail-commercial', 'uber_mean_speed']"></app-map>
-
     <app-map [id]="'vbb-stations'"
              [style]="mapBoxStyleEnum.DARK_V10"
              [parametrizeOpacityEnabled]=true
@@ -55,6 +50,12 @@
              [style]="mapBoxStyleEnum.DARK_V10"
              [parametrizeOpacityEnabled]=true
              [results]="['nextbike-stations']"></app-map>
+
+    <app-map [id]="'all'"
+             [style]="mapBoxStyleEnum.LIGHT_V10"
+             [parametrizeOpacityEnabled]=true
+             [flyableLocations]="[placeEnum.BRANDENBURG_GATE_STATION, placeEnum.ZOOLOGISCHER_GARTEN_STATION]"
+             [results]="['berlin-inhabitants', 'POI-retail-commercial', 'uber_mean_speed']"></app-map>
   </ng-container>
 </div>
 <app-footer [sectionHeaders]="sectionHeaders"></app-footer>

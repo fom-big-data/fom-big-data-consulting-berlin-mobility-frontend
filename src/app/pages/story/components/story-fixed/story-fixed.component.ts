@@ -27,8 +27,8 @@ export class StoryFixedComponent implements AfterViewInit {
   /** List of layer marker components */
   @ViewChildren(LayerMarkerComponent) layerMarkers: QueryList<LayerMarkerComponent>;
 
-  /** Map of results to be displayed  */
-  results = new Map<string, string>();
+  /** List of results to be displayed  */
+  results: string[] = [];
   /** Map of transparency values */
   transparencies = new Map<string, number>();
   /** List of visible layer markers */
@@ -85,10 +85,13 @@ export class StoryFixedComponent implements AfterViewInit {
       });
 
     // Make all layers invisible
+    const resultsMap = new Map<string, string>();
     this.layerMarkers.forEach(layerMarker => {
-      this.results.set(layerMarker.layerName, layerMarker.layerName);
+      resultsMap.set(layerMarker.layerName, layerMarker.layerName);
       this.transparencies.set(layerMarker.layerName, 0);
     });
+
+    this.results = Array.from(resultsMap.values());
   }
 
   //
