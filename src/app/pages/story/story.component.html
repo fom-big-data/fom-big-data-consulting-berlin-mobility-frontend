@@ -36,20 +36,10 @@
                       title="Work in Progress"></app-section-header>
 
   <ng-container>
-    <app-map [id]="'vbb-stations'"
-             [style]="mapBoxStyleEnum.DARK_V10"
-             [parametrizeOpacityEnabled]=true
-             [results]="['vbb-stations']"></app-map>
-
     <app-map [id]="'vbb-stations-s-u-bahn'"
              [style]="mapBoxStyleEnum.DARK_V10"
              [parametrizeOpacityEnabled]=true
-             [results]="['vbb-stations-s-u-bahn']"></app-map>
-
-    <app-map [id]="'nextbike-stations'"
-             [style]="mapBoxStyleEnum.DARK_V10"
-             [parametrizeOpacityEnabled]=true
-             [results]="['nextbike-stations']"></app-map>
+             [results]="['vbb-stations-s-u-bahn', 'nextbike-stations', 'jelbi-stations']"></app-map>
 
     <app-map [id]="'all'"
              [style]="mapBoxStyleEnum.LIGHT_V10"
