@@ -44,6 +44,7 @@
     <app-map [id]="'all'"
              [style]="mapBoxStyleEnum.LIGHT_V10"
              [parametrizeOpacityEnabled]=true
+             [resetEnabled]=true
              [flyableLocations]="[placeEnum.BRANDENBURG_GATE_STATION, placeEnum.ZOOLOGISCHER_GARTEN_STATION]"
              [results]="['berlin-inhabitants', 'POI-retail-commercial', 'uber_mean_speed']"></app-map>
   </ng-container>

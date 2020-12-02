@@ -1,4 +1,4 @@
-import {AfterViewInit, ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {AfterViewInit, ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges} from '@angular/core';
 import * as mapboxgl from 'mapbox-gl';
 import {environment} from '../../../../environments/environment';
 import {Place} from '../../../core/mapbox/model/place.model';
@@ -66,6 +66,8 @@ export class MapComponent implements OnChanges, AfterViewInit {
   /** Initial transparency */
   @Input() initialTransparency = 100;
 
+  /** Whether reset map position and zoom is enabled */
+  @Input() resetEnabled = false;
   /** List of flyable location */
   @Input() flyableLocations: Location[] = [];
 
@@ -376,6 +378,8 @@ export class MapComponent implements OnChanges, AfterViewInit {
             this.map.flyTo({
               center: [location.longitude, location.latitude],
               zoom: location.zoom ? location.zoom : this.zoom,
+              pitch: 0,
+              bearing: 0,
               essential: true
             });
           });
@@ -405,5 +409,13 @@ export class MapComponent implements OnChanges, AfterViewInit {
    */
   onFlyableLocationClicked(location: Location) {
     this.flyableLocationSubject.next(location);
+  }
+
+  /**
+   * Handles click on reset button
+   */
+  onResetClicked() {
+    const initialLocation = new Location('init', this.zoom, this.center.longitude, this.center.latitude);
+    this.flyableLocationSubject.next(initialLocation);
   }
 }
