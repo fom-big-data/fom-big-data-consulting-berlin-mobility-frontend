@@ -356,6 +356,9 @@ export class MapComponent implements OnChanges, AfterViewInit {
           if (layer['paint'].hasOwnProperty('heatmap-color')) {
             this.map.setPaintProperty(layer['id'], 'heatmap-opacity', this.initialTransparency / 100);
           }
+          if (layer['paint'].hasOwnProperty('circle-color')) {
+            this.map.setPaintProperty(layer['id'], 'circle-opacity', this.initialTransparency / 100);
+          }
 
           // Update layer transparency
           this.transparencySubject.subscribe((e: { name, value }) => {
@@ -370,6 +373,9 @@ export class MapComponent implements OnChanges, AfterViewInit {
               }
               if (layer['paint'].hasOwnProperty('heatmap-color')) {
                 this.map.setPaintProperty(layerId, 'heatmap-opacity', e.value / 100);
+              }
+              if (layer['paint'].hasOwnProperty('circle-color')) {
+                this.map.setPaintProperty(layerId, 'circle-opacity', e.value / 100);
               }
             }
           });
