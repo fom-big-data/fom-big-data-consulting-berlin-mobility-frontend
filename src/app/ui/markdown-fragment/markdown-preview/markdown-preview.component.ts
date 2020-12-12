@@ -4,6 +4,7 @@ import hljs from 'highlight.js';
 /**
  * Markdown converter instance including configuration
  */
+// @ts-ignore
 const md = require('markdown-it')({
   html: true,
   linkify: true,
@@ -92,7 +93,7 @@ export class MarkdownPreviewComponent implements OnChanges {
    */
   updateMarkdown() {
     if (this.markdownText != null) {
-      this.htmlText = md.render(this.markdownText);
+      this.htmlText = md.render(this.markdownText.replace(/\n/g,''));
     }
   }
 }
