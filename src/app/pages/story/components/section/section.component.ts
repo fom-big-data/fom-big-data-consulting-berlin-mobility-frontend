@@ -16,6 +16,15 @@ export class SectionComponent implements OnInit {
   @Input() chapters = [];
   /** Contents */
   contents = [];
+  /** Whether there was an error downloading  section */
+  error = false;
+
+  /** Placeholder text */
+  private loremIpsum = 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et ' +
+    'dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, ' +
+    'no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy ' +
+    'eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ' +
+    'ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.';
 
   /**
    * Constructor
@@ -50,6 +59,9 @@ export class SectionComponent implements OnInit {
     this.chapters.forEach(name => {
       this.http.get(baseUrl + 'chapters/' + name + '.md', {responseType: 'text' as 'text'}).subscribe((data: any) => {
         this.contents.push(data);
+      }, () => {
+        this.error = true;
+        this.contents.push(this.loremIpsum);
       });
     });
   }
