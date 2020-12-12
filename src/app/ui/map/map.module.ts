@@ -3,6 +3,7 @@ import {CommonModule} from '@angular/common';
 import {MapComponent} from './map/map.component';
 import {MatSliderModule} from '@angular/material/slider';
 import {MatButtonModule} from '@angular/material/button';
+import {HexagonMapComponent} from './hexagon-map/hexagon-map.component';
 
 @NgModule({
   imports: [
@@ -10,9 +11,9 @@ import {MatButtonModule} from '@angular/material/button';
     MatButtonModule,
     MatSliderModule,
   ],
-  declarations: [MapComponent],
-  entryComponents: [MapComponent],
-  exports: [MapComponent]
+  declarations: [MapComponent, HexagonMapComponent],
+  entryComponents: [MapComponent, HexagonMapComponent],
+  exports: [MapComponent, HexagonMapComponent]
 })
 export class MapModule {
 }
