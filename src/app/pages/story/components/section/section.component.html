@@ -1,4 +1,4 @@
 <span *ngIf="error" class="error">Please add section '{{ chapters[0] }}.md'</span>
 <ng-container *ngFor="let c of contents" class="section">
-  <app-markdown-preview [markdownText]="c"></app-markdown-preview>
+  <app-markdown-preview [markdownText]="c" [ngClass]="{'placeholder': error}"></app-markdown-preview>
 </ng-container>
