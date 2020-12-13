@@ -11,10 +11,10 @@ import {Subject} from 'rxjs';
 
 import * as turf from '@turf/turf';
 import * as turfMeta from '@turf/meta';
-import * as d3 from 'd3';
-import * as simpleStats from 'simple-statistics';
 import RBush from 'rbush';
 import booleanPointInPolygon from '@turf/boolean-point-in-polygon';
+import {BoundingBox} from '../model/bounding-box.model';
+import {ColorRamp} from '../model/color-ramp.model';
 
 
 /**
@@ -82,9 +82,10 @@ export class HexagonMapComponent implements OnChanges, AfterViewInit {
   /** List of results to be displayed  */
   @Input() results: string[] = [];
 
-
+  /** Hexagon edge size in km */
   @Input() cellSize = 0.5;
-  @Input() aggregateProperty = 'mean_spatial_distance_5min';
+  /** Property to use aggregate data from */
+  @Input() aggregateProperty = 'mean_spatial_distance_15min';
 
   /** Map Box object */
   private map: mapboxgl.Map;
@@ -343,8 +344,7 @@ export class HexagonMapComponent implements OnChanges, AfterViewInit {
         // Download geojson for result
         this.http.get(baseUrl + name + '.geojson', {responseType: 'text' as 'json'}).subscribe((geojsonData: any) => {
 
-          const processedGeojson = JSON.parse(this.preprocessHexagonData(JSON.parse(geojsonData), this.cellSize));
-          // console.log(`processedGeojson ${JSON.stringify(processedGeojson)}`);
+          const processedGeojson = this.preprocessHexagonData(JSON.parse(geojsonData), this.aggregateProperty, this.cellSize);
 
           // Add source
           this.map.addSource(name, {
@@ -354,34 +354,19 @@ export class HexagonMapComponent implements OnChanges, AfterViewInit {
           );
 
           // Download styling for result
-          // this.http.get(baseUrl + name + '.json', {responseType: 'text' as 'json'}).subscribe((layerData: any) => {
+          // this.http.get(baseUrl + name + '-hexa.json', {responseType: 'text' as 'json'}).subscribe((layerData: any) => {
 
-          const colorRamp2 = ['#feebe2', '#fcc5c0', '#fa9fb5', '#f768a1', '#dd3497', '#ae017e', '#7a0177'];
-
-          const colorRamp = [
-            'rgb(150, 0, 132)',
-            'rgb(236, 107, 11)',
-            'rgb(246, 155, 31)',
-            'rgb(249, 168, 37)',
-            'rgb(199, 159, 51)',
-            'rgb(137, 147, 69)',
-            'rgb(125, 145, 72)',
-            'rgb(12, 123, 104)'
-          ];
-
-          console.log(`stops ${JSON.stringify(colorRamp.map((d, i) => [i, d]))}`);
+          const colorRamp = ColorRamp.LUFTDATEN_COLOR_RAMP;
 
           // Link layer to source
-          // const layer = JSON.parse(layerData);
           const layer = {
-            id: 'crashesHexGrid',
+            id: '',
             type: 'fill',
             source: name,
-            layout: {},
             paint: {
               'fill-color': {
                 property: 'avg',
-                stops: colorRamp.map((d, i) => [i * 200, d])
+                stops: colorRamp.map((d, i) => [i * 2000, d])
               },
               'fill-opacity': 0.6
             }
@@ -477,80 +462,49 @@ export class HexagonMapComponent implements OnChanges, AfterViewInit {
   // Hexagon helpers
   //
 
+
   /**
+   * Pre-processes raw data by clustering them into hexbins
+   * @param data raw data
+   * @param aggregateProperty property
+   * @param cellSize cell size in km
    *
-   * @param data
+   * @return a geoJSON that represents polygons for each hexbin
    */
-  private preprocessHexagonData(data: any, cellSize: number): string {
+  private preprocessHexagonData(data: any, aggregateProperty: string, cellSize: number): any {
 
-    // console.log(`data ${JSON.stringify(data)}`);
-
-    const cellSize = ;
-    const options = {};
-    const hexGrid = turf.hexGrid([13.088345, 52.3382448, 13.7611609, 52.6755087], cellSize, options);
-
-    // console.log(`hexGrid ${JSON.stringify(hexGrid)}`);
+    // @ts-ignore
+    const hexGrid = turf.hexGrid(BoundingBox.BERLIN, cellSize);
 
     // perform a "spatial join" on our hexGrid geometry and our crashes point data
-    const collected = this.collect(hexGrid, data, this.aggregateProperty, 'values');
-
-    // Debug
-    console.log(`collected A ${JSON.stringify(collected)}`);
-    collected.features.forEach(f => {
-      console.log(`values ${JSON.stringify(f['properties']['values'])}`);
-    });
+    const collected = this.collect(hexGrid, data, aggregateProperty, 'values');
 
     // get rid of polygons with no joined data, to reduce our final output file size
     collected.features = collected.features.filter(d => d.properties.values.length);
 
-    // Debug
-    // console.log(`collected B ${JSON.stringify(collected)}`);
-
-    // count the number of crashes per hexbin
-    // @ts-ignore
+    // Count number of values and average per hexbin
     turfMeta.propEach(collected, props => {
       props.count = props.values.reduce((acc, cur) => acc += 1, 0);
 
       const sum = props.values.reduce((a, b) => a + b, 0);
       props.avg = (sum / props.values.length) || 0;
-      console.log(`props.avg ${props.avg}`);
-    });
-
-    // reduce our count values to a new array of numbers
-    // @ts-ignore
-    const reduced = turfMeta.featureReduce(collected, (acc, cur) => {
-      acc.push(cur.properties.count);
-      return acc;
-    }, []);
-
-    console.log(`reduced ${JSON.stringify(reduced)}`);
-
-    // compute the ckMeans binning for data into 7 classes from reduced values
-    const ck = simpleStats.ckmeans(reduced, 7);
-
-    console.log(`ck.length ${JSON.stringify(ck).length}`);
-    console.log(`ck ${JSON.stringify(ck)}`);
-
-    // tack on the bin number to our data, as well as its min and max values
-    // @ts-ignore
-    turfMeta.propEach(collected, props => {
-      ck.forEach((bin, index) => {
-        if (bin.indexOf(props.count) > -1) {
-          props.bin = index;
-          props.binVal = d3.extent(bin);
-        }
-      });
     });
 
     // remove the "values" property from our hexBins as it's no longer needed
-    // @ts-ignore
     turfMeta.propEach(collected, props => {
       delete props.values;
     });
 
-    return JSON.stringify(collected);
+    return collected;
   }
 
+  /**
+   * Assigns all point into a hexbin polygon
+   * @param polygons hexagon polygons
+   * @param points points
+   * @param inProperty in-property
+   * @param outProperty out-property
+   */
   private collect(polygons, points, inProperty, outProperty) {
     const rtree = new RBush(6);
 
@@ -565,8 +519,6 @@ export class HexagonMapComponent implements OnChanges, AfterViewInit {
     });
 
     rtree.load(treeItems);
-
-    const newFeatures = [];
 
     polygons.features.forEach((poly) => {
 
@@ -587,8 +539,6 @@ export class HexagonMapComponent implements OnChanges, AfterViewInit {
       const properties = {};
       properties[outProperty] = values;
       poly.properties = properties;
-
-      newFeatures.push(poly);
     });
 
     return polygons;
