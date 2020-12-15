@@ -1,3 +1,8 @@
+<app-map [id]="'header'"
+         [interactiveEnabled]=false
+         [scrollZoomEnabled]=false
+         [height]="'100vh'"></app-map>
+<app-landing-overlay></app-landing-overlay>
 <mat-toolbar #toolbar [ngClass]="{'sticky-header': toolbarSticky }">
   <button mat-button *ngFor="let sectionHeader of sectionHeaders" (click)="scrollToElement(sectionHeader.id)">
     {{ sectionHeader.title }}

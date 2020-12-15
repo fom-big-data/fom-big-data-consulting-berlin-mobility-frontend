@@ -1,10 +1,37 @@
+$dashboard-container-margin-top: 26px; //100px;
+$toolbar-height: 64px;
+
 .dashboard-container{
-  width: 100%;
-  max-width: 1200px;
-  min-height: 100vh;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
   display: grid;
-  grid-template-columns: 0.5fr 6fr 0.5fr 2fr;
-  grid-template-rows: auto;
-  margin: 0 auto;
-  padding-top: 100px;
+  grid-template-columns: 3fr 400px;
+  grid-template-rows: 3fr 200px;
+  padding: 10px;
+  height: calc(100vh - 110px);
+  //padding-top: 100px;
+  margin-top: $dashboard-container-margin-top + $toolbar-height !important;
+}
+
+.dashboard-container > *{
+  border: 1px solid #ddd;
+}
+
+mat-toolbar {
+  background: white;
+
+  box-shadow: 0 10px 20px -20px #000;
+  border-bottom: 3px solid rgba(255, 255, 255, 0);
+  transition: 0.2s ease-out background, border;
+
+  z-index: 4;
+
+  position: fixed;
+  top: 26px;
+  width: 100%;
+  height: $toolbar-height;
 }

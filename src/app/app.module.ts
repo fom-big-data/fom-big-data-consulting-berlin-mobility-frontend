@@ -10,7 +10,6 @@ import {FirebaseModule} from './core/firebase/firebase.module';
 import {HeaderComponent} from './components/header/header.component';
 import {MapboxModule} from './core/mapbox/mapbox.module';
 import {EntityModule} from './core/entity/entity.module';
-import {LandingOverlayComponent} from './components/landing-overlay/landing-overlay.component';
 import {HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MapModule} from './ui/map/map.module';
@@ -20,8 +19,7 @@ import {InViewportModule} from 'ng-in-viewport';
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
-    LandingOverlayComponent
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

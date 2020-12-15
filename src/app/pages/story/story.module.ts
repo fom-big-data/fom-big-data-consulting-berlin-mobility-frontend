@@ -14,6 +14,9 @@ import {MatButtonModule} from '@angular/material/button';
 import {FooterComponent} from './components/footer/footer.component';
 import {InViewportModule} from 'ng-in-viewport';
 import {LayerMarkerComponent} from './components/layer-marker/layer-marker.component';
+import {MatCardModule} from '@angular/material/card';
+import {LandingOverlayComponent} from './components/landing-overlay/landing-overlay.component';
+
 
 @NgModule({
   declarations: [
@@ -23,7 +26,9 @@ import {LayerMarkerComponent} from './components/layer-marker/layer-marker.compo
     TextComponent,
     SectionComponent,
     SectionHeaderComponent,
-    LayerMarkerComponent
+    LayerMarkerComponent,
+    LandingOverlayComponent
+
   ], imports: [
     CommonModule,
     StoryRoutingModule,
@@ -32,6 +37,8 @@ import {LayerMarkerComponent} from './components/layer-marker/layer-marker.compo
 
     MatButtonModule,
     MatToolbarModule,
+
+    MatCardModule,
 
     InViewportModule
   ]
