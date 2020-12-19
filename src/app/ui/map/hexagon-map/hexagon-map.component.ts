@@ -85,10 +85,12 @@ export class HexagonMapComponent implements OnChanges, AfterViewInit {
   /** Hexagon edge size in km */
   @Input() cellSize = 0.5;
   /** Property to use aggregate data from */
-  @Input() aggregateProperty = 'mean_spatial_distance_15min';
+  @Input() aggregateProperty = 'mean_spatial_distance_60min';
 
   /** Map Box object */
   private map: mapboxgl.Map;
+  /** Color ramp */
+  private colorRamp = ColorRamp.LUFTDATEN_COLOR_RAMP;
 
   /** Internal subject that publishes opacity events */
   private opacitySubject = new Subject<{ name: string, value: number }>();
@@ -345,17 +347,20 @@ export class HexagonMapComponent implements OnChanges, AfterViewInit {
 
           const processedGeojson = this.preprocessHexagonData(JSON.parse(geojsonData), this.aggregateProperty, this.cellSize);
 
+
+          const aggegatePropertyValues = processedGeojson.features.map(f => {
+            return f['properties']['avg'];
+          });
+          const aggregatePropertyMin = Math.min(...aggegatePropertyValues);
+          const aggregatePropertyMax = Math.max(...aggegatePropertyValues);
+          const aggregatePropertyStep = (aggregatePropertyMax - aggregatePropertyMin) / this.colorRamp.length;
+
           // Add source
           this.map.addSource(name, {
               type: 'geojson',
               data: processedGeojson
             }
           );
-
-          // Download styling for result
-          // this.http.get(baseUrl + name + '-hexa.json', {responseType: 'text' as 'json'}).subscribe((layerData: any) => {
-
-          const colorRamp = ColorRamp.LUFTDATEN_COLOR_RAMP;
 
           // Link layer to source
           const layer = {
@@ -365,14 +370,14 @@ export class HexagonMapComponent implements OnChanges, AfterViewInit {
             paint: {
               'fill-color': {
                 property: 'avg',
-                stops: colorRamp.map((d, i) => [2000 + (i * 450), d])
+                stops: this.colorRamp.map((d, i) =>
+                  [aggregatePropertyMin + (i * aggregatePropertyStep), d])
               },
               'fill-opacity': 0.6
             }
           };
           layer['id'] = name + '-layer';
           layer['source'] = name;
-
 
           // Add layer
           // @ts-ignore
@@ -420,7 +425,6 @@ export class HexagonMapComponent implements OnChanges, AfterViewInit {
               essential: true
             });
           });
-          // });
         });
       });
     });

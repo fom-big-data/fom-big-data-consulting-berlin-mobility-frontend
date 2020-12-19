@@ -92,49 +92,51 @@
 
     <app-section [chapters]="['experiment']"></app-section>
 
-    <app-map [id]="'inhabitants'" [style]="mapBoxStyleEnum.LIGHT_V10" [navigationControlEnabled]=true
-             [results]="['berlin-inhabitants']"></app-map>
-    <app-map [id]="'commercial'" [style]="mapBoxStyleEnum.LIGHT_V10" [results]="['POI-retail-commercial']"></app-map>
-    <app-map [id]="'traffic'" [style]="mapBoxStyleEnum.LIGHT_V10" [results]="['uber_mean_speed']"></app-map>
+    <!--    <app-map [id]="'inhabitants'" [style]="mapBoxStyleEnum.LIGHT_V10" [navigationControlEnabled]=true-->
+    <!--             [results]="['berlin-inhabitants']"></app-map>-->
+    <!--    <app-map [id]="'commercial'" [style]="mapBoxStyleEnum.LIGHT_V10" [results]="['POI-retail-commercial']"></app-map>-->
+    <!--    <app-map [id]="'traffic'" [style]="mapBoxStyleEnum.LIGHT_V10" [results]="['uber_mean_speed']"></app-map>-->
 
-    <app-map [id]="'vbb-stations-s-u-bahn'"
-             [style]="mapBoxStyleEnum.DARK_V10"
-             [parametrizeOpacityEnabled]=true
-             [results]="['vbb-stations-s-u-bahn', 'nextbike-stations', 'jelbi-stations']"></app-map>
+    <!--    <app-map [id]="'vbb-stations-s-u-bahn'"-->
+    <!--             [style]="mapBoxStyleEnum.DARK_V10"-->
+    <!--             [parametrizeOpacityEnabled]=true-->
+    <!--             [results]="['vbb-stations-s-u-bahn', 'nextbike-stations', 'jelbi-stations']"></app-map>-->
 
-    <app-map [id]="'isochrones-bus'"
-             [style]="mapBoxStyleEnum.DARK_V10"
-             [fullScreenControlEnabled]=true
-             [parametrizeOpacityEnabled]=true
-             [results]="['isochrones-bus-5', 'isochrones-bus-10', 'isochrones-bus-15']"></app-map>
+    <!--    <app-map [id]="'isochrones-tram-1'"-->
+    <!--             [style]="mapBoxStyleEnum.LIGHT_V10"-->
+    <!--             [fullScreenControlEnabled]=true-->
+    <!--             [parametrizeOpacityEnabled]=true-->
+    <!--             [results]="['isochrones-tram-15-52.483333-13.266667', 'isochrones-tram-15-52.520278-13.386944']"></app-map>-->
 
-    <app-map [id]="'isochrones-tram'"
-             [style]="mapBoxStyleEnum.DARK_V10"
-             [fullScreenControlEnabled]=true
-             [parametrizeOpacityEnabled]=true
-             [results]="['isochrones-tram-5', 'isochrones-tram-10', 'isochrones-tram-15']"></app-map>
+    <!--    <app-map [id]="'isochrones-tram-2'"-->
+    <!--             [style]="mapBoxStyleEnum.LIGHT_V10"-->
+    <!--             [fullScreenControlEnabled]=true-->
+    <!--             [parametrizeOpacityEnabled]=true-->
+    <!--             [results]="['isochrones-tram-40-52.483333-13.266667', 'isochrones-tram-40-52.520278-13.386944']"></app-map>-->
 
     <app-map [id]="'isochrones-subway'"
-             [style]="mapBoxStyleEnum.LIGHT_V10"
+             [zoom]="9"
+             [style]="mapBoxStyleEnum.DARK_V10"
              [fullScreenControlEnabled]=true
              [parametrizeOpacityEnabled]=true
-             [results]="['isochrones-subway-15']"></app-map>
+             [results]="['isochrones-bus-60', 'isochrones-rail-60', 'isochrones-subway-60', 'isochrones-tram-60']">
+    </app-map>
 
-    <app-hexagon-map [id]="'isochrones-hex'"
+    <app-hexagon-map [id]="'isochrones-subway-hex'"
                      [zoom]="9"
                      [style]="mapBoxStyleEnum.LIGHT_V10"
                      [fullScreenControlEnabled]=true
                      [parametrizeOpacityEnabled]=true
-                     [initialTransparency]="100"
-                     [flyableLocations]="[placeEnum.BRANDENBURG_GATE_STATION, placeEnum.ZOOLOGISCHER_GARTEN_STATION]"
-                     [results]="['isochrones-subway-15']"></app-hexagon-map>
+                     [initialOpacity]="75"
+                     [results]="['isochrones-bus-60', 'isochrones-rail-60', 'isochrones-subway-60', 'isochrones-tram-60']">
+    </app-hexagon-map>
 
-    <app-map [id]="'all'"
-             [style]="mapBoxStyleEnum.LIGHT_V10"
-             [parametrizeOpacityEnabled]=true
-             [resetEnabled]=true
-             [flyableLocations]="[placeEnum.BRANDENBURG_GATE_STATION, placeEnum.ZOOLOGISCHER_GARTEN_STATION]"
-             [results]="['berlin-inhabitants', 'POI-retail-commercial', 'uber_mean_speed']"></app-map>
+    <!--    <app-map [id]="'all'"-->
+    <!--             [style]="mapBoxStyleEnum.LIGHT_V10"-->
+    <!--             [parametrizeOpacityEnabled]=true-->
+    <!--             [resetEnabled]=true-->
+    <!--             [flyableLocations]="[placeEnum.BRANDENBURG_GATE_STATION, placeEnum.ZOOLOGISCHER_GARTEN_STATION]"-->
+    <!--             [results]="['berlin-inhabitants', 'POI-retail-commercial', 'uber_mean_speed']"></app-map>-->
   </ng-container>
 </div>
 <app-footer [sectionHeaders]="sectionHeaders"></app-footer>

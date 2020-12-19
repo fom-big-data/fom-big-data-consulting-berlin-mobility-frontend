@@ -336,7 +336,7 @@ export class MapComponent implements OnChanges, AfterViewInit {
         );
 
         // Download styling for result
-        this.http.get(baseUrl + '/styles/' + name + '.json', {responseType: 'text' as 'json'}).subscribe((data: any) => {
+        this.http.get(baseUrl + 'styles/' + name + '.json', {responseType: 'text' as 'json'}).subscribe((data: any) => {
 
           // Link layer to source
           const layer = JSON.parse(data);
