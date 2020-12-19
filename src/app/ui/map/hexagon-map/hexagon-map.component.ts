@@ -69,10 +69,10 @@ export class HexagonMapComponent implements OnChanges, AfterViewInit {
 
   /** Whether opacity should be parametrized or not */
   @Input() parametrizeOpacityEnabled = false;
-  /** Map of transparency values */
-  @Input() transparencies = new Map<string, number>();
-  /** Initial transparency */
-  @Input() initialTransparency = 100;
+  /** Map of opacity values */
+  @Input() opacities = new Map<string, number>();
+  /** Initial opacity */
+  @Input() initialOpacity = 100;
 
   /** Whether reset map position and zoom is enabled */
   @Input() resetEnabled = false;
@@ -90,8 +90,8 @@ export class HexagonMapComponent implements OnChanges, AfterViewInit {
   /** Map Box object */
   private map: mapboxgl.Map;
 
-  /** Internal subject that publishes transparency events */
-  private transparencySubject = new Subject<{ name: string, value: number }>();
+  /** Internal subject that publishes opacity events */
+  private opacitySubject = new Subject<{ name: string, value: number }>();
   /** Internal subject that publishes flyable location events */
   private flyableLocationSubject = new Subject<Location>();
 
@@ -111,9 +111,8 @@ export class HexagonMapComponent implements OnChanges, AfterViewInit {
    * @param changes changes
    */
   ngOnChanges(changes: SimpleChanges) {
-    this.transparencies.forEach((value: number, name: string) => {
-      console.log(`> ${name}, ${value}`);
-      this.transparencySubject.next({name, value});
+    this.opacities.forEach((value: number, name: string) => {
+      this.opacitySubject.next({name, value});
     });
   }
 
@@ -366,7 +365,7 @@ export class HexagonMapComponent implements OnChanges, AfterViewInit {
             paint: {
               'fill-color': {
                 property: 'avg',
-                stops: colorRamp.map((d, i) => [i * 2000, d])
+                stops: colorRamp.map((d, i) => [2000 + (i * 450), d])
               },
               'fill-opacity': 0.6
             }
@@ -379,22 +378,22 @@ export class HexagonMapComponent implements OnChanges, AfterViewInit {
           // @ts-ignore
           this.map.addLayer(layer);
 
-          // Initialize layer transparency
+          // Initialize layer opacity
           if (layer['paint'].hasOwnProperty('fill-color')) {
-            this.map.setPaintProperty(layer['id'], 'fill-opacity', this.initialTransparency / 100);
+            this.map.setPaintProperty(layer['id'], 'fill-opacity', this.initialOpacity / 100);
           }
           if (layer['paint'].hasOwnProperty('line-color')) {
-            this.map.setPaintProperty(layer['id'], 'line-opacity', this.initialTransparency / 100);
+            this.map.setPaintProperty(layer['id'], 'line-opacity', this.initialOpacity / 100);
           }
           if (layer['paint'].hasOwnProperty('heatmap-color')) {
-            this.map.setPaintProperty(layer['id'], 'heatmap-opacity', this.initialTransparency / 100);
+            this.map.setPaintProperty(layer['id'], 'heatmap-opacity', this.initialOpacity / 100);
           }
           if (layer['paint'].hasOwnProperty('circle-color')) {
-            this.map.setPaintProperty(layer['id'], 'circle-opacity', this.initialTransparency / 100);
+            this.map.setPaintProperty(layer['id'], 'circle-opacity', this.initialOpacity / 100);
           }
 
-          // Update layer transparency
-          this.transparencySubject.subscribe((e: { name, value }) => {
+          // Update layer opacity
+          this.opacitySubject.subscribe((e: { name, value }) => {
             const layerId = e.name + '-layer';
             if (layer.id === layerId) {
               if (layer['paint'].hasOwnProperty('fill-color')) {
@@ -432,13 +431,13 @@ export class HexagonMapComponent implements OnChanges, AfterViewInit {
   //
 
   /**
-   * Handles transparency changes
+   * Handles opacity changes
    * @param name result name
    * @param event slider event
    */
-  onTransparencyChanged(name: string, event: MatSliderChange) {
+  onOpacityChanged(name: string, event: MatSliderChange) {
     if (this.parametrizeOpacityEnabled) {
-      this.transparencySubject.next({name, value: event.value});
+      this.opacitySubject.next({name, value: event.value});
     }
   }
 
