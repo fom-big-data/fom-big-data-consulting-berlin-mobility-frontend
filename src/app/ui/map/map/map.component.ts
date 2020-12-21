@@ -64,7 +64,7 @@ export class MapComponent implements OnChanges, AfterViewInit {
   /** Map of transparency values */
   @Input() transparencies = new Map<string, number>();
   /** Initial transparency */
-  @Input() initialTransparency = 100;
+  @Input() initialOpacity = 100;
 
   /** Whether reset map position and zoom is enabled */
   @Input() resetEnabled = false;
@@ -348,16 +348,16 @@ export class MapComponent implements OnChanges, AfterViewInit {
 
           // Initialize layer transparency
           if (layer['paint'].hasOwnProperty('fill-color')) {
-            this.map.setPaintProperty(layer['id'], 'fill-opacity', this.initialTransparency / 100);
+            this.map.setPaintProperty(layer['id'], 'fill-opacity', this.initialOpacity / 100);
           }
           if (layer['paint'].hasOwnProperty('line-color')) {
-            this.map.setPaintProperty(layer['id'], 'line-opacity', this.initialTransparency / 100);
+            this.map.setPaintProperty(layer['id'], 'line-opacity', this.initialOpacity / 100);
           }
           if (layer['paint'].hasOwnProperty('heatmap-color')) {
-            this.map.setPaintProperty(layer['id'], 'heatmap-opacity', this.initialTransparency / 100);
+            this.map.setPaintProperty(layer['id'], 'heatmap-opacity', this.initialOpacity / 100);
           }
           if (layer['paint'].hasOwnProperty('circle-color')) {
-            this.map.setPaintProperty(layer['id'], 'circle-opacity', this.initialTransparency / 100);
+            this.map.setPaintProperty(layer['id'], 'circle-opacity', this.initialOpacity / 100);
           }
 
           // Update layer transparency
