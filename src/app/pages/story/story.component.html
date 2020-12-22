@@ -45,6 +45,28 @@
 </div>
 
 <div class="story-container">
+  <app-section-header #visibility id="visibility"
+                      title="Mobilität in der Stadt sichtbar machen"></app-section-header>
+
+  <ng-container>
+    <div class="text-container">
+      <app-section [chapters]="['visibility-isochrones']"></app-section>
+      <app-section [chapters]="['visibility-isochrones-walk']"></app-section>
+      <app-section [chapters]="['visibility-isochrones-transport']"></app-section>
+      <app-section [chapters]="['visibility-isochrones-combined']"></app-section>
+    </div>
+    <div class="map-container">
+      <app-map [id]="'map-visibility'"
+               [style]="mapBoxStyleEnum.DARK_V10"
+               [zoom]="11"
+               [interactiveEnabled]=false
+               [initialOpacity]="0"
+               [parametrizeOpacityEnabled]=true></app-map>
+    </div>
+  </ng-container>
+</div>
+
+<div class="story-container">
   <app-section-header #problems id="problems"
                       title="Probleme in der Infrastruktur erkennnen"></app-section-header>
 
@@ -60,7 +82,7 @@
                [style]="mapBoxStyleEnum.DARK_V10"
                [zoom]="11"
                [interactiveEnabled]=false
-               [initialTransparency]="0"
+               [initialOpacity]="0"
                [parametrizeOpacityEnabled]=true></app-map>
     </div>
   </ng-container>
