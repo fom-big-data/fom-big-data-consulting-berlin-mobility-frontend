@@ -99,7 +99,7 @@
            [style]="mapBoxStyleEnum.DARK_V10"
            [zoom]="11"
            [interactiveEnabled]=false
-           [initialTransparency]="0"
+           [initialOpacity]="1"
            [parametrizeOpacityEnabled]=true></app-map>
 </div>
 
@@ -143,6 +143,15 @@
              [fullScreenControlEnabled]=true
              [parametrizeOpacityEnabled]=true
              [results]="['isochrones-bus-60', 'isochrones-rail-60', 'isochrones-subway-60', 'isochrones-tram-60']">
+    </app-map>
+
+    <app-map class="full-width"
+             [id]="'traffic'"
+             [zoom]="6"
+             [style]="mapBoxStyleEnum.DARK_V10"
+             [fullScreenControlEnabled]=true
+             [parametrizeOpacityEnabled]=true
+             [results]="['plz-traffic', 'uber_mean_speed', 'isochrones-drive-15']">
     </app-map>
 
     <app-hexagon-map [id]="'isochrones-subway-hex'"
