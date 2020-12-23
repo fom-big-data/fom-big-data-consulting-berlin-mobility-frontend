@@ -5,6 +5,7 @@ import {DashboardComponent} from './dashboard.component';
 import {MapModule} from '../../ui/map/map.module';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 
 @NgModule({
@@ -14,6 +15,7 @@ import {MatButtonModule} from '@angular/material/button';
     DashboardRoutingModule,
     MapModule,
     MatToolbarModule,
+    MatSlideToggleModule,
     MatButtonModule
   ]
 })

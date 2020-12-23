@@ -1,12 +1,35 @@
 <mat-toolbar #toolbar>
   <button mat-button>
-    Test Button
+    Motorisierter Individualverkehr
   </button>
+    <button mat-button>
+      Öffentlicher Nahverkehr
+    </button>
+      <button mat-button>
+        Fahrradverkehr
+      </button>
+        <button mat-button>
+          Mikromobilität
+        </button>
+          <button mat-button>
+            Multimodaler Verkehr
+          </button>
 </mat-toolbar>
 
 <div class="dashboard-container">
-  <div>dashboard works!</div>
-    <div>dashboard works!</div>
-      <div>dashboard works!</div>
+  <app-map [id]="'header'"
+           [interactiveEnabled]=false
+           [scrollZoomEnabled]=false
+           [height]="'100%'"></app-map>
+    <div class="graph1"[hidden]="!chart">
+      <h3> Durchschnittliche Geschwindigkeit </h3>
+  <canvas id="canvas">{{ chart }}</canvas>
+  <p>Wochentag&nbsp;&nbsp;&nbsp;&nbsp;<mat-slide-toggle
+     class="example-margin"
+     [color]="toggle_color"
+     (change)="onChange($event)">
+ </mat-slide-toggle>&nbsp;&nbsp;&nbsp;&nbsp;Wochenende</p>
+</div>
+      <div class="testclass">dashboard works!</div>
         <div>dashboard works!</div>
 </div>

@@ -9,16 +9,35 @@ $toolbar-height: 64px;
   right: 0;
 
   display: grid;
-  grid-template-columns: 3fr 400px;
-  grid-template-rows: 3fr 200px;
+  grid-gap: 1em;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-template-areas: "map map graph1"
+  "map map graph2"
+  "map map graph3"
+  ". . graph4";
   padding: 10px;
   height: calc(100vh - 110px);
   //padding-top: 100px;
   margin-top: $dashboard-container-margin-top + $toolbar-height !important;
 }
 
+app-map{
+  grid-area: map;
+}
+
+.graph1{
+  grid-area: graph1;
+}
+.graph2{
+  grid-area: graph2;
+}
+.graph3{
+  grid-area: graph3;
+}
+
 .dashboard-container > *{
-  border: 1px solid #ddd;
+  //border: 1px solid #ddd;
 }
 
 mat-toolbar {
