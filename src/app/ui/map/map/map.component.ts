@@ -61,9 +61,9 @@ export class MapComponent implements OnChanges, AfterViewInit {
 
   /** Whether opacity should be parametrized or not */
   @Input() parametrizeOpacityEnabled = false;
-  /** Map of transparency values */
-  @Input() transparencies = new Map<string, number>();
-  /** Initial transparency */
+  /** Map of opacities values */
+  @Input() opacities = new Map<string, number>();
+  /** Initial opacities */
   @Input() initialOpacity = 100;
 
   /** Whether reset map position and zoom is enabled */
@@ -98,7 +98,7 @@ export class MapComponent implements OnChanges, AfterViewInit {
    * @param changes changes
    */
   ngOnChanges(changes: SimpleChanges) {
-    this.transparencies.forEach((value: number, name: string) => {
+    this.opacities.forEach((value: number, name: string) => {
       this.transparencySubject.next({name, value});
     });
   }
