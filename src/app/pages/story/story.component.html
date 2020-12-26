@@ -27,11 +27,11 @@
 
   <ng-container>
     <div class="text-container">
-      <app-section [chapters]="['lebensraeume']"></app-section>
-      <app-section [chapters]="['arbeitsraeume']"></app-section>
-      <app-section [chapters]="['strassen-infrastruktur']"></app-section>
-      <app-section [chapters]="['fahrrad-infrastruktur']"></app-section>
-      <app-section [chapters]="['oepnv']"></app-section>
+      <app-section [height]="'500px'" [chapters]="['lebensraeume']"></app-section>
+      <app-section [height]="'500px'" [chapters]="['arbeitsraeume']"></app-section>
+      <app-section [height]="'500px'" [chapters]="['strassen-infrastruktur']"></app-section>
+      <app-section [height]="'500px'" [chapters]="['fahrrad-infrastruktur']"></app-section>
+      <app-section [height]="'500px'" [chapters]="['oepnv']"></app-section>
     </div>
     <div class="map-container">
       <app-map [id]="'map-understanding'"
@@ -47,21 +47,61 @@
 <div class="story-container">
   <app-section-header #visibility id="visibility"
                       title="Mobilität in der Stadt sichtbar machen"></app-section-header>
-
+  <app-section [chapters]="['visibility-isochrones']"></app-section>
   <ng-container>
     <div class="text-container">
-      <app-section [chapters]="['visibility-isochrones']"></app-section>
-      <app-section [chapters]="['visibility-isochrones-walk']"></app-section>
-      <app-section [chapters]="['visibility-isochrones-transport']"></app-section>
-      <app-section [chapters]="['visibility-isochrones-combined']"></app-section>
+      <div *ngFor="let section of sectionsVisibilityWalk" class="section-container center-vertically">
+        <app-layer-marker [layers]="section.layers"
+                          (layerMarkerVisibleEventEmitter)="onLayerMarkerEventTriggered('visibility-walk', $event)"></app-layer-marker>
+        <app-section [chapters]="section.chapters"></app-section>
+        <app-layer-marker [layers]="section.layers"
+                          (layerMarkerVisibleEventEmitter)="onLayerMarkerEventTriggered('visibility-walk', $event)"></app-layer-marker>
+      </div>
     </div>
     <div class="map-container">
-      <app-map [id]="'map-visibility'"
+      <app-map [id]="'map-visibility-walk'"
+               [height]="'500px'"
                [style]="mapBoxStyleEnum.DARK_V10"
-               [zoom]="11"
+               [zoom]="12"
+               [center]="placeEnum.FOM"
                [interactiveEnabled]=false
                [initialOpacity]="0"
-               [parametrizeOpacityEnabled]=true></app-map>
+               [opacities]="opacitiesVisibilityWalk"
+               [results]="[
+                'isochrones-walk-25-52.5119408-13.3161495',
+                'isochrones-walk-15-52.5119408-13.3161495',
+                'isochrones-walk-5-52.5119408-13.3161495'
+              ]">
+      </app-map>
+    </div>
+  </ng-container>
+</div>
+<div class="story-container">
+  <ng-container>
+    <div class="text-container">
+      <div *ngFor="let section of sectionsVisibilitySubway" class="section-container center-vertically">
+        <app-layer-marker [layers]="section.layers"
+                          (layerMarkerVisibleEventEmitter)="onLayerMarkerEventTriggered('visibility-subway', $event)"></app-layer-marker>
+        <app-section [chapters]="section.chapters"></app-section>
+        <app-layer-marker [layers]="section.layers"
+                          (layerMarkerVisibleEventEmitter)="onLayerMarkerEventTriggered('visibility-subway', $event)"></app-layer-marker>
+      </div>
+    </div>
+    <div class="map-container">
+      <app-map [id]="'map-visibility-subway'"
+               [height]="'500px'"
+               [style]="mapBoxStyleEnum.DARK_V10"
+               [zoom]="11"
+               [center]="placeEnum.FOM"
+               [interactiveEnabled]=false
+               [initialOpacity]="0"
+               [opacities]="opacitiesVisibilitySubway"
+               [results]="[
+                'isochrones-subway-25-52.5119408-13.3161495',
+                'isochrones-subway-15-52.5119408-13.3161495',
+                'isochrones-subway-5-52.5119408-13.3161495'
+              ]">
+      </app-map>
     </div>
   </ng-container>
 </div>
@@ -69,21 +109,34 @@
 <div class="story-container">
   <app-section-header #problems id="problems"
                       title="Probleme in der Infrastruktur erkennnen"></app-section-header>
-
   <ng-container>
     <div class="text-container">
-      <app-section [chapters]="['whitespots-auto']"></app-section>
-      <app-section [chapters]="['whitespots-bike']"></app-section>
-      <app-section [chapters]="['whitespots-oepnv']"></app-section>
-      <app-section [chapters]="['whitespots-all']"></app-section>
+      <div *ngFor="let section of sectionsProblems" class="section-container center-vertically">
+        <app-layer-marker [layers]="section.layers"
+                          (layerMarkerVisibleEventEmitter)="onLayerMarkerEventTriggered('problems', $event)"></app-layer-marker>
+        <app-section [chapters]="section.chapters"></app-section>
+        <app-layer-marker [layers]="section.layers"
+                          (layerMarkerVisibleEventEmitter)="onLayerMarkerEventTriggered('problems', $event)"></app-layer-marker>
+      </div>
     </div>
     <div class="map-container">
-      <app-map [id]="'map-problems'"
-               [style]="mapBoxStyleEnum.DARK_V10"
-               [zoom]="11"
-               [interactiveEnabled]=false
-               [initialOpacity]="0"
-               [parametrizeOpacityEnabled]=true></app-map>
+      <app-hexagon-map [id]="'map-problems'"
+                       [style]="mapBoxStyleEnum.DARK_V10"
+                       [zoom]="9"
+                       [interactiveEnabled]=false
+                       [initialOpacity]="0"
+                       [opacities]="opacitiesProblems"
+                       [results]="[
+                         'isochrones-drive-15',
+                         'isochrones-bike-15',
+                         'isochrones-bus-15',
+                         'isochrones-light_rail-15',
+                         'isochrones-subway-15',
+                         'isochrones-tram-15',
+                         'isochrones-all-15'
+                       ]"
+                       [aggregateProperty]="'mean_spatial_distance_15min'">
+      </app-hexagon-map>
     </div>
   </ng-container>
 </div>
@@ -94,13 +147,13 @@
 
   <app-section [chapters]="['whitespots-auto']"></app-section>
 
-  <app-map class="full-width"
-           [id]="'map-summary'"
-           [style]="mapBoxStyleEnum.DARK_V10"
-           [zoom]="11"
-           [interactiveEnabled]=false
-           [initialOpacity]="1"
-           [parametrizeOpacityEnabled]=true></app-map>
+  <app-hexagon-map class="full-width"
+                   [id]="'map-summary'"
+                   [style]="mapBoxStyleEnum.DARK_V10"
+                   [zoom]="11"
+                   [interactiveEnabled]=false
+                   [results]="['isochrones-all-15']"
+                   [aggregateProperty]="'mean_spatial_distance_15min'"></app-hexagon-map>
 </div>
 
 <div class="story-container">
@@ -108,41 +161,47 @@
 
   <app-section-header #experiment id="experiment"
                       title="Work in Progress"></app-section-header>
-
-
   <ng-container>
-
     <app-section [chapters]="['experiment']"></app-section>
-
-    <!--    <app-map [id]="'inhabitants'" [style]="mapBoxStyleEnum.LIGHT_V10" [navigationControlEnabled]=true-->
-    <!--             [results]="['berlin-inhabitants']"></app-map>-->
-    <!--    <app-map [id]="'commercial'" [style]="mapBoxStyleEnum.LIGHT_V10" [results]="['POI-retail-commercial']"></app-map>-->
-    <!--    <app-map [id]="'traffic'" [style]="mapBoxStyleEnum.LIGHT_V10" [results]="['uber_mean_speed']"></app-map>-->
-
-    <!--    <app-map [id]="'vbb-stations-s-u-bahn'"-->
-    <!--             [style]="mapBoxStyleEnum.DARK_V10"-->
-    <!--             [parametrizeOpacityEnabled]=true-->
-    <!--             [results]="['vbb-stations-s-u-bahn', 'nextbike-stations', 'jelbi-stations']"></app-map>-->
-
-    <!--    <app-map [id]="'isochrones-tram-1'"-->
-    <!--             [style]="mapBoxStyleEnum.LIGHT_V10"-->
-    <!--             [fullScreenControlEnabled]=true-->
-    <!--             [parametrizeOpacityEnabled]=true-->
-    <!--             [results]="['isochrones-tram-15-52.483333-13.266667', 'isochrones-tram-15-52.520278-13.386944']"></app-map>-->
-
-    <!--    <app-map [id]="'isochrones-tram-2'"-->
-    <!--             [style]="mapBoxStyleEnum.LIGHT_V10"-->
-    <!--             [fullScreenControlEnabled]=true-->
-    <!--             [parametrizeOpacityEnabled]=true-->
-    <!--             [results]="['isochrones-tram-40-52.483333-13.266667', 'isochrones-tram-40-52.520278-13.386944']"></app-map>-->
-
+    <app-map [id]="'inhabitants'" [style]="mapBoxStyleEnum.LIGHT_V10" [navigationControlEnabled]=true
+             [results]="['berlin-inhabitants', 'POI-retail-commercial', 'uber_mean_speed']"></app-map>
+    <app-map class="full-width"
+             [id]="'vbb-stations-s-u-bahn'"
+             [style]="mapBoxStyleEnum.DARK_V10"
+             [parametrizeOpacityEnabled]=true
+             [results]="['vbb-stations-s-u-bahn', 'nextbike-stations', 'jelbi-stations']"></app-map>
     <app-map class="full-width"
              [id]="'stations'"
              [zoom]="9"
              [style]="mapBoxStyleEnum.DARK_V10"
              [fullScreenControlEnabled]=true
              [parametrizeOpacityEnabled]=true
-             [results]="['isochrones-bus-60', 'isochrones-rail-60', 'isochrones-subway-60', 'isochrones-tram-60']">
+             [results]="['stations-bus', 'stations-light_rail', 'stations-subway', 'stations-tram']">
+    </app-map>
+
+    <!--<app-map [id]="'isochrones-subway'" -->
+    <!--        [zoom]="9" -->
+    <!--        [style]="mapBoxStyleEnum.DARK_V10" -->
+    <!--        [fullScreenControlEnabled]=true-->
+    <!--        [parametrizeOpacityEnabled]=true-->
+    <!--        [results]="['isochrones-bus-60', 'isochrones-rail-60', 'isochrones-subway-60', 'isochrones-tram-60']">-->
+    <!--</app-map>-->
+
+    <!--    <app-hexagon-map [id]="'isochrones-subway-hex'"-->
+    <!--                     [zoom]="9"-->
+    <!--                     [style]="mapBoxStyleEnum.LIGHT_V10"-->
+    <!--                     [fullScreenControlEnabled]=true-->
+    <!--                     [parametrizeOpacityEnabled]=true-->
+    <!--                     [initialOpacity]="75"-->
+    <!--                     [results]="['isochrones-bus-60', 'isochrones-rail-60', 'isochrones-subway-60', 'isochrones-tram-60']">-->
+    <!--    </app-hexagon-map>-->
+
+    <app-map [id]="'distance-public-transport-stations'"
+             [zoom]="9"
+             [style]="mapBoxStyleEnum.DARK_V10"
+             [fullScreenControlEnabled]=true
+             [parametrizeOpacityEnabled]=true
+             [results]="['distance-public-transport-stations']">
     </app-map>
 
     <app-map class="full-width"
@@ -163,12 +222,15 @@
                      [results]="['isochrones-bus-60', 'isochrones-rail-60', 'isochrones-subway-60', 'isochrones-tram-60']">
     </app-hexagon-map>
 
-    <!--    <app-map [id]="'all'"-->
-    <!--             [style]="mapBoxStyleEnum.LIGHT_V10"-->
-    <!--             [parametrizeOpacityEnabled]=true-->
-    <!--             [resetEnabled]=true-->
-    <!--             [flyableLocations]="[placeEnum.BRANDENBURG_GATE_STATION, placeEnum.ZOOLOGISCHER_GARTEN_STATION]"-->
-    <!--             [results]="['berlin-inhabitants', 'POI-retail-commercial', 'uber_mean_speed']"></app-map>-->
+    <app-map [id]="'distance-public-transport-stations'"
+    <app-map class="full-width"
+             [id]="'fom-distance'"
+             [zoom]="9"
+             [style]="mapBoxStyleEnum.DARK_V10"
+             [fullScreenControlEnabled]=true
+             [parametrizeOpacityEnabled]=true
+             [results]="['isochrones-subway-25-52.5119408-13.3161495', 'isochrones-walk-25-52.5119408-13.3161495']">
+    </app-map>
   </ng-container>
 </div>
 <app-footer [sectionHeaders]="sectionHeaders"></app-footer>

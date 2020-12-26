@@ -10,12 +10,16 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 })
 export class LayerMarkerComponent {
 
-  /** Layer name */
-  @Input() layerName: string;
-  /** Layer transparency */
-  @Input() transparency = 100;
+  /** Layers names */
+  @Input() layers: string[];
+  /** Opacity */
+  @Input() opacity = 100;
+  /** Whether or not other layers should be made transparent */
+  @Input() clearOthers = true;
+  /** Whether or not an event should be emitted when marker is not visible anymore */
+  @Input() emitOnLeave = false;
   /** Event emitter indicating changes in layer marker visibility */
-  @Output() layerMarkerVisibleEventEmitter = new EventEmitter<{ layerName: string, transparency: number }>();
+  @Output() layerMarkerVisibleEventEmitter = new EventEmitter<{ layer: string, opacity: number, clearOthers: boolean }>();
 
   //
   // Actions
@@ -27,10 +31,12 @@ export class LayerMarkerComponent {
    * @param visible whether the component is visible or not
    */
   public onIntersection({target, visible}: { target: Element; visible: boolean }) {
-    if (visible) {
-      this.layerMarkerVisibleEventEmitter.emit({layerName: this.layerName, transparency: this.transparency});
-    } else {
-      this.layerMarkerVisibleEventEmitter.emit({layerName: this.layerName, transparency: 0});
-    }
+    this.layers.forEach(layer => {
+      if (visible) {
+        this.layerMarkerVisibleEventEmitter.emit({layer, opacity: this.opacity, clearOthers: this.clearOthers});
+      } else if (this.emitOnLeave) {
+        this.layerMarkerVisibleEventEmitter.emit({layer, opacity: 0, clearOthers: this.clearOthers});
+      }
+    });
   }
 }

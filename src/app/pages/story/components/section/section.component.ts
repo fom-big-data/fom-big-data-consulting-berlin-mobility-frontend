@@ -12,6 +12,8 @@ import {environment} from '../../../../../environments/environment';
 })
 export class SectionComponent implements OnInit {
 
+  /** Height of the map */
+  @Input() height = '100%';
   /** List of all sections to be displayed  */
   @Input() chapters = [];
   /** Contents */

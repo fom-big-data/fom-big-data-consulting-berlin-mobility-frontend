@@ -11,4 +11,6 @@ export class Place {
   static BRANDENBURG_GATE_STATION = new Location('S+U Brandenburger Tor', 14, 13.380833333333, 52.516388888889);
   /** Zoologischer Garten S+U Bahn station */
   static ZOOLOGISCHER_GARTEN_STATION = new Location('S+U Zoologischer Garten', 14, 13.3325, 52.507222);
+  /** FOM */
+  static FOM = new Location('FOM', 14, 13.3161495, 52.5119408);
 }
