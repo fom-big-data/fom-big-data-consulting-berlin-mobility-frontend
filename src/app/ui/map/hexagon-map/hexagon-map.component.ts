@@ -86,11 +86,11 @@ export class HexagonMapComponent implements OnChanges, AfterViewInit {
   @Input() cellSize = 0.5;
   /** Property to use aggregate data from */
   @Input() aggregateProperty = 'mean_spatial_distance_60min';
+  /** Color ramp */
+  @Input() colorRamp = ColorRamp.LUFTDATEN_COLOR_RAMP;
 
   /** Map Box object */
   private map: mapboxgl.Map;
-  /** Color ramp */
-  private colorRamp = ColorRamp.LUFTDATEN_COLOR_RAMP;
 
   /** Internal subject that publishes opacity events */
   private opacitySubject = new Subject<{ name: string, value: number }>();
