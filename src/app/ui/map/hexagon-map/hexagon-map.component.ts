@@ -165,7 +165,7 @@ export class HexagonMapComponent implements OnChanges, AfterViewInit {
       interactive: this.interactiveEnabled
     });
 
-    if (this.boundingBox !== null) {
+    if (this.boundingBox != null) {
       // @ts-ignore
       this.map.fitBounds(this.boundingBox);
     }
