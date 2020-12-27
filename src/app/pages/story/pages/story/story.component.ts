@@ -1,18 +1,18 @@
-import {AfterViewInit, Component, ElementRef, Input, OnDestroy, OnInit, QueryList, ViewChild, ViewChildren} from '@angular/core';
-import {MapBoxStyle} from '../../core/mapbox/model/map-box-style.enum';
-import {environment} from '../../../environments/environment';
-import {SectionHeaderComponent} from './components/section-header/section-header.component';
+import {AfterViewInit, Component, ElementRef, Input, isDevMode, OnDestroy, OnInit, QueryList, ViewChild, ViewChildren} from '@angular/core';
+import {MapBoxStyle} from '../../../../core/mapbox/model/map-box-style.enum';
+import {environment} from '../../../../../environments/environment';
+import {SectionHeaderComponent} from '../../components/section-header/section-header.component';
 import {ViewportScroller} from '@angular/common';
 import {fromEvent, Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
 import {HttpClient} from '@angular/common/http';
 import {MatToolbar} from '@angular/material/toolbar';
-import {Place} from '../../core/mapbox/model/place.model';
-import {ColorRamp} from '../../ui/map/model/color-ramp.model';
+import {Place} from '../../../../core/mapbox/model/place.model';
+import {ColorRamp} from '../../../../ui/map/model/color-ramp.model';
 import {ThemePalette} from '@angular/material/core';
 import {MatSlideToggleChange} from '@angular/material/slide-toggle';
-import { Chart } from 'chart.js';
-import {BoundingBox} from '../../ui/map/model/bounding-box.model';
+import {Chart} from 'chart.js';
+import {BoundingBox} from '../../../../ui/map/model/bounding-box.model';
 
 /**
  * Represents a section
@@ -71,6 +71,9 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
   opacitiesVisibilitySubway = new Map<string, number>();
   /** Opacities for map named 'problems' */
   opacitiesProblems = new Map<string, number>();
+
+  /** True if app is started in dev mode */
+  isDev = isDevMode();
 
   speedTimeChart: any;
   weekday_color = "#3cba9f";

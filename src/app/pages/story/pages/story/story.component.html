@@ -9,13 +9,14 @@
   <button mat-button *ngFor="let sectionHeader of sectionHeaders" (click)="scrollToElement(sectionHeader.id)">
     {{ sectionHeader.title }}
   </button>
+  <button *ngIf="isDev" mat-button color="accent" routerLink="experiments">
+    Experimente
+  </button>
 </mat-toolbar>
 <div class="story-container" [ngClass]="{'sticky-container': toolbarSticky }">
 
   <app-section-header #background id="background"
                       title="Urbane Mobilität Hintergründe"></app-section-header>
-
-
   <ng-container>
     <app-section [chapters]="['mobilitaetsgesetz']"></app-section>
     <app-section [chapters]="['mobilitaetsgesetz-kritik']"></app-section>
@@ -188,90 +189,4 @@ Stau.</div> <div class="name">Marc-Uwe Kling: Die Känguru Chroniken</div></div>
                    [aggregateProperty]="'mean_spatial_distance_15min'"></app-hexagon-map>
 </div>
 
-<div class="story-container">
-
-
-  <app-section-header #experiment id="experiment"
-                      title="Work in Progress"></app-section-header>
-  <ng-container>
-    <app-section [chapters]="['experiment']"></app-section>
-    <app-map [id]="'inhabitants'" [style]="mapBoxStyleEnum.LIGHT_V10" [navigationControlEnabled]=true
-             [results]="['berlin-inhabitants', 'POI-retail-commercial', 'uber_mean_speed']"></app-map>
-    <app-map class="full-width"
-             [id]="'vbb-stations-s-u-bahn'"
-             [style]="mapBoxStyleEnum.DARK_V10"
-             [parametrizeOpacityEnabled]=true
-             [results]="['vbb-stations-s-u-bahn', 'nextbike-stations', 'jelbi-stations']"></app-map>
-    <app-map class="full-width"
-             [id]="'stations'"
-             [zoom]="9"
-             [style]="mapBoxStyleEnum.DARK_V10"
-             [fullScreenControlEnabled]=true
-             [parametrizeOpacityEnabled]=true
-             [results]="['stations-bus', 'stations-light_rail', 'stations-subway', 'stations-tram']">
-    </app-map>
-
-    <!--<app-map [id]="'isochrones-subway'" -->
-    <!--        [zoom]="9" -->
-    <!--        [style]="mapBoxStyleEnum.DARK_V10" -->
-    <!--        [fullScreenControlEnabled]=true-->
-    <!--        [parametrizeOpacityEnabled]=true-->
-    <!--        [results]="['isochrones-bus-60', 'isochrones-rail-60', 'isochrones-subway-60', 'isochrones-tram-60']">-->
-    <!--</app-map>-->
-
-    <!--    <app-hexagon-map [id]="'isochrones-subway-hex'"-->
-    <!--                     [zoom]="9"-->
-    <!--                     [style]="mapBoxStyleEnum.LIGHT_V10"-->
-    <!--                     [fullScreenControlEnabled]=true-->
-    <!--                     [parametrizeOpacityEnabled]=true-->
-    <!--                     [initialOpacity]="75"-->
-    <!--                     [results]="['isochrones-bus-60', 'isochrones-rail-60', 'isochrones-subway-60', 'isochrones-tram-60']">-->
-    <!--    </app-hexagon-map>-->
-
-    <app-map [id]="'distance-public-transport-stations'"
-             [zoom]="9"
-             [style]="mapBoxStyleEnum.DARK_V10"
-             [fullScreenControlEnabled]=true
-             [parametrizeOpacityEnabled]=true
-             [results]="['distance-public-transport-stations']">
-    </app-map>
-
-    <app-map class="full-width"
-             [id]="'traffic'"
-             [zoom]="6"
-             [style]="mapBoxStyleEnum.DARK_V10"
-             [fullScreenControlEnabled]=true
-             [parametrizeOpacityEnabled]=true
-             [results]="['plz-traffic', 'uber_mean_speed', 'isochrones-drive-15']">
-    </app-map>
-
-    <app-map class="full-width"
-             [id]="'maxspeed_car'"
-             [zoom]="9"
-             [style]="mapBoxStyleEnum.DARK_V10"
-             [fullScreenControlEnabled]=false
-             [parametrizeOpacityEnabled]=true
-             [boundingBox]="boundingBoxEnum.BERLIN"
-             [results]="['allowed_car_speed']">
-    </app-map>
-<!--
-    <app-hexagon-map [id]="'isochrones-subway-hex'"
-                     [zoom]="9"
-                     [style]="mapBoxStyleEnum.LIGHT_V10"
-                     [fullScreenControlEnabled]=true
-                     [parametrizeOpacityEnabled]=true
-                     [initialOpacity]="75"
-                     [results]="['isochrones-bus-60', 'isochrones-rail-60', 'isochrones-subway-60', 'isochrones-tram-60']">
-    </app-hexagon-map>
-
-    <app-map class="full-width"
-             [id]="'fom-distance'"
-             [zoom]="9"
-             [style]="mapBoxStyleEnum.DARK_V10"
-             [fullScreenControlEnabled]=true
-             [parametrizeOpacityEnabled]=true
-             [results]="['isochrones-subway-25-52.5119408-13.3161495', 'isochrones-walk-25-52.5119408-13.3161495']">
-    </app-map> -->
-  </ng-container>
-</div>
 <app-footer [sectionHeaders]="sectionHeaders"></app-footer>
