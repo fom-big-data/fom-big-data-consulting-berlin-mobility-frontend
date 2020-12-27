@@ -1,12 +1,17 @@
 import {AfterViewInit, Component, ElementRef, Input, OnDestroy, OnInit, QueryList, ViewChild, ViewChildren} from '@angular/core';
 import {MapBoxStyle} from '../../core/mapbox/model/map-box-style.enum';
+import {environment} from '../../../environments/environment';
 import {SectionHeaderComponent} from './components/section-header/section-header.component';
 import {ViewportScroller} from '@angular/common';
 import {fromEvent, Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
+import {HttpClient} from '@angular/common/http';
 import {MatToolbar} from '@angular/material/toolbar';
 import {Place} from '../../core/mapbox/model/place.model';
 import {ColorRamp} from '../../ui/map/model/color-ramp.model';
+import {ThemePalette} from '@angular/material/core';
+import {MatSlideToggleChange} from '@angular/material/slide-toggle';
+import { Chart } from 'chart.js';
 import {BoundingBox} from '../../ui/map/model/bounding-box.model';
 
 /**
@@ -67,13 +72,21 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
   /** Opacities for map named 'problems' */
   opacitiesProblems = new Map<string, number>();
 
+  speedTimeChart: any;
+  weekday_color = "#3cba9f";
+  weekend_color = "#ba3c9f";
+  toggle_color: ThemePalette = 'primary';
+  data_weekday = new Array(24);
+  data_weekend = new Array(24);
+
+
   /**
    * Constructor
    * @param viewportScroller viewport scroller
+   * @param http http client
    */
-  constructor(private viewportScroller: ViewportScroller) {
+  constructor(private viewportScroller: ViewportScroller, private http: HttpClient) {
   }
-
   //
   // Lifecycle hooks
   //
@@ -103,7 +116,79 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
       {chapters: ['whitespots-tram'], layers: ['isochrones-tram-15']},
       {chapters: ['whitespots-all'], layers: ['isochrones-all-15']}
     ];
+
+
+  const baseUrl = environment.github.resultsUrl;
+
+  let labels = [];
+  for (let i = 0; i < 24; i++){
+    labels[i] = i+ " Uhr"
   }
+
+  this.http.get(baseUrl + 'weekend_avg_speed.json', {responseType: 'text' as 'json'}).subscribe((data: any) => {
+    data = JSON.parse(data);
+
+    let keys = Object.keys(data);
+
+    for (var i in keys){
+      this.data_weekend[i] = {x: i, y: data[keys[i]]};
+    }
+});
+
+  this.http.get(baseUrl + 'weekday_avg_speed.json', {responseType: 'text' as 'json'}).subscribe((data: any) => {
+    data = JSON.parse(data);
+
+    let keys = Object.keys(data);
+
+    for (var i in keys){
+      this.data_weekday[i] = {x: i, y: data[keys[i]]};
+    }
+
+
+    this.speedTimeChart = new Chart('speedTimeChart', {
+        type: 'line',
+        data: {
+          labels:  labels,
+          datasets: [{
+            data: this.data_weekday,
+            fill: false,
+            borderColor: this.weekday_color
+          }
+          ],
+        },
+        options: {
+          legend: {
+            display: false
+          },
+          scales: {
+            xAxes: [{
+              display: true
+            }],
+            yAxes: [{
+              display: true
+            }],
+          }
+        }
+      });
+
+    });
+  }
+
+  onChange($event: MatSlideToggleChange) {
+  console.log($event);
+  console.log(this.speedTimeChart.data);
+
+  if($event.checked){
+    this.speedTimeChart.data.datasets[0].data = this.data_weekend
+    this.speedTimeChart.data.datasets[0].borderColor = this.weekend_color
+  }else{
+      this.speedTimeChart.data.datasets[0].data = this.data_weekday
+      this.speedTimeChart.data.datasets[0].borderColor = this.weekday_color
+  }
+  this.speedTimeChart.update()
+
+
+}
 
   /**
    * Handles after-view-init lifecycle phase

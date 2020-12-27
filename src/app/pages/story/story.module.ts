@@ -11,6 +11,7 @@ import {MarkdownFragmentModule} from '../../ui/markdown-fragment/markdown-fragme
 import {SectionHeaderComponent} from './components/section-header/section-header.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {FooterComponent} from './components/footer/footer.component';
 import {InViewportModule} from 'ng-in-viewport';
 import {LayerMarkerComponent} from './components/layer-marker/layer-marker.component';
@@ -36,6 +37,7 @@ import {LandingOverlayComponent} from './components/landing-overlay/landing-over
     MarkdownFragmentModule,
 
     MatButtonModule,
+    MatSlideToggleModule,
     MatToolbarModule,
 
     MatCardModule,

@@ -30,6 +30,13 @@
       <app-section [height]="'500px'" [chapters]="['lebensraeume']"></app-section>
       <app-section [height]="'500px'" [chapters]="['arbeitsraeume']"></app-section>
       <app-section [height]="'500px'" [chapters]="['strassen-infrastruktur']"></app-section>
+      <p> Durchschnittsgeschwindigkeit auf Berliner Straßen </p>
+        <canvas height="100px" id="speedTimeChart">{{ speedTimeChart }}</canvas>
+        <p>Wochentag&nbsp;&nbsp;&nbsp;&nbsp;<mat-slide-toggle
+           class="example-margin"
+           [color]="toggle_color"
+           (change)="onChange($event)">
+       </mat-slide-toggle>&nbsp;&nbsp;&nbsp;&nbsp;Wochenende</p>
       <app-section [height]="'500px'" [chapters]="['fahrrad-infrastruktur']"></app-section>
       <app-section [height]="'500px'" [chapters]="['oepnv']"></app-section>
     </div>
@@ -39,7 +46,7 @@
                [zoom]="11"
                [interactiveEnabled]=false
                [initialOpacity]="0"
-               [parametrizeOpacityEnabled]=true></app-map>
+               [results]="['allowed_car_speed']"></app-map>
     </div>
   </ng-container>
 </div>
@@ -109,6 +116,7 @@
     </div>
   </ng-container>
 </div>
+
 
 <div class="story-container">
   <app-section-header #problems id="problems"
@@ -204,7 +212,7 @@
     <!--                     [initialOpacity]="75"-->
     <!--                     [results]="['isochrones-bus-60', 'isochrones-rail-60', 'isochrones-subway-60', 'isochrones-tram-60']">-->
     <!--    </app-hexagon-map>-->
-
+<!--
     <app-map [id]="'distance-public-transport-stations'"
              [zoom]="9"
              [style]="mapBoxStyleEnum.DARK_V10"
@@ -221,7 +229,16 @@
              [parametrizeOpacityEnabled]=true
              [results]="['plz-traffic', 'uber_mean_speed', 'isochrones-drive-15']">
     </app-map>
-
+-->
+    <app-map class="full-width"
+             [id]="'maxspeed_car'"
+             [zoom]="9"
+             [style]="mapBoxStyleEnum.DARK_V10"
+             [fullScreenControlEnabled]=false
+             [parametrizeOpacityEnabled]=true
+             [results]="['allowed_car_speed']">
+    </app-map>
+<!--
     <app-hexagon-map [id]="'isochrones-subway-hex'"
                      [zoom]="9"
                      [style]="mapBoxStyleEnum.LIGHT_V10"
@@ -238,7 +255,7 @@
              [fullScreenControlEnabled]=true
              [parametrizeOpacityEnabled]=true
              [results]="['isochrones-subway-25-52.5119408-13.3161495', 'isochrones-walk-25-52.5119408-13.3161495']">
-    </app-map>
+    </app-map> -->
   </ng-container>
 </div>
 <app-footer [sectionHeaders]="sectionHeaders"></app-footer>
