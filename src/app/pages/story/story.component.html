@@ -1,7 +1,9 @@
-<app-map [id]="'header'"
+<app-hexagon-map [id]="'header'"
          [interactiveEnabled]=false
          [scrollZoomEnabled]=false
-         [height]="'100vh'"></app-map>
+         [results]="['isochrones-all-15']"
+         [aggregateProperty]="'mean_spatial_distance_15min'"
+         [height]="'100vh'"></app-hexagon-map>
 <app-landing-overlay></app-landing-overlay>
 <mat-toolbar #toolbar [ngClass]="{'sticky-header': toolbarSticky }">
   <button mat-button *ngFor="let sectionHeader of sectionHeaders" (click)="scrollToElement(sectionHeader.id)">
@@ -45,8 +47,9 @@
                [style]="mapBoxStyleEnum.LIGHT_V10"
                [zoom]="11"
                [interactiveEnabled]=false
-               [initialOpacity]="0"
-               [results]="['allowed_car_speed']"></app-map>
+               [boundingBox]="boundingBoxEnum.BERLIN"
+               [results]="['allowed_car_speed']">
+             </app-map>
     </div>
   </ng-container>
 </div>
@@ -138,7 +141,7 @@
                        [height]="'50vh'"
                        [style]="mapBoxStyleEnum.DARK_V10"
                        [zoom]="9"
-                       [boundingBox]="boudingBoxEnum.BERLIN"
+                       [boundingBox]="boundingBoxEnum.BERLIN"
                        [interactiveEnabled]=false
                        [initialOpacity]="0"
                        [opacities]="opacitiesProblems"
@@ -167,7 +170,7 @@
                    [id]="'map-summary'"
                    [style]="mapBoxStyleEnum.DARK_V10"
                    [zoom]="11"
-                   [boundingBox]="boudingBoxEnum.BERLIN"
+                   [boundingBox]="boundingBoxEnum.BERLIN"
                    [interactiveEnabled]=false
                    [results]="['isochrones-all-15']"
                    [aggregateProperty]="'mean_spatial_distance_15min'"></app-hexagon-map>
@@ -212,7 +215,7 @@
     <!--                     [initialOpacity]="75"-->
     <!--                     [results]="['isochrones-bus-60', 'isochrones-rail-60', 'isochrones-subway-60', 'isochrones-tram-60']">-->
     <!--    </app-hexagon-map>-->
-<!--
+
     <app-map [id]="'distance-public-transport-stations'"
              [zoom]="9"
              [style]="mapBoxStyleEnum.DARK_V10"
@@ -229,13 +232,14 @@
              [parametrizeOpacityEnabled]=true
              [results]="['plz-traffic', 'uber_mean_speed', 'isochrones-drive-15']">
     </app-map>
--->
+
     <app-map class="full-width"
              [id]="'maxspeed_car'"
              [zoom]="9"
              [style]="mapBoxStyleEnum.DARK_V10"
              [fullScreenControlEnabled]=false
              [parametrizeOpacityEnabled]=true
+             [boundingBox]="boundingBoxEnum.BERLIN"
              [results]="['allowed_car_speed']">
     </app-map>
 <!--

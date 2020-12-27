@@ -49,7 +49,7 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
   /** Enum representing places */
   placeEnum = Place;
   /** Enum representing bounding boxes */
-  boudingBoxEnum = BoundingBox;
+  boundingBoxEnum = BoundingBox;
   /** Enum representing map box style */
   mapBoxStyleEnum = MapBoxStyle;
   /** Enum representing color ramp */

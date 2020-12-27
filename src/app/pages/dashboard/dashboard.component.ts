@@ -4,6 +4,9 @@ import {MapBoxStyle} from '../../core/mapbox/model/map-box-style.enum';
 import { Chart } from 'chart.js';
 import {MatSlideToggleChange} from '@angular/material/slide-toggle';
 import {ThemePalette} from '@angular/material/core';
+import {HttpClient} from '@angular/common/http';
+import {environment} from '../../../environments/environment';
+import {BoundingBox} from '../../ui/map/model/bounding-box.model';
 
 /**
  * Displays a dashboard
@@ -16,90 +19,103 @@ import {ThemePalette} from '@angular/material/core';
 
 
 export class DashboardComponent implements OnInit {
+
+    boundingBoxEnum = BoundingBox;
+
+    mapBoxStyleEnum = MapBoxStyle;
+
+
     toggle_color: ThemePalette = 'primary';
-    chart: any;
+    speedTimeChart: any;
     weekday_color = "#3cba9f"
-    weekday_data = [{
-              x: 0,
-              y: 30
-            }, {
-              x: 1,
-              y: 31
-            }, {
-              x: 2,
-              y: 27
-            }, {
-              x: 3,
-              y: 31
-            }, {
-              x: 4,
-              y: 35
-            }]
+    weekday_data = new Array(24)
 
     weekend_color = "#ba3c9f"
-    weekend_data = [{
-            x: 0,
-            y: 17
-          }, {
-            x: 1,
-            y: 28
-          }, {
-            x: 2,
-            y: 24
-          }, {
-            x: 3,
-            y: 20
-          }, {
-            x: 4,
-            y: 31
-          }]
+    weekend_data = new Array(24)
     /** Toolbar component */
     @ViewChild(MatToolbar, {read: ElementRef}) toolbar: ElementRef;
 
     //ngAfterViewInit() {}
 
+
+    /**
+     * Constructor
+     * @param http http client
+     */
+    constructor(private http: HttpClient) {
+    }
+
     onChange($event: MatSlideToggleChange) {
     console.log($event);
-    console.log(this.chart.data);
+    console.log(this.speedTimeChart.data);
 
     if($event.checked){
-      this.chart.data.datasets[0].data = this.weekend_data
-      this.chart.data.datasets[0].borderColor = this.weekend_color
+      this.speedTimeChart.data.datasets[0].data = this.weekend_data
+      this.speedTimeChart.data.datasets[0].borderColor = this.weekend_color
     }else{
-        this.chart.data.datasets[0].data = this.weekday_data
-        this.chart.data.datasets[0].borderColor = this.weekday_color
+        this.speedTimeChart.data.datasets[0].data = this.weekday_data
+        this.speedTimeChart.data.datasets[0].borderColor = this.weekday_color
     }
-    this.chart.update()
+    this.speedTimeChart.update()
 
 
 }
 
     ngOnInit(){
-      this.chart = new Chart('canvas', {
-          type: 'line',
-          data: {
-            labels: ['0 Uhr','1 Uhr','2 Uhr','3 Uhr','4 Uhr'],
-            datasets: [{
-              data: this.weekday_data,
-              fill: false,
-              borderColor: this.weekday_color
-            }
-            ],
-          },
-          options: {
-            legend: {
-              display: false
+
+      const baseUrl = environment.github.resultsUrl;
+
+      let labels = [];
+      for (let i = 0; i < 24; i++){
+        labels[i] = i+ " Uhr"
+      }
+
+      this.http.get(baseUrl + 'weekend_avg_speed.json', {responseType: 'text' as 'json'}).subscribe((data: any) => {
+        data = JSON.parse(data);
+
+        let keys = Object.keys(data);
+
+        for (var i in keys){
+          this.weekend_data[i] = {x: i, y: data[keys[i]]};
+        }
+    });
+
+      this.http.get(baseUrl + 'weekday_avg_speed.json', {responseType: 'text' as 'json'}).subscribe((data: any) => {
+        data = JSON.parse(data);
+
+        let keys = Object.keys(data);
+
+        for (var i in keys){
+          this.weekday_data[i] = {x: i, y: data[keys[i]]};
+        }
+
+
+        this.speedTimeChart = new Chart('speedTimeChart', {
+            type: 'line',
+            data: {
+              labels:  labels,
+              datasets: [{
+                data: this.weekday_data,
+                fill: false,
+                borderColor: this.weekday_color
+              }
+              ],
             },
-            scales: {
-              xAxes: [{
-                display: true
-              }],
-              yAxes: [{
-                display: true
-              }],
+            options: {
+              legend: {
+                display: false
+              },
+              scales: {
+                xAxes: [{
+                  display: true
+                }],
+                yAxes: [{
+                  display: true
+                }],
+              }
             }
-          }
+          });
+
         });
-        console.log(this.chart);
-    };
+      }
   }

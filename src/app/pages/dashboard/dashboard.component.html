@@ -2,34 +2,64 @@
   <button mat-button>
     Motorisierter Individualverkehr
   </button>
-    <button mat-button>
-      Öffentlicher Nahverkehr
-    </button>
-      <button mat-button>
-        Fahrradverkehr
-      </button>
-        <button mat-button>
-          Mikromobilität
-        </button>
-          <button mat-button>
-            Multimodaler Verkehr
-          </button>
+  <button disabled mat-button>
+    Öffentlicher Nahverkehr
+  </button>
+  <button disabled mat-button>
+    Fahrradverkehr
+  </button>
+  <button disabled mat-button>
+    Mikromobilität
+  </button>
+  <button disabled mat-button>
+    Multimodaler Verkehr
+  </button>
 </mat-toolbar>
 
 <div class="dashboard-container">
-  <app-map [id]="'header'"
-           [interactiveEnabled]=false
-           [scrollZoomEnabled]=false
-           [height]="'100%'"></app-map>
-    <div class="graph1"[hidden]="!chart">
-      <h3> Durchschnittliche Geschwindigkeit </h3>
-  <canvas id="canvas">{{ chart }}</canvas>
-  <p>Wochentag&nbsp;&nbsp;&nbsp;&nbsp;<mat-slide-toggle
-     class="example-margin"
-     [color]="toggle_color"
-     (change)="onChange($event)">
- </mat-slide-toggle>&nbsp;&nbsp;&nbsp;&nbsp;Wochenende</p>
-</div>
-      <div class="testclass">dashboard works!</div>
-        <div>dashboard works!</div>
+  <div [id]="'traffic_map'">
+    <h3> Durchschnittliche Geschwindigkeit pro Straße </h3>
+    <app-map [id]="'traffic_map_map'"
+    [interactiveEnabled]=true
+    [scrollZoomEnabled]=true
+    [height]="'35vh'"
+    [boundingBox]="boundingBoxEnum.BERLIN"
+    [style]="mapBoxStyleEnum.DARK_V10"
+    [results]="['uber_mean_speed']"></app-map>
+  </div>
+  <div height="100%" class="graph1"[hidden]="!speedTimeChart">
+    <h3> Durchschnittliche Geschwindigkeit pro Uhrzeit </h3>
+    <canvas height="100px" id="speedTimeChart">{{ speedTimeChart }}</canvas>
+    <p>Wochentag&nbsp;&nbsp;&nbsp;&nbsp;<mat-slide-toggle
+      class="example-margin"
+      [color]="toggle_color"
+      (change)="onChange($event)">
+    </mat-slide-toggle>&nbsp;&nbsp;&nbsp;&nbsp;Wochenende</p>
+  </div>
+
+
+  <div [id]="'isochrones_map'">
+    <h3>Isochrone-Distanz motorisierter Individualverkehr</h3>
+    <app-hexagon-map [id]="'isochrones_map_map'"
+    [interactiveEnabled]=true
+    [scrollZoomEnabled]=true
+    [aggregateProperty]="'mean_spatial_distance_15min'"
+    [boundingBox]="boundingBoxEnum.BERLIN"
+    [height]="'40vh'"
+    [results]="['isochrones-drive-15']"></app-hexagon-map>
+  </div>
+
+
+  <div [id]="'allowed_speed_map'">
+    <h3>Zulässige Höchstgeschwindigkeit 30kmh / 50kmh</h3>
+    <app-map [id]="'allowed_speed_map_map'"
+    [interactiveEnabled]=true
+    [scrollZoomEnabled]=true
+    [height]="'40vh'"
+    [boundingBox]="boundingBoxEnum.BERLIN"
+    [style]="mapBoxStyleEnum.DARK_V10"
+    [results]="['allowed_car_speed']"></app-map>
+  </div>
+
+
 </div>
