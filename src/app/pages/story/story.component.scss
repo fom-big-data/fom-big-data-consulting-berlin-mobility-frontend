@@ -40,6 +40,47 @@ app-map {
   margin-top: $story-container-margin-top;
 }
 
+#rosenthaler_platz_img{
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 2;
+  grid-row-end: span 3;
+  width: 30vw;
+}
+
+.quote-container{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #ededed;
+  margin: 50px 0;
+  padding: 50px 0;
+  font-size: 1.2em;
+}
+
+.quote-container::before{
+  content: "\"";
+  opacity: 0.2;
+  font-size: 15em;
+}
+
+
+.quote-container .name{
+  font-style: italic;
+  padding-top: 20px;
+  opacity: 0.8;
+}
+
+.quote{
+  text-align: center;
+}
+
+.quote::before, .quote::after{
+  content: "\"";
+  opacity: 0.6;
+}
+
 .text-container {
   grid-column: 1 !important;
 }
