@@ -7,6 +7,7 @@ import {takeUntil} from 'rxjs/operators';
 import {MatToolbar} from '@angular/material/toolbar';
 import {Place} from '../../core/mapbox/model/place.model';
 import {ColorRamp} from '../../ui/map/model/color-ramp.model';
+import {BoundingBox} from '../../ui/map/model/bounding-box.model';
 
 /**
  * Represents a section
@@ -42,6 +43,8 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
 
   /** Enum representing places */
   placeEnum = Place;
+  /** Enum representing bounding boxes */
+  boudingBoxEnum = BoundingBox;
   /** Enum representing map box style */
   mapBoxStyleEnum = MapBoxStyle;
   /** Enum representing color ramp */

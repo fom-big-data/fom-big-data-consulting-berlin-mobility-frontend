@@ -130,6 +130,7 @@
                        [height]="'50vh'"
                        [style]="mapBoxStyleEnum.DARK_V10"
                        [zoom]="9"
+                       [boundingBox]="boudingBoxEnum.BERLIN"
                        [interactiveEnabled]=false
                        [initialOpacity]="0"
                        [opacities]="opacitiesProblems"
@@ -158,6 +159,7 @@
                    [id]="'map-summary'"
                    [style]="mapBoxStyleEnum.DARK_V10"
                    [zoom]="11"
+                   [boundingBox]="boudingBoxEnum.BERLIN"
                    [interactiveEnabled]=false
                    [results]="['isochrones-all-15']"
                    [aggregateProperty]="'mean_spatial_distance_15min'"></app-hexagon-map>

@@ -8,6 +8,7 @@ import {UUID} from '../../../core/entity/model/uuid';
 import {HttpClient} from '@angular/common/http';
 import {MatSliderChange} from '@angular/material/slider';
 import {Subject} from 'rxjs';
+import {BoundingBox} from '../model/bounding-box.model';
 
 /**
  * Displays a map box
@@ -31,6 +32,8 @@ export class MapComponent implements OnChanges, AfterViewInit {
   @Input() zoom = 10;
   /** Initial center of map */
   @Input() center: Location = Place.BRANDENBURG_GATE;
+  /** Initial bounding box of map */
+  @Input() boundingBox: number[];
 
   /** List of markers to be displayed */
   @Input() markers: Location[] = [];
@@ -147,6 +150,11 @@ export class MapComponent implements OnChanges, AfterViewInit {
       center: [this.center.longitude, this.center.latitude],
       interactive: this.interactiveEnabled
     });
+
+    if (this.boundingBox !== null) {
+      // @ts-ignore
+      this.map.fitBounds(this.boundingBox);
+    }
   }
 
   /**

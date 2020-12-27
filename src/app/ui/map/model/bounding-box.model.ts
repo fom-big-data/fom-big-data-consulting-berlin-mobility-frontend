@@ -1,10 +1,8 @@
-import {Location} from '../../../core/mapbox/model/location.model';
-
 /**
  * Represents a bounding box
  */
 export class BoundingBox {
 
   /** City of Berlin */
-  static BERLIN = [13.088345, 52.3382448, 13.7611609, 52.6755087];
+  static BERLIN = [13.091992716067702, 52.33488609760638, 13.742786470433, 52.67626223889507];
 }

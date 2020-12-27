@@ -39,6 +39,8 @@ export class HexagonMapComponent implements OnChanges, AfterViewInit {
   @Input() zoom = 10;
   /** Initial center of map */
   @Input() center: Location = Place.BRANDENBURG_GATE;
+  /** Initial bounding box of map */
+  @Input() boundingBox: number[] = BoundingBox.BERLIN;
 
   /** List of markers to be displayed */
   @Input() markers: Location[] = [];
@@ -162,6 +164,11 @@ export class HexagonMapComponent implements OnChanges, AfterViewInit {
       center: [this.center.longitude, this.center.latitude],
       interactive: this.interactiveEnabled
     });
+
+    if (this.boundingBox !== null) {
+      // @ts-ignore
+      this.map.fitBounds(this.boundingBox);
+    }
   }
 
   /**
