@@ -50,12 +50,14 @@
   <app-section [chapters]="['visibility-isochrones']"></app-section>
   <ng-container>
     <div class="text-container">
-      <div *ngFor="let section of sectionsVisibilityWalk" class="section-container center-vertically">
-        <app-layer-marker [layers]="section.layers"
-                          (layerMarkerVisibleEventEmitter)="onLayerMarkerEventTriggered('visibility-walk', $event)"></app-layer-marker>
-        <app-section [chapters]="section.chapters"></app-section>
-        <app-layer-marker [layers]="section.layers"
-                          (layerMarkerVisibleEventEmitter)="onLayerMarkerEventTriggered('visibility-walk', $event)"></app-layer-marker>
+      <div *ngFor="let section of sectionsVisibilityWalk">
+        <div class="section-container center-vertically">
+          <app-section [chapters]="section.chapters"></app-section>
+        </div>
+        <div class="marker-container">
+          <app-layer-marker [layers]="section.layers"
+                            (layerMarkerVisibleEventEmitter)="onLayerMarkerEventTriggered('visibility-walk', $event)"></app-layer-marker>
+        </div>
       </div>
     </div>
     <div class="map-container">
@@ -79,12 +81,14 @@
 <div class="story-container">
   <ng-container>
     <div class="text-container">
-      <div *ngFor="let section of sectionsVisibilitySubway" class="section-container center-vertically">
-        <app-layer-marker [layers]="section.layers"
-                          (layerMarkerVisibleEventEmitter)="onLayerMarkerEventTriggered('visibility-subway', $event)"></app-layer-marker>
-        <app-section [chapters]="section.chapters"></app-section>
-        <app-layer-marker [layers]="section.layers"
-                          (layerMarkerVisibleEventEmitter)="onLayerMarkerEventTriggered('visibility-subway', $event)"></app-layer-marker>
+      <div *ngFor="let section of sectionsVisibilitySubway">
+        <div class="section-container center-vertically">
+          <app-section [chapters]="section.chapters"></app-section>
+        </div>
+        <div class="marker-container">
+          <app-layer-marker [layers]="section.layers"
+                            (layerMarkerVisibleEventEmitter)="onLayerMarkerEventTriggered('visibility-subway', $event)"></app-layer-marker>
+        </div>
       </div>
     </div>
     <div class="map-container">
@@ -111,16 +115,19 @@
                       title="Probleme in der Infrastruktur erkennnen"></app-section-header>
   <ng-container>
     <div class="text-container">
-      <div *ngFor="let section of sectionsProblems" class="section-container center-vertically">
-        <app-layer-marker [layers]="section.layers"
-                          (layerMarkerVisibleEventEmitter)="onLayerMarkerEventTriggered('problems', $event)"></app-layer-marker>
-        <app-section [chapters]="section.chapters"></app-section>
-        <app-layer-marker [layers]="section.layers"
-                          (layerMarkerVisibleEventEmitter)="onLayerMarkerEventTriggered('problems', $event)"></app-layer-marker>
+      <div *ngFor="let section of sectionsProblems">
+        <div class="section-container center-vertically">
+          <app-section [chapters]="section.chapters"></app-section>
+        </div>
+        <div class="marker-container">
+          <app-layer-marker [layers]="section.layers"
+                            (layerMarkerVisibleEventEmitter)="onLayerMarkerEventTriggered('problems', $event)"></app-layer-marker>
+        </div>
       </div>
     </div>
     <div class="map-container">
       <app-hexagon-map [id]="'map-problems'"
+                       [height]="'50vh'"
                        [style]="mapBoxStyleEnum.DARK_V10"
                        [zoom]="9"
                        [interactiveEnabled]=false
