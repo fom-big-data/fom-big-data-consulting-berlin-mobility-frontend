@@ -32,6 +32,8 @@ export class SectionComponent implements OnInit {
   contents = [];
   /** Whether there was an error downloading  section */
   error = false;
+  /** Whether or not the section is out of focus */
+  inFocus = false;
 
   /** True if the top of this component is in viewport */
   private topInViewport: boolean;
@@ -113,11 +115,19 @@ export class SectionComponent implements OnInit {
   // Helpers
   //
 
+  /**
+   * Notify subscribers about visibility changes
+   */
   private notifyVisibility() {
     this.layers.forEach(layer => {
       if (this.topInViewport && this.bottomInViewport) {
+        this.inFocus = true;
         this.sectionInViewportEventEmitter.emit({layer, opacity: this.opacity, clearOthers: this.clearOthers});
-      } else if (this.emitOnLeave) {
+      } else {
+        this.inFocus = false;
+      }
+
+      if (this.emitOnLeave) {
         this.sectionInViewportEventEmitter.emit({layer, opacity: 0, clearOthers: this.clearOthers});
       }
     });

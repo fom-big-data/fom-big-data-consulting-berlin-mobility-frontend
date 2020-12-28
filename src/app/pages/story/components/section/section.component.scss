@@ -24,6 +24,18 @@
   color: lightgray;
 }
 
+.in-focus {
+  color: #212121 !important;
+  transition: color 0.5s;
+  transition-timing-function: ease-in;
+}
+
+.out-of-focus {
+  color: #bdbdbd !important;
+  transition: color 0.5s;
+  transition-timing-function: ease-in;
+}
+
 //
 // Debug
 //
