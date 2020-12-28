@@ -42,7 +42,7 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
   /** Whether or not the toolbar should be sticky */
   toolbarSticky = false;
   /** Height of the map */
-  mapHeight = '50vh';
+  mapHeight = '60vh';
 
   /** Enum representing places */
   placeEnum = Place;

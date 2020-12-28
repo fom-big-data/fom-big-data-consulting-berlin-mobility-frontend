@@ -14,7 +14,6 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {FooterComponent} from './components/footer/footer.component';
 import {InViewportModule} from 'ng-in-viewport';
-import {LayerMarkerComponent} from './components/layer-marker/layer-marker.component';
 import {MatCardModule} from '@angular/material/card';
 import {LandingOverlayComponent} from './components/landing-overlay/landing-overlay.component';
 import {ExperimentsComponent} from './pages/experiments/experiments.component';
@@ -31,7 +30,6 @@ import { QuoteComponent } from './components/quote/quote.component';
     TextComponent,
     SectionComponent,
     SectionHeaderComponent,
-    LayerMarkerComponent,
     LandingOverlayComponent,
     SpeedGraphComponent,
     QuoteComponent
