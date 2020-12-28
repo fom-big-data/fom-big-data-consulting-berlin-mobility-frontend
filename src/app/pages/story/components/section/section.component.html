@@ -1,8 +1,18 @@
-<div class="center-vertically" [style.height]=height>
+<div inViewport
+     [inViewportOptions]="{ threshold: [0] }"
+     (inViewportAction)="onIntersectionTop($event)">
+</div>
+
+<div class="center-vertically" [style.height]="height">
   <div>
     <div *ngIf="error" class="error">Please add section '{{ chapters[0] }}.md'</div>
     <ng-container *ngFor="let c of contents" class="section">
       <app-markdown-preview [markdownText]="c" [ngClass]="{'placeholder': error}"></app-markdown-preview>
     </ng-container>
   </div>
+</div>
+
+<div inViewport
+     [inViewportOptions]="{ threshold: [0] }"
+     (inViewportAction)="onIntersectionBottom($event)">
 </div>

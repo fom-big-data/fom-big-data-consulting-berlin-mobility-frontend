@@ -1,6 +1,5 @@
 import {AfterViewInit, Component, ElementRef, Input, isDevMode, OnDestroy, OnInit, QueryList, ViewChild, ViewChildren} from '@angular/core';
 import {MapBoxStyle} from '../../../../core/mapbox/model/map-box-style.enum';
-import {environment} from '../../../../../environments/environment';
 import {SectionHeaderComponent} from '../../components/section-header/section-header.component';
 import {ViewportScroller} from '@angular/common';
 import {fromEvent, Subject} from 'rxjs';
@@ -9,8 +8,6 @@ import {HttpClient} from '@angular/common/http';
 import {MatToolbar} from '@angular/material/toolbar';
 import {Place} from '../../../../core/mapbox/model/place.model';
 import {ColorRamp} from '../../../../ui/map/model/color-ramp.model';
-import {MatSlideToggleChange} from '@angular/material/slide-toggle';
-import {Chart} from 'chart.js';
 import {BoundingBox} from '../../../../ui/map/model/bounding-box.model';
 
 /**
@@ -44,6 +41,8 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
 
   /** Whether or not the toolbar should be sticky */
   toolbarSticky = false;
+  /** Height of the map */
+  mapHeight = '50vh';
 
   /** Enum representing places */
   placeEnum = Place;
