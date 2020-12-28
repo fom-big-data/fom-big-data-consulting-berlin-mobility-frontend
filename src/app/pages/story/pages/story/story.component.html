@@ -25,19 +25,20 @@
   <img id="rosenthaler_platz_img" src="assets/img/rosenthaler_platz.jpg" alt="Rosenthaler Platz beim Sonnenuntergang">
 
 </div>
-<div class="quote-container">
-  <div class="quote">Kennt ihr Deutschland?<br/>
-    Im Süden die Berge<br/>
-    Im Norden das Meer<br/>
-    Und dazwischen:<br/>
-    Teer.<br/>
-    Aber wirklich nur Teer?<br/>
-    Es gibt doch noch mehr!<br/>
-    Ja, genau.<br/>
-    Stau.
-  </div>
-  <div class="name">Marc-Uwe Kling: Die Känguru Chroniken</div>
-</div>
+
+<app-quote [title]="'Kennt ihr Deutschland?'"
+           [textLines]="[
+            'Im Süden die Berge',
+            'Im Norden das Meer',
+            'Und dazwischen:',
+            'Teer.',
+            'Aber wirklich nur Teer?',
+            'Es gibt doch noch mehr!',
+            'Ja, genau.',
+            'Stau.'
+            ]"
+           [author]="'Marc-Uwe Kling: Die Känguru Chroniken'"></app-quote>
+
 <div class="story-container">
   <app-section-header #understanding id="understanding"
                       title="Urbane Mobilität verstehen"></app-section-header>
@@ -50,8 +51,8 @@
       <app-section [height]="'500px'" [chapters]="['arbeitsraeume']"></app-section>
       <app-section [height]="'500px'" [chapters]="['strassen-infrastruktur']"></app-section>
       <app-speed-graph [speedTimeTitle]="'Durchschnittsgeschwindigkeit auf Berliner Straßen'"
-                       [weekdayColor] ="'#3cba9f'"
-                       [weekendColor] ="'#ba3c9f'"
+                       [weekdayColor]="'#3cba9f'"
+                       [weekendColor]="'#ba3c9f'"
                        [labelWeekday]="'Wochentag'"
                        [labelWeekend]="'Wochenende'"></app-speed-graph>
       <app-section [height]="'500px'" [chapters]="['fahrrad-infrastruktur']"></app-section>
@@ -103,6 +104,7 @@
     </div>
   </ng-container>
 </div>
+
 <div class="story-container">
   <ng-container>
     <div class="text-container">
@@ -135,6 +137,8 @@
   </ng-container>
 </div>
 
+<app-quote [textLines]="['Frühschicht schweigt, jeder bleibt für sich', 'Frust kommt auf, denn der Bus kommt nicht']"
+           [author]="'Peter Fox: Schwarz zu Blau'"></app-quote>
 
 <div class="story-container">
   <app-section-header #problems id="problems"

@@ -68,6 +68,8 @@ export class MarkdownPreviewComponent implements OnChanges {
   @Input() markdownText = '';
   /** Prevents paragraph margin if true */
   @Input() preventParagraphMargins = false;
+  /** Removes linebreaks if true */
+  @Input() removeLinebreaks = true;
 
   /** Text transformed into html */
   htmlText = '';
@@ -93,7 +95,11 @@ export class MarkdownPreviewComponent implements OnChanges {
    */
   updateMarkdown() {
     if (this.markdownText != null) {
-      this.htmlText = md.render(this.markdownText).replace(/<br>/g,'');
+      if (this.removeLinebreaks) {
+        this.htmlText = md.render(this.markdownText).replace(/<br>/g, '');
+      } else {
+        this.htmlText = md.render(this.markdownText);
+      }
     }
   }
 }

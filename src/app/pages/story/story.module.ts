@@ -19,6 +19,7 @@ import {MatCardModule} from '@angular/material/card';
 import {LandingOverlayComponent} from './components/landing-overlay/landing-overlay.component';
 import {ExperimentsComponent} from './pages/experiments/experiments.component';
 import {SpeedGraphComponent} from './components/speed-graph/speed-graph.component';
+import { QuoteComponent } from './components/quote/quote.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import {SpeedGraphComponent} from './components/speed-graph/speed-graph.componen
     SectionHeaderComponent,
     LayerMarkerComponent,
     LandingOverlayComponent,
-    SpeedGraphComponent
+    SpeedGraphComponent,
+    QuoteComponent
   ], imports: [
     CommonModule,
     StoryRoutingModule,
