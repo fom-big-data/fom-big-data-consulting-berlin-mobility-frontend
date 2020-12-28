@@ -1,0 +1,10 @@
+<div>
+  <p> {{ speedTimeTitle }}</p>
+  <canvas height="100px" id="speedTimeChart">{{ speedTimeChart }}</canvas>
+  <p>
+    <span class="toggle-label">{{ labelWeekday }}</span>
+    <mat-slide-toggle color="primary" (change)="onSlideToggleChanged($event)">
+    </mat-slide-toggle>
+    <span class="toggle-label">{{ labelWeekend }}</span>
+  </p>
+</div>

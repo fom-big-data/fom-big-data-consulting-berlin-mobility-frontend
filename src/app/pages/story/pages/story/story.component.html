@@ -1,9 +1,9 @@
 <app-hexagon-map [id]="'header'"
-         [interactiveEnabled]=false
-         [scrollZoomEnabled]=false
-         [results]="['isochrones-all-15']"
-         [aggregateProperty]="'mean_spatial_distance_15min'"
-         [height]="'100vh'"></app-hexagon-map>
+                 [interactiveEnabled]=false
+                 [scrollZoomEnabled]=false
+                 [results]="['isochrones-all-15']"
+                 [aggregateProperty]="'mean_spatial_distance_15min'"
+                 [height]="'100vh'"></app-hexagon-map>
 <app-landing-overlay></app-landing-overlay>
 <mat-toolbar #toolbar [ngClass]="{'sticky-header': toolbarSticky }">
   <button mat-button *ngFor="let sectionHeader of sectionHeaders" (click)="scrollToElement(sectionHeader.id)">
@@ -22,18 +22,22 @@
     <app-section [chapters]="['mobilitaetsgesetz-kritik']"></app-section>
     <app-section [chapters]="['mobilitaet-verstehen']"></app-section>
   </ng-container>
-    <img id="rosenthaler_platz_img" src="assets/img/rosenthaler_platz.jpg" alt="Rosenthaler Platz beim Sonnenuntergang">
+  <img id="rosenthaler_platz_img" src="assets/img/rosenthaler_platz.jpg" alt="Rosenthaler Platz beim Sonnenuntergang">
 
 </div>
-<div class="quote-container"><div class="quote">Kennt ihr Deutschland?<br/>
-Im Süden die Berge<br/>
-Im Norden das Meer<br/>
-Und dazwischen:<br/>
-Teer.<br/>
-Aber wirklich nur Teer?<br/>
-Es gibt doch noch mehr!<br/>
-Ja, genau.<br/>
-Stau.</div> <div class="name">Marc-Uwe Kling: Die Känguru Chroniken</div></div>
+<div class="quote-container">
+  <div class="quote">Kennt ihr Deutschland?<br/>
+    Im Süden die Berge<br/>
+    Im Norden das Meer<br/>
+    Und dazwischen:<br/>
+    Teer.<br/>
+    Aber wirklich nur Teer?<br/>
+    Es gibt doch noch mehr!<br/>
+    Ja, genau.<br/>
+    Stau.
+  </div>
+  <div class="name">Marc-Uwe Kling: Die Känguru Chroniken</div>
+</div>
 <div class="story-container">
   <app-section-header #understanding id="understanding"
                       title="Urbane Mobilität verstehen"></app-section-header>
@@ -45,13 +49,11 @@ Stau.</div> <div class="name">Marc-Uwe Kling: Die Känguru Chroniken</div></div>
       <app-section [height]="'500px'" [chapters]="['lebensraeume']"></app-section>
       <app-section [height]="'500px'" [chapters]="['arbeitsraeume']"></app-section>
       <app-section [height]="'500px'" [chapters]="['strassen-infrastruktur']"></app-section>
-      <p> Durchschnittsgeschwindigkeit auf Berliner Straßen </p>
-        <canvas height="100px" id="speedTimeChart">{{ speedTimeChart }}</canvas>
-        <p>Wochentag&nbsp;&nbsp;&nbsp;&nbsp;<mat-slide-toggle
-           class="example-margin"
-           [color]="toggle_color"
-           (change)="onChange($event)">
-       </mat-slide-toggle>&nbsp;&nbsp;&nbsp;&nbsp;Wochenende</p>
+      <app-speed-graph [speedTimeTitle]="'Durchschnittsgeschwindigkeit auf Berliner Straßen'"
+                       [weekdayColor] ="'#3cba9f'"
+                       [weekendColor] ="'#ba3c9f'"
+                       [labelWeekday]="'Wochentag'"
+                       [labelWeekend]="'Wochenende'"></app-speed-graph>
       <app-section [height]="'500px'" [chapters]="['fahrrad-infrastruktur']"></app-section>
       <app-section [height]="'500px'" [chapters]="['oepnv']"></app-section>
     </div>
@@ -62,7 +64,7 @@ Stau.</div> <div class="name">Marc-Uwe Kling: Die Känguru Chroniken</div></div>
                [interactiveEnabled]=false
                [boundingBox]="boundingBoxEnum.BERLIN"
                [results]="['allowed_car_speed']">
-             </app-map>
+      </app-map>
     </div>
   </ng-container>
 </div>

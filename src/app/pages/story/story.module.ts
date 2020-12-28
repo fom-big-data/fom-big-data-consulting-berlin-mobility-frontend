@@ -18,6 +18,7 @@ import {LayerMarkerComponent} from './components/layer-marker/layer-marker.compo
 import {MatCardModule} from '@angular/material/card';
 import {LandingOverlayComponent} from './components/landing-overlay/landing-overlay.component';
 import {ExperimentsComponent} from './pages/experiments/experiments.component';
+import {SpeedGraphComponent} from './components/speed-graph/speed-graph.component';
 
 
 @NgModule({
@@ -30,8 +31,8 @@ import {ExperimentsComponent} from './pages/experiments/experiments.component';
     SectionComponent,
     SectionHeaderComponent,
     LayerMarkerComponent,
-    LandingOverlayComponent
-
+    LandingOverlayComponent,
+    SpeedGraphComponent
   ], imports: [
     CommonModule,
     StoryRoutingModule,
