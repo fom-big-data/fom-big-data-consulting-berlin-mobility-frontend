@@ -119,17 +119,20 @@ export class SectionComponent implements OnInit {
    * Notify subscribers about visibility changes
    */
   private notifyVisibility() {
-    this.layers.forEach(layer => {
-      if (this.topInViewport && this.bottomInViewport) {
-        this.inFocus = true;
+    if (this.topInViewport && this.bottomInViewport) {
+      this.inFocus = true;
+
+      this.layers.forEach(layer => {
         this.sectionInViewportEventEmitter.emit({layer, opacity: this.opacity, clearOthers: this.clearOthers});
-      } else {
-        this.inFocus = false;
-      }
+      });
+    } else {
+      this.inFocus = false;
 
       if (this.emitOnLeave) {
-        this.sectionInViewportEventEmitter.emit({layer, opacity: 0, clearOthers: this.clearOthers});
+        this.layers.forEach(layer => {
+          this.sectionInViewportEventEmitter.emit({layer, opacity: 0, clearOthers: this.clearOthers});
+        });
       }
-    });
+    }
   }
 }
