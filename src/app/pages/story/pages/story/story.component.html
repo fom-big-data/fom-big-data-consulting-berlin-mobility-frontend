@@ -72,55 +72,26 @@
   <app-section-header #visibility id="visibility" title="Mobilität in der Stadt sichtbar machen"></app-section-header>
   <app-section [chapters]="['visibility-isochrones']"></app-section>
   <ng-container>
+    <div class="text-container-fixed">
+      <app-section [height]="mapHeight" [chapters]="['visibility-isochrones']"></app-section>
+    </div>
     <div class="text-container">
-      <app-section *ngFor="let section of sectionsVisibilityWalk"
-                   [height]="mapHeight"
+      <app-section *ngFor="let section of sectionsVisibility"
+                   [height]="'10vh'"
                    [chapters]="section.chapters"
                    [layers]="section.layers"
-                   (sectionInViewportEventEmitter)="onLayerMarkerEventTriggered('visibility-walk', $event)"></app-section>
+                   (sectionInViewportEventEmitter)="onLayerMarkerEventTriggered('visibility', $event)"></app-section>
     </div>
     <div class="map-container">
-      <app-map [id]="'map-visibility-walk'"
+      <app-map [id]="'map-visibility'"
                [height]="mapHeight"
                [style]="mapBoxStyleEnum.DARK_V10"
                [zoom]="12"
                [center]="placeEnum.FOM"
                [interactiveEnabled]=false
                [initialOpacity]="0"
-               [opacities]="opacitiesVisibilityWalk"
-               [results]="[
-                'isochrones-walk-25-52.5119408-13.3161495',
-                'isochrones-walk-15-52.5119408-13.3161495',
-                'isochrones-walk-5-52.5119408-13.3161495'
-              ]">
-      </app-map>
-    </div>
-  </ng-container>
-</div>
-
-<div class="story-container">
-  <ng-container>
-    <div class="text-container">
-      <app-section *ngFor="let section of sectionsVisibilitySubway"
-                   [height]="mapHeight"
-                   [chapters]="section.chapters"
-                   [layers]="section.layers"
-                   (sectionInViewportEventEmitter)="onLayerMarkerEventTriggered('visibility-subway', $event)"></app-section>
-    </div>
-    <div class="map-container">
-      <app-map [id]="'map-visibility-subway'"
-               [height]="'500px'"
-               [style]="mapBoxStyleEnum.DARK_V10"
-               [zoom]="11"
-               [center]="placeEnum.FOM"
-               [interactiveEnabled]=false
-               [initialOpacity]="0"
-               [opacities]="opacitiesVisibilitySubway"
-               [results]="[
-                'isochrones-subway-25-52.5119408-13.3161495',
-                'isochrones-subway-15-52.5119408-13.3161495',
-                'isochrones-subway-5-52.5119408-13.3161495'
-              ]">
+               [opacities]="opacitiesVisibility"
+               [results]="resultsVisibility">
       </app-map>
     </div>
   </ng-container>
@@ -148,15 +119,7 @@
                        [interactiveEnabled]=false
                        [initialOpacity]="0"
                        [opacities]="opacitiesProblems"
-                       [results]="[
-                         'isochrones-drive-15',
-                         'isochrones-bike-15',
-                         'isochrones-bus-15',
-                         'isochrones-light_rail-15',
-                         'isochrones-subway-15',
-                         'isochrones-tram-15',
-                         'isochrones-all-15'
-                       ]"
+                       [results]="resultsProblems"
                        [aggregateProperty]="'mean_spatial_distance_15min'">
       </app-hexagon-map>
     </div>

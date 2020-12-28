@@ -52,7 +52,14 @@ app-map {
   grid-column: 1 !important;
 }
 
-.map-container {
+.text-container-fixed {
+  grid-column: 1 !important;
+  top: 150px;
+  position: sticky;
+  position: -webkit-sticky;
+}
+
+.map-container, {
   grid-column: 2 !important;
 
   height: 500px;

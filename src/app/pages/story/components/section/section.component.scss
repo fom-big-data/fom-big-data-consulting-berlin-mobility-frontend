@@ -23,3 +23,19 @@
 .placeholder {
   color: lightgray;
 }
+
+//
+// Debug
+//
+
+.debug-top {
+  min-height: 10px;
+  min-width: 10px;
+  background: red;
+}
+
+.debug-bottom {
+  min-height: 10px;
+  min-width: 10px;
+  background: blue;
+}

@@ -56,17 +56,18 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
   /** Helper subject used to finish other subscriptions */
   private unsubscribeSubject = new Subject();
 
-  /** Sections to be displayed in story container 'visibility-walk' */
-  sectionsVisibilityWalk: Section[] = [];
-  /** Sections to be displayed in story container 'visibility-subway' */
-  sectionsVisibilitySubway: Section[] = [];
+  /** Sections to be displayed in story container 'visibility' */
+  sectionsVisibility: Section[] = [];
   /** Sections to be displayed in story container 'problems' */
   sectionsProblems: Section[] = [];
 
-  /** Opacities for map named 'visibility-walk' */
-  opacitiesVisibilityWalk = new Map<string, number>();
-  /** Opacities for map named 'visibility-subway' */
-  opacitiesVisibilitySubway = new Map<string, number>();
+  /** Results to be displayed in story container 'visibility' */
+  resultsVisibility: string[] = [];
+  /** Results to be displayed in story container 'problems' */
+  resultsProblems: string[] = [];
+
+  /** Opacities for map named 'visibility' */
+  opacitiesVisibility = new Map<string, number>();
   /** Opacities for map named 'problems' */
   opacitiesProblems = new Map<string, number>();
 
@@ -89,27 +90,8 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
    * Handles on-init lifecycle phase
    */
   ngOnInit() {
-    this.sectionsVisibilityWalk = [
-      {chapters: ['visibility-isochrones-walk-5'], layers: ['isochrones-walk-5-52.5119408-13.3161495']},
-      {chapters: ['visibility-isochrones-walk-15'], layers: ['isochrones-walk-15-52.5119408-13.3161495']},
-      {chapters: ['visibility-isochrones-walk-25'], layers: ['isochrones-walk-25-52.5119408-13.3161495']}
-    ];
-
-    this.sectionsVisibilitySubway = [
-      {chapters: ['visibility-isochrones-subway-5'], layers: ['isochrones-subway-5-52.5119408-13.3161495']},
-      {chapters: ['visibility-isochrones-subway-15'], layers: ['isochrones-subway-15-52.5119408-13.3161495']},
-      {chapters: ['visibility-isochrones-subway-25'], layers: ['isochrones-subway-25-52.5119408-13.3161495']}
-    ];
-
-    this.sectionsProblems = [
-      {chapters: ['whitespots-auto'], layers: ['isochrones-drive-15']},
-      {chapters: ['whitespots-bike'], layers: ['isochrones-bike-15']},
-      {chapters: ['whitespots-bus'], layers: ['isochrones-bus-15']},
-      {chapters: ['whitespots-s-bahn'], layers: ['isochrones-light_rail-15']},
-      {chapters: ['whitespots-u-bahn'], layers: ['isochrones-subway-15']},
-      {chapters: ['whitespots-tram'], layers: ['isochrones-tram-15']},
-      {chapters: ['whitespots-all'], layers: ['isochrones-all-15']}
-    ];
+    this.initializeStoryVisibility();
+    this.initializeStoryProblems();
   }
 
   /**
@@ -137,6 +119,46 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   //
+  // Initialization
+  //
+
+  /**
+   * Initializes story named 'visibility'
+   */
+  private initializeStoryVisibility() {
+    this.sectionsVisibility = [];
+    [...Array(29)].forEach((_, index) => {
+      this.sectionsVisibility.push({chapters: [], layers: [`isochrones-walk-${index + 1}-52.5119408-13.3161495`]});
+    });
+    [...Array(29)].forEach((_, index) => {
+      this.sectionsVisibility.push({chapters: [], layers: [`isochrones-subway-${index + 1}-52.5119408-13.3161495`]});
+    });
+
+    this.sectionsVisibility.forEach(section => {
+      this.resultsVisibility.push(...section.layers);
+    });
+  }
+
+  /**
+   * Initializes story named 'problems'
+   */
+  private initializeStoryProblems() {
+    this.sectionsProblems = [
+      {chapters: ['whitespots-auto'], layers: ['isochrones-drive-15']},
+      {chapters: ['whitespots-bike'], layers: ['isochrones-bike-15']},
+      {chapters: ['whitespots-bus'], layers: ['isochrones-bus-15']},
+      {chapters: ['whitespots-s-bahn'], layers: ['isochrones-light_rail-15']},
+      {chapters: ['whitespots-u-bahn'], layers: ['isochrones-subway-15']},
+      {chapters: ['whitespots-tram'], layers: ['isochrones-tram-15']},
+      {chapters: ['whitespots-all'], layers: ['isochrones-all-15']}
+    ];
+
+    this.sectionsProblems.forEach(section => {
+      this.resultsProblems.push(...section.layers);
+    });
+  }
+
+  //
   // Actions
   //
 
@@ -147,26 +169,15 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
    */
   onLayerMarkerEventTriggered(mapName: string, event: { layer: string, opacity: number, clearOthers: boolean }) {
 
-    if (mapName === 'visibility-walk') {
+    if (mapName === 'visibility') {
       if (event.clearOthers) {
-        this.opacitiesVisibilityWalk.forEach((value: number, key: string) => {
-          this.opacitiesVisibilityWalk.set(key, 0);
+        this.opacitiesVisibility.forEach((value: number, key: string) => {
+          this.opacitiesVisibility.set(key, 0);
         });
       }
 
-      this.opacitiesVisibilityWalk.set(event.layer, event.opacity);
-      this.opacitiesVisibilityWalk = new Map(this.opacitiesVisibilityWalk);
-    }
-
-    if (mapName === 'visibility-subway') {
-      if (event.clearOthers) {
-        this.opacitiesVisibilitySubway.forEach((value: number, key: string) => {
-          this.opacitiesVisibilitySubway.set(key, 0);
-        });
-      }
-
-      this.opacitiesVisibilitySubway.set(event.layer, event.opacity);
-      this.opacitiesVisibilitySubway = new Map(this.opacitiesVisibilitySubway);
+      this.opacitiesVisibility.set(event.layer, event.opacity);
+      this.opacitiesVisibility = new Map(this.opacitiesVisibility);
     }
 
     if (mapName === 'problems') {
