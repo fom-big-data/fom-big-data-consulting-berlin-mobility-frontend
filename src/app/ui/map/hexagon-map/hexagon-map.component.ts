@@ -90,6 +90,8 @@ export class HexagonMapComponent implements OnChanges, AfterViewInit {
   @Input() aggregateProperty = 'mean_spatial_distance_60min';
   /** Color ramp */
   @Input() colorRamp = ColorRamp.LUFTDATEN_COLOR_RAMP;
+  /** Number of points that must be in hexagon to be created */
+  @Input() hexBinLimit = 0;
 
   /** Map Box object */
   private map: mapboxgl.Map;
@@ -491,7 +493,9 @@ export class HexagonMapComponent implements OnChanges, AfterViewInit {
     const collected = this.collect(hexGrid, data, aggregateProperty, 'values');
 
     // get rid of polygons with no joined data, to reduce our final output file size
-    collected.features = collected.features.filter(d => d.properties.values.length);
+    collected.features = collected.features.filter(d => {
+      return d.properties.values.length > this.hexBinLimit;
+    });
 
     // Count number of values and average per hexbin
     turfMeta.propEach(collected, props => {

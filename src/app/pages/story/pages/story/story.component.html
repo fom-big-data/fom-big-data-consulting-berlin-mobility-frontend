@@ -120,7 +120,8 @@
                        [initialOpacity]="0"
                        [opacities]="opacitiesProblems"
                        [results]="resultsProblems"
-                       [aggregateProperty]="'mean_spatial_distance_15min'">
+                       [aggregateProperty]="'mean_spatial_distance_15min'"
+                       [hexBinLimit]="'3'">
       </app-hexagon-map>
     </div>
   </ng-container>
@@ -135,9 +136,11 @@
                    [style]="mapBoxStyleEnum.DARK_V10"
                    [zoom]="11"
                    [boundingBox]="boundingBoxEnum.BERLIN"
-                   [interactiveEnabled]=false
+                   [interactiveEnabled]="isDev"
+                   [fullScreenControlEnabled]="isDev"
                    [results]="['isochrones-all-15']"
-                   [aggregateProperty]="'mean_spatial_distance_15min'"></app-hexagon-map>
+                   [aggregateProperty]="'mean_spatial_distance_15min'"
+                   [hexBinLimit]="'3'"></app-hexagon-map>
 </div>
 
 <app-footer [sectionHeaders]="sectionHeaders"></app-footer>
