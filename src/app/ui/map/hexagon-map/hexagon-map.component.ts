@@ -354,7 +354,6 @@ export class HexagonMapComponent implements OnChanges, AfterViewInit {
 
           const processedGeojson = this.preprocessHexagonData(JSON.parse(geojsonData), this.aggregateProperty, this.cellSize);
 
-
           const aggegatePropertyValues = processedGeojson.features.map(f => {
             return f['properties']['avg'];
           });
@@ -386,9 +385,12 @@ export class HexagonMapComponent implements OnChanges, AfterViewInit {
           layer['id'] = name + '-layer';
           layer['source'] = name;
 
+          // Get ID of first layer which contains labels
+          const firstSymbolId = this.getFirstLayerWithLabels(this.map);
+
           // Add layer
           // @ts-ignore
-          this.map.addLayer(layer);
+          this.map.addLayer(layer, firstSymbolId);
 
           // Initialize layer opacity
           if (layer['paint'].hasOwnProperty('fill-color')) {
@@ -472,7 +474,6 @@ export class HexagonMapComponent implements OnChanges, AfterViewInit {
   // Hexagon helpers
   //
 
-
   /**
    * Pre-processes raw data by clustering them into hexbins
    * @param data raw data
@@ -552,5 +553,26 @@ export class HexagonMapComponent implements OnChanges, AfterViewInit {
     });
 
     return polygons;
+  }
+
+  //
+  // Helpers
+  //
+
+  /**
+   * Gets ID of first layer containing symbols
+   * @param map map
+   */
+  private getFirstLayerWithLabels(map): string {
+    const layers = map.getStyle().layers;
+    let firstSymbolId = '';
+    // Find the index of the first symbol layer in the map style
+    layers.forEach((_, index) => {
+      if (firstSymbolId === '' && layers[index].type === 'symbol') {
+        firstSymbolId = layers[index].id;
+      }
+    });
+
+    return firstSymbolId;
   }
 }

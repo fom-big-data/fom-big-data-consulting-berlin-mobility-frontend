@@ -8,7 +8,6 @@ import {UUID} from '../../../core/entity/model/uuid';
 import {HttpClient} from '@angular/common/http';
 import {MatSliderChange} from '@angular/material/slider';
 import {Subject} from 'rxjs';
-import {BoundingBox} from '../model/bounding-box.model';
 
 /**
  * Displays a map box
@@ -351,8 +350,11 @@ export class MapComponent implements OnChanges, AfterViewInit {
           layer['id'] = name + '-layer';
           layer['source'] = name;
 
+          // Get ID of first layer which contains labels
+          const firstSymbolId = this.getFirstLayerWithLabels(this.map);
+
           // Add layer
-          this.map.addLayer(layer);
+          this.map.addLayer(layer, firstSymbolId);
 
           // Initialize layer transparency
           if (layer['paint'].hasOwnProperty('fill-color')) {
@@ -431,5 +433,26 @@ export class MapComponent implements OnChanges, AfterViewInit {
   onResetClicked() {
     const initialLocation = new Location('init', this.zoom, this.center.longitude, this.center.latitude);
     this.flyableLocationSubject.next(initialLocation);
+  }
+
+  //
+  // Helpers
+  //
+
+  /**
+   * Gets ID of first layer containing symbols
+   * @param map map
+   */
+  private getFirstLayerWithLabels(map): string {
+    const layers = map.getStyle().layers;
+    let firstSymbolId = '';
+    // Find the index of the first symbol layer in the map style
+    layers.forEach((_, index) => {
+      if (firstSymbolId === '' && layers[index].type === 'symbol') {
+        firstSymbolId = layers[index].id;
+      }
+    });
+
+    return firstSymbolId;
   }
 }
