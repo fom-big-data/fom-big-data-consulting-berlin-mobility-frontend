@@ -38,6 +38,8 @@ export class MapComponent implements OnChanges, AfterViewInit {
   @Input() markers: Location[] = [];
   /** List of clickable markers to be displayed */
   @Input() clickableMarkers: Location[] = [];
+  /** List of markers with a pop-up to be displayed */
+  @Input() popupMarkers: Location[] = [];
 
   /** Whether interactive mode is enabled or not */
   @Input() interactiveEnabled = true;
@@ -114,6 +116,7 @@ export class MapComponent implements OnChanges, AfterViewInit {
     // Initialize markers
     this.initializeMarkers(this.markers);
     this.initializeClickableMarkers(this.clickableMarkers);
+    this.initializePopupMarkers(this.popupMarkers);
 
     // Initialize controls
     this.initializeNavigationControl(this.navigationControlEnabled);
@@ -227,6 +230,29 @@ export class MapComponent implements OnChanges, AfterViewInit {
             this.map.getCanvas().style.cursor = '';
           });
         });
+    });
+  }
+
+  /**
+   * Initializes markers that will open a pop-up on click
+   * @param popupMarkers pop-up markers
+   */
+  private initializePopupMarkers(popupMarkers: Location[]) {
+    popupMarkers.forEach(marker => {
+      // Create the popup
+      const popup = new mapboxgl.Popup({offset: 25}).setText(
+        marker.description
+      );
+
+      // Create DOM element for the marker
+      const el = document.createElement('div');
+      el.id = `marker-${marker.name.toLowerCase()}`;
+
+      // Create the marker
+      new mapboxgl.Marker(el)
+        .setLngLat([marker.longitude, marker.latitude])
+        .setPopup(popup)
+        .addTo(this.map);
     });
   }
 
@@ -431,7 +457,7 @@ export class MapComponent implements OnChanges, AfterViewInit {
    * Handles click on reset button
    */
   onResetClicked() {
-    const initialLocation = new Location('init', this.zoom, this.center.longitude, this.center.latitude);
+    const initialLocation = new Location('init', '', this.zoom, this.center.longitude, this.center.latitude);
     this.flyableLocationSubject.next(initialLocation);
   }
 
