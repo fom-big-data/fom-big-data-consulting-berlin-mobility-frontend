@@ -28,6 +28,16 @@ export class Place {
     'Tierpark',
     'Der Tierpark Berlin ist einer der beiden Zoologischen Gärten in Berlin.',
     14,
-    13.5313559,    52.5023038
+    13.5313559,
+    52.5023038
+  );
+
+  /** Tegel */
+  static TEGEL = new Location(
+    'Tegel',
+    'Der Flughafen Berlin-Tegel „Otto Lilienthal“ war bis zum 8. November 2020 ein internationaler Verkehrsflughafen in Berlin-Tegel.',
+    14,
+    13.2884374,
+    52.5588327
   );
 }
