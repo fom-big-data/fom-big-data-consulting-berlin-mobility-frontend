@@ -75,13 +75,6 @@
     <div class="text-container-fixed">
       <app-section [height]="mapHeight" [chapters]="['visibility-isochrones']"></app-section>
     </div>
-    <div class="text-container">
-      <app-section *ngFor="let section of sectionsVisibility"
-                   [height]="'10vh'"
-                   [chapters]="section.chapters"
-                   [layers]="section.layers"
-                   (sectionInViewportEventEmitter)="onLayerMarkerEventTriggered('visibility', $event)"></app-section>
-    </div>
     <div class="map-container">
       <app-map [id]="'map-visibility'"
                [height]="mapHeight"
@@ -93,6 +86,13 @@
                [opacities]="opacitiesVisibility"
                [results]="resultsVisibility">
       </app-map>
+    </div>
+    <div class="text-container">
+      <app-section *ngFor="let section of sectionsVisibility"
+                   [height]="'10vh'"
+                   [chapters]="section.chapters"
+                   [layers]="section.layers"
+                   (sectionInViewportEventEmitter)="onLayerMarkerEventTriggered('visibility', $event)"></app-section>
     </div>
   </ng-container>
 </div>
@@ -136,7 +136,7 @@
                    [style]="mapBoxStyleEnum.DARK_V10"
                    [zoom]="11"
                    [boundingBox]="boundingBoxEnum.BERLIN"
-                   [popupMarkers]="[placeEnum.SPREEPARK, placeEnum.TIERPARK]"
+                   [popupMarkers]="[placeEnum.SPREEPARK, placeEnum.TIERPARK, placeEnum.TEGEL]"
                    [interactiveEnabled]="isDev"
                    [fullScreenControlEnabled]="isDev"
                    [results]="['isochrones-all-15']"
