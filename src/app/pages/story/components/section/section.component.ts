@@ -26,7 +26,7 @@ export class SectionComponent implements OnInit {
   /** Whether or not an event should be emitted when marker is not visible anymore */
   @Input() emitOnLeave = false;
   /** Event emitter indicating section in viewport */
-  @Output() sectionInViewportEventEmitter = new EventEmitter<{ layer: string, opacity: number, clearOthers: boolean }>();
+  @Output() sectionInViewportEventEmitter = new EventEmitter<{ layers: string[], opacity: number, clearOthers: boolean }>();
 
   /** Contents */
   contents = [];
@@ -122,16 +122,12 @@ export class SectionComponent implements OnInit {
     if (this.topInViewport && this.bottomInViewport) {
       this.inFocus = true;
 
-      this.layers.forEach(layer => {
-        this.sectionInViewportEventEmitter.emit({layer, opacity: this.opacity, clearOthers: this.clearOthers});
-      });
+      this.sectionInViewportEventEmitter.emit({layers: this.layers, opacity: this.opacity, clearOthers: this.clearOthers});
     } else {
       this.inFocus = false;
 
       if (this.emitOnLeave) {
-        this.layers.forEach(layer => {
-          this.sectionInViewportEventEmitter.emit({layer, opacity: 0, clearOthers: this.clearOthers});
-        });
+        this.sectionInViewportEventEmitter.emit({layers: this.layers, opacity: 0, clearOthers: this.clearOthers});
       }
     }
   }

@@ -45,16 +45,22 @@
   <app-section [chapters]="['verstehen-intro']"></app-section>
   <ng-container>
     <div class="text-container">
-      <app-section [height]="'500px'" [chapters]="['lebensraeume']"></app-section>
-      <app-section [height]="'500px'" [chapters]="['arbeitsraeume']"></app-section>
-      <app-section [height]="'500px'" [chapters]="['strassen-infrastruktur']"></app-section>
+      <app-section [height]="'500px'" [chapters]="['lebensraeume']" [layers]="['residential']"
+                   (sectionInViewportEventEmitter)="onLayerMarkerEventTriggered('understanding', $event)"></app-section>
+      <app-section [height]="'500px'" [chapters]="['arbeitsraeume']" [layers]="['commercial', 'industrial']"
+                   (sectionInViewportEventEmitter)="onLayerMarkerEventTriggered('understanding', $event)"></app-section>
+      <app-section [height]="'500px'" [chapters]="['strassen-infrastruktur']" [layers]="['allowed_car_speed']"
+                   (sectionInViewportEventEmitter)="onLayerMarkerEventTriggered('understanding', $event)"></app-section>
       <app-speed-graph [speedTimeTitle]="'Durchschnittsgeschwindigkeit auf Berliner Straßen'"
                        [weekdayColor]="'#3cba9f'"
                        [weekendColor]="'#ba3c9f'"
                        [labelWeekday]="'Wochentag'"
                        [labelWeekend]="'Wochenende'"></app-speed-graph>
-      <app-section [height]="'500px'" [chapters]="['fahrrad-infrastruktur']"></app-section>
-      <app-section [height]="'500px'" [chapters]="['oepnv']"></app-section>
+      <app-section [height]="'500px'" [chapters]="['fahrrad-infrastruktur']"
+                   (sectionInViewportEventEmitter)="onLayerMarkerEventTriggered('understanding', $event)"></app-section>
+      <app-section [height]="'500px'" [chapters]="['oepnv']"
+                   [layers]="['stations-bus', 'stations-light_rail', 'stations-subway', 'stations-tram']"
+                   (sectionInViewportEventEmitter)="onLayerMarkerEventTriggered('understanding', $event)"></app-section>
     </div>
     <div class="map-container">
       <app-map [id]="'map-understanding'"
@@ -62,7 +68,9 @@
                [zoom]="11"
                [interactiveEnabled]=false
                [boundingBox]="boundingBoxEnum.BERLIN"
-               [results]="['allowed_car_speed']">
+               [initialOpacity]="0"
+               [opacities]="opacitiesUnderstanding"
+               [results]="['residential', 'commercial', 'industrial', 'allowed_car_speed', 'stations-bus', 'stations-light_rail', 'stations-subway', 'stations-tram']">
       </app-map>
     </div>
   </ng-container>
@@ -142,7 +150,7 @@
                    [results]="['isochrones-all-15']"
                    [aggregateProperty]="'mean_spatial_distance_15min'"
                    [hexBinLimit]="'3'"
-                   [hexBinThreshold]="'1800'"></app-hexagon-map>
+                   [hexBinThreshold]="'1600'"></app-hexagon-map>
 </div>
 
 <app-footer [sectionHeaders]="sectionHeaders"></app-footer>
