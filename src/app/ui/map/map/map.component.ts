@@ -1,4 +1,4 @@
-import {AfterViewInit, ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges} from '@angular/core';
+import {AfterViewInit, ChangeDetectionStrategy, Component, Input, isDevMode, OnChanges, SimpleChanges} from '@angular/core';
 import * as mapboxgl from 'mapbox-gl';
 import {environment} from '../../../../environments/environment';
 import {Place} from '../../../core/mapbox/model/place.model';
@@ -416,6 +416,7 @@ export class MapComponent implements OnChanges, AfterViewInit {
             }
           });
 
+          // Subscribe flyable locations subject
           this.flyableLocationSubject.subscribe((location: Location) => {
             this.map.flyTo({
               center: [location.longitude, location.latitude],

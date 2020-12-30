@@ -1,4 +1,4 @@
-import {AfterViewInit, ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges} from '@angular/core';
+import {AfterViewInit, ChangeDetectionStrategy, Component, Input, isDevMode, OnChanges, SimpleChanges} from '@angular/core';
 import * as mapboxgl from 'mapbox-gl';
 import {environment} from '../../../../environments/environment';
 import {Place} from '../../../core/mapbox/model/place.model';
@@ -94,6 +94,8 @@ export class HexagonMapComponent implements OnChanges, AfterViewInit {
   @Input() colorRamp = ColorRamp.LUFTDATEN_COLOR_RAMP;
   /** Number of points that must be in hexagon to be created */
   @Input() hexBinLimit = 0;
+  /** Value of a point that must exceeded to be counted for hexagon */
+  @Input() hexBinThreshold = 0;
 
   /** Map Box object */
   private map: mapboxgl.Map;
@@ -380,7 +382,8 @@ export class HexagonMapComponent implements OnChanges, AfterViewInit {
         // Download geojson for result
         this.http.get(baseUrl + name + '.geojson', {responseType: 'text' as 'json'}).subscribe((geojsonData: any) => {
 
-          const processedGeojson = this.preprocessHexagonData(JSON.parse(geojsonData), this.aggregateProperty, this.cellSize);
+          const processedGeojson = this.preprocessHexagonData(JSON.parse(geojsonData), this.aggregateProperty,
+            this.cellSize, this.hexBinLimit, this.hexBinThreshold);
 
           const aggegatePropertyValues = processedGeojson.features.map(f => {
             return f['properties']['avg'];
@@ -453,6 +456,7 @@ export class HexagonMapComponent implements OnChanges, AfterViewInit {
             }
           });
 
+          // Subscribe flyable locations subject
           this.flyableLocationSubject.subscribe((location: Location) => {
             this.map.flyTo({
               center: [location.longitude, location.latitude],
@@ -507,31 +511,32 @@ export class HexagonMapComponent implements OnChanges, AfterViewInit {
    * @param data raw data
    * @param aggregateProperty property
    * @param cellSize cell size in km
+   * @param hexBinLimit hex-bin limit
+   * @param hexBinThreshold hex-bin threshold
    *
    * @return a geoJSON that represents polygons for each hexbin
    */
-  private preprocessHexagonData(data: any, aggregateProperty: string, cellSize: number): any {
+  private preprocessHexagonData(data: any, aggregateProperty: string, cellSize: number, hexBinLimit: number, hexBinThreshold: number): any {
 
     // @ts-ignore
     const hexGrid = turf.hexGrid(BoundingBox.BERLIN, cellSize);
 
     // perform a "spatial join" on our hexGrid geometry and our crashes point data
-    const collected = this.collect(hexGrid, data, aggregateProperty, 'values');
+    const collected = this.collect(hexGrid, data, aggregateProperty, 'values', hexBinThreshold);
 
     // get rid of polygons with no joined data, to reduce our final output file size
     collected.features = collected.features.filter(d => {
-      return d.properties.values.length > this.hexBinLimit;
+      return d.properties.values.length > hexBinLimit;
     });
 
     // Count number of values and average per hexbin
     turfMeta.propEach(collected, props => {
-      props.count = props.values.reduce((acc, cur) => acc += 1, 0);
-
-      const sum = props.values.reduce((a, b) => a + b, 0);
-      props.avg = (sum / props.values.length) || 0;
+      props.count = props.values.length || 0;
+      props.avg = (props.values.reduce((a, b) => a + b, 0) / props.values.length) || 0;
+      props.raw = JSON.stringify(props.values);
     });
 
-    // remove the "values" property from our hexBins as it's no longer needed
+    // Remove the "values" property from our hexBins as it's no longer needed
     turfMeta.propEach(collected, props => {
       delete props.values;
     });
@@ -545,8 +550,9 @@ export class HexagonMapComponent implements OnChanges, AfterViewInit {
    * @param points points
    * @param inProperty in-property
    * @param outProperty out-property
+   * @param hexBinThreshold hex-bin threshold
    */
-  private collect(polygons, points, inProperty, outProperty) {
+  private collect(polygons, points, inProperty, outProperty, hexBinThreshold) {
     const rtree = new RBush(6);
 
     const treeItems = points.features.map((item) => {
@@ -571,7 +577,7 @@ export class HexagonMapComponent implements OnChanges, AfterViewInit {
       const values = [];
       potentialPoints.forEach((pt) => {
         // @ts-ignore
-        if (booleanPointInPolygon([pt.minX, pt.minY], poly)) {
+        if (booleanPointInPolygon([pt.minX, pt.minY], poly) && pt.property > hexBinThreshold) {
           // @ts-ignore
           values.push(pt.property);
         }
