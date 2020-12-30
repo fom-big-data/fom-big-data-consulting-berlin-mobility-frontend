@@ -56,7 +56,7 @@
                        [weekendColor]="'#ba3c9f'"
                        [labelWeekday]="'Wochentag'"
                        [labelWeekend]="'Wochenende'"></app-speed-graph>
-      <app-section [height]="'500px'" [chapters]="['fahrrad-infrastruktur']"
+      <app-section [height]="'500px'" [chapters]="['fahrrad-infrastruktur']" [layers]="['berlin-bicycleedges-important-ways']"
                    (sectionInViewportEventEmitter)="onLayerMarkerEventTriggered('understanding', $event)"></app-section>
       <app-section [height]="'500px'" [chapters]="['oepnv']"
                    [layers]="['stations-bus', 'stations-light_rail', 'stations-subway', 'stations-tram']"
@@ -70,7 +70,8 @@
                [boundingBox]="boundingBoxEnum.BERLIN"
                [initialOpacity]="0"
                [opacities]="opacitiesUnderstanding"
-               [results]="['residential', 'commercial', 'industrial', 'allowed_car_speed','berlin-bycycleedges-important-ways', 'stations-bus', 'stations-light_rail', 'stations-subway', 'stations-tram']">
+               [results]="['residential', 'commercial', 'industrial', 'allowed_car_speed', 'stations-bus',
+               'stations-light_rail', 'stations-subway', 'stations-tram', 'berlin-bicycleedges-important-ways']">
       </app-map>
     </div>
   </ng-container>
