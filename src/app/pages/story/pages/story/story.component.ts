@@ -56,20 +56,26 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
   /** Helper subject used to finish other subscriptions */
   private unsubscribeSubject = new Subject();
 
-  /** Sections to be displayed in story container 'visibility' */
-  sectionsVisibility: Section[] = [];
+  /** Sections to be displayed in story container 'visibility-walk' */
+  sectionsVisibilityWalk: Section[] = [];
+  /** Sections to be displayed in story container 'visibility-transport' */
+  sectionsVisibilityTransport: Section[] = [];
   /** Sections to be displayed in story container 'problems' */
   sectionsProblems: Section[] = [];
 
-  /** Results to be displayed in story container 'visibility' */
-  resultsVisibility: string[] = [];
+  /** Results to be displayed in story container 'visibility-walk' */
+  resultsVisibilityWalk: string[] = [];
+  /** Results to be displayed in story container 'visibility-transport' */
+  resultsVisibilityTransport: string[] = [];
   /** Results to be displayed in story container 'problems' */
   resultsProblems: string[] = [];
 
   /** Opacities for map named 'understanding' */
   opacitiesUnderstanding = new Map<string, number>();
-  /** Opacities for map named 'visibility' */
-  opacitiesVisibility = new Map<string, number>();
+  /** Opacities for map named 'visibility-walk' */
+  opacitiesVisibilityWalk = new Map<string, number>();
+  /** Opacities for map named 'visibility-transport' */
+  opacitiesVisibilityTransport = new Map<string, number>();
   /** Opacities for map named 'problems' */
   opacitiesProblems = new Map<string, number>();
 
@@ -128,16 +134,20 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
    * Initializes story named 'visibility'
    */
   private initializeStoryVisibility() {
-    this.sectionsVisibility = [];
+    this.sectionsVisibilityWalk = [];
     [...Array(29)].forEach((_, index) => {
-      this.sectionsVisibility.push({chapters: [], layers: [`isochrones-walk-${index + 1}-52.5119408-13.3161495`]});
+      this.sectionsVisibilityWalk.push({chapters: [], layers: [`isochrones-walk-${index + 1}-52.5119408-13.3161495`]});
     });
     [...Array(29)].forEach((_, index) => {
-      this.sectionsVisibility.push({chapters: [], layers: [`isochrones-subway-${index + 1}-52.5119408-13.3161495`]});
+      this.sectionsVisibilityTransport.push({chapters: [], layers: [`isochrones-subway-${index + 1}-52.5119408-13.3161495`]});
     });
 
-    this.sectionsVisibility.forEach(section => {
-      this.resultsVisibility.push(...section.layers);
+    // Aggregate layers to be displayed on map
+    this.sectionsVisibilityWalk.forEach(section => {
+      this.resultsVisibilityWalk.push(...section.layers);
+    });
+    this.sectionsVisibilityTransport.forEach(section => {
+      this.resultsVisibilityTransport.push(...section.layers);
     });
   }
 
@@ -184,17 +194,30 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
       this.opacitiesUnderstanding = new Map(this.opacitiesUnderstanding);
     }
 
-    if (mapName === 'visibility') {
+    if (mapName === 'visibility-walk') {
       if (event.clearOthers) {
-        this.opacitiesVisibility.forEach((value: number, key: string) => {
-          this.opacitiesVisibility.set(key, 0);
+        this.opacitiesVisibilityWalk.forEach((value: number, key: string) => {
+          this.opacitiesVisibilityWalk.set(key, 0);
         });
       }
 
       event.layers.forEach(layer => {
-        this.opacitiesVisibility.set(layer, event.opacity);
+        this.opacitiesVisibilityWalk.set(layer, event.opacity);
       });
-      this.opacitiesVisibility = new Map(this.opacitiesVisibility);
+      this.opacitiesVisibilityWalk = new Map(this.opacitiesVisibilityWalk);
+    }
+
+    if (mapName === 'visibility-transport') {
+      if (event.clearOthers) {
+        this.opacitiesVisibilityTransport.forEach((value: number, key: string) => {
+          this.opacitiesVisibilityTransport.set(key, 0);
+        });
+      }
+
+      event.layers.forEach(layer => {
+        this.opacitiesVisibilityTransport.set(layer, event.opacity);
+      });
+      this.opacitiesVisibilityTransport = new Map(this.opacitiesVisibilityTransport);
     }
 
     if (mapName === 'problems') {

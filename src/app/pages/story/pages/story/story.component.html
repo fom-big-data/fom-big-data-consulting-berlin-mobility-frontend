@@ -56,7 +56,8 @@
                        [weekendColor]="'#ba3c9f'"
                        [labelWeekday]="'Wochentag'"
                        [labelWeekend]="'Wochenende'"></app-speed-graph>
-      <app-section [height]="'500px'" [chapters]="['fahrrad-infrastruktur']" [layers]="['berlin-bicycleedges-important-ways']"
+      <app-section [height]="'500px'" [chapters]="['fahrrad-infrastruktur']"
+                   [layers]="['berlin-bicycleedges-important-ways']"
                    (sectionInViewportEventEmitter)="onLayerMarkerEventTriggered('understanding', $event)"></app-section>
       <app-section [height]="'500px'" [chapters]="['oepnv']"
                    [layers]="['stations-bus', 'stations-light_rail', 'stations-subway', 'stations-tram']"
@@ -82,8 +83,36 @@
   <app-section [chapters]="['visibility-isochrones']"></app-section>
   <ng-container>
     <div class="text-container-fixed">
-      <app-section [height]="mapHeight" [chapters]="['visibility-isochrones']"></app-section>
+      <app-section [height]="mapHeight" [chapters]="['visibility-isochrones-walk']"></app-section>
     </div>
+
+    <div class="map-container">
+      <app-map [id]="'map-visibility-walk'"
+               [height]="mapHeight"
+               [style]="mapBoxStyleEnum.DARK_V10"
+               [zoom]="12"
+               [center]="placeEnum.FOM"
+               [interactiveEnabled]=false
+               [initialOpacity]="0"
+               [opacities]="opacitiesVisibilityWalk"
+               [results]="resultsVisibilityWalk">
+      </app-map>
+    </div>
+    <div class="text-container">
+      <app-section *ngFor="let section of sectionsVisibilityWalk"
+                   [height]="'10vh'"
+                   [chapters]="section.chapters"
+                   [layers]="section.layers"
+                   (sectionInViewportEventEmitter)="onLayerMarkerEventTriggered('visibility-walk', $event)"></app-section>
+    </div>
+  </ng-container>
+</div>
+<div class="story-container">
+  <ng-container>
+    <div class="text-container-fixed">
+      <app-section [height]="mapHeight" [chapters]="['visibility-isochrones-transport']"></app-section>
+    </div>
+
     <div class="map-container">
       <app-map [id]="'map-visibility'"
                [height]="mapHeight"
@@ -92,16 +121,16 @@
                [center]="placeEnum.FOM"
                [interactiveEnabled]=false
                [initialOpacity]="0"
-               [opacities]="opacitiesVisibility"
-               [results]="resultsVisibility">
+               [opacities]="opacitiesVisibilityTransport"
+               [results]="resultsVisibilityTransport">
       </app-map>
     </div>
     <div class="text-container">
-      <app-section *ngFor="let section of sectionsVisibility"
+      <app-section *ngFor="let section of sectionsVisibilityTransport"
                    [height]="'10vh'"
                    [chapters]="section.chapters"
                    [layers]="section.layers"
-                   (sectionInViewportEventEmitter)="onLayerMarkerEventTriggered('visibility', $event)"></app-section>
+                   (sectionInViewportEventEmitter)="onLayerMarkerEventTriggered('visibility-transport', $event)"></app-section>
     </div>
   </ng-container>
 </div>
@@ -111,6 +140,11 @@
 
 <div class="story-container">
   <app-section-header #problems id="problems" title="Probleme in der Infrastruktur erkennnen"></app-section-header>
+  <app-section
+
+    [chapters]="['']"
+
+  ></app-section>
   <ng-container>
     <div class="text-container">
       <app-section *ngFor="let section of sectionsProblems"
