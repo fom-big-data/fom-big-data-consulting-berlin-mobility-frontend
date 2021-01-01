@@ -1,4 +1,4 @@
-import {AfterViewInit, ChangeDetectionStrategy, Component, Input, isDevMode, OnChanges, SimpleChanges} from '@angular/core';
+import {AfterViewInit, ChangeDetectionStrategy, Component, Input, ViewChild, ElementRef, isDevMode, OnChanges, SimpleChanges} from '@angular/core';
 import * as mapboxgl from 'mapbox-gl';
 import {environment} from '../../../../environments/environment';
 import {Place} from '../../../core/mapbox/model/place.model';
@@ -20,10 +20,14 @@ import {Subject} from 'rxjs';
 })
 export class MapComponent implements OnChanges, AfterViewInit {
 
+  //map.legendControl.addLegend(document.getElementById('legend').innerHTML);
+
   /** Unique ID for this map */
   @Input() id = UUID.toString();
   /** Height of the map */
   @Input() height = '500px';
+  /** Display-Name of the map */
+  @Input() displayName = '';
 
   /** Render style for Map */
   @Input() style = MapBoxStyle.STREETS_V11;
@@ -62,6 +66,13 @@ export class MapComponent implements OnChanges, AfterViewInit {
   @Input() doubleClickZoomEnabled = true;
   /** Whether touch zoom rotate is enabled or not */
   @Input() touchZoomRotateEnabled = true;
+
+  /** Whether to show a map is gradient or not */
+  @Input() legendGradient = true;
+  @Input() legendContents = new Map<string, string>();
+
+  //@ViewChild("legend", {read: ElementRef}) legend: ElementRef;
+  @ViewChild('legend') legend: ElementRef;
 
   /** Whether opacity should be parametrized or not */
   @Input() parametrizeOpacityEnabled = false;
@@ -133,11 +144,55 @@ export class MapComponent implements OnChanges, AfterViewInit {
 
     // Display overlays
     this.initializeResultOverlays(this.results);
+
+
+    // Display Legend
+    this.initializeLegend(this.legendContents, this.legendGradient, this.displayName);
+
   }
 
   //
   // Helpers
   //
+
+
+    /**
+     * Initializes Map Box
+     */
+    private initializeLegend(contents: Map<string,string>, isGradient, displayName) {
+      var innerHTML = ""
+
+      innerHTML += "<p>"+displayName+"</p>"
+
+      if(isGradient){
+        innerHTML += "<div style=\"background: linear-gradient(90deg"
+        for (var key of Object.keys(contents)){
+          innerHTML += ", "+ key
+        }
+        innerHTML += ")\" class=\"gradient_container\"></div>"
+      }else{
+        innerHTML += "<div class=\"solid_container\">"
+        for (var key of Object.keys(contents)){
+          innerHTML += "<div style=\"background: "+ key+"\"></div>"
+        }
+        innerHTML += "</div>"
+      }
+
+      innerHTML += "<ul class=\"description\">"
+      for (var key of Object.keys(contents)){
+        innerHTML += "<li>"+contents[key]+"</li>"
+      }
+
+      innerHTML += "</ul>"
+
+
+
+    //var child = document.createElement("<div/>");
+      this.legend.nativeElement.innerHTML = innerHTML
+      this.legend.nativeElement.classList.add('legend')
+      console.log(contents)
+    }
+
 
   /**
    * Initializes Map Box

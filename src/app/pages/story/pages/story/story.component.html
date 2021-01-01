@@ -67,12 +67,15 @@
     </div>
     <div class="map-container">
       <app-map [id]="'map-understanding'"
+               [displayName]="'Berlin ÖPNV & Pendlerziele'"
                [style]="mapBoxStyleEnum.LIGHT_V10"
                [zoom]="11"
                [interactiveEnabled]=false
                [boundingBox]="boundingBoxEnum.BERLIN"
                [initialOpacity]="0"
                [opacities]="opacitiesUnderstanding"
+               [legendContents]="{'#0af': '20 min', '#e20074': '40 min'}"
+               [legendGradient]="false"
                [results]="['residential', 'commercial', 'industrial', 'allowed_car_speed', 'stations-bus',
                'stations-light_rail', 'stations-subway', 'stations-tram', 'berlin-bicycleedges-important-ways', 'berlin-inhabitants-improved']">
       </app-map>
@@ -90,6 +93,8 @@
 
     <div class="map-container">
       <app-map [id]="'map-visibility-walk'"
+               [displayName]="'Isochrone zu Fuß - Start: FOM Hochschule'"
+               [legendContents]="{'#08306b': '0 min', '#6baed6':'15 min', '#f7fbff': '30 min'}"
                [height]="mapHeight"
                [style]="mapBoxStyleEnum.DARK_V10"
                [zoom]="12"
@@ -117,6 +122,8 @@
 
     <div class="map-container">
       <app-map [id]="'map-visibility'"
+               [displayName]="'Isochrone ÖPNV - Start: FOM Hochschule'"
+               [legendContents]="{'#081d58': '0 min', '#41b6c4':'15 min', '#ffffd9': '30 min'}"
                [height]="mapHeight"
                [style]="mapBoxStyleEnum.DARK_V10"
                [zoom]="12"
