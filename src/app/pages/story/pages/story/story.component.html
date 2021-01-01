@@ -47,6 +47,8 @@
     <div class="text-container">
       <app-section [height]="'500px'" [chapters]="['lebensraeume']" [layers]="['residential']"
                    (sectionInViewportEventEmitter)="onLayerMarkerEventTriggered('understanding', $event)"></app-section>
+      <app-section [height]="'500px'" [chapters]="['lebensraeume Dichte']" [layers]="['berlin-inhabitants-improved']"
+                   (sectionInViewportEventEmitter)="onLayerMarkerEventTriggered('understanding', $event)"></app-section>
       <app-section [height]="'500px'" [chapters]="['arbeitsraeume']" [layers]="['commercial', 'industrial']"
                    (sectionInViewportEventEmitter)="onLayerMarkerEventTriggered('understanding', $event)"></app-section>
       <app-section [height]="'500px'" [chapters]="['strassen-infrastruktur']" [layers]="['allowed_car_speed']"
@@ -72,7 +74,7 @@
                [initialOpacity]="0"
                [opacities]="opacitiesUnderstanding"
                [results]="['residential', 'commercial', 'industrial', 'allowed_car_speed', 'stations-bus',
-               'stations-light_rail', 'stations-subway', 'stations-tram', 'berlin-bicycleedges-important-ways']">
+               'stations-light_rail', 'stations-subway', 'stations-tram', 'berlin-bicycleedges-important-ways', 'berlin-inhabitants-improved']">
       </app-map>
     </div>
   </ng-container>
