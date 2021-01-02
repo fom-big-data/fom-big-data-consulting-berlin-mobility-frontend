@@ -47,7 +47,7 @@
     <div class="text-container">
       <app-section [height]="'500px'" [chapters]="['lebensraeume']" [layers]="['residential']"
                    (sectionInViewportEventEmitter)="onLayerMarkerEventTriggered('understanding', $event)"></app-section>
-      <app-section [height]="'500px'" [chapters]="['lebensraeume Dichte']" [layers]="['berlin-inhabitants-improved']"
+      <app-section [height]="'500px'" [chapters]="['lebensraeume-dichte']" [layers]="['berlin-inhabitants-improved']"
                    (sectionInViewportEventEmitter)="onLayerMarkerEventTriggered('understanding', $event)"></app-section>
       <app-section [height]="'500px'" [chapters]="['arbeitsraeume']" [layers]="['commercial', 'industrial','university','college']"
                    (sectionInViewportEventEmitter)="onLayerMarkerEventTriggered('understanding', $event)"></app-section>
@@ -87,7 +87,7 @@
                                        'stations-tram': {'#E02B25':'Tram'},
                                        'berlin-bicycleedges-important-ways': {'rgba(146,197,222,1)': '0m','rgba(67,147,195,1)': '100m', 'rgba(33,102,172,1)': '250m', 'rgba(244,165,130,1)': '500m', 'rgba(214,96,77,1)': '1000m', 'rgba(178,24,43,1)':'1500m'},
                                        'berlin-inhabitants-improved':{'rgba(255,247,236,0.5)': '0 Einw. / KM²','rgba(179,0,0,0.5)': '8500 Einw. / KM²', 'rgba(20,0,0,0.5)': '35000 Einw. / KM²'}}"
-               [multiLegendGradient]="{'residential': false,
+                [multiLegendGradient]="{'residential': false,
                                        'commercial': false,
                                        'industrial': false,
                                        'university': false,
@@ -99,6 +99,7 @@
                                        'stations-tram': false,
                                        'berlin-bicycleedges-important-ways': false,
                                        'berlin-inhabitants-improved':true}"
+
 
                [results]="['residential', 'commercial', 'industrial', 'allowed_car_speed', 'stations-bus',
                'stations-light_rail', 'stations-subway', 'stations-tram', 'berlin-bicycleedges-important-ways', 'berlin-inhabitants-improved', 'university','college']">
