@@ -67,10 +67,10 @@ export class MapComponent implements OnChanges, AfterViewInit {
   /** Whether touch zoom rotate is enabled or not */
   @Input() touchZoomRotateEnabled = true;
 
-  /** Whether to show a map is gradient or not */
+  /** Whether to a map legend should show as gradient or not */
   @Input() legendGradient = true;
+  /** Map of Colors and Values for Map Legend */
   @Input() legendContents = new Map<string, string>();
-
   //@ViewChild("legend", {read: ElementRef}) legend: ElementRef;
   @ViewChild('legend') legend: ElementRef;
 
@@ -154,45 +154,6 @@ export class MapComponent implements OnChanges, AfterViewInit {
   //
   // Helpers
   //
-
-
-    /**
-     * Initializes Map Box
-     */
-    private initializeLegend(contents: Map<string,string>, isGradient, displayName) {
-      var innerHTML = ""
-
-      innerHTML += "<p>"+displayName+"</p>"
-
-      if(isGradient){
-        innerHTML += "<div style=\"background: linear-gradient(90deg"
-        for (var key of Object.keys(contents)){
-          innerHTML += ", "+ key
-        }
-        innerHTML += ")\" class=\"gradient_container\"></div>"
-      }else{
-        innerHTML += "<div class=\"solid_container\">"
-        for (var key of Object.keys(contents)){
-          innerHTML += "<div style=\"background: "+ key+"\"></div>"
-        }
-        innerHTML += "</div>"
-      }
-
-      innerHTML += "<ul class=\"description\">"
-      for (var key of Object.keys(contents)){
-        innerHTML += "<li>"+contents[key]+"</li>"
-      }
-
-      innerHTML += "</ul>"
-
-
-
-    //var child = document.createElement("<div/>");
-      this.legend.nativeElement.innerHTML = innerHTML
-      this.legend.nativeElement.classList.add('legend')
-      console.log(contents)
-    }
-
 
   /**
    * Initializes Map Box
@@ -484,6 +445,39 @@ export class MapComponent implements OnChanges, AfterViewInit {
         });
       });
     });
+  }
+
+  /**
+   * Initializes Map Legend
+   */
+  private initializeLegend(contents: Map<string,string>, isGradient, displayName) {
+    var innerHTML = "<p>"+displayName+"</p>"
+
+    if(isGradient){
+      innerHTML += "<div style=\"background: linear-gradient(90deg"
+      for (var key of Object.keys(contents)){
+        innerHTML += ", "+ key
+      }
+      innerHTML += ")\" class=\"gradient_container\"></div>"
+
+    }else{
+
+      innerHTML += "<div class=\"solid_container\">"
+      for (var key of Object.keys(contents)){
+        innerHTML += "<div style=\"background: "+ key+"\"></div>"
+      }
+      innerHTML += "</div>"
+    }
+
+    innerHTML += "<ul class=\"description\">"
+    for (var key of Object.keys(contents)){
+      innerHTML += "<li>"+contents[key]+"</li>"
+    }
+    innerHTML += "</ul>"
+
+
+    this.legend.nativeElement.innerHTML = innerHTML
+    this.legend.nativeElement.classList.add('legend')
   }
 
   //
