@@ -162,7 +162,9 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
       {chapters: ['whitespots-s-bahn'], layers: ['isochrones-light_rail-15']},
       {chapters: ['whitespots-u-bahn'], layers: ['isochrones-subway-15']},
       {chapters: ['whitespots-tram'], layers: ['isochrones-tram-15']},
-      {chapters: ['whitespots-all'], layers: ['isochrones-all-15']}
+      {chapters: ['whitespots-all'], layers: ['isochrones-all-15']},
+      {chapters: ['whitespots-all-2'], layers: ['isochrones-all-15']},
+      {chapters: ['whitespots-all-3'], layers: ['isochrones-all-15']}
     ];
 
     this.sectionsProblems.forEach(section => {
