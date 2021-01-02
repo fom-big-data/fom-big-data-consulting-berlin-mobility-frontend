@@ -49,7 +49,7 @@
                    (sectionInViewportEventEmitter)="onLayerMarkerEventTriggered('understanding', $event)"></app-section>
       <app-section [height]="'500px'" [chapters]="['lebensraeume Dichte']" [layers]="['berlin-inhabitants-improved']"
                    (sectionInViewportEventEmitter)="onLayerMarkerEventTriggered('understanding', $event)"></app-section>
-      <app-section [height]="'500px'" [chapters]="['arbeitsraeume']" [layers]="['commercial', 'industrial','university','collage']"
+      <app-section [height]="'500px'" [chapters]="['arbeitsraeume']" [layers]="['commercial', 'industrial','university','college']"
                    (sectionInViewportEventEmitter)="onLayerMarkerEventTriggered('understanding', $event)"></app-section>
       <app-section [height]="'500px'" [chapters]="['strassen-infrastruktur']" [layers]="['allowed_car_speed']"
                    (sectionInViewportEventEmitter)="onLayerMarkerEventTriggered('understanding', $event)"></app-section>
@@ -77,7 +77,7 @@
                [legendContents]="{'#0af': '20 min', '#e20074': '40 min'}"
                [legendGradient]="false"
                [results]="['residential', 'commercial', 'industrial', 'allowed_car_speed', 'stations-bus',
-               'stations-light_rail', 'stations-subway', 'stations-tram', 'berlin-bicycleedges-important-ways', 'berlin-inhabitants-improved', 'university','collage']">
+               'stations-light_rail', 'stations-subway', 'stations-tram', 'berlin-bicycleedges-important-ways', 'berlin-inhabitants-improved', 'university','college']">
       </app-map>
     </div>
   </ng-container>
