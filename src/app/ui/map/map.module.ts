@@ -4,6 +4,7 @@ import {MapComponent} from './map/map.component';
 import {MatSliderModule} from '@angular/material/slider';
 import {MatButtonModule} from '@angular/material/button';
 import {HexagonMapComponent} from './hexagon-map/hexagon-map.component';
+import {DebugMapComponent} from './debug-map/debug-map.component';
 
 @NgModule({
   imports: [
@@ -11,9 +12,9 @@ import {HexagonMapComponent} from './hexagon-map/hexagon-map.component';
     MatButtonModule,
     MatSliderModule,
   ],
-  declarations: [MapComponent, HexagonMapComponent],
-  entryComponents: [MapComponent, HexagonMapComponent],
-  exports: [MapComponent, HexagonMapComponent]
+  declarations: [MapComponent, HexagonMapComponent, DebugMapComponent],
+  entryComponents: [MapComponent, HexagonMapComponent, DebugMapComponent],
+  exports: [MapComponent, HexagonMapComponent, DebugMapComponent]
 })
 export class MapModule {
 }

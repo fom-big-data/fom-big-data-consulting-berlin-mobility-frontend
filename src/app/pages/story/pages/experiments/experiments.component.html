@@ -124,5 +124,13 @@
              [zoom]="11"
              [interactiveEnabled]="true"
              [results]="['isochrones-all-15']"></app-map>
+
+    <app-debug-map class="full-width"
+                   [id]="'map-summary-detailed'"
+                   [style]="mapBoxStyleEnum.SATELLITE_STREETS_V11"
+                   [zoom]="11"
+                   [interactiveEnabled]="true"
+                   [parametrizeOpacityEnabled]="true"
+                   [results]="['isochrones-all-15', 'debug-banned-polygons']"></app-debug-map>
   </ng-container>
 </div>

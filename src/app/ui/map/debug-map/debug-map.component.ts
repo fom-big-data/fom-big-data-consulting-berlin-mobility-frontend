@@ -1,4 +1,4 @@
-import {AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, Input, OnChanges, SimpleChanges, ViewChild} from '@angular/core';
+import {AfterViewInit, ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges} from '@angular/core';
 import * as mapboxgl from 'mapbox-gl';
 import {environment} from '../../../../environments/environment';
 import {Place} from '../../../core/mapbox/model/place.model';
@@ -9,31 +9,21 @@ import {HttpClient} from '@angular/common/http';
 import {MatSliderChange} from '@angular/material/slider';
 import {Subject} from 'rxjs';
 
-import * as turf from '@turf/turf';
-import * as turfMeta from '@turf/meta';
-import RBush from 'rbush';
-import booleanPointInPolygon from '@turf/boolean-point-in-polygon';
-import {BoundingBox} from '../model/bounding-box.model';
-import {ColorRamp} from '../model/color-ramp.model';
-
-
 /**
- * Displays a hexagon map box
+ * Displays a map box
  */
 @Component({
-  selector: 'app-hexagon-map',
-  templateUrl: './hexagon-map.component.html',
-  styleUrls: ['./hexagon-map.component.scss'],
+  selector: 'app-debug-map',
+  templateUrl: './debug-map.component.html',
+  styleUrls: ['./debug-map.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HexagonMapComponent implements OnChanges, AfterViewInit {
+export class DebugMapComponent implements OnChanges, AfterViewInit {
 
   /** Unique ID for this map */
   @Input() id = UUID.toString();
   /** Height of the map */
   @Input() height = '500px';
-  /** Display name of the map */
-  @Input() displayName = '';
 
   /** Render style for Map */
   @Input() style = MapBoxStyle.STREETS_V11;
@@ -42,7 +32,7 @@ export class HexagonMapComponent implements OnChanges, AfterViewInit {
   /** Initial center of map */
   @Input() center: Location = Place.BRANDENBURG_GATE;
   /** Initial bounding box of map */
-  @Input() boundingBox: number[] = BoundingBox.BERLIN;
+  @Input() boundingBox: number[];
 
   /** List of markers to be displayed */
   @Input() markers: Location[] = [];
@@ -75,9 +65,9 @@ export class HexagonMapComponent implements OnChanges, AfterViewInit {
 
   /** Whether opacity should be parametrized or not */
   @Input() parametrizeOpacityEnabled = false;
-  /** Map of opacity values */
+  /** Map of opacities values */
   @Input() opacities = new Map<string, number>();
-  /** Initial opacity */
+  /** Initial opacities */
   @Input() initialOpacity = 100;
 
   /** Whether reset map position and zoom is enabled */
@@ -88,31 +78,11 @@ export class HexagonMapComponent implements OnChanges, AfterViewInit {
   /** List of results to be displayed  */
   @Input() results: string[] = [];
 
-  /** Hexagon edge size in km */
-  @Input() cellSize = 0.5;
-  /** Property to use aggregate data from */
-  @Input() aggregateProperty = 'mean_spatial_distance_60min';
-  /** Color ramp */
-  @Input() colorRamp = ColorRamp.LUFTDATEN_COLOR_RAMP;
-  /** Number of points that must be in hexagon to be created */
-  @Input() hexBinLimit = 0;
-  /** Value of a point that must exceeded to be counted for hexagon */
-  @Input() hexBinThreshold = 0;
-  /** Whether or not each layer should have an individual scale */
-  @Input() individualScale = false;
-
-  /** Whether to a map legend should show as gradient or not */
-  @Input() legendGradient = true;
-  /** Map of Colors and Values for Map Legend */
-  @Input() legendContents = new Map<string, string>();
-  /** Legend component */
-  @ViewChild('legend') legend: ElementRef;
-
   /** Map Box object */
   private map: mapboxgl.Map;
 
-  /** Internal subject that publishes opacity events */
-  private opacitySubject = new Subject<{ name: string, value: number }>();
+  /** Internal subject that publishes transparency events */
+  private transparencySubject = new Subject<{ name: string, value: number }>();
   /** Internal subject that publishes flyable location events */
   private flyableLocationSubject = new Subject<Location>();
 
@@ -133,7 +103,7 @@ export class HexagonMapComponent implements OnChanges, AfterViewInit {
    */
   ngOnChanges(changes: SimpleChanges) {
     this.opacities.forEach((value: number, name: string) => {
-      this.opacitySubject.next({name, value});
+      this.transparencySubject.next({name, value});
     });
   }
 
@@ -163,9 +133,6 @@ export class HexagonMapComponent implements OnChanges, AfterViewInit {
 
     // Display overlays
     this.initializeResultOverlays(this.results);
-
-    // Display Legend
-    this.initializeLegend(this.legendContents, this.legendGradient, this.displayName);
   }
 
   //
@@ -381,40 +348,6 @@ export class HexagonMapComponent implements OnChanges, AfterViewInit {
   }
 
   /**
-   * Initializes Map Legend
-   */
-  private initializeLegend(contents: Map<string, string>, isGradient, displayName) {
-    let innerHTML = '<p>' + displayName + '</p>';
-
-    if (isGradient) {
-      innerHTML += '<div style="background: linear-gradient(90deg';
-      // tslint:disable-next-line:no-shadowed-variable
-      for (const key of Object.keys(contents)) {
-        innerHTML += ', ' + key;
-      }
-      innerHTML += ')" class="gradient_container"></div>';
-
-    } else {
-
-      innerHTML += '<div class="solid_container">';
-      for (const key of Object.keys(contents)) {
-        innerHTML += '<div style="background: ' + key + '"></div>';
-      }
-      innerHTML += '</div>';
-    }
-
-    innerHTML += '<ul class="description">';
-    for (const key of Object.keys(contents)) {
-      innerHTML += '<li>' + contents[key] + '</li>';
-    }
-    innerHTML += '</ul>';
-
-
-    this.legend.nativeElement.innerHTML = innerHTML;
-    this.legend.nativeElement.classList.add('legend');
-  }
-
-  /**
    * Initializes results overlays
    *
    * @param results results
@@ -425,71 +358,84 @@ export class HexagonMapComponent implements OnChanges, AfterViewInit {
       // Base URL for results
       const baseUrl = environment.github.resultsUrl;
 
-      // Map of results
-      const resultsMap: Map<string, any> = new Map();
-
-      // Initialize scale
-      let aggregatePropertyMin = 10_000;
-      let aggregatePropertyMax = -10_000;
-      let aggregatePropertyStep = 1;
-
       results.forEach(name => {
 
-        // Download geojson for result
-        this.http.get(baseUrl + name + '.geojson', {responseType: 'text' as 'json'}).subscribe((geojsonData: any) => {
+        // Add source
+        this.map.addSource(name,
+          {
+            type: 'geojson',
+            data: baseUrl + name + '.geojson'
+          }
+        );
 
-          const processedGeojson = this.preprocessHexagonData(JSON.parse(geojsonData), this.aggregateProperty,
-            this.cellSize, this.hexBinLimit, this.hexBinThreshold);
+        // Download styling for result
+        this.http.get(baseUrl + 'styles/' + name + '.json', {responseType: 'text' as 'json'}).subscribe((data: any) => {
 
-          // Save preprocessed GeoJSON
-          resultsMap.set(name, processedGeojson);
+          // Link layer to source
+          const layer = JSON.parse(data);
+          layer['id'] = name + '-layer';
+          layer['source'] = name;
 
-          // Add source
-          if (!this.map.getSource(name)) {
-            this.map.addSource(name, {
-                type: 'geojson',
-                data: processedGeojson
-              }
-            );
+          // Get ID of first layer which contains labels
+          const firstSymbolId = this.getFirstLayerWithLabels(this.map);
+
+          // Add layer
+          this.map.addLayer(layer, firstSymbolId);
+
+          // Initialize layer transparency
+          if (layer['paint'].hasOwnProperty('fill-color')) {
+            this.map.setPaintProperty(layer['id'], 'fill-opacity', this.initialOpacity / 100);
+          }
+          if (layer['paint'].hasOwnProperty('line-color')) {
+            this.map.setPaintProperty(layer['id'], 'line-opacity', this.initialOpacity / 100);
+          }
+          if (layer['paint'].hasOwnProperty('heatmap-color')) {
+            this.map.setPaintProperty(layer['id'], 'heatmap-opacity', this.initialOpacity / 100);
+          }
+          if (layer['paint'].hasOwnProperty('circle-color')) {
+            this.map.setPaintProperty(layer['id'], 'circle-opacity', this.initialOpacity / 100);
           }
 
-          // Check if individual scale should be applied
-          if (this.individualScale) {
+          // Update layer transparency
+          this.transparencySubject.subscribe((e: { name, value }) => {
+            const layerId = e.name + '-layer';
 
-            const aggegatePropertyValues = processedGeojson.features.map(f => {
-              return f['properties']['avg'];
-            });
-            aggregatePropertyMin = Math.min(...aggegatePropertyValues);
-            aggregatePropertyMax = Math.max(...aggegatePropertyValues);
-            aggregatePropertyStep = (aggregatePropertyMax - aggregatePropertyMin) / this.colorRamp.length;
-
-            // Just draw this layer with its individual scale
-            this.initializeLayer(name, aggregatePropertyMin, aggregatePropertyStep);
-          } else {
-            // Re-calculate scale
-            resultsMap.forEach((p, _) => {
-              const aggegatePropertyValues = p.features.map(f => {
-                return f['properties']['avg'];
-              });
-              const layerAggregatePropertyMin = Math.min(...aggegatePropertyValues);
-              const layerAggregatePropertyMax = Math.max(...aggegatePropertyValues);
-
-              if (layerAggregatePropertyMin < aggregatePropertyMin) {
-                aggregatePropertyMin = layerAggregatePropertyMin;
+            if (layer.id === layerId) {
+              if (layer['paint'].hasOwnProperty('fill-color')) {
+                this.map.setPaintProperty(layerId, 'fill-opacity', e.value / 100);
               }
-              if (layerAggregatePropertyMax > aggregatePropertyMax) {
-                aggregatePropertyMax = layerAggregatePropertyMax;
+              if (layer['paint'].hasOwnProperty('line-color')) {
+                this.map.setPaintProperty(layerId, 'line-opacity', e.value / 100);
               }
-            });
+              if (layer['paint'].hasOwnProperty('heatmap-color')) {
+                this.map.setPaintProperty(layerId, 'heatmap-opacity', e.value / 100);
+              }
+              if (layer['paint'].hasOwnProperty('circle-color')) {
+                this.map.setPaintProperty(layerId, 'circle-opacity', e.value / 100);
+              }
+            }
+          });
 
-            // Re-calculate step
-            aggregatePropertyStep = (aggregatePropertyMax - aggregatePropertyMin) / this.colorRamp.length;
-
-            // Re-draw each layer with unified scale
-            resultsMap.forEach((_, n) => {
-              this.initializeLayer(n, aggregatePropertyMin, aggregatePropertyStep);
+          // Subscribe flyable locations subject
+          this.flyableLocationSubject.subscribe((location: Location) => {
+            this.map.flyTo({
+              center: [location.longitude, location.latitude],
+              zoom: location.zoom ? location.zoom : this.zoom,
+              pitch: 0,
+              bearing: 0,
+              essential: true
             });
-          }
+          });
+
+          // When a click event occurs on a feature in the states layer, open a popup at the
+          // location of the click, with description HTML from its properties.
+          this.map.on('click', name + '-layer', (e) => {
+            new mapboxgl.Popup()
+              .setLngLat(e.lngLat)
+              .setHTML(`value ${e.features[0]
+                .properties['max_spatial_distance_15min']} / coords ${e.features[0].geometry['coordinates']}`)
+              .addTo(this.map);
+          });
         });
       });
     });
@@ -500,13 +446,13 @@ export class HexagonMapComponent implements OnChanges, AfterViewInit {
   //
 
   /**
-   * Handles opacity changes
+   * Handles transparency changes
    * @param name result name
    * @param event slider event
    */
-  onOpacityChanged(name: string, event: MatSliderChange) {
+  onTransparencyChanged(name: string, event: MatSliderChange) {
     if (this.parametrizeOpacityEnabled) {
-      this.opacitySubject.next({name, value: event.value});
+      this.transparencySubject.next({name, value: event.value});
     }
   }
 
@@ -524,181 +470,6 @@ export class HexagonMapComponent implements OnChanges, AfterViewInit {
   onResetClicked() {
     const initialLocation = new Location('init', '', this.zoom, this.center.longitude, this.center.latitude);
     this.flyableLocationSubject.next(initialLocation);
-  }
-
-  //
-  // Layer helpers
-  //
-
-  /**
-   * Initializes a layer
-   * @param name layer name
-   * @param aggregatePropertyMin min value
-   * @param aggregatePropertyStep step size
-   */
-  private initializeLayer(name, aggregatePropertyMin, aggregatePropertyStep) {
-
-    // Link layer to source
-    const layer = {
-      id: '',
-      type: 'fill',
-      source: name,
-      paint: {
-        'fill-color': {
-          property: 'avg',
-          stops: this.colorRamp.map((d, i) =>
-            [aggregatePropertyMin + (i * aggregatePropertyStep), d])
-        },
-        'fill-opacity': 0.6
-      }
-    };
-    layer['id'] = name + '-layer';
-    layer['source'] = name;
-
-    // Get ID of first layer which contains labels
-    const firstSymbolId = this.getFirstLayerWithLabels(this.map);
-
-    // Remove layer
-    if (this.map.getLayer(layer['id'])) {
-      this.map.removeLayer(layer['id']);
-    }
-
-    // Add layer
-    // @ts-ignore
-    this.map.addLayer(layer, firstSymbolId);
-
-    // Initialize layer opacity
-    if (layer['paint'].hasOwnProperty('fill-color')) {
-      this.map.setPaintProperty(layer['id'], 'fill-opacity', this.initialOpacity / 100);
-    }
-    if (layer['paint'].hasOwnProperty('line-color')) {
-      this.map.setPaintProperty(layer['id'], 'line-opacity', this.initialOpacity / 100);
-    }
-    if (layer['paint'].hasOwnProperty('heatmap-color')) {
-      this.map.setPaintProperty(layer['id'], 'heatmap-opacity', this.initialOpacity / 100);
-    }
-    if (layer['paint'].hasOwnProperty('circle-color')) {
-      this.map.setPaintProperty(layer['id'], 'circle-opacity', this.initialOpacity / 100);
-    }
-
-    // Update layer opacity
-    this.opacitySubject.subscribe((e: { name, value }) => {
-      const layerId = e.name + '-layer';
-      if (layer.id === layerId) {
-        if (layer['paint'].hasOwnProperty('fill-color')) {
-          this.map.setPaintProperty(layerId, 'fill-opacity', e.value / 100);
-        }
-        if (layer['paint'].hasOwnProperty('line-color')) {
-          this.map.setPaintProperty(layerId, 'line-opacity', e.value / 100);
-        }
-        if (layer['paint'].hasOwnProperty('heatmap-color')) {
-          this.map.setPaintProperty(layerId, 'heatmap-opacity', e.value / 100);
-        }
-        if (layer['paint'].hasOwnProperty('circle-color')) {
-          this.map.setPaintProperty(layerId, 'circle-opacity', e.value / 100);
-        }
-      }
-    });
-
-    // Subscribe flyable locations subject
-    this.flyableLocationSubject.subscribe((location: Location) => {
-      this.map.flyTo({
-        center: [location.longitude, location.latitude],
-        zoom: location.zoom ? location.zoom : this.zoom,
-        pitch: 0,
-        bearing: 0,
-        essential: true
-      });
-    });
-  }
-
-  //
-  // Hexagon helpers
-  //
-
-  /**
-   * Pre-processes raw data by clustering them into hexbins
-   * @param data raw data
-   * @param aggregateProperty property
-   * @param cellSize cell size in km
-   * @param hexBinLimit hex-bin limit
-   * @param hexBinThreshold hex-bin threshold
-   *
-   * @return a geoJSON that represents polygons for each hexbin
-   */
-  private preprocessHexagonData(data: any, aggregateProperty: string, cellSize: number, hexBinLimit: number, hexBinThreshold: number): any {
-
-    // @ts-ignore
-    const hexGrid = turf.hexGrid(BoundingBox.BERLIN, cellSize);
-
-    // perform a "spatial join" on our hexGrid geometry and our crashes point data
-    const collected = this.collect(hexGrid, data, aggregateProperty, 'values', hexBinThreshold);
-
-    // get rid of polygons with no joined data, to reduce our final output file size
-    collected.features = collected.features.filter(d => {
-      return d.properties.values.length > hexBinLimit;
-    });
-
-    // Count number of values and average per hexbin
-    turfMeta.propEach(collected, props => {
-      props.count = props.values.length || 0;
-      props.avg = (props.values.reduce((a, b) => a + b, 0) / props.values.length) || 0;
-      props.raw = JSON.stringify(props.values);
-    });
-
-    // Remove the "values" property from our hexBins as it's no longer needed
-    turfMeta.propEach(collected, props => {
-      delete props.values;
-    });
-
-    return collected;
-  }
-
-  /**
-   * Assigns all point into a hexbin polygon
-   * @param polygons hexagon polygons
-   * @param points points
-   * @param inProperty in-property
-   * @param outProperty out-property
-   * @param hexBinThreshold hex-bin threshold
-   */
-  private collect(polygons, points, inProperty, outProperty, hexBinThreshold) {
-    const rtree = new RBush(6);
-
-    const treeItems = points.features.map((item) => {
-      return {
-        minX: item.geometry.coordinates[0],
-        minY: item.geometry.coordinates[1],
-        maxX: item.geometry.coordinates[0],
-        maxY: item.geometry.coordinates[1],
-        property: item.properties[inProperty]
-      };
-    });
-
-    rtree.load(treeItems);
-
-    polygons.features.forEach((poly) => {
-
-      if (!poly.properties) {
-        poly.properties = {};
-      }
-      const bbox = turf.bbox(poly);
-      const potentialPoints = rtree.search({minX: bbox[0], minY: bbox[1], maxX: bbox[2], maxY: bbox[3]});
-      const values = [];
-      potentialPoints.forEach((pt) => {
-        // @ts-ignore
-        if (booleanPointInPolygon([pt.minX, pt.minY], poly) && pt.property > hexBinThreshold) {
-          // @ts-ignore
-          values.push(pt.property);
-        }
-      });
-
-      const properties = {};
-      properties[outProperty] = values;
-      poly.properties = properties;
-    });
-
-    return polygons;
   }
 
   //
