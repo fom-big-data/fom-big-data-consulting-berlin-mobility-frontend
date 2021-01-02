@@ -74,8 +74,28 @@
                [boundingBox]="boundingBoxEnum.BERLIN"
                [initialOpacity]="0"
                [opacities]="opacitiesUnderstanding"
-               [legendContents]="{'#0af': '20 min', '#e20074': '40 min'}"
-               [legendGradient]="false"
+               [multiLegend]="true"
+               [multiLegendContents]="{'residential': {'#666':'placeholder'},
+                                       'commercial': {'#e20075': 'Wohngebiet','#e20078': 'Industrie & Handel'},
+                                       'industrial': {'#666':'placeholder'},
+                                       'allowed_car_speed': {'rgba(255,201,148,1)':'Tempo 30','rgba(86,157,179,1)':'Tempo 50' },
+                                       'stations-bus':  {'#666':'placeholder'},
+                                       'stations-light_rail': {'#666':'placeholder'},
+                                       'stations-subway': {'#666':'placeholder'},
+                                       'stations-tram': {'#666':'placeholder'},
+                                       'berlin-bicycleedges-important-ways': {'#666':'placeholder'},
+                                       'berlin-inhabitants-improved':{'#0af': '100 Einw. / KM²', '#e20074': '1000 Einw. / KM²'}}"
+               [multiLegendGradient]="{'residential': false,
+                                       'commercial': false,
+                                       'industrial': false,
+                                       'allowed_car_speed': false,
+                                       'stations-bus': false,
+                                       'stations-light_rail': false,
+                                       'stations-subway': false,
+                                       'stations-tram': false,
+                                       'berlin-bicycleedges-important-ways': false,
+                                       'berlin-inhabitants-improved':true}"
+
                [results]="['residential', 'commercial', 'industrial', 'allowed_car_speed', 'stations-bus',
                'stations-light_rail', 'stations-subway', 'stations-tram', 'berlin-bicycleedges-important-ways', 'berlin-inhabitants-improved', 'university','college']">
       </app-map>

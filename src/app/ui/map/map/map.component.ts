@@ -69,8 +69,13 @@ export class MapComponent implements OnChanges, AfterViewInit {
 
   /** Whether to a map legend should show as gradient or not */
   @Input() legendGradient = true;
+  @Input() multiLegendGradient = new Map<string, boolean>();
+  /** Whether to a map legend should show as gradient or not */
+  @Input() multiLegend = false;
   /** Map of Colors and Values for Map Legend */
   @Input() legendContents = new Map<string, string>();
+  /** Map of Colors and Values for Map Legend */
+  @Input() multiLegendContents = new Map<string, Map<string, string>>();
   //@ViewChild("legend", {read: ElementRef}) legend: ElementRef;
   @ViewChild('legend') legend: ElementRef;
 
@@ -115,6 +120,12 @@ export class MapComponent implements OnChanges, AfterViewInit {
   ngOnChanges(changes: SimpleChanges) {
     this.opacities.forEach((value: number, name: string) => {
       this.transparencySubject.next({name, value});
+      if(value == 100){
+        document.getElementById(name+'-legend').classList.add('visible')
+      }else{
+        document.getElementById(name+'-legend').classList.remove('visible')
+      }
+      console.log(name+', '+value);
     });
   }
 
@@ -144,7 +155,6 @@ export class MapComponent implements OnChanges, AfterViewInit {
 
     // Display overlays
     this.initializeResultOverlays(this.results);
-
 
     // Display Legend
     this.initializeLegend(this.legendContents, this.legendGradient, this.displayName);
@@ -452,29 +462,54 @@ export class MapComponent implements OnChanges, AfterViewInit {
    */
   private initializeLegend(contents: Map<string,string>, isGradient, displayName) {
     var innerHTML = "<p>"+displayName+"</p>"
+    if(this.multiLegend){
+      for (var layer of Object.keys(this.multiLegendContents)){
+        innerHTML += "<div class=\"multiLegendRow\" id=\""+layer+"-legend\">"
+        if(this.multiLegendGradient[layer]){
 
-    if(isGradient){
-      innerHTML += "<div style=\"background: linear-gradient(90deg"
-      for (var key of Object.keys(contents)){
-        innerHTML += ", "+ key
+          innerHTML += "<div style=\"background: linear-gradient(90deg"
+          for (var key of Object.keys(this.multiLegendContents[layer])){
+            innerHTML += ", "+ key
+          }
+          innerHTML += ")\" class=\"gradient_container\"></div>"
+
+        }else{
+          innerHTML += "<div class=\"solid_container\">"
+          for (var key of Object.keys(this.multiLegendContents[layer])){
+            innerHTML += "<div style=\"background: "+ key+"\"></div>"
+          }
+          innerHTML += "</div>"
+        }
+        innerHTML += "<ul class=\"description\">"
+        for (var key of Object.keys(this.multiLegendContents[layer])){
+          innerHTML += "<li>"+this.multiLegendContents[layer][key]+"</li>"
+        }
+        innerHTML += "</ul></div>"
       }
-      innerHTML += ")\" class=\"gradient_container\"></div>"
 
     }else{
+      if(isGradient){
+        innerHTML += "<div style=\"background: linear-gradient(90deg"
+        for (var key of Object.keys(contents)){
+          innerHTML += ", "+ key
+        }
+        innerHTML += ")\" class=\"gradient_container\"></div>"
 
-      innerHTML += "<div class=\"solid_container\">"
-      for (var key of Object.keys(contents)){
-        innerHTML += "<div style=\"background: "+ key+"\"></div>"
+      }else{
+
+        innerHTML += "<div class=\"solid_container\">"
+        for (var key of Object.keys(contents)){
+          innerHTML += "<div style=\"background: "+ key+"\"></div>"
+        }
+        innerHTML += "</div>"
       }
-      innerHTML += "</div>"
-    }
 
-    innerHTML += "<ul class=\"description\">"
-    for (var key of Object.keys(contents)){
-      innerHTML += "<li>"+contents[key]+"</li>"
+      innerHTML += "<ul class=\"description\">"
+      for (var key of Object.keys(contents)){
+        innerHTML += "<li>"+contents[key]+"</li>"
+      }
+      innerHTML += "</ul>"
     }
-    innerHTML += "</ul>"
-
 
     this.legend.nativeElement.innerHTML = innerHTML
     this.legend.nativeElement.classList.add('legend')

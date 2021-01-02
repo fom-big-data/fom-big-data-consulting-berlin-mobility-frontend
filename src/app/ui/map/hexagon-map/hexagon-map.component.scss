@@ -15,7 +15,6 @@
 .mapboxgl-popup {
   max-width: 200px;
 }
-
 .legend {
   width: 100%;
   padding-top: 10px;
@@ -51,14 +50,15 @@
 }
 ::ng-deep .legend ul.description {
   padding: 0;
-  margin: 2px;
-  margin-top: 0.2em;
   display: flex;
+  margin: 0;
   justify-content: space-between;
 }
 ::ng-deep .legend ul.description li {
   list-style: none;
   padding: 0;
+  margin-top: 0.2em;
+  margin: 2px;
 }
 
 
