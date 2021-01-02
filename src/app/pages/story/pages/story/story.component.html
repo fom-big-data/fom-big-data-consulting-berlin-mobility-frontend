@@ -172,8 +172,33 @@
            [author]="'Peter Fox: Schwarz zu Blau'"></app-quote>
 
 <div class="story-container">
-  <app-section-header #problems id="problems" title="Probleme in der Infrastruktur erkennnen"></app-section-header>
-  <app-section  [chapters]="['whitespots-intro']"></app-section>
+  <ng-container>
+    <app-section-header #problems id="problems" title="Probleme in der Infrastruktur erkennnen"></app-section-header>
+    <app-section  [chapters]="['whitespots-intro']"></app-section>
+    <div class="text-container">
+      <app-section [height]="mapHeight"
+                   [chapters]="['whitespots-auto']"
+                   [layers]="['isochrones-drive-15']"></app-section>
+    </div>
+    <div class="map-container">
+      <app-hexagon-map [id]="'map-problems-drive'"
+                       [displayName]="'Anbindungsqualität - Durchschnittliche Distanz der 15 min Isochrone'"
+                       [legendContents]="{'rgba(150, 0, 132, 0.6)': '0 KM', 'rgba(249, 168, 37, 0.6)':'8 KM', 'rgba(12, 123, 104, 0.6)': '3 km'}"
+                       [height]="mapHeight"
+                       [style]="mapBoxStyleEnum.DARK_V10"
+                       [zoom]="9"
+                       [boundingBox]="boundingBoxEnum.BERLIN"
+                       [interactiveEnabled]=false
+                       [initialOpacity]="100"
+                       [results]="['isochrones-drive-15']"
+                       [aggregateProperty]="'mean_spatial_distance_15min'"
+                       [hexBinLimit]="'3'">
+      </app-hexagon-map>
+    </div>
+  </ng-container>
+</div>
+
+<div class="story-container">
   <ng-container>
     <div class="text-container">
       <app-section *ngFor="let section of sectionsProblems"
@@ -185,7 +210,7 @@
     <div class="map-container">
       <app-hexagon-map [id]="'map-problems'"
                        [displayName]="'Anbindungsqualität - Durchschnittliche Distanz der 15 min Isochrone'"
-                       [legendContents]="{'rgba(150, 0, 132, 0.6)': '0 KM', 'rgba(249, 168, 37, 0.6)':'8 KM', 'rgba(12, 123, 104, 0.6)': '3 km'}"
+                       [legendContents]="{'rgba(150, 0, 132, 0.6)': '0 KM', 'rgba(249, 168, 37, 0.6)':'6.5 KM', 'rgba(12, 123, 104, 0.6)': '13 km'}"
                        [height]="mapHeight"
                        [style]="mapBoxStyleEnum.DARK_V10"
                        [zoom]="9"

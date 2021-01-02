@@ -156,7 +156,6 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
    */
   private initializeStoryProblems() {
     this.sectionsProblems = [
-      {chapters: ['whitespots-auto'], layers: ['isochrones-drive-15']},
       {chapters: ['whitespots-bike'], layers: ['isochrones-bike-15']},
       {chapters: ['whitespots-bus'], layers: ['isochrones-bus-15']},
       {chapters: ['whitespots-s-bahn'], layers: ['isochrones-light_rail-15']},
