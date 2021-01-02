@@ -13,24 +13,24 @@
   <ng-container>
     <app-section [chapters]="['experiment']"></app-section>
 
-    <app-hexagon-map class="full-width"
-                     [id]="'map-summary-exp'"
-                     [style]="mapBoxStyleEnum.SATELLITE_STREETS_V11"
-                     [zoom]="11"
-                     [boundingBox]="boudingBoxEnum.BERLIN"
-                     [interactiveEnabled]=true
-                     [fullScreenControlEnabled]=true
-                     [parametrizeOpacityEnabled]=true
-                     [initialOpacity]="20"
-                     [results]="[
+    <app-map class="full-width"
+             [id]="'map-summary-exp'"
+             [style]="mapBoxStyleEnum.SATELLITE_STREETS_V11"
+             [zoom]="11"
+             [boundingBox]="boudingBoxEnum.BERLIN"
+             [interactiveEnabled]=true
+             [fullScreenControlEnabled]=true
+             [parametrizeOpacityEnabled]=true
+             [initialOpacity]="20"
+             [hexResults]="[
                          'isochrones-bus-15',
                          'isochrones-light_rail-15',
                          'isochrones-subway-15',
                          'isochrones-tram-15',
                          'isochrones-all-15'
                       ]"
-                     [aggregateProperty]="'mean_spatial_distance_15min'"
-                     [colorRamp]="colorRampEnum.LUFTDATEN_COLOR_RAMP_ALARM"></app-hexagon-map>
+             [hexAggregateProperty]="'mean_spatial_distance_15min'"
+             [hexColorRamp]="colorRampEnum.LUFTDATEN_COLOR_RAMP_ALARM"></app-map>
 
     <app-map [id]="'inhabitants'" [style]="mapBoxStyleEnum.LIGHT_V10" [navigationControlEnabled]=true
              [results]="['berlin-inhabitants', 'POI-retail-commercial', 'uber_mean_speed']"></app-map>
@@ -125,12 +125,13 @@
              [interactiveEnabled]="true"
              [results]="['isochrones-all-15']"></app-map>
 
-    <app-debug-map class="full-width"
-                   [id]="'map-summary-detailed'"
-                   [style]="mapBoxStyleEnum.SATELLITE_STREETS_V11"
-                   [zoom]="11"
-                   [interactiveEnabled]="true"
-                   [parametrizeOpacityEnabled]="true"
-                   [results]="['isochrones-all-15', 'debug-banned-polygons']"></app-debug-map>
+    <app-map class="full-width"
+             [id]="'map-summary-detailed'"
+             [style]="mapBoxStyleEnum.SATELLITE_STREETS_V11"
+             [zoom]="11"
+             [interactiveEnabled]="true"
+             [parametrizeOpacityEnabled]="true"
+             [results]="['isochrones-all-15', 'debug-banned-polygons']"
+             [debug]=true></app-map>
   </ng-container>
 </div>

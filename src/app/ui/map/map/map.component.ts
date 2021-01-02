@@ -1,4 +1,4 @@
-import {AfterViewInit, ChangeDetectionStrategy, Component, Input, ViewChild, ElementRef, isDevMode, OnChanges, SimpleChanges} from '@angular/core';
+import {AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, Input, OnChanges, SimpleChanges, ViewChild} from '@angular/core';
 import * as mapboxgl from 'mapbox-gl';
 import {environment} from '../../../../environments/environment';
 import {Place} from '../../../core/mapbox/model/place.model';
@@ -8,6 +8,14 @@ import {UUID} from '../../../core/entity/model/uuid';
 import {HttpClient} from '@angular/common/http';
 import {MatSliderChange} from '@angular/material/slider';
 import {Subject} from 'rxjs';
+
+import * as turf from '@turf/turf';
+import * as turfMeta from '@turf/meta';
+import RBush from 'rbush';
+import booleanPointInPolygon from '@turf/boolean-point-in-polygon';
+import {BoundingBox} from '../model/bounding-box.model';
+import {ColorRamp} from '../model/color-ramp.model';
+
 
 /**
  * Displays a map box
@@ -20,13 +28,11 @@ import {Subject} from 'rxjs';
 })
 export class MapComponent implements OnChanges, AfterViewInit {
 
-  //map.legendControl.addLegend(document.getElementById('legend').innerHTML);
-
   /** Unique ID for this map */
   @Input() id = UUID.toString();
   /** Height of the map */
   @Input() height = '500px';
-  /** Display-Name of the map */
+  /** Display name of the map */
   @Input() displayName = '';
 
   /** Render style for Map */
@@ -36,7 +42,7 @@ export class MapComponent implements OnChanges, AfterViewInit {
   /** Initial center of map */
   @Input() center: Location = Place.BRANDENBURG_GATE;
   /** Initial bounding box of map */
-  @Input() boundingBox: number[];
+  @Input() boundingBox: number[] = BoundingBox.BERLIN;
 
   /** List of markers to be displayed */
   @Input() markers: Location[] = [];
@@ -67,23 +73,11 @@ export class MapComponent implements OnChanges, AfterViewInit {
   /** Whether touch zoom rotate is enabled or not */
   @Input() touchZoomRotateEnabled = true;
 
-  /** Whether to a map legend should show as gradient or not */
-  @Input() legendGradient = true;
-  @Input() multiLegendGradient = new Map<string, boolean>();
-  /** Whether to a map legend should show as gradient or not */
-  @Input() multiLegend = false;
-  /** Map of Colors and Values for Map Legend */
-  @Input() legendContents = new Map<string, string>();
-  /** Map of Colors and Values for Map Legend */
-  @Input() multiLegendContents = new Map<string, Map<string, string>>();
-  //@ViewChild("legend", {read: ElementRef}) legend: ElementRef;
-  @ViewChild('legend') legend: ElementRef;
-
   /** Whether opacity should be parametrized or not */
   @Input() parametrizeOpacityEnabled = false;
-  /** Map of opacities values */
+  /** Map of opacity values */
   @Input() opacities = new Map<string, number>();
-  /** Initial opacities */
+  /** Initial opacity */
   @Input() initialOpacity = 100;
 
   /** Whether reset map position and zoom is enabled */
@@ -93,12 +87,43 @@ export class MapComponent implements OnChanges, AfterViewInit {
 
   /** List of results to be displayed  */
   @Input() results: string[] = [];
+  /** List of results to be displayed as hexagons */
+  @Input() hexResults: string[] = [];
+
+  /** Hexagon edge size in km */
+  @Input() cellSize = 0.5;
+  /** Property to use aggregate data from */
+  @Input() hexAggregateProperty = 'mean_spatial_distance_60min';
+  /** Color ramp */
+  @Input() hexColorRamp = ColorRamp.LUFTDATEN_COLOR_RAMP;
+  /** Number of points that must be in hexagon to be created */
+  @Input() hexBinLimit = 0;
+  /** Value of a point that must exceeded to be counted for hexagon */
+  @Input() hexBinThreshold = 0;
+  /** Whether or not each layer should have an individual scale */
+  @Input() individualScale = false;
+
+  /** Whether to a map legend should show as gradient or not */
+  @Input() legendGradient = true;
+  /* Multi legend gradient */
+  @Input() multiLegendGradient = new Map<string, boolean>();
+  /** Whether to a map legend should show as gradient or not */
+  @Input() multiLegend = false;
+  /** Map of Colors and Values for Map Legend */
+  @Input() legendContents = new Map<string, string>();
+  /** Map of Colors and Values for Map Legend */
+  @Input() multiLegendContents = new Map<string, Map<string, string>>();
+  /** Legend component */
+  @ViewChild('legend') legend: ElementRef;
+
+  /** Whether or not debug mode is enabled */
+  @Input() debug = false;
 
   /** Map Box object */
   private map: mapboxgl.Map;
 
-  /** Internal subject that publishes transparency events */
-  private transparencySubject = new Subject<{ name: string, value: number }>();
+  /** Internal subject that publishes opacity events */
+  private opacitySubject = new Subject<{ name: string, value: number }>();
   /** Internal subject that publishes flyable location events */
   private flyableLocationSubject = new Subject<Location>();
 
@@ -119,13 +144,13 @@ export class MapComponent implements OnChanges, AfterViewInit {
    */
   ngOnChanges(changes: SimpleChanges) {
     this.opacities.forEach((value: number, name: string) => {
-      this.transparencySubject.next({name, value});
-      if(value == 100){
-        document.getElementById(name+'-legend').classList.add('visible')
-      }else{
-        document.getElementById(name+'-legend').classList.remove('visible')
+      this.opacitySubject.next({name, value});
+      if (value === 100) {
+        document.getElementById(name + '-legend').classList.add('visible');
+      } else {
+        document.getElementById(name + '-legend').classList.remove('visible');
       }
-      console.log(name+', '+value);
+      console.log(name + ', ' + value);
     });
   }
 
@@ -155,10 +180,10 @@ export class MapComponent implements OnChanges, AfterViewInit {
 
     // Display overlays
     this.initializeResultOverlays(this.results);
+    this.initializeHexResultOverlays(this.hexResults);
 
     // Display Legend
     this.initializeLegend(this.legendContents, this.legendGradient, this.displayName);
-
   }
 
   //
@@ -396,123 +421,322 @@ export class MapComponent implements OnChanges, AfterViewInit {
 
         // Download styling for result
         this.http.get(baseUrl + 'styles/' + name + '.json', {responseType: 'text' as 'json'}).subscribe((data: any) => {
-
-          // Link layer to source
-          const layer = JSON.parse(data);
-          layer['id'] = name + '-layer';
-          layer['source'] = name;
-
-          // Get ID of first layer which contains labels
-          const firstSymbolId = this.getFirstLayerWithLabels(this.map);
-
-          // Add layer
-          this.map.addLayer(layer, firstSymbolId);
-
-          // Initialize layer transparency
-          if (layer['paint'].hasOwnProperty('fill-color')) {
-            this.map.setPaintProperty(layer['id'], 'fill-opacity', this.initialOpacity / 100);
-          }
-          if (layer['paint'].hasOwnProperty('line-color')) {
-            this.map.setPaintProperty(layer['id'], 'line-opacity', this.initialOpacity / 100);
-          }
-          if (layer['paint'].hasOwnProperty('heatmap-color')) {
-            this.map.setPaintProperty(layer['id'], 'heatmap-opacity', this.initialOpacity / 100);
-          }
-          if (layer['paint'].hasOwnProperty('circle-color')) {
-            this.map.setPaintProperty(layer['id'], 'circle-opacity', this.initialOpacity / 100);
-          }
-
-          // Update layer transparency
-          this.transparencySubject.subscribe((e: { name, value }) => {
-            const layerId = e.name + '-layer';
-
-            if (layer.id === layerId) {
-              if (layer['paint'].hasOwnProperty('fill-color')) {
-                this.map.setPaintProperty(layerId, 'fill-opacity', e.value / 100);
-              }
-              if (layer['paint'].hasOwnProperty('line-color')) {
-                this.map.setPaintProperty(layerId, 'line-opacity', e.value / 100);
-              }
-              if (layer['paint'].hasOwnProperty('heatmap-color')) {
-                this.map.setPaintProperty(layerId, 'heatmap-opacity', e.value / 100);
-              }
-              if (layer['paint'].hasOwnProperty('circle-color')) {
-                this.map.setPaintProperty(layerId, 'circle-opacity', e.value / 100);
-              }
-            }
-          });
-
-          // Subscribe flyable locations subject
-          this.flyableLocationSubject.subscribe((location: Location) => {
-            this.map.flyTo({
-              center: [location.longitude, location.latitude],
-              zoom: location.zoom ? location.zoom : this.zoom,
-              pitch: 0,
-              bearing: 0,
-              essential: true
-            });
-          });
+          this.initializeLayer(name, data);
         });
       });
     });
   }
 
   /**
-   * Initializes Map Legend
+   * Initializes a layer
+   * @param name name
+   * @param data data
    */
-  private initializeLegend(contents: Map<string,string>, isGradient, displayName) {
-    var innerHTML = "<p>"+displayName+"</p>"
-    if(this.multiLegend){
-      for (var layer of Object.keys(this.multiLegendContents)){
-        innerHTML += "<div class=\"multiLegendRow\" id=\""+layer+"-legend\">"
-        if(this.multiLegendGradient[layer]){
+  private initializeLayer(name: string, data: any) {
+    // Link layer to source
+    const layer = JSON.parse(data);
+    layer['id'] = name + '-layer';
+    layer['source'] = name;
 
-          innerHTML += "<div style=\"background: linear-gradient(90deg"
-          for (var key of Object.keys(this.multiLegendContents[layer])){
-            innerHTML += ", "+ key
-          }
-          innerHTML += ")\" class=\"gradient_container\"></div>"
+    // Get ID of first layer which contains labels
+    const firstSymbolId = this.getFirstLayerWithLabels(this.map);
 
-        }else{
-          innerHTML += "<div class=\"solid_container\">"
-          for (var key of Object.keys(this.multiLegendContents[layer])){
-            innerHTML += "<div style=\"background: "+ key+"\"></div>"
-          }
-          innerHTML += "</div>"
-        }
-        innerHTML += "<ul class=\"description\">"
-        for (var key of Object.keys(this.multiLegendContents[layer])){
-          innerHTML += "<li>"+this.multiLegendContents[layer][key]+"</li>"
-        }
-        innerHTML += "</ul></div>"
-      }
-
-    }else{
-      if(isGradient){
-        innerHTML += "<div style=\"background: linear-gradient(90deg"
-        for (var key of Object.keys(contents)){
-          innerHTML += ", "+ key
-        }
-        innerHTML += ")\" class=\"gradient_container\"></div>"
-
-      }else{
-
-        innerHTML += "<div class=\"solid_container\">"
-        for (var key of Object.keys(contents)){
-          innerHTML += "<div style=\"background: "+ key+"\"></div>"
-        }
-        innerHTML += "</div>"
-      }
-
-      innerHTML += "<ul class=\"description\">"
-      for (var key of Object.keys(contents)){
-        innerHTML += "<li>"+contents[key]+"</li>"
-      }
-      innerHTML += "</ul>"
+    // Remove layer
+    if (this.map.getLayer(layer['id'])) {
+      this.map.removeLayer(layer['id']);
     }
 
-    this.legend.nativeElement.innerHTML = innerHTML
-    this.legend.nativeElement.classList.add('legend')
+    // Add layer
+    this.map.addLayer(layer, firstSymbolId);
+
+    // Initialize layer transparency
+    if (layer['paint'].hasOwnProperty('fill-color')) {
+      this.map.setPaintProperty(layer['id'], 'fill-opacity', this.initialOpacity / 100);
+    }
+    if (layer['paint'].hasOwnProperty('line-color')) {
+      this.map.setPaintProperty(layer['id'], 'line-opacity', this.initialOpacity / 100);
+    }
+    if (layer['paint'].hasOwnProperty('heatmap-color')) {
+      this.map.setPaintProperty(layer['id'], 'heatmap-opacity', this.initialOpacity / 100);
+    }
+    if (layer['paint'].hasOwnProperty('circle-color')) {
+      this.map.setPaintProperty(layer['id'], 'circle-opacity', this.initialOpacity / 100);
+    }
+
+    // Update layer transparency
+    this.opacitySubject.subscribe((e: { name, value }) => {
+      const layerId = e.name + '-layer';
+
+      if (layer.id === layerId) {
+        if (layer['paint'].hasOwnProperty('fill-color')) {
+          this.map.setPaintProperty(layerId, 'fill-opacity', e.value / 100);
+        }
+        if (layer['paint'].hasOwnProperty('line-color')) {
+          this.map.setPaintProperty(layerId, 'line-opacity', e.value / 100);
+        }
+        if (layer['paint'].hasOwnProperty('heatmap-color')) {
+          this.map.setPaintProperty(layerId, 'heatmap-opacity', e.value / 100);
+        }
+        if (layer['paint'].hasOwnProperty('circle-color')) {
+          this.map.setPaintProperty(layerId, 'circle-opacity', e.value / 100);
+        }
+      }
+    });
+
+    // Subscribe flyable locations subject
+    this.flyableLocationSubject.subscribe((location: Location) => {
+      this.map.flyTo({
+        center: [location.longitude, location.latitude],
+        zoom: location.zoom ? location.zoom : this.zoom,
+        pitch: 0,
+        bearing: 0,
+        essential: true
+      });
+    });
+
+    // Check if debug mode is enabled
+    if (this.debug) {
+      this.map.on('click', name + '-layer', (e) => {
+        new mapboxgl.Popup()
+          .setLngLat(e.lngLat)
+          .setHTML(`value ${e.features[0]
+            .properties['max_spatial_distance_15min']} / coords ${e.features[0].geometry['coordinates']}`)
+          .addTo(this.map);
+      });
+    }
+  }
+
+  /**
+   * Initializes hex results overlays
+   *
+   * @param results results
+   */
+  private initializeHexResultOverlays(results: string[]) {
+    this.map.on('load', () => {
+
+      // Base URL for results
+      const baseUrl = environment.github.resultsUrl;
+
+      // Map of results
+      const resultsMap: Map<string, any> = new Map();
+
+      // Initialize scale
+      let aggregatePropertyMin = 10_000;
+      let aggregatePropertyMax = -10_000;
+      let aggregatePropertyStep = 1;
+
+      results.forEach(name => {
+
+        // Download geojson for result
+        this.http.get(baseUrl + name + '.geojson', {responseType: 'text' as 'json'}).subscribe((geojsonData: any) => {
+
+          const processedGeojson = this.preprocessHexagonData(JSON.parse(geojsonData), this.hexAggregateProperty,
+            this.cellSize, this.hexBinLimit, this.hexBinThreshold);
+
+          // Save preprocessed GeoJSON
+          resultsMap.set(name, processedGeojson);
+
+          // Add source
+          if (!this.map.getSource(name)) {
+            this.map.addSource(name, {
+                type: 'geojson',
+                data: processedGeojson
+              }
+            );
+          }
+
+          // Check if individual scale should be applied
+          if (this.individualScale) {
+
+            const aggegatePropertyValues = processedGeojson.features.map(f => {
+              return f['properties']['avg'];
+            });
+            aggregatePropertyMin = Math.min(...aggegatePropertyValues);
+            aggregatePropertyMax = Math.max(...aggegatePropertyValues);
+            aggregatePropertyStep = (aggregatePropertyMax - aggregatePropertyMin) / this.hexColorRamp.length;
+
+            // Just draw this layer with its individual scale
+            this.initializeHexLayer(name, aggregatePropertyMin, aggregatePropertyStep);
+          } else {
+            // Re-calculate scale
+            resultsMap.forEach((p, _) => {
+              const aggegatePropertyValues = p.features.map(f => {
+                return f['properties']['avg'];
+              });
+              const layerAggregatePropertyMin = Math.min(...aggegatePropertyValues);
+              const layerAggregatePropertyMax = Math.max(...aggegatePropertyValues);
+
+              if (layerAggregatePropertyMin < aggregatePropertyMin) {
+                aggregatePropertyMin = layerAggregatePropertyMin;
+              }
+              if (layerAggregatePropertyMax > aggregatePropertyMax) {
+                aggregatePropertyMax = layerAggregatePropertyMax;
+              }
+            });
+
+            // Re-calculate step
+            aggregatePropertyStep = (aggregatePropertyMax - aggregatePropertyMin) / this.hexColorRamp.length;
+
+            // Re-draw each layer with unified scale
+            resultsMap.forEach((_, n) => {
+              this.initializeHexLayer(n, aggregatePropertyMin, aggregatePropertyStep);
+            });
+          }
+        });
+      });
+    });
+  }
+
+  /**
+   * Initializes a hex layer
+   * @param name layer name
+   * @param aggregatePropertyMin min value
+   * @param aggregatePropertyStep step size
+   */
+  private initializeHexLayer(name, aggregatePropertyMin, aggregatePropertyStep) {
+
+    // Link layer to source
+    const layer = {
+      id: '',
+      type: 'fill',
+      source: name,
+      paint: {
+        'fill-color': {
+          property: 'avg',
+          stops: this.hexColorRamp.map((d, i) =>
+            [aggregatePropertyMin + (i * aggregatePropertyStep), d])
+        },
+        'fill-opacity': 0.6
+      }
+    };
+    layer['id'] = name + '-layer';
+    layer['source'] = name;
+
+    // Get ID of first layer which contains labels
+    const firstSymbolId = this.getFirstLayerWithLabels(this.map);
+
+    // Remove layer
+    if (this.map.getLayer(layer['id'])) {
+      this.map.removeLayer(layer['id']);
+    }
+
+    // Add layer
+    // @ts-ignore
+    this.map.addLayer(layer, firstSymbolId);
+
+    // Initialize layer opacity
+    if (layer['paint'].hasOwnProperty('fill-color')) {
+      this.map.setPaintProperty(layer['id'], 'fill-opacity', this.initialOpacity / 100);
+    }
+    if (layer['paint'].hasOwnProperty('line-color')) {
+      this.map.setPaintProperty(layer['id'], 'line-opacity', this.initialOpacity / 100);
+    }
+    if (layer['paint'].hasOwnProperty('heatmap-color')) {
+      this.map.setPaintProperty(layer['id'], 'heatmap-opacity', this.initialOpacity / 100);
+    }
+    if (layer['paint'].hasOwnProperty('circle-color')) {
+      this.map.setPaintProperty(layer['id'], 'circle-opacity', this.initialOpacity / 100);
+    }
+
+    // Update layer opacity
+    this.opacitySubject.subscribe((e: { name, value }) => {
+      const layerId = e.name + '-layer';
+      if (layer.id === layerId) {
+        if (layer['paint'].hasOwnProperty('fill-color')) {
+          this.map.setPaintProperty(layerId, 'fill-opacity', e.value / 100);
+        }
+        if (layer['paint'].hasOwnProperty('line-color')) {
+          this.map.setPaintProperty(layerId, 'line-opacity', e.value / 100);
+        }
+        if (layer['paint'].hasOwnProperty('heatmap-color')) {
+          this.map.setPaintProperty(layerId, 'heatmap-opacity', e.value / 100);
+        }
+        if (layer['paint'].hasOwnProperty('circle-color')) {
+          this.map.setPaintProperty(layerId, 'circle-opacity', e.value / 100);
+        }
+      }
+    });
+
+    // Subscribe flyable locations subject
+    this.flyableLocationSubject.subscribe((location: Location) => {
+      this.map.flyTo({
+        center: [location.longitude, location.latitude],
+        zoom: location.zoom ? location.zoom : this.zoom,
+        pitch: 0,
+        bearing: 0,
+        essential: true
+      });
+    });
+
+    // Check if debug mode is enabled
+    if (this.debug) {
+      this.map.on('click', name + '-layer', (e) => {
+        new mapboxgl.Popup()
+          .setLngLat(e.lngLat)
+          .setHTML(`value ${e.features[0]
+            .properties['max_spatial_distance_15min']} / coords ${e.features[0].geometry['coordinates']}`)
+          .addTo(this.map);
+      });
+    }
+  }
+
+  /**
+   * Initializes Map Legend
+   */
+  private initializeLegend(contents: Map<string, string>, isGradient, displayName) {
+    let innerHTML = '<p>' + displayName + '</p>';
+    if (this.multiLegend) {
+      for (const layer of Object.keys(this.multiLegendContents)) {
+        innerHTML += '<div class="multiLegendRow" id="' + layer + '-legend">';
+        if (this.multiLegendGradient[layer]) {
+
+          innerHTML += '<div style="background: linear-gradient(90deg';
+          // tslint:disable-next-line:no-shadowed-variable
+          for (const key of Object.keys(this.multiLegendContents[layer])) {
+            innerHTML += ', ' + key;
+          }
+          innerHTML += ')" class="gradient_container"></div>';
+
+        } else {
+          innerHTML += '<div class="solid_container">';
+          for (const key of Object.keys(this.multiLegendContents[layer])) {
+            innerHTML += '<div style="background: ' + key + '"></div>';
+          }
+          innerHTML += '</div>';
+        }
+        innerHTML += '<ul class="description">';
+        for (const key of Object.keys(this.multiLegendContents[layer])) {
+          innerHTML += '<li>' + this.multiLegendContents[layer][key] + '</li>';
+        }
+        innerHTML += '</ul></div>';
+      }
+
+    } else {
+      if (isGradient) {
+        innerHTML += '<div style="background: linear-gradient(90deg';
+        for (const key of Object.keys(contents)) {
+          innerHTML += ', ' + key;
+        }
+        innerHTML += ')" class="gradient_container"></div>';
+
+      } else {
+
+        innerHTML += '<div class="solid_container">';
+        for (const key of Object.keys(contents)) {
+          innerHTML += '<div style="background: ' + key + '"></div>';
+        }
+        innerHTML += '</div>';
+      }
+
+      innerHTML += '<ul class="description">';
+      for (const key of Object.keys(contents)) {
+        innerHTML += '<li>' + contents[key] + '</li>';
+      }
+      innerHTML += '</ul>';
+    }
+
+    this.legend.nativeElement.innerHTML = innerHTML;
+    this.legend.nativeElement.classList.add('legend');
   }
 
   //
@@ -520,13 +744,13 @@ export class MapComponent implements OnChanges, AfterViewInit {
   //
 
   /**
-   * Handles transparency changes
+   * Handles opacity changes
    * @param name result name
    * @param event slider event
    */
-  onTransparencyChanged(name: string, event: MatSliderChange) {
+  onOpacityChanged(name: string, event: MatSliderChange) {
     if (this.parametrizeOpacityEnabled) {
-      this.transparencySubject.next({name, value: event.value});
+      this.opacitySubject.next({name, value: event.value});
     }
   }
 
@@ -544,6 +768,95 @@ export class MapComponent implements OnChanges, AfterViewInit {
   onResetClicked() {
     const initialLocation = new Location('init', '', this.zoom, this.center.longitude, this.center.latitude);
     this.flyableLocationSubject.next(initialLocation);
+  }
+
+  //
+  // Hexagon helpers
+  //
+
+  /**
+   * Pre-processes raw data by clustering them into hexbins
+   * @param data raw data
+   * @param aggregateProperty property
+   * @param cellSize cell size in km
+   * @param hexBinLimit hex-bin limit
+   * @param hexBinThreshold hex-bin threshold
+   *
+   * @return a geoJSON that represents polygons for each hexbin
+   */
+  private preprocessHexagonData(data: any, aggregateProperty: string, cellSize: number, hexBinLimit: number, hexBinThreshold: number): any {
+
+    // @ts-ignore
+    const hexGrid = turf.hexGrid(BoundingBox.BERLIN, cellSize);
+
+    // perform a "spatial join" on our hexGrid geometry and our crashes point data
+    const collected = this.collect(hexGrid, data, aggregateProperty, 'values', hexBinThreshold);
+
+    // get rid of polygons with no joined data, to reduce our final output file size
+    collected.features = collected.features.filter(d => {
+      return d.properties.values.length > hexBinLimit;
+    });
+
+    // Count number of values and average per hexbin
+    turfMeta.propEach(collected, props => {
+      props.count = props.values.length || 0;
+      props.avg = (props.values.reduce((a, b) => a + b, 0) / props.values.length) || 0;
+      props.raw = JSON.stringify(props.values);
+    });
+
+    // Remove the "values" property from our hexBins as it's no longer needed
+    turfMeta.propEach(collected, props => {
+      delete props.values;
+    });
+
+    return collected;
+  }
+
+  /**
+   * Assigns all point into a hexbin polygon
+   * @param polygons hexagon polygons
+   * @param points points
+   * @param inProperty in-property
+   * @param outProperty out-property
+   * @param hexBinThreshold hex-bin threshold
+   */
+  private collect(polygons, points, inProperty, outProperty, hexBinThreshold) {
+    const rtree = new RBush(6);
+
+    const treeItems = points.features.map((item) => {
+      return {
+        minX: item.geometry.coordinates[0],
+        minY: item.geometry.coordinates[1],
+        maxX: item.geometry.coordinates[0],
+        maxY: item.geometry.coordinates[1],
+        property: item.properties[inProperty]
+      };
+    });
+
+    rtree.load(treeItems);
+
+    polygons.features.forEach((poly) => {
+
+      if (!poly.properties) {
+        poly.properties = {};
+      }
+      const bbox = turf.bbox(poly);
+      const potentialPoints = rtree.search({minX: bbox[0], minY: bbox[1], maxX: bbox[2], maxY: bbox[3]});
+      const values = [];
+      potentialPoints.forEach((pt) => {
+        // @ts-ignore
+        if (booleanPointInPolygon([pt.minX, pt.minY], poly) && pt.property > hexBinThreshold) {
+          // @ts-ignore
+          values.push(pt.property);
+        }
+      });
+
+      const properties = {};
+      properties[outProperty] = values;
+      poly.properties = properties;
+    });
+
+    return polygons;
   }
 
   //
