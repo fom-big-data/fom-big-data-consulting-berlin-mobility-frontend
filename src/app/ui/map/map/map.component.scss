@@ -43,7 +43,7 @@
   //background: linear-gradient(90deg, blue, green, red, black);
 }
 ::ng-deep .legend .multiLegendRow{
-  overflow-y: hidden;
+  overflow: hidden;
   height: 0em;
   opacity: 0;
   transition: all 0.3s ease-in;
