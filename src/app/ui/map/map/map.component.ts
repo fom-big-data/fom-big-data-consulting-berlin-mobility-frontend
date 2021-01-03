@@ -145,12 +145,6 @@ export class MapComponent implements OnChanges, AfterViewInit {
   ngOnChanges(changes: SimpleChanges) {
     this.opacities.forEach((value: number, name: string) => {
       this.opacitySubject.next({name, value});
-      if (value === 100) {
-        document.getElementById(name + '-legend').classList.add('visible');
-      } else {
-        document.getElementById(name + '-legend').classList.remove('visible');
-      }
-      console.log(name + ', ' + value);
     });
   }
 
@@ -181,9 +175,6 @@ export class MapComponent implements OnChanges, AfterViewInit {
     // Display overlays
     this.initializeResultOverlays(this.results);
     this.initializeHexResultOverlays(this.hexResults);
-
-    // Display Legend
-    this.initializeLegend(this.legendContents, this.legendGradient, this.displayName);
   }
 
   //
@@ -678,65 +669,6 @@ export class MapComponent implements OnChanges, AfterViewInit {
           .addTo(this.map);
       });
     }
-  }
-
-  /**
-   * Initializes Map Legend
-   */
-  private initializeLegend(contents: Map<string, string>, isGradient, displayName) {
-    let innerHTML = '<p>' + displayName + '</p>';
-    if (this.multiLegend) {
-      for (const layer of Object.keys(this.multiLegendContents)) {
-        innerHTML += '<div class="multiLegendRow" id="' + layer + '-legend">';
-        if (this.multiLegendGradient[layer]) {
-
-          innerHTML += '<div style="background: linear-gradient(90deg';
-          // tslint:disable-next-line:no-shadowed-variable
-          for (const key of Object.keys(this.multiLegendContents[layer])) {
-            innerHTML += ', ' + key;
-          }
-          innerHTML += ')" class="gradient_container"></div>';
-
-        } else {
-          innerHTML += '<div class="solid_container">';
-          for (const key of Object.keys(this.multiLegendContents[layer])) {
-            innerHTML += '<div style="background: ' + key + '"></div>';
-          }
-          innerHTML += '</div>';
-        }
-        innerHTML += '<ul class="description">';
-        for (const key of Object.keys(this.multiLegendContents[layer])) {
-          innerHTML += '<li>' + this.multiLegendContents[layer][key] + '</li>';
-        }
-        innerHTML += '</ul></div>';
-      }
-
-    } else {
-      if (isGradient) {
-        innerHTML += '<div style="background: linear-gradient(90deg';
-        for (const key of Object.keys(contents)) {
-          innerHTML += ', ' + key;
-        }
-        innerHTML += ')" class="gradient_container"></div>';
-
-      } else {
-
-        innerHTML += '<div class="solid_container">';
-        for (const key of Object.keys(contents)) {
-          innerHTML += '<div style="background: ' + key + '"></div>';
-        }
-        innerHTML += '</div>';
-      }
-
-      innerHTML += '<ul class="description">';
-      for (const key of Object.keys(contents)) {
-        innerHTML += '<li>' + contents[key] + '</li>';
-      }
-      innerHTML += '</ul>';
-    }
-
-    this.legend.nativeElement.innerHTML = innerHTML;
-    this.legend.nativeElement.classList.add('legend');
   }
 
   //

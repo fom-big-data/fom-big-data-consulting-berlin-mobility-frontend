@@ -3,6 +3,7 @@ import {CommonModule} from '@angular/common';
 import {MapComponent} from './map/map.component';
 import {MatSliderModule} from '@angular/material/slider';
 import {MatButtonModule} from '@angular/material/button';
+import {LegendComponent} from './legend/legend.component';
 
 @NgModule({
   imports: [
@@ -10,7 +11,7 @@ import {MatButtonModule} from '@angular/material/button';
     MatButtonModule,
     MatSliderModule,
   ],
-  declarations: [MapComponent],
+  declarations: [MapComponent, LegendComponent],
   entryComponents: [MapComponent],
   exports: [MapComponent]
 })
