@@ -81,6 +81,8 @@ export class MapComponent implements OnChanges, AfterViewInit {
   @Input() initialOpacity = 100;
   /** Fly-to location */
   @Input() flyToLocation: Location;
+  /** Fly-to bounding box */
+  @Input() flyToBoundingBox: BoundingBox;
 
   /** Whether reset map position and zoom is enabled */
   @Input() resetEnabled = false;
@@ -128,6 +130,8 @@ export class MapComponent implements OnChanges, AfterViewInit {
   private opacitySubject = new Subject<{ name: string, value: number }>();
   /** Internal subject that publishes flyable location events */
   private flyableLocationSubject = new Subject<Location>();
+  /** Internal subject that publishes flyable bounding box events */
+  private flyableBoundingBoxSubject = new Subject<BoundingBox>();
 
   /**
    * Constructor
@@ -154,6 +158,9 @@ export class MapComponent implements OnChanges, AfterViewInit {
     if (this.flyToLocation != null) {
       this.flyableLocationSubject.next(this.flyToLocation);
     }
+    if (this.flyToBoundingBox != null) {
+      this.flyableBoundingBoxSubject.next(this.flyToBoundingBox);
+    }
   }
 
   /**
@@ -179,6 +186,8 @@ export class MapComponent implements OnChanges, AfterViewInit {
     this.initializeKeyboard(this.keyboardEnabled);
     this.initializeDoubleClickZoom(this.doubleClickZoomEnabled);
     this.initializeTouchZoomRotate(this.touchZoomRotateEnabled);
+
+    this.initializeFlyTo();
 
     // Display overlays
     this.initializeResultOverlays(this.results);
@@ -398,6 +407,28 @@ export class MapComponent implements OnChanges, AfterViewInit {
   }
 
   /**
+   * Initializes subscription of fly-to events
+   */
+  private initializeFlyTo() {
+    // Subscribe flyable locations subject
+    this.flyableLocationSubject.subscribe((location: Location) => {
+      this.map.flyTo({
+        center: [location.longitude, location.latitude],
+        zoom: location.zoom ? location.zoom : this.zoom,
+        pitch: 0,
+        bearing: 0,
+        essential: true
+      });
+    });
+
+    // Subscribe flyable locations subject
+    this.flyableBoundingBoxSubject.subscribe((boundingBox: BoundingBox) => {
+      // @ts-ignore
+      this.map.fitBounds(boundingBox);
+    });
+  }
+
+  /**
    * Initializes results overlays
    *
    * @param results results
@@ -480,17 +511,6 @@ export class MapComponent implements OnChanges, AfterViewInit {
           this.map.setPaintProperty(layerId, 'circle-opacity', e.value / 100);
         }
       }
-    });
-
-    // Subscribe flyable locations subject
-    this.flyableLocationSubject.subscribe((location: Location) => {
-      this.map.flyTo({
-        center: [location.longitude, location.latitude],
-        zoom: location.zoom ? location.zoom : this.zoom,
-        pitch: 0,
-        bearing: 0,
-        essential: true
-      });
     });
 
     // Check if debug mode is enabled
@@ -654,17 +674,6 @@ export class MapComponent implements OnChanges, AfterViewInit {
           this.map.setPaintProperty(layerId, 'circle-opacity', e.value / 100);
         }
       }
-    });
-
-    // Subscribe flyable locations subject
-    this.flyableLocationSubject.subscribe((location: Location) => {
-      this.map.flyTo({
-        center: [location.longitude, location.latitude],
-        zoom: location.zoom ? location.zoom : this.zoom,
-        pitch: 0,
-        bearing: 0,
-        essential: true
-      });
     });
 
     // Check if debug mode is enabled

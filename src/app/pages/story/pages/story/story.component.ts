@@ -86,6 +86,8 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
 
   /** Fly-to location for map named 'whitespots' */
   flyToLocationWhitespots: Location;
+  /** Fly-to bounding box for map named 'whitespots' */
+  flyToBoundingBoxWhitespots: BoundingBox;
 
   /** True if app is started in dev mode */
   isDev = isDevMode();
@@ -214,66 +216,71 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
    * @param mapName map name to target
    * @param event event
    */
-  onLayerMarkerEventTriggered(mapName: string,
-                              event: { layers: string[], flyToLocation: Location, opacity: number, clearOthers: boolean }) {
-    if (event.layers != null) {
-      if (mapName === 'understanding') {
-        if (event.clearOthers) {
-          this.opacitiesUnderstanding.forEach((value: number, key: string) => {
-            this.opacitiesUnderstanding.set(key, 0);
-          });
-        }
-
-        event.layers.forEach(layer => {
-          this.opacitiesUnderstanding.set(layer, event.opacity);
+  onLayerMarkerEventTriggered(mapName: string, event: {
+    layers: string[],
+    flyToLocation: Location,
+    flyToBoundingBox: BoundingBox,
+    opacity: number,
+    clearOthers: boolean
+  }) {
+    if (mapName === 'understanding') {
+      if (event.clearOthers) {
+        this.opacitiesUnderstanding.forEach((value: number, key: string) => {
+          this.opacitiesUnderstanding.set(key, 0);
         });
-        this.opacitiesUnderstanding = new Map(this.opacitiesUnderstanding);
       }
 
-      if (mapName === 'visibility-walk') {
-        if (event.clearOthers) {
-          this.opacitiesVisibilityWalk.forEach((value: number, key: string) => {
-            this.opacitiesVisibilityWalk.set(key, 0);
-          });
-        }
-
-        event.layers.forEach(layer => {
-          this.opacitiesVisibilityWalk.set(layer, event.opacity);
-        });
-        this.opacitiesVisibilityWalk = new Map(this.opacitiesVisibilityWalk);
-      }
-
-      if (mapName === 'visibility-transport') {
-        if (event.clearOthers) {
-          this.opacitiesVisibilityTransport.forEach((value: number, key: string) => {
-            this.opacitiesVisibilityTransport.set(key, 0);
-          });
-        }
-
-        event.layers.forEach(layer => {
-          this.opacitiesVisibilityTransport.set(layer, event.opacity);
-        });
-        this.opacitiesVisibilityTransport = new Map(this.opacitiesVisibilityTransport);
-      }
-
-      if (mapName === 'problems') {
-        if (event.clearOthers) {
-          this.opacitiesProblems.forEach((value: number, key: string) => {
-            this.opacitiesProblems.set(key, 0);
-          });
-        }
-
-        event.layers.forEach(layer => {
-          this.opacitiesProblems.set(layer, event.opacity);
-        });
-        this.opacitiesProblems = new Map(this.opacitiesProblems);
-      }
+      event.layers.forEach(layer => {
+        this.opacitiesUnderstanding.set(layer, event.opacity);
+      });
+      this.opacitiesUnderstanding = new Map(this.opacitiesUnderstanding);
     }
 
-    if (event.flyToLocation != null) {
-      if (mapName === 'whitespots') {
-        this.flyToLocationWhitespots = event.flyToLocation;
+    if (mapName === 'visibility-walk') {
+      if (event.clearOthers) {
+        this.opacitiesVisibilityWalk.forEach((value: number, key: string) => {
+          this.opacitiesVisibilityWalk.set(key, 0);
+        });
       }
+
+      event.layers.forEach(layer => {
+        this.opacitiesVisibilityWalk.set(layer, event.opacity);
+      });
+      this.opacitiesVisibilityWalk = new Map(this.opacitiesVisibilityWalk);
+    }
+
+    if (mapName === 'visibility-transport') {
+      if (event.clearOthers) {
+        this.opacitiesVisibilityTransport.forEach((value: number, key: string) => {
+          this.opacitiesVisibilityTransport.set(key, 0);
+        });
+      }
+
+      event.layers.forEach(layer => {
+        this.opacitiesVisibilityTransport.set(layer, event.opacity);
+      });
+      this.opacitiesVisibilityTransport = new Map(this.opacitiesVisibilityTransport);
+    }
+
+    if (mapName === 'problems') {
+      if (event.clearOthers) {
+        this.opacitiesProblems.forEach((value: number, key: string) => {
+          this.opacitiesProblems.set(key, 0);
+        });
+      }
+
+      event.layers.forEach(layer => {
+        this.opacitiesProblems.set(layer, event.opacity);
+      });
+      this.opacitiesProblems = new Map(this.opacitiesProblems);
+    }
+
+    if (mapName === 'whitespots') {
+      this.flyToLocationWhitespots = event.flyToLocation;
+    }
+
+    if (mapName === 'whitespots') {
+      this.flyToBoundingBoxWhitespots = event.flyToBoundingBox;
     }
   }
 

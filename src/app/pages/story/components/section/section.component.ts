@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../../../environments/environment';
 import {Location} from '../../../../core/mapbox/model/location.model';
+import {BoundingBox} from '../../../../ui/map/model/bounding-box.model';
 
 /**
  * Displays a section
@@ -22,6 +23,8 @@ export class SectionComponent implements OnInit {
   @Input() layers = null;
   /** Fly-to location */
   @Input() flyToLocation: Location = null;
+  /** Fly-to bounding box */
+  @Input() flyToBoundingBox: BoundingBox = null;
   /** Opacity */
   @Input() opacity = 100;
   /** Whether or not other layers should be made transparent */
@@ -32,6 +35,7 @@ export class SectionComponent implements OnInit {
   @Output() sectionInViewportEventEmitter = new EventEmitter<{
     layers: string[],
     flyToLocation: Location,
+    flyToBoundingBox: BoundingBox,
     opacity: number,
     clearOthers: boolean
   }>();
@@ -133,6 +137,7 @@ export class SectionComponent implements OnInit {
       this.sectionInViewportEventEmitter.emit({
         layers: this.layers,
         flyToLocation: this.flyToLocation,
+        flyToBoundingBox: this.flyToBoundingBox,
         opacity: this.opacity,
         clearOthers: this.clearOthers
       });
@@ -143,6 +148,7 @@ export class SectionComponent implements OnInit {
         this.sectionInViewportEventEmitter.emit({
           layers: this.layers,
           flyToLocation: this.flyToLocation,
+          flyToBoundingBox: this.flyToBoundingBox,
           opacity: 0,
           clearOthers: this.clearOthers
         });
