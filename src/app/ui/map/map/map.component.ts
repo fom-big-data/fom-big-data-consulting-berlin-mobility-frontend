@@ -109,7 +109,7 @@ export class MapComponent implements OnChanges, AfterViewInit {
 
   /** Whether to a map legend should show as gradient or not */
   @Input() legendGradient = true;
-  /* Multi legend gradient */
+  /** Multi legend gradient */
   @Input() multiLegendGradient = new Map<string, boolean>();
   /** Whether to a map legend should show as gradient or not */
   @Input() multiLegend = false;
