@@ -22,6 +22,16 @@
       (input)="onOpacityChanged(result, $event)">
     </mat-slider>
   </div>
+  <div *ngFor="let result of hexResults">
+    <span class="layer-label">{{ result }}</span>
+    <mat-slider
+      [value]="100"
+      [min]=0
+      [max]=100
+      [step]=1
+      (input)="onOpacityChanged(result, $event)">
+    </mat-slider>
+  </div>
 </ng-container>
 
 <div *ngIf="flyableLocations.length > 0" class="flyable-locations">
