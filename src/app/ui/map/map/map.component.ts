@@ -79,6 +79,8 @@ export class MapComponent implements OnChanges, AfterViewInit {
   @Input() opacities = new Map<string, number>();
   /** Initial opacity */
   @Input() initialOpacity = 100;
+  /** Fly-to location */
+  @Input() flyToLocation: Location;
 
   /** Whether reset map position and zoom is enabled */
   @Input() resetEnabled = false;
@@ -143,9 +145,15 @@ export class MapComponent implements OnChanges, AfterViewInit {
    * @param changes changes
    */
   ngOnChanges(changes: SimpleChanges) {
-    this.opacities.forEach((value: number, name: string) => {
-      this.opacitySubject.next({name, value});
-    });
+    if (this.opacities != null) {
+      this.opacities.forEach((value: number, name: string) => {
+        this.opacitySubject.next({name, value});
+      });
+    }
+
+    if (this.flyToLocation != null) {
+      this.flyableLocationSubject.next(this.flyToLocation);
+    }
   }
 
   /**

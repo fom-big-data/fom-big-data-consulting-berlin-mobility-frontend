@@ -7,6 +7,7 @@ import {takeUntil} from 'rxjs/operators';
 import {HttpClient} from '@angular/common/http';
 import {MatToolbar} from '@angular/material/toolbar';
 import {Place} from '../../../../core/mapbox/model/place.model';
+import {Location} from '../../../../core/mapbox/model/location.model';
 import {ColorRamp} from '../../../../ui/map/model/color-ramp.model';
 import {BoundingBox} from '../../../../ui/map/model/bounding-box.model';
 
@@ -19,6 +20,8 @@ export interface Section {
   chapters: string[];
   /** Layers contained in this sections */
   layers: string[];
+  /** Place to fly to when section in displayed */
+  flyToLocation: Location;
 }
 
 /**
@@ -62,6 +65,8 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
   sectionsVisibilityTransport: Section[] = [];
   /** Sections to be displayed in story container 'problems' */
   sectionsProblems: Section[] = [];
+  /** Sections to be displayed in story container 'whitespots' */
+  sectionsWhitespot: Section[] = [];
 
   /** Results to be displayed in story container 'visibility-walk' */
   resultsVisibilityWalk: string[] = [];
@@ -78,6 +83,9 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
   opacitiesVisibilityTransport = new Map<string, number>();
   /** Opacities for map named 'problems' */
   opacitiesProblems = new Map<string, number>();
+
+  /** Fly-to location for map named 'whitespots' */
+  flyToLocationWhitespots: Location;
 
   /** True if app is started in dev mode */
   isDev = isDevMode();
@@ -100,6 +108,7 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnInit() {
     this.initializeStoryVisibility();
     this.initializeStoryProblems();
+    this.initializeStoryWhitespots();
   }
 
   /**
@@ -136,10 +145,18 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
   private initializeStoryVisibility() {
     this.sectionsVisibilityWalk = [];
     [...Array(29)].forEach((_, index) => {
-      this.sectionsVisibilityWalk.push({chapters: [], layers: [`isochrones-walk-${index + 1}-52.5119408-13.3161495`]});
+      this.sectionsVisibilityWalk.push({
+        chapters: [],
+        layers: [`isochrones-walk-${index + 1}-52.5119408-13.3161495`],
+        flyToLocation: null
+      });
     });
     [...Array(29)].forEach((_, index) => {
-      this.sectionsVisibilityTransport.push({chapters: [], layers: [`isochrones-subway-${index + 1}-52.5119408-13.3161495`]});
+      this.sectionsVisibilityTransport.push({
+        chapters: [],
+        layers: [`isochrones-subway-${index + 1}-52.5119408-13.3161495`],
+        flyToLocation: null
+      });
     });
 
     // Aggregate layers to be displayed on map
@@ -156,14 +173,31 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
    */
   private initializeStoryProblems() {
     this.sectionsProblems = [
-      {chapters: ['whitespots-bike'], layers: ['isochrones-bike-15']},
-      {chapters: ['whitespots-bus'], layers: ['isochrones-bus-15']},
-      {chapters: ['whitespots-s-bahn'], layers: ['isochrones-light_rail-15']},
-      {chapters: ['whitespots-u-bahn'], layers: ['isochrones-subway-15']},
-      {chapters: ['whitespots-tram'], layers: ['isochrones-tram-15']},
-      {chapters: ['whitespots-all'], layers: ['isochrones-all-15']},
-      {chapters: ['whitespots-all-2'], layers: ['isochrones-all-15']},
-      {chapters: ['whitespots-all-3'], layers: ['isochrones-all-15']}
+      {chapters: ['whitespots-bike'], layers: ['isochrones-bike-15'], flyToLocation: null},
+      {chapters: ['whitespots-bus'], layers: ['isochrones-bus-15'], flyToLocation: null},
+      {chapters: ['whitespots-s-bahn'], layers: ['isochrones-light_rail-15'], flyToLocation: null},
+      {chapters: ['whitespots-u-bahn'], layers: ['isochrones-subway-15'], flyToLocation: null},
+      {chapters: ['whitespots-tram'], layers: ['isochrones-tram-15'], flyToLocation: null},
+      {chapters: ['whitespots-all'], layers: ['isochrones-all-15'], flyToLocation: null},
+      {chapters: ['whitespots-all-2'], layers: ['isochrones-all-15'], flyToLocation: null},
+      {chapters: ['whitespots-all-3'], layers: ['isochrones-all-15'], flyToLocation: null}
+    ];
+
+    this.sectionsProblems.forEach(section => {
+      this.resultsProblems.push(...section.layers);
+    });
+  }
+
+  /**
+   * Initializes story named 'whitespots'
+   */
+  private initializeStoryWhitespots() {
+    this.sectionsWhitespot = [
+      {chapters: ['whitespots-siemensstadt'], layers: null, flyToLocation: Place.SIEMENSSTADT},
+      {chapters: ['whitespots-tegel'], layers: null, flyToLocation: Place.TEGEL},
+      {chapters: ['whitespots-westhafen'], layers: null, flyToLocation: Place.WESTHAFEN},
+      {chapters: ['whitespots-geweerbegebiet-britz'], layers: null, flyToLocation: Place.GEWERBEGEBIET_BRITZ},
+      {chapters: ['whitespots-landsberger-allee'], layers: null, flyToLocation: Place.LANDSBERGER_ALLEE},
     ];
 
     this.sectionsProblems.forEach(section => {
@@ -180,58 +214,66 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
    * @param mapName map name to target
    * @param event event
    */
-  onLayerMarkerEventTriggered(mapName: string, event: { layers: string[], opacity: number, clearOthers: boolean }) {
+  onLayerMarkerEventTriggered(mapName: string,
+                              event: { layers: string[], flyToLocation: Location, opacity: number, clearOthers: boolean }) {
+    if (event.layers != null) {
+      if (mapName === 'understanding') {
+        if (event.clearOthers) {
+          this.opacitiesUnderstanding.forEach((value: number, key: string) => {
+            this.opacitiesUnderstanding.set(key, 0);
+          });
+        }
 
-    if (mapName === 'understanding') {
-      if (event.clearOthers) {
-        this.opacitiesUnderstanding.forEach((value: number, key: string) => {
-          this.opacitiesUnderstanding.set(key, 0);
+        event.layers.forEach(layer => {
+          this.opacitiesUnderstanding.set(layer, event.opacity);
         });
+        this.opacitiesUnderstanding = new Map(this.opacitiesUnderstanding);
       }
 
-      event.layers.forEach(layer => {
-        this.opacitiesUnderstanding.set(layer, event.opacity);
-      });
-      this.opacitiesUnderstanding = new Map(this.opacitiesUnderstanding);
+      if (mapName === 'visibility-walk') {
+        if (event.clearOthers) {
+          this.opacitiesVisibilityWalk.forEach((value: number, key: string) => {
+            this.opacitiesVisibilityWalk.set(key, 0);
+          });
+        }
+
+        event.layers.forEach(layer => {
+          this.opacitiesVisibilityWalk.set(layer, event.opacity);
+        });
+        this.opacitiesVisibilityWalk = new Map(this.opacitiesVisibilityWalk);
+      }
+
+      if (mapName === 'visibility-transport') {
+        if (event.clearOthers) {
+          this.opacitiesVisibilityTransport.forEach((value: number, key: string) => {
+            this.opacitiesVisibilityTransport.set(key, 0);
+          });
+        }
+
+        event.layers.forEach(layer => {
+          this.opacitiesVisibilityTransport.set(layer, event.opacity);
+        });
+        this.opacitiesVisibilityTransport = new Map(this.opacitiesVisibilityTransport);
+      }
+
+      if (mapName === 'problems') {
+        if (event.clearOthers) {
+          this.opacitiesProblems.forEach((value: number, key: string) => {
+            this.opacitiesProblems.set(key, 0);
+          });
+        }
+
+        event.layers.forEach(layer => {
+          this.opacitiesProblems.set(layer, event.opacity);
+        });
+        this.opacitiesProblems = new Map(this.opacitiesProblems);
+      }
     }
 
-    if (mapName === 'visibility-walk') {
-      if (event.clearOthers) {
-        this.opacitiesVisibilityWalk.forEach((value: number, key: string) => {
-          this.opacitiesVisibilityWalk.set(key, 0);
-        });
+    if (event.flyToLocation != null) {
+      if (mapName === 'whitespots') {
+        this.flyToLocationWhitespots = event.flyToLocation;
       }
-
-      event.layers.forEach(layer => {
-        this.opacitiesVisibilityWalk.set(layer, event.opacity);
-      });
-      this.opacitiesVisibilityWalk = new Map(this.opacitiesVisibilityWalk);
-    }
-
-    if (mapName === 'visibility-transport') {
-      if (event.clearOthers) {
-        this.opacitiesVisibilityTransport.forEach((value: number, key: string) => {
-          this.opacitiesVisibilityTransport.set(key, 0);
-        });
-      }
-
-      event.layers.forEach(layer => {
-        this.opacitiesVisibilityTransport.set(layer, event.opacity);
-      });
-      this.opacitiesVisibilityTransport = new Map(this.opacitiesVisibilityTransport);
-    }
-
-    if (mapName === 'problems') {
-      if (event.clearOthers) {
-        this.opacitiesProblems.forEach((value: number, key: string) => {
-          this.opacitiesProblems.set(key, 0);
-        });
-      }
-
-      event.layers.forEach(layer => {
-        this.opacitiesProblems.set(layer, event.opacity);
-      });
-      this.opacitiesProblems = new Map(this.opacitiesProblems);
     }
   }
 

@@ -23,7 +23,6 @@ export class LandingOverlayComponent {
    * @param route route
    */
   onCardClicked(route: string) {
-    console.log(route);
     this.router.navigate([route]);
   }
 }

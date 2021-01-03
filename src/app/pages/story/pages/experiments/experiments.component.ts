@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, Input, isDevMode, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {MapBoxStyle} from '../../../../core/mapbox/model/map-box-style.enum';
 import {environment} from '../../../../../environments/environment';
 import {ViewportScroller} from '@angular/common';
@@ -43,11 +43,14 @@ export class ExperimentsComponent implements OnInit, AfterViewInit, OnDestroy {
   /** Enum representing places */
   placeEnum = Place;
   /** Enum representing bounding boxes */
-  boudingBoxEnum = BoundingBox;
+  boundingBoxEnum = BoundingBox;
   /** Enum representing map box style */
   mapBoxStyleEnum = MapBoxStyle;
   /** Enum representing color ramp */
   colorRampEnum = ColorRamp;
+
+  /** True if app is started in dev mode */
+  isDev = isDevMode();
 
   /** Helper subject used to finish other subscriptions */
   private unsubscribeSubject = new Subject();

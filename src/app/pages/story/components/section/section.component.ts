@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../../../environments/environment';
+import {Location} from '../../../../core/mapbox/model/location.model';
 
 /**
  * Displays a section
@@ -18,7 +19,9 @@ export class SectionComponent implements OnInit {
   @Input() chapters = [];
 
   /** Layers names */
-  @Input() layers = [];
+  @Input() layers = null;
+  /** Fly-to location */
+  @Input() flyToLocation: Location = null;
   /** Opacity */
   @Input() opacity = 100;
   /** Whether or not other layers should be made transparent */
@@ -26,7 +29,12 @@ export class SectionComponent implements OnInit {
   /** Whether or not an event should be emitted when marker is not visible anymore */
   @Input() emitOnLeave = false;
   /** Event emitter indicating section in viewport */
-  @Output() sectionInViewportEventEmitter = new EventEmitter<{ layers: string[], opacity: number, clearOthers: boolean }>();
+  @Output() sectionInViewportEventEmitter = new EventEmitter<{
+    layers: string[],
+    flyToLocation: Location,
+    opacity: number,
+    clearOthers: boolean
+  }>();
 
   /** Contents */
   contents = [];
@@ -98,7 +106,7 @@ export class SectionComponent implements OnInit {
    */
   public onIntersectionTop({target, visible}: { target: Element; visible: boolean }) {
     this.topInViewport = visible;
-    this.notifyVisibility();
+    this.notify();
   }
 
   /**
@@ -108,7 +116,7 @@ export class SectionComponent implements OnInit {
    */
   public onIntersectionBottom({target, visible}: { target: Element; visible: boolean }) {
     this.bottomInViewport = visible;
-    this.notifyVisibility();
+    this.notify();
   }
 
   //
@@ -118,16 +126,26 @@ export class SectionComponent implements OnInit {
   /**
    * Notify subscribers about visibility changes
    */
-  private notifyVisibility() {
+  private notify() {
     if (this.topInViewport && this.bottomInViewport) {
       this.inFocus = true;
 
-      this.sectionInViewportEventEmitter.emit({layers: this.layers, opacity: this.opacity, clearOthers: this.clearOthers});
+      this.sectionInViewportEventEmitter.emit({
+        layers: this.layers,
+        flyToLocation: this.flyToLocation,
+        opacity: this.opacity,
+        clearOthers: this.clearOthers
+      });
     } else {
       this.inFocus = false;
 
       if (this.emitOnLeave) {
-        this.sectionInViewportEventEmitter.emit({layers: this.layers, opacity: 0, clearOthers: this.clearOthers});
+        this.sectionInViewportEventEmitter.emit({
+          layers: this.layers,
+          flyToLocation: this.flyToLocation,
+          opacity: 0,
+          clearOthers: this.clearOthers
+        });
       }
     }
   }
