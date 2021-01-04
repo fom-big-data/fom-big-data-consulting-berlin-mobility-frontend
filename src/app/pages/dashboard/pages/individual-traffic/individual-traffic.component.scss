@@ -1,0 +1,52 @@
+$dashboard-container-margin-top: 26px; //100px;
+$toolbar-height: 64px;
+
+h3{
+  margin: 0.75em 0 0.25em;
+  font-weight: 500;
+}
+
+.dashboard-container{
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  display: grid;
+  grid-gap: 1em;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 40vh 1fr;
+  grid-template-areas: "traffic_map graph1"
+  "isochrones_map allowed_speed_map";
+  padding: 10px;
+  height: calc(100vh - 110px);
+  //padding-top: 100px;
+  margin-top: $dashboard-container-margin-top + $toolbar-height !important;
+}
+
+#traffic_map{
+  grid-area: traffic_map;
+}
+
+#isochrones_map{
+  grid-area: isochrones_map;
+}
+
+#allowed_speed_map{
+  grid-area: allowed_speed_map;
+}
+
+.graph1{
+  grid-area: graph1;
+}
+.graph2{
+  grid-area: graph2;
+}
+.graph3{
+  grid-area: graph3;
+}
+
+.dashboard-container > *{
+  //border: 1px solid #ddd;
+}
