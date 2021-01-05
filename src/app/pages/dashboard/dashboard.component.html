@@ -1,17 +1,20 @@
 <mat-toolbar #toolbar>
-  <button mat-button routerLink='individual-traffic'>
+  <button mat-button routerLink='../' class="back-button">
+    zurück zur Story
+  </button>
+  <button mat-button routerLink='individual-traffic' routerLinkActive="active-link">
     Motorisierter Individualverkehr
   </button>
-  <button mat-button routerLink='public-transport'>
+  <button mat-button routerLink='public-transport' routerLinkActive="active-link">
     Öffentlicher Nahverkehr
   </button>
-  <button disabled mat-button>
+  <button disabled mat-button routerLink='bike-traffic' routerLinkActive="active-link">
     Fahrradverkehr
   </button>
-  <button disabled mat-button>
+  <button disabled mat-button routerLink='micro-mobility' routerLinkActive="active-link">
     Mikromobilität
   </button>
-  <button disabled mat-button>
+  <button disabled mat-button routerLink='multimodal-traffic' routerLinkActive="active-link">
     Multimodaler Verkehr
   </button>
 </mat-toolbar>
