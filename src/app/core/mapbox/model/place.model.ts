@@ -14,6 +14,30 @@ export class Place {
     52.516388888889
   );
 
+  static ZIP_10623_CHARLOTTENBURG = new Location(
+    'charlottenburg',
+    '10623 Charlottenburg',
+    11,
+    13.3189848,
+    52.5086571
+  );
+
+  static ZIP_12107_BUCKOW_LICHTENRADE_MARIENDORF_MARIENFELDE_TEMPELHOF = new Location(
+    'buckow-lichtenrade-mariendorf-marienfelde-tempelhof',
+    '12107 Buckow-Lichtenrade-Mariendorf-Marienfelde-Tempelhof',
+    11,
+    13.3511922,
+    52.4308308
+  );
+
+  static ZIP_12623_KAULSDORF_MAHLSDORF = new Location(
+    'kaulsdorf-mahlsdorf',
+    '12623 Kaulsdorf-Mahlsdorf',
+    11,
+    13.5863998,
+    52.5005195
+  );
+
   /** FOM */
   static FOM = new Location(
     'FOM',
@@ -24,7 +48,7 @@ export class Place {
 
   /** Spreepark */
   static SPREEPARK = new Location(
-    'Spreepark',
+    'spreepark',
     'Der Spreepark Berlin war ein Vergnügungspark im Norden des Plänterwaldes im Berliner Bezirk Treptow-Köpenick.',
     11.5,
     13.4934365,
@@ -33,7 +57,7 @@ export class Place {
 
   /** Tierpark */
   static TIERPARK = new Location(
-    'Tierpark',
+    'tierpark',
     'Der Tierpark Berlin ist einer der beiden Zoologischen Gärten in Berlin.',
     11.5,
     13.5313559,
@@ -42,7 +66,7 @@ export class Place {
 
   /** Tegel */
   static TEGEL = new Location(
-    'Tegel',
+    'tegel',
     'Der Flughafen Berlin-Tegel „Otto Lilienthal“ war bis zum 8. November 2020 ein internationaler Verkehrsflughafen in Berlin-Tegel.',
     11.5,
     13.301036953926086,

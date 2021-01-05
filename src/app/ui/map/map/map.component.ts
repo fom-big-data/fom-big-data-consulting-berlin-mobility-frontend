@@ -133,6 +133,11 @@ export class MapComponent implements OnChanges, AfterViewInit {
   /** Internal subject that publishes flyable bounding box events */
   private flyableBoundingBoxSubject = new Subject<BoundingBox>();
 
+  /** List of currently displayed markers */
+  private currentMarkers = [];
+  /** List of currently displayed pop-up markers */
+  private currentPopUpMarkers = [];
+
   /**
    * Constructor
    * @param http http client
@@ -153,6 +158,10 @@ export class MapComponent implements OnChanges, AfterViewInit {
       this.opacities.forEach((value: number, name: string) => {
         this.opacitySubject.next({name, value});
       });
+    }
+
+    if (this.map != null && this.popupMarkers != null) {
+      this.initializePopupMarkers(this.popupMarkers);
     }
 
     if (this.flyToLocation != null) {
@@ -223,10 +232,16 @@ export class MapComponent implements OnChanges, AfterViewInit {
    * @param markers markers
    */
   private initializeMarkers(markers: Location[]) {
+
+    this.currentMarkers.forEach(marker => {
+      marker.remove();
+    });
+
     markers.forEach(marker => {
-      new mapboxgl.Marker()
+      const m = new mapboxgl.Marker()
         .setLngLat([marker.longitude, marker.latitude])
         .addTo(this.map);
+      this.currentMarkers.push(m);
     });
   }
 
@@ -297,6 +312,11 @@ export class MapComponent implements OnChanges, AfterViewInit {
    * @param popupMarkers pop-up markers
    */
   private initializePopupMarkers(popupMarkers: Location[]) {
+
+    this.currentPopUpMarkers.forEach(marker => {
+      marker.remove();
+    });
+
     popupMarkers.forEach(marker => {
       // Create the popup
       const popup = new mapboxgl.Popup({offset: 25}).setText(
@@ -308,10 +328,11 @@ export class MapComponent implements OnChanges, AfterViewInit {
       el.id = `marker-${marker.name.toLowerCase()}`;
 
       // Create the marker
-      new mapboxgl.Marker(el)
+      const m = new mapboxgl.Marker(el)
         .setLngLat([marker.longitude, marker.latitude])
         .setPopup(popup)
         .addTo(this.map);
+      this.currentPopUpMarkers.push(m);
     });
   }
 

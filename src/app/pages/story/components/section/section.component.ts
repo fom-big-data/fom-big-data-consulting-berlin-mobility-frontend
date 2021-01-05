@@ -20,11 +20,14 @@ export class SectionComponent implements OnInit {
   @Input() chapters = [];
 
   /** Layers names */
-  @Input() layers = null;
+  @Input() layers = [];
+  /** Pop-up marker names */
+  @Input() popupMarkers = [];
   /** Fly-to location */
   @Input() flyToLocation: Location = null;
   /** Fly-to bounding box */
   @Input() flyToBoundingBox: BoundingBox = null;
+
   /** Opacity */
   @Input() opacity = 100;
   /** Whether or not other layers should be made transparent */
@@ -34,6 +37,7 @@ export class SectionComponent implements OnInit {
   /** Event emitter indicating section in viewport */
   @Output() sectionInViewportEventEmitter = new EventEmitter<{
     layers: string[],
+    popupMarkers: Location[],
     flyToLocation: Location,
     flyToBoundingBox: BoundingBox,
     opacity: number,
@@ -136,6 +140,7 @@ export class SectionComponent implements OnInit {
 
       this.sectionInViewportEventEmitter.emit({
         layers: this.layers,
+        popupMarkers: this.popupMarkers,
         flyToLocation: this.flyToLocation,
         flyToBoundingBox: this.flyToBoundingBox,
         opacity: this.opacity,
@@ -146,9 +151,10 @@ export class SectionComponent implements OnInit {
 
       if (this.emitOnLeave) {
         this.sectionInViewportEventEmitter.emit({
-          layers: this.layers,
-          flyToLocation: this.flyToLocation,
-          flyToBoundingBox: this.flyToBoundingBox,
+          layers: [],
+          popupMarkers: [],
+          flyToLocation: null,
+          flyToBoundingBox: null,
           opacity: 0,
           clearOthers: this.clearOthers
         });

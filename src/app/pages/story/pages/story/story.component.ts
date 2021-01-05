@@ -84,6 +84,9 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
   /** Opacities for map named 'problems' */
   opacitiesProblems = new Map<string, number>();
 
+  /** Markers for map named 'understanding' */
+  popupMarkersUnderstanding = [];
+
   /** Fly-to location for map named 'whitespots' */
   flyToLocationWhitespots: Location;
   /** Fly-to bounding box for map named 'whitespots' */
@@ -218,6 +221,7 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
    */
   onLayerMarkerEventTriggered(mapName: string, event: {
     layers: string[],
+    popupMarkers: Location[];
     flyToLocation: Location,
     flyToBoundingBox: BoundingBox,
     opacity: number,
@@ -234,6 +238,8 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
         this.opacitiesUnderstanding.set(layer, event.opacity);
       });
       this.opacitiesUnderstanding = new Map(this.opacitiesUnderstanding);
+
+      this.popupMarkersUnderstanding = event.popupMarkers;
     }
 
     if (mapName === 'visibility-walk') {

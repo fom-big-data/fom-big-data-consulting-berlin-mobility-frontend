@@ -47,7 +47,11 @@
     <div class="text-container">
       <app-section [height]="'500px'" [chapters]="['lebensraeume']" [layers]="['residential']"
                    (sectionInViewportEventEmitter)="onLayerMarkerEventTriggered('understanding', $event)"></app-section>
-      <app-section [height]="'500px'" [chapters]="['lebensraeume-dichte']" [layers]="['berlin-inhabitants-improved']"
+      <app-section [height]="'500px'" [chapters]="['lebensraeume-dichte']"
+                   [layers]="['berlin-inhabitants-improved']"
+                   [popupMarkers]="[placeEnum.ZIP_10623_CHARLOTTENBURG,
+                                    placeEnum.ZIP_12107_BUCKOW_LICHTENRADE_MARIENDORF_MARIENFELDE_TEMPELHOF,
+                                    placeEnum.ZIP_12623_KAULSDORF_MAHLSDORF]"
                    (sectionInViewportEventEmitter)="onLayerMarkerEventTriggered('understanding', $event)"></app-section>
       <app-section [height]="'500px'" [chapters]="['arbeitsraeume']"
                    [layers]="['commercial', 'industrial','university']"
@@ -73,6 +77,7 @@
                [zoom]="11"
                [interactiveEnabled]=false
                [boundingBox]="boundingBoxEnum.BERLIN"
+               [popupMarkers]="popupMarkersUnderstanding"
                [initialOpacity]="0"
                [opacities]="opacitiesUnderstanding"
                [multiLegend]="true"

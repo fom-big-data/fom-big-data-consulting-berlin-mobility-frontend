@@ -94,6 +94,33 @@
   cursor: pointer;
 }
 
+::ng-deep #marker-charlottenburg {
+  background-image: url('../../../../assets/img/10623_charlottenburg.jpg');
+  background-size: cover;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+::ng-deep #marker-buckow-lichtenrade-mariendorf-marienfelde-tempelhof {
+  background-image: url('../../../../assets/img/12107_mariendorf.jpg');
+  background-size: cover;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+::ng-deep #marker-kaulsdorf-mahlsdorf {
+  background-image: url('../../../../assets/img/12623-mahlsdorf.jpg');
+  background-size: cover;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
 ::ng-deep #marker-tegel {
   background-image: url('../../../../assets/img/tegel.jpg');
   background-size: cover;
