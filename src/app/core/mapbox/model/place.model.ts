@@ -108,4 +108,15 @@ export class Place {
     13.334285616874695,
     52.54061908347808
   );
+
+  /** Hellersdorf */
+  static MARZAHN_HELLERSDORF = new Location(
+    'marzahnhellersdorf',
+    'tbd',
+    11.5,
+    13.593078,
+    52.548584
+
+
+  );
 }

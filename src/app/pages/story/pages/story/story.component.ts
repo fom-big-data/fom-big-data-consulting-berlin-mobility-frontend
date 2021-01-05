@@ -203,6 +203,7 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
       {chapters: ['whitespots-westhafen'], layers: null, flyToLocation: Place.WESTHAFEN},
       {chapters: ['whitespots-geweerbegebiet-britz'], layers: null, flyToLocation: Place.GEWERBEGEBIET_BRITZ},
       {chapters: ['whitespots-landsberger-allee'], layers: null, flyToLocation: Place.LANDSBERGER_ALLEE},
+      {chapters: ['whitespots-marzahnhellersdorf'], layers: null, flyToLocation: Place.MARZAHN_HELLERSDORF}
     ];
 
     this.sectionsProblems.forEach(section => {
