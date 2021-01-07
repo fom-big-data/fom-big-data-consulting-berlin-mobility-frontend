@@ -83,12 +83,12 @@ export class Place {
   );
 
   /** Siemensstadt */
-  static SIEMENSSTADT = new Location(
-    'siemensstadt',
+  static SPANDAU = new Location(
+    'spandau',
     'tbd',
     11.5,
-    13.22347283363342,
-    52.53282722492756
+    13.225531,
+    52.527586
   );
 
   /** Landsberger Allee */
@@ -101,12 +101,12 @@ export class Place {
   );
 
   /** Westhafen */
-  static WESTHAFEN = new Location(
-    'westhafen',
+  static CHARLOTTENBURGNORD = new Location(
+    'charlottenburg-nord',
     'tbd',
     11.5,
-    13.334285616874695,
-    52.54061908347808
+    13.303615,
+    52.5459212​
   );
 
   /** Hellersdorf */

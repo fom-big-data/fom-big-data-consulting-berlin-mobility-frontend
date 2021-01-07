@@ -198,9 +198,8 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
    */
   private initializeStoryWhitespots() {
     this.sectionsWhitespot = [
-      {chapters: ['whitespots-siemensstadt'], layers: null, flyToLocation: Place.SIEMENSSTADT},
-      {chapters: ['whitespots-tegel'], layers: null, flyToLocation: Place.TEGEL},
-      {chapters: ['whitespots-westhafen'], layers: null, flyToLocation: Place.WESTHAFEN},
+      {chapters: ['whitespots-spandau'], layers: null, flyToLocation: Place.SPANDAU},
+      {chapters: ['whitespots-charlottenburg-nord'], layers: null, flyToLocation: Place.CHARLOTTENBURGNORD},
       {chapters: ['whitespots-geweerbegebiet-britz'], layers: null, flyToLocation: Place.GEWERBEGEBIET_BRITZ},
       {chapters: ['whitespots-landsberger-allee'], layers: null, flyToLocation: Place.LANDSBERGER_ALLEE},
       {chapters: ['whitespots-marzahnhellersdorf'], layers: null, flyToLocation: Place.MARZAHN_HELLERSDORF}
