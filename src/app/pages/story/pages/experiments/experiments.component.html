@@ -1,4 +1,4 @@
-<app-map [id]="'header'"
+SPANDAU<app-map [id]="'header'"
          [interactiveEnabled]=false
          [scrollZoomEnabled]=false
          [height]="'100vh'"></app-map>
@@ -139,11 +139,11 @@
              [style]="mapBoxStyleEnum.LIGHT_V10"
              [zoom]="11"
              [boundingBox]="boundingBoxEnum.BERLIN"
-             [popupMarkers]="[placeEnum.TEGEL, placeEnum.SIEMENSSTADT, placeEnum.GEWERBEGEBIET_BRITZ, placeEnum.LANDSBERGER_ALLEE, placeEnum.WESTHAFEN]"
+             [popupMarkers]="[placeEnum.TEGEL, placeEnum.SPANDAU, placeEnum.GEWERBEGEBIET_BRITZ, placeEnum.LANDSBERGER_ALLEE, placeEnum.CHARLOTTENBURGNORD]"
              [interactiveEnabled]="isDev"
              [fullScreenControlEnabled]="isDev"
              [parametrizeOpacityEnabled]=true
-             [flyableLocations]="[placeEnum.TEGEL, placeEnum.SIEMENSSTADT, placeEnum.GEWERBEGEBIET_BRITZ, placeEnum.LANDSBERGER_ALLEE, placeEnum.WESTHAFEN]"
+             [flyableLocations]="[placeEnum.TEGEL, placeEnum.SPANDAU, placeEnum.GEWERBEGEBIET_BRITZ, placeEnum.LANDSBERGER_ALLEE, placeEnum.CHARLOTTENBURGNORD]"
              [results]="['commercial','industrial', 'university', 'stations-subway', 'berlin-inhabitants-improved']"
              [hexResults]="['isochrones-all-15']"
              [hexAggregateProperty]="'mean_spatial_distance_15min'"
