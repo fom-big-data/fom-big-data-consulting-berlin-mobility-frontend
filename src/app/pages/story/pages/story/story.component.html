@@ -67,7 +67,7 @@
                    [layers]="['berlin-bicycleedges-important-ways']"
                    (sectionInViewportEventEmitter)="onLayerMarkerEventTriggered('understanding', $event)"></app-section>
       <app-section [height]="'500px'" [chapters]="['oepnv']"
-                   [layers]="['stations-bus', 'stations-light_rail', 'stations-subway', 'stations-tram']"
+                   [layers]="['lines-bus', 'lines-light_rail', 'lines-subway', 'lines-tram']"
                    (sectionInViewportEventEmitter)="onLayerMarkerEventTriggered('understanding', $event)"></app-section>
     </div>
     <div class="map-container">
@@ -107,8 +107,9 @@
                                        'berlin-inhabitants-improved':true}"
 
 
-               [results]="['residential', 'commercial', 'industrial', 'allowed_car_speed', 'stations-bus',
-               'stations-light_rail', 'stations-subway', 'stations-tram', 'berlin-bicycleedges-important-ways', 'berlin-inhabitants-improved', 'university','college']">
+               [results]="['residential', 'commercial', 'industrial', 'allowed_car_speed',
+               'lines-bus', 'lines-light_rail', 'lines-subway', 'lines-tram',
+               'berlin-bicycleedges-important-ways', 'berlin-inhabitants-improved', 'university','college']">
       </app-map>
     </div>
   </ng-container>
