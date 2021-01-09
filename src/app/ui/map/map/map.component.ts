@@ -606,7 +606,9 @@ export class MapComponent implements OnChanges, AfterViewInit {
                 return f['properties']['avg'];
               });
               const layerAggregatePropertyMin = Math.min(...aggegatePropertyValues);
+              console.log(name + " min: "+ layerAggregatePropertyMin);
               const layerAggregatePropertyMax = Math.max(...aggegatePropertyValues);
+              console.log(name + " max: "+ layerAggregatePropertyMax);
 
               if (layerAggregatePropertyMin < aggregatePropertyMin) {
                 aggregatePropertyMin = layerAggregatePropertyMin;
