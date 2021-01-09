@@ -160,7 +160,7 @@ export class Place {
   );
 
   static TEC_MARZAHN = new Location(
-    'tec_borsigturm',
+    'tec_marzahn',
     'tbd',
     11.5,
     13.546844,
