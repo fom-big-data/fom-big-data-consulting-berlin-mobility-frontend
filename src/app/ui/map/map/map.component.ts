@@ -592,7 +592,9 @@ export class MapComponent implements OnChanges, AfterViewInit {
               return f['properties']['avg'];
             });
             aggregatePropertyMin = Math.min(...aggegatePropertyValues);
+            console.log(name + " min: "+ aggregatePropertyMin);
             aggregatePropertyMax = Math.max(...aggegatePropertyValues);
+            console.log(name + " max: "+ aggregatePropertyMax);
             aggregatePropertyStep = (aggregatePropertyMax - aggregatePropertyMin) / this.hexColorRamp.length;
 
             // Just draw this layer with its individual scale
