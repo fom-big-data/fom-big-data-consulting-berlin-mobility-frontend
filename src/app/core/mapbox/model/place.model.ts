@@ -121,7 +121,7 @@ export class Place {
   /* PUNKTE FUER DIE COMMERCIAL und RETAIL HOTSPOTS*/
   static TEC_SIEMENSSTADT = new Location(
     'tec_siemensstadt',
-    'tbd',
+    'Siemensstadt - Gewerbe und Technologie',
     11.5,
     13.263056,
     52.540556
@@ -129,7 +129,7 @@ export class Place {
 
   static TEC_ADLERSHOF = new Location(
     'tec_adlershof',
-    'tbd',
+    'Adlershof "science at work" - Technoligie und Wissenschaftspark ',
     11.5,
     13.535324,
     52.431573
@@ -137,7 +137,7 @@ export class Place {
 
   static TEC_HUMBOLDTHAIN = new Location(
     'tec_humboldthain',
-    'tbd',
+    'Humboldthain - Gewerbe Technologie und Gründerzentrum ',
     11.5,
     13.385895,
     52.542607
@@ -145,7 +145,7 @@ export class Place {
 
   static TEC_EUREF = new Location(
     'tec_euref',
-    'tbd',
+    'EUREF - Technologie und Gewerbepark',
     11.5,
     13.357011,
     52.481595
@@ -153,17 +153,34 @@ export class Place {
 
   static TEC_BORSIGTURM = new Location(
     'tec_borsigturm',
-    'tbd',
+    'Borsigturm - Gewerbe, Technologie und Gründerzentrum ',
     11.5,
-    13.357011,
-    52.481595
+    13.282722,
+    52.581781
   );
+
 
   static TEC_MARZAHN = new Location(
     'tec_marzahn',
-    'tbd',
+    'ECONOPARK - Gewerbe und Innovationspark',
     11.5,
     13.546844,
     52.558557
+  );
+
+  static TEC_HTW = new Location(
+    'tec_htw',
+    'Campus Adlershof - Wissenschafts und Gründerzentrum',
+    11.5,
+    13.526841,
+    52.458344
+  );
+
+  static TEC_MARIENDORF = new Location(
+    'tec_mariendorf',
+    'Mariendorf - Gewerbe und Technologiepark',
+    11.5,
+    13.374298,
+    52.438594
   );
 }
