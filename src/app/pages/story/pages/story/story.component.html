@@ -55,6 +55,12 @@
                    (sectionInViewportEventEmitter)="onLayerMarkerEventTriggered('understanding', $event)"></app-section>
       <app-section [height]="'500px'" [chapters]="['arbeitsraeume']"
                    [layers]="['commercial', 'industrial','university']"
+                   [popupMarkers]="[placeEnum.TEC_ADLERSHOF,
+                                    placeEnum.TEC_BORSIGTURM,
+                                    placeEnum.TEC_EUREF,
+                                    placeEnum.TEC_HUMBOLDTHAIN,
+                                    placeEnum.TEC_MARZAHN,
+                                    placeEnum.TEC_SIEMENSSTADT]"
                    (sectionInViewportEventEmitter)="onLayerMarkerEventTriggered('understanding', $event)"></app-section>
       <app-section [height]="'500px'" [chapters]="['strassen-infrastruktur']" [layers]="['allowed_car_speed']"
                    (sectionInViewportEventEmitter)="onLayerMarkerEventTriggered('understanding', $event)"></app-section>
