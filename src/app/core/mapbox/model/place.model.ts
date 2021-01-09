@@ -117,4 +117,53 @@ export class Place {
     13.593078,
     52.548584
   );
+
+  /* PUNKTE FUER DIE COMMERCIAL und RETAIL HOTSPOTS*/
+  static TEC_SIEMENSSTADT = new Location(
+    'tec_siemensstadt',
+    'tbd',
+    11.5,
+    13.263056,
+    52.540556
+  );
+
+  static TEC_ADLERSHOF = new Location(
+    'tec_adlershof',
+    'tbd',
+    11.5,
+    13.535324,
+    52.431573
+  );
+
+  static TEC_HUMBOLDTHAIN = new Location(
+    'tec_humboldthain',
+    'tbd',
+    11.5,
+    13.385895,
+    52.542607
+  );
+
+  static TEC_EUREF = new Location(
+    'tec_euref',
+    'tbd',
+    11.5,
+    13.357011,
+    52.481595
+  );
+
+  static TEC_BORSIGTURM = new Location(
+    'tec_borsigturm',
+    'tbd',
+    11.5,
+    13.357011,
+    52.481595
+  );
+
+  static TEC_MARZAHN = new Location(
+    'tec_marzahn',
+    'tbd',
+    11.5,
+    13.546844,
+    52.558557
+  );
 }
