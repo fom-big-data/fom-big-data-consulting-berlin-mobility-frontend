@@ -199,7 +199,7 @@
     <div class="map-container">
       <app-map [id]="'map-problems-drive'"
                [displayName]="'Anbindungsqualität - Durchschnittliche Distanz der 15 min Isochrone'"
-               [legendContents]="{'rgba(150, 0, 132, 0.6)': '0 KM', 'rgba(249, 168, 37, 0.6)':'6,5 KM', 'rgba(12, 123, 104, 0.6)': '13 km'}"
+               [legendContents]="{'rgba(150, 0, 132, 0.6)': '1.0 km', 'rgba(249, 168, 37, 0.6)':'7.0 km', 'rgba(12, 123, 104, 0.6)': '13 km'}"
                [height]="mapHeight"
                [style]="mapBoxStyleEnum.DARK_V10"
                [zoom]="9"
@@ -208,7 +208,8 @@
                [initialOpacity]="100"
                [hexResults]="['isochrones-drive-15']"
                [hexAggregateProperty]="'mean_spatial_distance_15min'"
-               [hexBinLimit]="'3'">
+               [hexBinLimit]="'3'"
+               [hexBinThreshold]="'1000'">
       </app-map>
     </div>
   </ng-container>
@@ -226,7 +227,7 @@
     <div class="map-container">
       <app-map [id]="'map-problems'"
                [displayName]="'Anbindungsqualität - Durchschnittliche Distanz der 15 min Isochrone'"
-               [legendContents]="{'rgba(150, 0, 132, 0.6)': '0.5 KM', 'rgba(249, 168, 37, 0.6)':'3.4 KM', 'rgba(12, 123, 104, 0.6)': '6.8 km'}"
+               [legendContents]="{'rgba(150, 0, 132, 0.6)': '1.0 km', 'rgba(249, 168, 37, 0.6)':'4.5 km', 'rgba(12, 123, 104, 0.6)': '8.0 km'}"
                [height]="mapHeight"
                [style]="mapBoxStyleEnum.DARK_V10"
                [zoom]="9"
@@ -236,7 +237,8 @@
                [opacities]="opacitiesProblems"
                [hexResults]="resultsProblems"
                [hexAggregateProperty]="'mean_spatial_distance_15min'"
-               [hexBinLimit]="'3'">
+               [hexBinLimit]="'3'"
+               [hexBinThreshold]="'1000'">
       </app-map>
     </div>
   </ng-container>
@@ -272,7 +274,7 @@
              [hexResults]="['isochrones-all-15']"
              [hexAggregateProperty]="'mean_spatial_distance_15min'"
              [hexBinLimit]="'3'"
-             [hexBinThreshold]="'1600'"
+             [hexBinThreshold]="'1000'"
              [hexColorRamp]="colorRampEnum.LUFTDATEN_COLOR_RAMP_ALARM"></app-map>
   </div>
 </div>
