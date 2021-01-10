@@ -309,7 +309,7 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
       }
 
       case 'whitespots': {
-        const initialLayers = ['commercial', 'industrial', 'university'];
+        const initialLayers = ['isochrones-all-15', 'commercial', 'industrial', 'university'];
         const initialPopupMarkers = [Place.SPANDAU, Place.CHARLOTTENBURGNORD, Place.GEWERBEGEBIET_BRITZ, Place.LANDSBERGER_ALLEE,
           Place.MARZAHN_HELLERSDORF];
 
