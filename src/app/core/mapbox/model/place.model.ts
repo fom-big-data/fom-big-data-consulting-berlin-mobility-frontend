@@ -76,8 +76,8 @@ export class Place {
   /** Gewerbegebiet Britz */
   static GEWERBEGEBIET_BRITZ = new Location(
     'gewerbegebiet-britz',
-    'tbd',
-    11.5,
+    'Gewerbegebiet Gradestraße',
+    12.0,
     13.41184437274933,
     52.45105343499185
   );
@@ -344,5 +344,46 @@ export class Place {
     11.5,
     13.374298,
     52.438594
+  );
+
+
+  static BUS_GERADESTRASSE = new Location(
+    'bus-geradestrasse',
+    'Bus Geradestraße 91',
+    11.5,
+    13.423071,
+    52.452285
+  );
+
+  static BUS_EINTRAGSIEDLUNG = new Location(
+    'bus-eintrachtsiedlung',
+    'Bus Eintrachtsiedlung',
+    11.5,
+    13.430639,
+    52.454333
+  );
+
+  static U_BLASCHKOALLEE = new Location(
+    'u-blaschkoallee',
+    'U Blaschkoallee',
+    11.5,
+    13.448983,
+    52.4527097
+  );
+
+  static U_ULLSTEINSTRASSE = new Location(
+    'u-ullsteinstrasse',
+    'U Ullsteinstraße',
+    11.5,
+    13.384133,
+    52.452835
+  );
+
+  static S_HERMANNSTRASSE = new Location(
+    's-hermannstrasse',
+    'S+U Hermannstraße',
+    11.5,
+    13.4314,
+    52.4674003
   );
 }
