@@ -283,7 +283,8 @@
 
 ::ng-deep #marker-u-magdalenenstrasse,
 ::ng-deep #marker-u-ullsteinstrasse,
-::ng-deep #marker-u-blaschkoallee {
+::ng-deep #marker-u-blaschkoallee,
+::ng-deep #marker-u-hellersdorf {
   background-image: url('../../../../assets/img/ubahn.png');
   background-size: cover;
   width: 50px;
@@ -306,7 +307,10 @@
 ::ng-deep #marker-tram-beilsteiner-strasse,
 ::ng-deep #marker-tram-reinhardsbrunner-strasse,
 ::ng-deep #marker-tram-meeraner-strasse,
-::ng-deep #marker-tram-kleingartenanlage-bielefeldt {
+::ng-deep #marker-tram-kleingartenanlage-bielefeldt,
+::ng-deep #marker-tram-ahrensfelde,
+::ng-deep #marker-tram-hellersdorf-u,
+::ng-deep #marker-tram-stendaler {
   background-image: url('../../../../assets/img/tram.png');
   background-size: cover;
   width: 30px;

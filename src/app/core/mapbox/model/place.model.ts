@@ -119,10 +119,19 @@ export class Place {
   );
 
   /** Hellersdorf */
+  static MARZAHN_HELLERSDORF_CLOSER = new Location(
+    'marzahnhellersdorf',
+    'tbd',
+    12.5,
+    13.593078,
+    52.548584
+  );
+
+  /** Hellersdorf */
   static MARZAHN_HELLERSDORF = new Location(
     'marzahnhellersdorf',
     'tbd',
-    11.5,
+    11.0,
     13.593078,
     52.548584
   );
@@ -280,7 +289,30 @@ export class Place {
     13.5170745,
     52.5188969);
 
+    /** Tram Kleingartenablage Bielefeldt */
+  static TRAM_AHRENSFELDE = new Location(
+    'tram-ahrensfelde',
+    'Tram Ahrensfelde',
+    11.5,
+    13.574762,
+    52.572830);
+
+  static TRAM_HELLERSDORF_U = new Location(
+    'tram-hellersdorf-u',
+    'Tram Hellersdorf U-Bahnhof',
+    11.5,
+    13.605391,
+    52.536320);
+
+  static TRAM_STENDALER = new Location(
+    'tram-stendaler',
+    'Tram Stendaler',
+    11.5,
+    13.604378283658102,
+    52.53932077992437);
+
   /* PUNKTE FUER DIE COMMERCIAL und RETAIL HOTSPOTS*/
+  /* SIEMENSSTADT*/
   static TEC_SIEMENSSTADT = new Location(
     'tec_siemensstadt',
     'Siemensstadt - Gewerbe und Technologie',
@@ -288,7 +320,7 @@ export class Place {
     13.263056,
     52.540556
   );
-
+  /* ADLERSHOF */
   static TEC_ADLERSHOF = new Location(
     'tec_adlershof',
     'Adlershof "science at work" - Technoligie und Wissenschaftspark ',
@@ -296,7 +328,7 @@ export class Place {
     13.535324,
     52.431573
   );
-
+  /* HUMBOLDTHAIN */
   static TEC_HUMBOLDTHAIN = new Location(
     'tec_humboldthain',
     'Humboldthain - Gewerbe Technologie und Gründerzentrum ',
@@ -304,7 +336,7 @@ export class Place {
     13.385895,
     52.542607
   );
-
+  /* KATHIS CAMPUS .. EUREF*/
   static TEC_EUREF = new Location(
     'tec_euref',
     'EUREF - Technologie und Gewerbepark',
@@ -312,7 +344,7 @@ export class Place {
     13.357011,
     52.481595
   );
-
+  /* BORSIGTURM*/
   static TEC_BORSIGTURM = new Location(
     'tec_borsigturm',
     'Borsigturm - Gewerbe, Technologie und Gründerzentrum ',
@@ -321,7 +353,7 @@ export class Place {
     52.581781
   );
 
-
+  /* MARZAHN GEWERBEPARK */
   static TEC_MARZAHN = new Location(
     'tec_marzahn',
     'ECONOPARK - Gewerbe und Innovationspark',
@@ -329,7 +361,7 @@ export class Place {
     13.546844,
     52.558557
   );
-
+  /* CAMPUS HTW */
   static TEC_HTW = new Location(
     'tec_htw',
     'Campus Adlershof - Wissenschafts und Gründerzentrum',
@@ -337,7 +369,7 @@ export class Place {
     13.526841,
     52.458344
   );
-
+  /* MARIENDORF */
   static TEC_MARIENDORF = new Location(
     'tec_mariendorf',
     'Mariendorf - Gewerbe und Technologiepark',
@@ -379,6 +411,15 @@ export class Place {
     52.452835
   );
 
+  static U_HELLERSDORF = new Location(
+    'u-hellersdorf',
+    'U Hellersdorf',
+    11.5,
+    13.606054,
+    52.536493);
+
+
+
   static S_HERMANNSTRASSE = new Location(
     's-hermannstrasse',
     'S+U Hermannstraße',
@@ -386,4 +427,9 @@ export class Place {
     13.4314,
     52.4674003
   );
+
+
+
+
+
 }
