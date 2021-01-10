@@ -205,7 +205,20 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
       {chapters: ['whitespots-spandau'], layers: [], flyToLocation: Place.SPANDAU},
       {chapters: ['whitespots-charlottenburg-nord-1'], layers: [], flyToLocation: Place.CHARLOTTENBURGNORD},
       {chapters: ['whitespots-charlottenburg-nord-2'], layers: [], flyToLocation: Place.CHARLOTTENBURGNORD},
-      {chapters: ['whitespots-gewerbegebiet-britz'], layers: [], flyToLocation: Place.GEWERBEGEBIET_BRITZ},
+      {
+        chapters: ['whitespots-gewerbegebiet-britz-1'],
+        layers: ['lines-bus', 'lines-subway', 'lines-light_rail'],
+        popupMarkers: [Place.BUS_GERADESTRASSE, Place.BUS_EINTRAGSIEDLUNG, Place.U_ULLSTEINSTRASSE, Place.U_BLASCHKOALLEE,
+          Place.S_HERMANNSTRASSE],
+        flyToLocation: Place.GEWERBEGEBIET_BRITZ
+      },
+      {
+        chapters: ['whitespots-gewerbegebiet-britz-2'],
+        layers: ['lines-bus', 'lines-subway', 'lines-light_rail'],
+        popupMarkers: [Place.BUS_GERADESTRASSE, Place.BUS_EINTRAGSIEDLUNG, Place.U_ULLSTEINSTRASSE, Place.U_BLASCHKOALLEE,
+          Place.S_HERMANNSTRASSE],
+        flyToLocation: Place.GEWERBEGEBIET_BRITZ
+      },
       {
         chapters: ['whitespots-landsberger-allee-1'],
         layers: ['lines-tram'],

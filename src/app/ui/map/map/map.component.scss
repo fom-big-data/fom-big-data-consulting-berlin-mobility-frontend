@@ -130,8 +130,8 @@
   cursor: pointer;
 }
 
-::ng-deep #marker-gewerbegebiet-britz {
-  background-image: url('../../../../assets/img/tegel.jpg');
+::ng-deep #marker-spandau {
+  background-image: url('../../../../assets/img/spandau.jpg');
   background-size: cover;
   width: 50px;
   height: 50px;
@@ -139,8 +139,8 @@
   cursor: pointer;
 }
 
-::ng-deep #marker-spandau {
-  background-image: url('../../../../assets/img/spandau.jpg');
+::ng-deep #marker-gewerbegebiet-britz {
+  background-image: url('../../../../assets/img/gewerbegebiet-britz.jpeg');
   background-size: cover;
   width: 50px;
   height: 50px;
@@ -258,10 +258,21 @@
   cursor: pointer;
 }
 
+::ng-deep #marker-bus-geradestrasse,
+::ng-deep #marker-bus-eintrachtsiedlung {
+  background-image: url('../../../../assets/img/bus.png');
+  background-size: cover;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
 ::ng-deep #marker-s-poelchaustrasse,
 ::ng-deep #marker-s-springpfuhl,
 ::ng-deep #marker-s-landsberger-allee,
-::ng-deep #marker-s-storkower-strasse {
+::ng-deep #marker-s-storkower-strasse,
+::ng-deep #marker-s-hermannstrasse {
   background-image: url('../../../../assets/img/sbahn.png');
   background-size: cover;
   width: 50px;
@@ -270,7 +281,9 @@
   cursor: pointer;
 }
 
-::ng-deep #marker-u-magdalenenstrasse {
+::ng-deep #marker-u-magdalenenstrasse,
+::ng-deep #marker-u-ullsteinstrasse,
+::ng-deep #marker-u-blaschkoallee {
   background-image: url('../../../../assets/img/ubahn.png');
   background-size: cover;
   width: 50px;
