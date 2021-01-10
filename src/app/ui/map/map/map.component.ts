@@ -42,7 +42,7 @@ export class MapComponent implements OnChanges, AfterViewInit {
   /** Initial center of map */
   @Input() center: Location = Place.BRANDENBURG_GATE;
   /** Initial bounding box of map */
-  @Input() boundingBox: number[] = BoundingBox.BERLIN;
+  @Input() boundingBox: number[];
 
   /** List of markers to be displayed */
   @Input() markers: Location[] = [];
