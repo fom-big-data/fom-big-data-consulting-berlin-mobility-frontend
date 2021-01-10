@@ -92,9 +92,18 @@ export class Place {
   );
 
   /** Landsberger Allee */
+  static LANDSBERGER_ALLEE_CLOSE = new Location(
+    'landsberger-allee',
+    'Gewerbegebiet Landsberger Allee',
+    12.5,
+    13.511579632759094,
+    52.53283375135081
+  );
+
+  /** Landsberger Allee */
   static LANDSBERGER_ALLEE = new Location(
     'landsberger-allee',
-    'tbd',
+    'Gewerbegebiet Landsberger Allee',
     11.5,
     13.511579632759094,
     52.53283375135081
@@ -106,7 +115,7 @@ export class Place {
     'tbd',
     11.5,
     13.303615,
-    52.5459212​
+    52.5459212
   );
 
   /** Hellersdorf */
@@ -117,6 +126,159 @@ export class Place {
     13.593078,
     52.548584
   );
+
+  /** S Poelchaustraße */
+  static S_POELCHAUSTRASSE = new Location(
+    's-poelchaustrasse',
+    'S Poelchaustraße',
+    11.5,
+    13.5355019,
+    52.5357114
+  );
+
+  /** S Springpfuhl */
+  static S_SPRINGPFUHL = new Location(
+    's-springpfuhl',
+    'S Springpfuhl',
+    11.5,
+    13.5361989,
+    52.5256553,
+  );
+
+  /** S Landsberger Allee */
+  static S_LANDSBERGER_ALLEE = new Location(
+    's-landsberger-allee',
+    'S Landsberger Allee',
+    11.5,
+    13.4566444,
+    52.5286552
+  );
+
+  /** S Storkower Straße */
+  static S_STORKOWER_STRASSE = new Location(
+    's-storkower-strasse',
+    'S Storkower Straße',
+    11.5,
+    13.4623906,
+    52.5236357
+  );
+
+  /** U Magdalenenstraße */
+  static U_MAGDALENENSTRASSE = new Location(
+    'u-magdalenenstrasse',
+    'U Magdalenenstraße',
+    11.5,
+    13.4873591,
+    52.5124398
+  );
+
+  /** Tram Zechliner Str. */
+  static TRAM_ZECHLINER_STRASSE = new Location(
+    'tram-zechliner-rhinstrasse',
+    'Zechliner Straße',
+    11.5,
+    13.4867382,
+    52.5338701);
+  /** Tram Genslerstr */
+  static TRAM_GENSLERSTRASSE = new Location(
+    'tram-genslerstrasse',
+    'Tram Genslertraße',
+    11.5,
+    13.4966408,
+    52.5343795);
+  /** Tram Arendsweg */
+  static TRAM_ARENDSWEG = new Location(
+    'tram-arendsweg',
+    'Tram Arendsweg',
+    11.5,
+    13.5042978,
+    52.5348992);
+  /** Tram Landsberger Allee/Rhinstr. */
+  static TRAM_LANDSBERGER_ALLEE_RHINSTRASSE = new Location(
+    'tram-landsgerber-allee-rhinstrasse',
+    'Landsberger Allee/Rhinstraße',
+    11.5,
+    13.5160151,
+    52.535766);
+  /** Tram Dingelstädter Str. */
+  static TRAM_DINGELSTAEDTER_STRASSE = new Location(
+    'tram-dingelstaedter-strasse',
+    'Dingelstädter Straße',
+    11.5,
+    13.524788,
+    52.536739);
+  /** Tram Marzahner Promenade */
+  static TRAM_MARZAHNER_PROMENADE = new Location(
+    'tram-marzahner-promenade',
+    'Tram Marzahner Promenade',
+    11.5,
+    13.543595,
+    52.542664);
+  /** Tram Gewerbepark Georg Knorr */
+  static TRAM_GEWERBEPARK_GEORG_KNORR = new Location(
+    'tram-gewerbepark-georg-knorr',
+    'Tram Gewerbepark Georg Knorr',
+    11.5,
+    13.5132825,
+    52.5342643);
+
+  /** Tram Herzbergstr./Industriepark. */
+  static TRAM_HERZBERGSTRASSE_INDUSTRIEPARK = new Location(
+    'tram-herzbergstrasse-industriepark',
+    'Tram Herzbergstraße /Industriegebiet',
+    11.5,
+    13.4876626,
+    52.5266628);
+  /** Tram Herzbergstr./Siegfriedstr. */
+  static TRAM_HERZBERGSTRASSE_SIEGFRIEDSTRASSE = new Location(
+    'tram-herzbergstrasse-siegfriedstrasse',
+    'Tram Herzbergstr./Siegfriedstr.',
+    11.5,
+    13.4968548,
+    52.5263009);
+  /** Tram Ev. Krankenhaus KEH */
+  static TRAM_EV_KRANKENHAUS_KEH = new Location(
+    'tram-ev-krankenhaus-keh',
+    'Tram Ev. Krankenhaus KEH',
+    11.5,
+    13.506036,
+    52.5254404);
+  /** Tram Allee der Kosmonauten */
+  static TRAM_ALLEE_DER_KOSMONAUTEN_ = new Location(
+    'tram-beilsteiner-strasse',
+    'Tram Allee der Kosmonauten/Rhinstraße',
+    11.5,
+    13.5179255,
+    52.5259323);
+  /** Tram Beilsteiner Str. */
+  static TRAM_BEILSTEINER_STRASSE = new Location(
+    'tram-beilsteiner-strasse',
+    'Tram Beilsteiner Straße',
+    11.5,
+    13.5277358,
+    52.5255362);
+
+  /** Tram Reinhardsbrunner Str. */
+  static TRAM_REINHARDSBRUNNER_STRASSE = new Location(
+    'tram-reinhardsbrunner-strasse',
+    'Tram Reinhardsbrunner Straße',
+    11.5,
+    13.5011757,
+    52.5286168);
+  /** Tram Meeraner Str. */
+  static TRAM_MEERANER_STRASSE = new Location(
+    'tram-meeraner-strasse',
+    'Tram Meeraner Straße',
+    11.5,
+    13.517137,
+    52.5293831);
+  /** Tram Kleingartenablage Bielefeldt */
+  static TRAM_KLEINGARTENANLAGE_BIELEFELDT = new Location(
+    'tram-kleingartenanlage-bielefeldt',
+    'Tram Kleingartenanlage Bielefeldt',
+    11.5,
+    13.5170745,
+    52.5188969);
 
   /* PUNKTE FUER DIE COMMERCIAL und RETAIL HOTSPOTS*/
   static TEC_SIEMENSSTADT = new Location(

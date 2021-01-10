@@ -149,7 +149,7 @@
 }
 
 ::ng-deep #marker-landsberger-allee {
-  background-image: url('../../../../assets/img/landsberger-rhinstraße.jpg');
+  background-image: url('../../../../assets/img/landsberger_allee.jpg');
   background-size: cover;
   width: 50px;
   height: 50px;
@@ -248,3 +248,56 @@
 }
 
 
+
+::ng-deep #marker-westhafen {
+  background-image: url('../../../../assets/img/tegel.jpg');
+  background-size: cover;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+::ng-deep #marker-s-poelchaustrasse,
+::ng-deep #marker-s-springpfuhl,
+::ng-deep #marker-s-landsberger-allee,
+::ng-deep #marker-s-storkower-strasse {
+  background-image: url('../../../../assets/img/sbahn.png');
+  background-size: cover;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+::ng-deep #marker-u-magdalenenstrasse {
+  background-image: url('../../../../assets/img/ubahn.png');
+  background-size: cover;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+::ng-deep #marker-tram-zechliner-rhinstrasse,
+::ng-deep #marker-tram-genslerstrasse,
+::ng-deep #marker-tram-arendsweg,
+::ng-deep #marker-tram-gewerbepark-georg-knorr,
+::ng-deep #marker-tram-landsgerber-allee-rhinstrasse,
+::ng-deep #marker-tram-dingelstaedter-strasse,
+::ng-deep #marker-tram-marzahner-promenade,
+::ng-deep #marker-tram-gewerbepark-georg-knorr,
+::ng-deep #marker-tram-herzbergstrasse-industriepark,
+::ng-deep #marker-tram-herzbergstrasse-siegfriedstrasse,
+::ng-deep #marker-tram-ev-krankenhaus-keh,
+::ng-deep #marker-tram-beilsteiner-strasse,
+::ng-deep #marker-tram-reinhardsbrunner-strasse,
+::ng-deep #marker-tram-meeraner-strasse,
+::ng-deep #marker-tram-kleingartenanlage-bielefeldt {
+  background-image: url('../../../../assets/img/tram.png');
+  background-size: cover;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+}

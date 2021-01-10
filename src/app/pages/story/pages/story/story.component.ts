@@ -19,9 +19,11 @@ export interface Section {
   /** Chapters contained in this sections */
   chapters: string[];
   /** Layers contained in this sections */
-  layers: string[];
+  layers?: string[];
+  /** Pop-up marker names */
+  popupMarkers?: Location[];
   /** Place to fly to when section in displayed */
-  flyToLocation: Location;
+  flyToLocation?: Location;
 }
 
 /**
@@ -83,9 +85,13 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
   opacitiesVisibilityTransport = new Map<string, number>();
   /** Opacities for map named 'problems' */
   opacitiesProblems = new Map<string, number>();
+  /** Opacities for map named 'whitespots' */
+  opacitiesWhitespots = new Map<string, number>();
 
   /** Markers for map named 'understanding' */
   popupMarkersUnderstanding = [];
+  /** Markers for map named 'whitespots' */
+  popupMarkersWhitespots = [];
 
   /** Fly-to location for map named 'whitespots' */
   flyToLocationWhitespots: Location;
@@ -153,14 +159,12 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
       this.sectionsVisibilityWalk.push({
         chapters: [],
         layers: [`isochrones-walk-${index + 1}-52.5119408-13.3161495`],
-        flyToLocation: null
       });
     });
     [...Array(29)].forEach((_, index) => {
       this.sectionsVisibilityTransport.push({
         chapters: [],
         layers: [`isochrones-subway-${index + 1}-52.5119408-13.3161495`],
-        flyToLocation: null
       });
     });
 
@@ -178,14 +182,14 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
    */
   private initializeStoryProblems() {
     this.sectionsProblems = [
-      {chapters: ['whitespots-bike'], layers: ['isochrones-bike-15'], flyToLocation: null},
-      {chapters: ['whitespots-bus'], layers: ['isochrones-bus-15'], flyToLocation: null},
-      {chapters: ['whitespots-s-bahn'], layers: ['isochrones-light_rail-15'], flyToLocation: null},
-      {chapters: ['whitespots-u-bahn'], layers: ['isochrones-subway-15'], flyToLocation: null},
-      {chapters: ['whitespots-tram'], layers: ['isochrones-tram-15'], flyToLocation: null},
-      {chapters: ['whitespots-all'], layers: ['isochrones-all-15'], flyToLocation: null},
-      {chapters: ['whitespots-all-2'], layers: ['isochrones-all-15'], flyToLocation: null},
-      {chapters: ['whitespots-all-3'], layers: ['isochrones-all-15'], flyToLocation: null}
+      {chapters: ['whitespots-bike'], layers: ['isochrones-bike-15']},
+      {chapters: ['whitespots-bus'], layers: ['isochrones-bus-15']},
+      {chapters: ['whitespots-s-bahn'], layers: ['isochrones-light_rail-15']},
+      {chapters: ['whitespots-u-bahn'], layers: ['isochrones-subway-15']},
+      {chapters: ['whitespots-tram'], layers: ['isochrones-tram-15']},
+      {chapters: ['whitespots-all'], layers: ['isochrones-all-15']},
+      {chapters: ['whitespots-all-2'], layers: ['isochrones-all-15']},
+      {chapters: ['whitespots-all-3'], layers: ['isochrones-all-15']}
     ];
 
     this.sectionsProblems.forEach(section => {
@@ -198,11 +202,28 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
    */
   private initializeStoryWhitespots() {
     this.sectionsWhitespot = [
-      {chapters: ['whitespots-spandau'], layers: null, flyToLocation: Place.SPANDAU},
-      {chapters: ['whitespots-charlottenburg-nord'], layers: null, flyToLocation: Place.CHARLOTTENBURGNORD},
-      {chapters: ['whitespots-gewerbegebiet-britz'], layers: null, flyToLocation: Place.GEWERBEGEBIET_BRITZ},
-      {chapters: ['whitespots-landsberger-allee'], layers: null, flyToLocation: Place.LANDSBERGER_ALLEE},
-      {chapters: ['whitespots-marzahnhellersdorf'], layers: null, flyToLocation: Place.MARZAHN_HELLERSDORF}
+      {chapters: ['whitespots-spandau'], layers: [], flyToLocation: Place.SPANDAU},
+      {chapters: ['whitespots-charlottenburg-nord'], layers: [], flyToLocation: Place.CHARLOTTENBURGNORD},
+      {chapters: ['whitespots-gewerbegebiet-britz'], layers: [], flyToLocation: Place.GEWERBEGEBIET_BRITZ},
+      {
+        chapters: ['whitespots-landsberger-allee-1'],
+        layers: ['lines-tram'],
+        popupMarkers: [
+          Place.TRAM_ZECHLINER_STRASSE, Place.TRAM_GENSLERSTRASSE, Place.TRAM_ARENDSWEG, Place.TRAM_LANDSBERGER_ALLEE_RHINSTRASSE,
+          Place.TRAM_DINGELSTAEDTER_STRASSE, Place.TRAM_MARZAHNER_PROMENADE, Place.TRAM_GEWERBEPARK_GEORG_KNORR,
+          Place.TRAM_HERZBERGSTRASSE_INDUSTRIEPARK, Place.TRAM_HERZBERGSTRASSE_SIEGFRIEDSTRASSE, Place.TRAM_EV_KRANKENHAUS_KEH,
+          Place.TRAM_ALLEE_DER_KOSMONAUTEN_, Place.TRAM_BEILSTEINER_STRASSE, Place.TRAM_REINHARDSBRUNNER_STRASSE,
+          Place.TRAM_MEERANER_STRASSE, Place.TRAM_KLEINGARTENANLAGE_BIELEFELDT],
+        flyToLocation: Place.LANDSBERGER_ALLEE_CLOSE
+      },
+      {
+        chapters: ['whitespots-landsberger-allee-2'],
+        layers: ['lines-tram', 'lines-subway', 'lines-light_rail'],
+        popupMarkers: [Place.S_POELCHAUSTRASSE, Place.S_SPRINGPFUHL, Place.S_LANDSBERGER_ALLEE, Place.S_STORKOWER_STRASSE,
+          Place.U_MAGDALENENSTRASSE],
+        flyToLocation: Place.LANDSBERGER_ALLEE
+      },
+      {chapters: ['whitespots-marzahnhellersdorf'], layers: ['lines-tram', 'lines-bus'], flyToLocation: Place.MARZAHN_HELLERSDORF}
     ];
 
     this.sectionsProblems.forEach(section => {
@@ -227,66 +248,89 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
     opacity: number,
     clearOthers: boolean
   }) {
-    if (mapName === 'understanding') {
-      if (event.clearOthers) {
-        this.opacitiesUnderstanding.forEach((value: number, key: string) => {
-          this.opacitiesUnderstanding.set(key, 0);
+
+    switch (mapName) {
+      case 'understanding': {
+        if (event.clearOthers) {
+          this.opacitiesUnderstanding.forEach((value: number, key: string) => {
+            this.opacitiesUnderstanding.set(key, 0);
+          });
+        }
+
+        event.layers.forEach(layer => {
+          this.opacitiesUnderstanding.set(layer, event.opacity);
         });
+        this.opacitiesUnderstanding = new Map(this.opacitiesUnderstanding);
+
+        this.popupMarkersUnderstanding = event.popupMarkers;
+        break;
       }
 
-      event.layers.forEach(layer => {
-        this.opacitiesUnderstanding.set(layer, event.opacity);
-      });
-      this.opacitiesUnderstanding = new Map(this.opacitiesUnderstanding);
+      case 'visibility-walk': {
+        if (event.clearOthers) {
+          this.opacitiesVisibilityWalk.forEach((value: number, key: string) => {
+            this.opacitiesVisibilityWalk.set(key, 0);
+          });
+        }
 
-      this.popupMarkersUnderstanding = event.popupMarkers;
-    }
-
-    if (mapName === 'visibility-walk') {
-      if (event.clearOthers) {
-        this.opacitiesVisibilityWalk.forEach((value: number, key: string) => {
-          this.opacitiesVisibilityWalk.set(key, 0);
+        event.layers.forEach(layer => {
+          this.opacitiesVisibilityWalk.set(layer, event.opacity);
         });
+        this.opacitiesVisibilityWalk = new Map(this.opacitiesVisibilityWalk);
+        break;
       }
 
-      event.layers.forEach(layer => {
-        this.opacitiesVisibilityWalk.set(layer, event.opacity);
-      });
-      this.opacitiesVisibilityWalk = new Map(this.opacitiesVisibilityWalk);
-    }
+      case 'visibility-transport': {
+        if (event.clearOthers) {
+          this.opacitiesVisibilityTransport.forEach((value: number, key: string) => {
+            this.opacitiesVisibilityTransport.set(key, 0);
+          });
+        }
 
-    if (mapName === 'visibility-transport') {
-      if (event.clearOthers) {
-        this.opacitiesVisibilityTransport.forEach((value: number, key: string) => {
-          this.opacitiesVisibilityTransport.set(key, 0);
+        event.layers.forEach(layer => {
+          this.opacitiesVisibilityTransport.set(layer, event.opacity);
         });
+        this.opacitiesVisibilityTransport = new Map(this.opacitiesVisibilityTransport);
+        break;
       }
 
-      event.layers.forEach(layer => {
-        this.opacitiesVisibilityTransport.set(layer, event.opacity);
-      });
-      this.opacitiesVisibilityTransport = new Map(this.opacitiesVisibilityTransport);
-    }
+      case 'problems': {
+        if (event.clearOthers) {
+          this.opacitiesProblems.forEach((value: number, key: string) => {
+            this.opacitiesProblems.set(key, 0);
+          });
+        }
 
-    if (mapName === 'problems') {
-      if (event.clearOthers) {
-        this.opacitiesProblems.forEach((value: number, key: string) => {
-          this.opacitiesProblems.set(key, 0);
+        event.layers.forEach(layer => {
+          this.opacitiesProblems.set(layer, event.opacity);
         });
+        this.opacitiesProblems = new Map(this.opacitiesProblems);
+        break;
       }
 
-      event.layers.forEach(layer => {
-        this.opacitiesProblems.set(layer, event.opacity);
-      });
-      this.opacitiesProblems = new Map(this.opacitiesProblems);
-    }
+      case 'whitespots': {
+        const initialLayers = ['commercial', 'industrial', 'university'];
+        const initialPopupMarkers = [Place.SPANDAU, Place.CHARLOTTENBURGNORD, Place.GEWERBEGEBIET_BRITZ, Place.LANDSBERGER_ALLEE,
+          Place.MARZAHN_HELLERSDORF];
 
-    if (mapName === 'whitespots') {
-      this.flyToLocationWhitespots = event.flyToLocation;
-    }
+        if (event.clearOthers) {
+          this.opacitiesWhitespots.forEach((value: number, key: string) => {
+            this.opacitiesWhitespots.set(key, 0);
+          });
+        }
 
-    if (mapName === 'whitespots') {
-      this.flyToBoundingBoxWhitespots = event.flyToBoundingBox;
+        event.layers.concat(initialLayers).forEach(layer => {
+          this.opacitiesWhitespots.set(layer, event.opacity);
+        });
+
+        this.flyToLocationWhitespots = event.flyToLocation;
+        this.flyToBoundingBoxWhitespots = event.flyToBoundingBox;
+        this.popupMarkersWhitespots = event.popupMarkers != null
+          ? event.popupMarkers.concat(...initialPopupMarkers)
+          : initialPopupMarkers;
+
+        break;
+      }
     }
   }
 
