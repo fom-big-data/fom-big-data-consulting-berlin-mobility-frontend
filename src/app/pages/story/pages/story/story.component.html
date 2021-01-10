@@ -134,10 +134,9 @@
     <div class="map-container">
       <app-map [id]="'map-visibility-walk'"
                [displayName]="'Isochrone zu Fuß - Start: FOM Hochschule'"
-               [legendContents]="{'#08306b': '0 min', '#6baed6':'15 min', '#f7fbff': '30 min'}"
                [height]="mapHeight"
                [style]="mapBoxStyleEnum.LIGHT_V10"
-               [zoom]="12"
+               [zoom]="11.5"
                [center]="placeEnum.FOM"
                [interactiveEnabled]=false
                [initialOpacity]="0"
@@ -163,10 +162,9 @@
     <div class="map-container">
       <app-map [id]="'map-visibility'"
                [displayName]="'Isochrone ÖPNV - Start: FOM Hochschule'"
-               [legendContents]="{'#081d58': '0 min', '#41b6c4':'15 min', '#ffffd9': '30 min'}"
                [height]="mapHeight"
                [style]="mapBoxStyleEnum.LIGHT_V10"
-               [zoom]="12"
+               [zoom]="11.5"
                [center]="placeEnum.FOM"
                [interactiveEnabled]=false
                [initialOpacity]="0"
