@@ -311,6 +311,64 @@ export class Place {
     13.604378283658102,
     52.53932077992437);
 
+  static TRAM_STENDALERZOSSENER = new Location(
+    'tram-stendalerzossener',
+    'Tram Stendalerzossener',
+    11.5,
+    13.603463340326858,
+    52.543775568848446);
+
+  static TRAM_ZOSSENER = new Location(
+    'tram-zossener',
+    'Tram Zossener',
+    11.5,
+    13.598828498921185,
+    52.54394085869042);
+
+
+  static TRAM_ALTEHELLERSDORFER = new Location(
+    'tram-altehellersdorfer',
+    'Tram Alte-Hellersdorfer',
+    11.5,
+    13.592182865509304,
+    52.544933070709305);
+
+  static TRAM_MICHENDORFER = new Location(
+    'tram-michendorfer',
+    'Tram Michendorfer',
+    11.5,
+    13.586852965519604,
+    52.5456741659942);
+
+  static TRAM_LANDSBERGERZOSSENER = new Location(
+    'tram-landsbergerzossener',
+    'Tram Landsberger Allee / Zossener Str.',
+    11.5,
+    13.587103,
+    52.548822);
+
+  static TRAM_BETRIEBSBAHNHOFMARZAHN = new Location(
+    'tram-betriebsbahnhofmarzahn',
+    'Tram Betriebsbahnhof Marzahn',
+    11.5,
+    13.581988,
+    52.548871);
+
+  static TRAM_BRODOWIENERRING = new Location(
+    'tram-brodowienerring',
+    'Tram Brodowiener Ring',
+    11.5,
+    13.578159789319885,
+    52.54789287493665);
+
+
+  static TRAM_LANDSBERGERBLUMBERGER = new Location(
+    'tram-landsbergerblumberger',
+    'Tram Landberger Allee / Blumberger Damm',
+    11.5,
+    13.572618345542136,
+    52.54640859789009);
+
   /* PUNKTE FUER DIE COMMERCIAL und RETAIL HOTSPOTS*/
   /* SIEMENSSTADT*/
   static TEC_SIEMENSSTADT = new Location(
