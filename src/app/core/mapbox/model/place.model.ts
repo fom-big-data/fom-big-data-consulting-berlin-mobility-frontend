@@ -123,17 +123,18 @@ export class Place {
     'marzahnhellersdorf',
     'tbd',
     12.5,
-    13.593078,
-    52.548584
+    13.59452260037462,
+    52.546943747075595
   );
 
   /** Hellersdorf */
   static MARZAHN_HELLERSDORF = new Location(
     'marzahnhellersdorf',
     'tbd',
-    11.0,
-    13.593078,
-    52.548584
+    11.5,
+    13.59452260037462,
+    52.546943747075595
+
   );
 
   /** S Poelchaustraße */
@@ -172,6 +173,33 @@ export class Place {
     52.5236357
   );
 
+  /** S Marzahn */
+  static S_MARZAHN = new Location(
+    's-marzahn',
+    'S Marzahn',
+    11.5,
+    13.541288892810723,
+    52.543613874069685
+  );
+
+    /** S Wuhletalstraße */
+    static S_WUHLETAL = new Location(
+    's-wuhletal',
+    'S Wuhletal',
+    11.5,
+    13.577991920021807,
+    52.512607512439565
+  );
+
+  /** U Cottbusser */
+  static U_COTTBUSSER = new Location(
+    'u-cottbusser',
+    'U Cottbusser',
+    11.5,
+    13.59651127229371,
+    52.533917147650236
+  );
+
   /** U Magdalenenstraße */
   static U_MAGDALENENSTRASSE = new Location(
     'u-magdalenenstrasse',
@@ -180,6 +208,17 @@ export class Place {
     13.4873591,
     52.5124398
   );
+
+  /** U Wuhletalstr */
+  static U_WUHLETAL = new Location(
+    'u-wuhletal',
+    'U Wuhletal',
+    11.5,
+    13.57522325860481,
+    52.512871516295945
+  );
+
+
 
   /** Tram Zechliner Str. */
   static TRAM_ZECHLINER_STRASSE = new Location(
@@ -451,6 +490,30 @@ export class Place {
     11.5,
     13.430639,
     52.454333
+  );
+
+  static BUS_KLAUSDORFER = new Location(
+    'bus-klausdorfer',
+    'Bus Klausdorfer',
+    11.5,
+    13.592834211826112,
+    52.54802735119252
+  );
+
+  static BUS_TEUPITZER = new Location(
+    'bus-teupitzer',
+    'Bus Teupitzer Str.',
+    11.5,
+    13.59959286424824,
+    52.54738421405889
+  );
+
+  static BUS_LANDSBERGERZOSSENER = new Location(
+    'bus-landsbergerzossener',
+    'Bus Landsberger Chaussee/Zossener Str. ',
+    11.5,
+    13.587965102633826,
+    52.54923683160367
   );
 
   static U_BLASCHKOALLEE = new Location(

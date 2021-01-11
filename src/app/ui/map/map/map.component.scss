@@ -175,6 +175,7 @@
   cursor: pointer;
 }
 
+
 ::ng-deep #marker-tec_marzahn {
   background-image: url('../../../../assets/img/tec_marzahn.jpg');
   background-size: cover;
@@ -259,7 +260,10 @@
 }
 
 ::ng-deep #marker-bus-geradestrasse,
-::ng-deep #marker-bus-eintrachtsiedlung {
+::ng-deep #marker-bus-eintrachtsiedlung,
+::ng-deep #marker-bus-klausdorfer,
+::ng-deep #marker-bus-teupitzer,
+::ng-deep #marker-bus-landsbergerzossener {
   background-image: url('../../../../assets/img/bus.png');
   background-size: cover;
   width: 50px;
@@ -272,7 +276,10 @@
 ::ng-deep #marker-s-springpfuhl,
 ::ng-deep #marker-s-landsberger-allee,
 ::ng-deep #marker-s-storkower-strasse,
-::ng-deep #marker-s-hermannstrasse {
+::ng-deep #marker-s-hermannstrasse,
+::ng-deep #marker-s-marzahn,
+::ng-deep #marker-s-wuhletal
+ {
   background-image: url('../../../../assets/img/sbahn.png');
   background-size: cover;
   width: 50px;
@@ -284,7 +291,9 @@
 ::ng-deep #marker-u-magdalenenstrasse,
 ::ng-deep #marker-u-ullsteinstrasse,
 ::ng-deep #marker-u-blaschkoallee,
-::ng-deep #marker-u-hellersdorf {
+::ng-deep #marker-u-hellersdorf,
+::ng-deep #marker-u-cottbusser,
+::ng-deep #marker-u-wuhletal {
   background-image: url('../../../../assets/img/ubahn.png');
   background-size: cover;
   width: 50px;

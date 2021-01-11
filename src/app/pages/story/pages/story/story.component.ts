@@ -240,7 +240,7 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
       {
         chapters: ['whitespots-marzahnhellersdorf'],
         layers: ['lines-tram', 'lines-bus', 'lines-subway'],
-        popupMarkers: [Place.U_HELLERSDORF,
+        popupMarkers: [Place.BUS_KLAUSDORFER, Place.BUS_LANDSBERGERZOSSENER, Place.BUS_TEUPITZER,
           Place.TRAM_AHRENSFELDE, Place.TRAM_HELLERSDORF_U, Place.TRAM_STENDALER,Place.TRAM_STENDALERZOSSENER, Place.TRAM_ZOSSENER,
           Place.TRAM_ALTEHELLERSDORFER,Place.TRAM_MICHENDORFER, Place.TRAM_LANDSBERGERZOSSENER,
           Place.TRAM_BETRIEBSBAHNHOFMARZAHN,  Place.TRAM_BRODOWIENERRING, Place.TRAM_LANDSBERGERBLUMBERGER],
@@ -248,20 +248,13 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
       {
         chapters: ['whitespots-marzahnhellersdorf-1'],
         layers: ['lines-tram', 'lines-bus', 'lines-light_rail', 'lines-subway'],
-        popupMarkers: [Place.S_POELCHAUSTRASSE, Place.S_SPRINGPFUHL,
-          Place.U_HELLERSDORF,
-          Place.TRAM_AHRENSFELDE, Place.TRAM_HELLERSDORF_U, Place.TRAM_STENDALER,Place.TRAM_STENDALERZOSSENER, Place.TRAM_ZOSSENER,
-          Place.TRAM_ALTEHELLERSDORFER,Place.TRAM_MICHENDORFER, Place.TRAM_LANDSBERGERZOSSENER,
-          Place.TRAM_BETRIEBSBAHNHOFMARZAHN,  Place.TRAM_BRODOWIENERRING, Place.TRAM_LANDSBERGERBLUMBERGER],
+        popupMarkers: [Place.U_HELLERSDORF, Place.U_COTTBUSSER, Place.U_WUHLETAL],
         flyToLocation: Place.MARZAHN_HELLERSDORF},
       {
         chapters: ['whitespots-marzahnhellersdorf-2'],
         layers: ['lines-tram', 'lines-bus', 'lines-light_rail', 'lines-subway'],
-        popupMarkers: [Place.S_POELCHAUSTRASSE, Place.S_SPRINGPFUHL,
-          Place.U_HELLERSDORF,
-          Place.TRAM_AHRENSFELDE, Place.TRAM_HELLERSDORF_U, Place.TRAM_STENDALER,Place.TRAM_STENDALERZOSSENER, Place.TRAM_ZOSSENER,
-          Place.TRAM_ALTEHELLERSDORFER,Place.TRAM_MICHENDORFER, Place.TRAM_LANDSBERGERZOSSENER,
-          Place.TRAM_BETRIEBSBAHNHOFMARZAHN,  Place.TRAM_BRODOWIENERRING, Place.TRAM_LANDSBERGERBLUMBERGER],
+        popupMarkers: [Place.S_POELCHAUSTRASSE, Place.S_SPRINGPFUHL, Place.S_MARZAHN, Place.S_WUHLETAL,
+          Place.U_HELLERSDORF, Place.U_COTTBUSSER, Place.U_WUHLETAL],
         flyToLocation: Place.MARZAHN_HELLERSDORF},
     ];
 
