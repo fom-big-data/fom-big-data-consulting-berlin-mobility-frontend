@@ -41,7 +41,7 @@ export class Place {
   /** FOM */
   static FOM = new Location(
     'FOM',
-    '', 14,
+    '', 13,
     13.3161495,
     52.5119408
   );
