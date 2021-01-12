@@ -12,6 +12,16 @@
   align-items: center;
 }
 
+::ng-deep .marker-label {
+  color: #F44335;
+  cursor: pointer;
+}
+
+::ng-deep .todo {
+  background: #fff59d;
+  font-weight: 700;
+}
+
 //
 // Error
 //
