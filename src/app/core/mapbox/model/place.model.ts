@@ -46,6 +46,13 @@ export class Place {
   /** Area Neukoelln */
   static NEUKOELLN = new Location('neukoelln', 'Neukölln',13.436502, 52.469093);
 
+  /** Auto Franzoesisch Buchholz */
+  static AUTO_FRANZOESISCH_BUCHHOLZ = new Location('auto-franzoesisch-buchholz', 'Französisch Buchholz',13.4054556,52.6113215);
+  /** AUTO Kladow */
+  static AUTO_KLADOW = new Location('auto-kladow', 'Kladow',13.1129395,52.4625043);
+  /** Auto Charlottenburg */
+  static AUTO_CHARLOTTENBURG = new Location('auto-charlottenburg', 'Charlottenburg', 13.3189848, 52.5086571)
+
   /** Area Kladow */
   static KLADOW = new Location('kladow', 'Kladow',13.1129395,52.4625043);
   /** Area Mueggelheim */
@@ -58,7 +65,6 @@ export class Place {
   static GRAEFEKIEZ = new Location('graefekiez', 'Gräfekiez',13.4145386,52.4916955);
   /** Area Alt Hohenschoenhausen */
   static ALT_HOHENSCHOENHAUSEN = new Location('alt-hohenschoenhausen', 'Alt Hohenschönhausen',13.4820985,52.5486436);
-
   //
   // Whitespots
   //

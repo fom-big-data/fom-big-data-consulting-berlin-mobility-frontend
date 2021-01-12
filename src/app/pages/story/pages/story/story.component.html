@@ -209,7 +209,11 @@
                [hexResults]="['isochrones-drive-15']"
                [hexAggregateProperty]="'mean_spatial_distance_15min'"
                [hexBinLimit]="'3'"
-               [hexBinThreshold]="'1000'">
+               [hexBinThreshold]="'1000'"
+               [popupMarkers]="[placeEnum.AUTO_KLADOW, placeEnum.AUTO_FRANZOESISCH_BUCHHOLZ, placeEnum.AUTO_CHARLOTTENBURG]"
+               [opacityActive]="'1.0'"
+               [opacityPassive]="'0.0'"
+               [opacityDefault]="'0.0'">
       </app-map>
     </div>
   </ng-container>
