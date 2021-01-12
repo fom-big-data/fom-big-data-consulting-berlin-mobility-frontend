@@ -1,5 +1,7 @@
-import {ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Inject, Input, OnChanges, SimpleChanges} from '@angular/core';
 import hljs from 'highlight.js';
+import {DomSanitizer} from '@angular/platform-browser';
+import {DOCUMENT} from '@angular/common';
 
 /**
  * Markdown converter instance including configuration
@@ -71,8 +73,23 @@ export class MarkdownPreviewComponent implements OnChanges {
   /** Removes linebreaks if true */
   @Input() removeLinebreaks = true;
 
+  /** Opacity of active marker */
+  @Input() opacityActive = 1.0;
+  /** Opacity of passive marker */
+  @Input() opacityPassive = 0.3;
+  /** Default opacity */
+  @Input() opacityDefault = 1.0;
+
   /** Text transformed into html */
   htmlText = '';
+
+  /**
+   * Constructor
+   * @param document document
+   * @param sanitizer sanitizer
+   */
+  constructor(@Inject(DOCUMENT) private document: Document, private sanitizer: DomSanitizer) {
+  }
 
   //
   // Lifecycle hooks
@@ -91,9 +108,20 @@ export class MarkdownPreviewComponent implements OnChanges {
   //
 
   /**
+   * Handles mouse enter event
+   */
+  onMouseEnter() {
+    this.initializeHoverableMarkers();
+  }
+
+  //
+  // Helpers
+  //
+
+  /**
    * Updates markdown
    */
-  updateMarkdown() {
+  private updateMarkdown() {
     if (this.markdownText != null) {
       if (this.removeLinebreaks) {
         this.htmlText = md.render(this.markdownText).replace(/<br>/g, '');
@@ -101,5 +129,79 @@ export class MarkdownPreviewComponent implements OnChanges {
         this.htmlText = md.render(this.markdownText);
       }
     }
+  }
+
+  /**
+   * Initializes hoverable markers
+   */
+  private initializeHoverableMarkers() {
+
+    // Identify all markers on the map
+    const hoverableMarkersElements = this.document.getElementsByClassName('mapboxgl-marker');
+    const hoverableMarkers = Array.from(hoverableMarkersElements).map(e => {
+      return e.id.replace(/marker-/g, '');
+    });
+
+    // Iterate over all markers
+    hoverableMarkers.forEach(name => {
+
+      // Get marker on the map
+      const marker = this.document.getElementById(`marker-${name}`);
+      // Get marker label in the text
+      const markerLabel = this.document.getElementById(`marker-label-${name}`);
+
+      // Define mouse-enter event
+      const mouseEnterEvent = (_ => {
+
+        // Iterate over all markers
+        hoverableMarkers.forEach(hoverableMarker => {
+          const markerElement = this.document.getElementById(`marker-${hoverableMarker}`);
+
+          if (markerElement != null) {
+
+            // Set markers active or passive depending on whether they are hovered or not
+            if (hoverableMarker === name) {
+              markerElement.style.opacity = this.opacityActive.toString();
+              markerElement.style.border = '5px solid white';
+              markerElement.style.zIndex = '10';
+            } else {
+              markerElement.style.opacity = this.opacityPassive.toString();
+              markerElement.style.border = '0 solid transparent';
+              markerElement.style.zIndex = '9';
+            }
+          }
+        });
+      });
+
+      // Define mouse-leave event
+      const mouseLeaveEvent = (_ => {
+
+        // Iterate over all markers
+        hoverableMarkers.forEach(hoverableMarker => {
+          const markerElement = this.document.getElementById(`marker-${hoverableMarker}`);
+
+          // Reset all markers to default
+          if (markerElement != null) {
+            markerElement.style.opacity = this.opacityDefault.toString();
+            markerElement.style.border = '0 solid transparent';
+            markerElement.style.zIndex = '9';
+          }
+        });
+      });
+
+      // Add events to markers
+      try {
+        marker.onmouseenter = mouseEnterEvent;
+        marker.onmouseleave = mouseLeaveEvent;
+      } catch (e) {
+      }
+
+      // Add events to marker labels
+      try {
+        markerLabel.onmouseenter = mouseEnterEvent;
+        markerLabel.onmouseleave = mouseLeaveEvent;
+      } catch (e) {
+      }
+    });
   }
 }

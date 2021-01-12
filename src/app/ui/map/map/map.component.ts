@@ -1,4 +1,14 @@
-import {AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, Input, OnChanges, SimpleChanges, ViewChild} from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  Inject,
+  Input,
+  OnChanges,
+  SimpleChanges,
+  ViewChild
+} from '@angular/core';
 import * as mapboxgl from 'mapbox-gl';
 import {environment} from '../../../../environments/environment';
 import {Place} from '../../../core/mapbox/model/place.model';
@@ -15,6 +25,7 @@ import RBush from 'rbush';
 import booleanPointInPolygon from '@turf/boolean-point-in-polygon';
 import {BoundingBox} from '../model/bounding-box.model';
 import {ColorRamp} from '../model/color-ramp.model';
+import {DOCUMENT} from '@angular/common';
 
 
 /**
@@ -120,6 +131,13 @@ export class MapComponent implements OnChanges, AfterViewInit {
   /** Legend component */
   @ViewChild('legend') legend: ElementRef;
 
+  /** Opacity of active marker */
+  @Input() opacityActive = 1.0;
+  /** Opacity of passive marker */
+  @Input() opacityPassive = 0.3;
+  /** Default opacity */
+  @Input() opacityDefault = 1.0;
+
   /** Whether or not debug mode is enabled */
   @Input() debug = false;
 
@@ -140,9 +158,10 @@ export class MapComponent implements OnChanges, AfterViewInit {
 
   /**
    * Constructor
+   * @param document document
    * @param http http client
    */
-  constructor(private http: HttpClient) {
+  constructor(@Inject(DOCUMENT) private document: Document, private http: HttpClient) {
   }
 
   //
@@ -201,6 +220,17 @@ export class MapComponent implements OnChanges, AfterViewInit {
     // Display overlays
     this.initializeResultOverlays(this.results);
     this.initializeHexResultOverlays(this.hexResults);
+  }
+
+  //
+  // Actions
+  //
+
+  /**
+   * Handles mouse enter event
+   */
+  onMouseEnter() {
+    this.initializeHoverableMarkers();
   }
 
   //
@@ -707,6 +737,80 @@ export class MapComponent implements OnChanges, AfterViewInit {
           .addTo(this.map);
       });
     }
+  }
+
+  /**
+   * Initializes hoverable markers
+   */
+  private initializeHoverableMarkers() {
+
+    // Identify all markers on the map
+    const hoverableMarkersElements = this.document.getElementsByClassName('mapboxgl-marker');
+    const hoverableMarkers = Array.from(hoverableMarkersElements).map(e => {
+      return e.id.replace(/marker-/g, '');
+    });
+
+    // Iterate over all markers
+    hoverableMarkers.forEach(name => {
+
+      // Get marker on the map
+      const marker = this.document.getElementById(`marker-${name}`);
+      // Get marker label in the text
+      const markerLabel = this.document.getElementById(`marker-label-${name}`);
+
+      // Define mouse-enter event
+      const mouseEnterEvent = (_ => {
+
+        // Iterate over all markers
+        hoverableMarkers.forEach(hoverableMarker => {
+          const markerElement = this.document.getElementById(`marker-${hoverableMarker}`);
+
+          if (markerElement != null) {
+
+            // Set markers active or passive depending on whether they are hovered or not
+            if (hoverableMarker === name) {
+              markerElement.style.opacity = this.opacityActive.toString();
+              markerElement.style.border = '5px solid white';
+              markerElement.style.zIndex = '10';
+            } else {
+              markerElement.style.opacity = this.opacityPassive.toString();
+              markerElement.style.border = '0 solid transparent';
+              markerElement.style.zIndex = '9';
+            }
+          }
+        });
+      });
+
+      // Define mouse-leave event
+      const mouseLeaveEvent = (_ => {
+
+        // Iterate over all markers
+        hoverableMarkers.forEach(hoverableMarker => {
+          const markerElement = this.document.getElementById(`marker-${hoverableMarker}`);
+
+          // Reset all markers to default
+          if (markerElement != null) {
+            markerElement.style.opacity = this.opacityDefault.toString();
+            markerElement.style.border = '0 solid transparent';
+            markerElement.style.zIndex = '9';
+          }
+        });
+      });
+
+      // Add events to markers
+      try {
+        marker.onmouseenter = mouseEnterEvent;
+        marker.onmouseleave = mouseLeaveEvent;
+      } catch (e) {
+      }
+
+      // Add events to marker labels
+      try {
+        markerLabel.onmouseenter = mouseEnterEvent;
+        markerLabel.onmouseleave = mouseLeaveEvent;
+      } catch (e) {
+      }
+    });
   }
 
   //

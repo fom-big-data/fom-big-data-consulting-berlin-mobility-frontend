@@ -185,7 +185,8 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
       {chapters: ['whitespots-bike'], layers: ['isochrones-bike-15']},
       {chapters: ['whitespots-bus'], layers: ['isochrones-bus-15']},
       {chapters: ['whitespots-s-bahn'], layers: ['isochrones-light_rail-15']},
-      {chapters: ['whitespots-u-bahn'], layers: ['isochrones-subway-15']},
+      {chapters: ['whitespots-u-bahn-1'], layers: ['isochrones-subway-15']},
+      {chapters: ['whitespots-u-bahn-2'], layers: ['isochrones-subway-15']},
       {chapters: ['whitespots-tram'], layers: ['isochrones-tram-15']},
       {chapters: ['whitespots-all'], layers: ['isochrones-all-15']},
       {chapters: ['whitespots-all-2'], layers: ['isochrones-all-15']},
@@ -208,14 +209,14 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
       {
         chapters: ['whitespots-gewerbegebiet-britz-1'],
         layers: ['lines-bus', 'lines-subway', 'lines-light_rail'],
-        popupMarkers: [Place.BUS_GERADESTRASSE, Place.BUS_EINTRAGSIEDLUNG, Place.U_ULLSTEINSTRASSE, Place.U_BLASCHKOALLEE,
+        popupMarkers: [Place.BUS_GRADESTRASSE, Place.BUS_EINTRAGSIEDLUNG, Place.U_ULLSTEINSTRASSE, Place.U_BLASCHKOALLEE,
           Place.S_HERMANNSTRASSE],
         flyToLocation: Place.GEWERBEGEBIET_BRITZ
       },
       {
         chapters: ['whitespots-gewerbegebiet-britz-2'],
         layers: ['lines-bus', 'lines-subway', 'lines-light_rail'],
-        popupMarkers: [Place.BUS_GERADESTRASSE, Place.BUS_EINTRAGSIEDLUNG, Place.U_ULLSTEINSTRASSE, Place.U_BLASCHKOALLEE,
+        popupMarkers: [Place.BUS_GRADESTRASSE, Place.BUS_EINTRAGSIEDLUNG, Place.U_ULLSTEINSTRASSE, Place.U_BLASCHKOALLEE,
           Place.S_HERMANNSTRASSE],
         flyToLocation: Place.GEWERBEGEBIET_BRITZ
       },

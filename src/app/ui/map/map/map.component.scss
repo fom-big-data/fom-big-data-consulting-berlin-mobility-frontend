@@ -85,8 +85,16 @@
 // Markers
 //
 
+::ng-deep .mapboxgl-popup {
+  z-index: 11;
+}
+
 ::ng-deep .mapboxgl-marker {
   box-shadow: 0 2px 1px -1px rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 1px 3px 0 rgba(0, 0, 0, .12);
+}
+
+::ng-deep .mapboxgl-marker:hover {
+  border: 5px solid white;
 }
 
 // General
@@ -103,8 +111,8 @@
 ::ng-deep div[id^='marker-bus-'],
 ::ng-deep div[id^='marker-tram-'] {
   background-size: cover;
-  width: 25px;
-  height: 25px;
+  width: 35px;
+  height: 35px;
   border-radius: 50%;
   cursor: pointer;
 }
@@ -128,6 +136,10 @@
 }
 
 // Specific
+
+::ng-deep #marker-fom {
+  background-image: url('../../../../assets/img/fom.png');
+}
 
 ::ng-deep #marker-spreepark {
   background-image: url('../../../../assets/img/spreepark.jpg');
@@ -173,28 +185,27 @@
   background-image: url('../../../../assets/img/marzahn-hellersdorf.jpg');
 }
 
-
-::ng-deep #marker-tec_marzahn {
+::ng-deep #marker-tec-marzahn {
   background-image: url('../../../../assets/img/tec_marzahn.jpg');
 }
 
-::ng-deep #marker-tec_siemensstadt {
+::ng-deep #marker-tec-siemensstadt {
   background-image: url('../../../../assets/img/tec_siemensstadt.jpg');
 }
 
-::ng-deep #marker-tec_adlershof {
+::ng-deep #marker-tec-adlershof {
   background-image: url('../../../../assets/img/tec_adlershof.jpg');
 }
 
-::ng-deep #marker-tec_humboldthain {
+::ng-deep #marker-tec-humboldthain {
   background-image: url('../../../../assets/img/tec_humboldt.jpg');
 }
 
-::ng-deep #marker-tec_euref {
+::ng-deep #marker-tec-euref {
   background-image: url('../../../../assets/img/tec_euref.jpg');
 }
 
-::ng-deep #marker-tec_borsigturm {
+::ng-deep #marker-tec-borsigturm {
   background-image: url('../../../../assets/img/tec_borsigturm.jpg');
 }
 
@@ -211,63 +222,6 @@
   background-size: cover;
   width: 50px;
   height: 50px;
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-::ng-deep #marker-bus-geradestrasse,
-::ng-deep #marker-bus-eintrachtsiedlung {
-  background-image: url('../../../../assets/img/bus.png');
-  background-size: cover;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-::ng-deep #marker-s-poelchaustrasse,
-::ng-deep #marker-s-springpfuhl,
-::ng-deep #marker-s-landsberger-allee,
-::ng-deep #marker-s-storkower-strasse,
-::ng-deep #marker-s-hermannstrasse {
-  background-image: url('../../../../assets/img/sbahn.png');
-  background-size: cover;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-::ng-deep #marker-u-magdalenenstrasse,
-::ng-deep #marker-u-ullsteinstrasse,
-::ng-deep #marker-u-blaschkoallee {
-  background-image: url('../../../../assets/img/ubahn.png');
-  background-size: cover;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-::ng-deep #marker-tram-zechliner-rhinstrasse,
-::ng-deep #marker-tram-genslerstrasse,
-::ng-deep #marker-tram-arendsweg,
-::ng-deep #marker-tram-gewerbepark-georg-knorr,
-::ng-deep #marker-tram-landsgerber-allee-rhinstrasse,
-::ng-deep #marker-tram-dingelstaedter-strasse,
-::ng-deep #marker-tram-marzahner-promenade,
-::ng-deep #marker-tram-gewerbepark-georg-knorr,
-::ng-deep #marker-tram-herzbergstrasse-industriepark,
-::ng-deep #marker-tram-herzbergstrasse-siegfriedstrasse,
-::ng-deep #marker-tram-ev-krankenhaus-keh,
-::ng-deep #marker-tram-beilsteiner-strasse,
-::ng-deep #marker-tram-reinhardsbrunner-strasse,
-::ng-deep #marker-tram-meeraner-strasse,
-::ng-deep #marker-tram-kleingartenanlage-bielefeldt {
-  background-image: url('../../../../assets/img/tram.png');
-  background-size: cover;
-  width: 30px;
-  height: 30px;
   border-radius: 50%;
   cursor: pointer;
 }

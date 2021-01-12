@@ -1,6 +1,7 @@
 <div class="map"
      [attr.id]="id"
-     [style.height]="height">
+     [style.height]="height"
+     (mouseenter)="onMouseEnter()">
 </div>
 
 <app-legend [displayName]="displayName"

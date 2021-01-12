@@ -1,1 +1,2 @@
-<div [innerHtml]="htmlText"></div>
+<div [innerHtml]="htmlText | safe: 'html'"
+     (mouseenter)="onMouseEnter()"></div>
