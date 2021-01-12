@@ -153,6 +153,11 @@
   background-image: url('../../../../assets/img/10623_charlottenburg.jpg');
 }
 
+::ng-deep #marker-auto-charlottenburg {
+  opacity: 0.0;
+  background-image: url('../../../../assets/img/10623_charlottenburg.jpg');
+}
+
 ::ng-deep #marker-buckow-lichtenrade-mariendorf-marienfelde-tempelhof {
   background-image: url('../../../../assets/img/12107_mariendorf.jpg');
 }
@@ -209,11 +214,11 @@
   background-image: url('../../../../assets/img/tec_borsigturm.jpg');
 }
 
-::ng-deep #marker-tec_htw {
+::ng-deep #marker-tec-htw {
   background-image: url('../../../../assets/img/tec_htw.jpg');
 }
 
-::ng-deep #marker-tec_mariendorf {
+::ng-deep #marker-tec-mariendorf {
   background-image: url('../../../../assets/img/tec_mariendorf.jpg');
 }
 
@@ -264,7 +269,8 @@
   background-image: url('../../../../assets/img/neukoelln.jpg');
 }
 
-::ng-deep #marker-kladow {
+::ng-deep #marker-kladow,
+::ng-deep #marker-auto-kladow {
   opacity: 0.0;
   background-image: url('../../../../assets/img/kladow.jpeg');
 }
@@ -274,7 +280,8 @@
   background-image: url('../../../../assets/img/mueggelheim.jpeg');
 }
 
-::ng-deep #marker-franzoesisch-buchholz {
+::ng-deep #marker-franzoesisch-buchholz,
+::ng-deep #marker-auto-franzoesisch-buchholz {
   opacity: 0.0;
   background-image: url('../../../../assets/img/franzoesisch-buchholz.jpg');
 }

@@ -194,7 +194,10 @@
     <div class="text-container">
       <app-section [height]="mapHeight"
                    [chapters]="['whitespots-auto']"
-                   [layers]="['isochrones-drive-15']"></app-section>
+                   [layers]="['isochrones-drive-15']"
+                   [opacityActive]="'1.0'"
+                   [opacityPassive]="'0.0'"
+                   [opacityDefault]="'0.0'"></app-section>
     </div>
     <div class="map-container">
       <app-map [id]="'map-problems-drive'"
