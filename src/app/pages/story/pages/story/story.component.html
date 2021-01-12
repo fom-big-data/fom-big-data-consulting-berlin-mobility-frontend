@@ -133,7 +133,7 @@
 
     <div class="map-container">
       <app-map [id]="'map-visibility-walk'"
-               [displayName]="'Isochrone zu Fuß - Start: FOM Hochschule'"
+               [displayName]="displayNameVisibilityWalk"
                [height]="mapHeight"
                [style]="mapBoxStyleEnum.LIGHT_V10"
                [zoom]="11.5"
@@ -161,8 +161,8 @@
     </div>
 
     <div class="map-container">
-      <app-map [id]="'map-visibility'"
-               [displayName]="'Isochrone ÖPNV - Start: FOM Hochschule'"
+      <app-map [id]="'map-visibility-public-transport'"
+               [displayName]="displayNameVisibilityTransport"
                [height]="mapHeight"
                [style]="mapBoxStyleEnum.LIGHT_V10"
                [zoom]="10.5"

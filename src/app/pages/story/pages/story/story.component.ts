@@ -100,6 +100,11 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
   /** Fly-to bounding box for map named 'whitespots' */
   flyToBoundingBoxWhitespots: BoundingBox;
 
+  /** Display name for map name 'visibility-walk' */
+  displayNameVisibilityWalk = 'Isochrone zu Fuß - Start: FOM Hochschule';
+  /** Display name for map name 'visibility-transport' */
+  displayNameVisibilityTransport = 'Isochrone ÖPNV - Start: FOM Hochschule';
+
   /** True if app is started in dev mode */
   isDev = isDevMode();
 
@@ -326,6 +331,10 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
           this.opacitiesVisibilityWalk.set(layer, event.opacity);
         });
         this.opacitiesVisibilityWalk = new Map(this.opacitiesVisibilityWalk);
+
+        const minutes = event.layers[0].replace('isochrones-walk-', '').replace('-52.5119408-13.3161495', '');
+        this.displayNameVisibilityWalk = `Isochrone zu Fuß - Start: FOM Hochschule - ${minutes} Minuten`;
+
         break;
       }
 
@@ -340,6 +349,10 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
           this.opacitiesVisibilityTransport.set(layer, event.opacity);
         });
         this.opacitiesVisibilityTransport = new Map(this.opacitiesVisibilityTransport);
+
+        const minutes = event.layers[0].replace('isochrones-subway-', '').replace('-52.5119408-13.3161495', '');
+        this.displayNameVisibilityTransport = `Isochrone ÖPNV - Start: FOM Hochschule - ${minutes} Minuten`;
+
         break;
       }
 
