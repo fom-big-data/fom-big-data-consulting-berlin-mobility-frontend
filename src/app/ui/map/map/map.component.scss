@@ -16,6 +16,10 @@
   max-width: 200px;
 }
 
+//
+// Legend
+//
+
 .legend {
   width: 100%;
   padding-top: 10px;
@@ -28,6 +32,7 @@
   margin: 0 2px;
   line-height: 1.2em;
 }
+
 ::ng-deep .legend .gradient_container {
   width: 100%;
   height: 0.5em;
@@ -42,213 +47,164 @@
   justify-content: stretch;
   //background: linear-gradient(90deg, blue, green, red, black);
 }
-::ng-deep .legend .multiLegendRow{
+
+::ng-deep .legend .multiLegendRow {
   overflow: hidden;
-  height: 0em;
+  height: 0;
   opacity: 0;
   transition: all 0.3s ease-in;
 }
 
-::ng-deep .legend .multiLegendRow.visible{
+::ng-deep .legend .multiLegendRow.visible {
   height: 3em;
   opacity: 1;
 }
 
-::ng-deep .legend .solid_container div{
+::ng-deep .legend .solid_container div {
   width: 1em;
   height: 0.5em;
   flex-grow: 1;
   margin: 2px;
   //background: linear-gradient(90deg, blue, green, red, black);
 }
+
 ::ng-deep .legend ul.description {
   padding: 0;
   margin: 0;
   display: flex;
   justify-content: space-between;
 }
+
 ::ng-deep .legend ul.description li {
   list-style: none;
   padding: 0;
-  margin-top: 0.2em;
-  margin: 2px;
+  margin: 0.2em 2px 0;
 }
 
+//
+// Markers
+//
 
+::ng-deep .mapboxgl-marker {
+  box-shadow: 0 2px 1px -1px rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 1px 3px 0 rgba(0, 0, 0, .12);
+}
 
-::ng-deep #marker-spreepark {
-  background-image: url('../../../../assets/img/spreepark.jpg');
+// General
+
+::ng-deep div[id^='marker-'] {
   background-size: cover;
   width: 50px;
   height: 50px;
   border-radius: 50%;
   cursor: pointer;
+}
+
+::ng-deep div[id^='marker-tec'],
+::ng-deep div[id^='marker-bus-'],
+::ng-deep div[id^='marker-tram-'] {
+  background-size: cover;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+// Groups
+
+::ng-deep div[id^='marker-bus-'] {
+  background-image: url('../../../../assets/img/bus.png');
+}
+
+::ng-deep div[id^='marker-s-'] {
+  background-image: url('../../../../assets/img/sbahn.png');
+}
+
+::ng-deep div[id^='marker-u-'] {
+  background-image: url('../../../../assets/img/ubahn.png');
+}
+
+::ng-deep div[id^='marker-tram-'] {
+  background-image: url('../../../../assets/img/tram.png');
+}
+
+// Specific
+
+::ng-deep #marker-spreepark {
+  background-image: url('../../../../assets/img/spreepark.jpg');
 }
 
 ::ng-deep #marker-tierpark {
   background-image: url('../../../../assets/img/tierpark.jpg');
-  background-size: cover;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  cursor: pointer;
 }
 
 ::ng-deep #marker-charlottenburg {
   background-image: url('../../../../assets/img/10623_charlottenburg.jpg');
-  background-size: cover;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  cursor: pointer;
 }
 
 ::ng-deep #marker-buckow-lichtenrade-mariendorf-marienfelde-tempelhof {
   background-image: url('../../../../assets/img/12107_mariendorf.jpg');
-  background-size: cover;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  cursor: pointer;
 }
 
 ::ng-deep #marker-kaulsdorf-mahlsdorf {
   background-image: url('../../../../assets/img/12623-mahlsdorf.jpg');
-  background-size: cover;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  cursor: pointer;
 }
 
 ::ng-deep #marker-tegel {
   background-image: url('../../../../assets/img/tegel.jpg');
-  background-size: cover;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  cursor: pointer;
 }
 
 ::ng-deep #marker-spandau {
   background-image: url('../../../../assets/img/spandau.jpg');
-  background-size: cover;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  cursor: pointer;
 }
 
 ::ng-deep #marker-gewerbegebiet-britz {
   background-image: url('../../../../assets/img/gewerbegebiet-britz.jpeg');
-  background-size: cover;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  cursor: pointer;
 }
 
 ::ng-deep #marker-landsberger-allee {
   background-image: url('../../../../assets/img/landsberger_allee.jpg');
-  background-size: cover;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  cursor: pointer;
 }
 
 ::ng-deep #marker-charlottenburg-nord {
   background-image: url('../../../../assets/img/tegel.jpg');
-  background-size: cover;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  cursor: pointer;
 }
 
 ::ng-deep #marker-marzahnhellersdorf {
   background-image: url('../../../../assets/img/marzahn-hellersdorf.jpg');
-  background-size: cover;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  cursor: pointer;
 }
 
 
 ::ng-deep #marker-tec_marzahn {
   background-image: url('../../../../assets/img/tec_marzahn.jpg');
-  background-size: cover;
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  cursor: pointer;
 }
 
 ::ng-deep #marker-tec_siemensstadt {
   background-image: url('../../../../assets/img/tec_siemensstadt.jpg');
-  background-size: cover;
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  cursor: pointer;
 }
 
 ::ng-deep #marker-tec_adlershof {
   background-image: url('../../../../assets/img/tec_adlershof.jpg');
-  background-size: cover;
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  cursor: pointer;
 }
 
 ::ng-deep #marker-tec_humboldthain {
   background-image: url('../../../../assets/img/tec_humboldt.jpg');
-  background-size: cover;
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  cursor: pointer;
 }
 
 ::ng-deep #marker-tec_euref {
   background-image: url('../../../../assets/img/tec_euref.jpg');
-  background-size: cover;
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  cursor: pointer;
 }
 
 ::ng-deep #marker-tec_borsigturm {
   background-image: url('../../../../assets/img/tec_borsigturm.jpg');
-  background-size: cover;
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  cursor: pointer;
 }
 
 ::ng-deep #marker-tec_htw {
   background-image: url('../../../../assets/img/tec_htw.jpg');
-  background-size: cover;
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  cursor: pointer;
 }
 
 ::ng-deep #marker-tec_mariendorf {
   background-image: url('../../../../assets/img/tec_mariendorf.jpg');
-  background-size: cover;
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  cursor: pointer;
 }
-
-
 
 ::ng-deep #marker-westhafen {
   background-image: url('../../../../assets/img/tegel.jpg');
@@ -260,10 +216,7 @@
 }
 
 ::ng-deep #marker-bus-geradestrasse,
-::ng-deep #marker-bus-eintrachtsiedlung,
-::ng-deep #marker-bus-klausdorfer,
-::ng-deep #marker-bus-teupitzer,
-::ng-deep #marker-bus-landsbergerzossener {
+::ng-deep #marker-bus-eintrachtsiedlung {
   background-image: url('../../../../assets/img/bus.png');
   background-size: cover;
   width: 50px;
@@ -276,10 +229,7 @@
 ::ng-deep #marker-s-springpfuhl,
 ::ng-deep #marker-s-landsberger-allee,
 ::ng-deep #marker-s-storkower-strasse,
-::ng-deep #marker-s-hermannstrasse,
-::ng-deep #marker-s-marzahn,
-::ng-deep #marker-s-wuhletal
- {
+::ng-deep #marker-s-hermannstrasse {
   background-image: url('../../../../assets/img/sbahn.png');
   background-size: cover;
   width: 50px;
@@ -290,10 +240,7 @@
 
 ::ng-deep #marker-u-magdalenenstrasse,
 ::ng-deep #marker-u-ullsteinstrasse,
-::ng-deep #marker-u-blaschkoallee,
-::ng-deep #marker-u-hellersdorf,
-::ng-deep #marker-u-cottbusser,
-::ng-deep #marker-u-wuhletal {
+::ng-deep #marker-u-blaschkoallee {
   background-image: url('../../../../assets/img/ubahn.png');
   background-size: cover;
   width: 50px;
@@ -316,18 +263,7 @@
 ::ng-deep #marker-tram-beilsteiner-strasse,
 ::ng-deep #marker-tram-reinhardsbrunner-strasse,
 ::ng-deep #marker-tram-meeraner-strasse,
-::ng-deep #marker-tram-kleingartenanlage-bielefeldt,
-::ng-deep #marker-tram-ahrensfelde,
-::ng-deep #marker-tram-hellersdorf-u,
-::ng-deep #marker-tram-stendaler,
-::ng-deep #marker-tram-stendalerzossener,
-::ng-deep #marker-tram-zossener,
-::ng-deep #marker-tram-altehellersdorfer,
-::ng-deep #marker-tram-michendorfer,
-::ng-deep #marker-tram-landsbergerzossener,
-::ng-deep #marker-tram-betriebsbahnhofmarzahn,
-::ng-deep #marker-tram-brodowienerring,
-::ng-deep #marker-tram-landsbergerblumberger {
+::ng-deep #marker-tram-kleingartenanlage-bielefeldt {
   background-image: url('../../../../assets/img/tram.png');
   background-size: cover;
   width: 30px;
