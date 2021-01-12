@@ -219,9 +219,69 @@
 
 ::ng-deep #marker-westhafen {
   background-image: url('../../../../assets/img/tegel.jpg');
-  background-size: cover;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  cursor: pointer;
+}
+
+::ng-deep #marker-gesundbrunnen {
+  opacity: 0.0;
+  background-image: url('../../../../assets/img/gesundbrunnen.jpg');
+}
+
+::ng-deep #marker-arnimkiez {
+  opacity: 0.0;
+  background-image: url('../../../../assets/img/arnimkiez.jpg');
+}
+
+::ng-deep #marker-torstrasse {
+  opacity: 0.0;
+  background-image: url('../../../../assets/img/torstrasse.jpg');
+}
+
+::ng-deep #marker-potsdamer-platz {
+  opacity: 0.0;
+  background-image: url('../../../../assets/img/potsdamer-platz.jpg');
+}
+
+::ng-deep #marker-ostkreuz {
+  opacity: 0.0;
+  background-image: url('../../../../assets/img/ostkreuz.jpg');
+}
+
+::ng-deep #marker-baumschulenweg {
+  opacity: 0.0;
+  background-image: url('../../../../assets/img/baumschulenweg.jpeg');
+}
+
+::ng-deep #marker-neukoelln {
+  opacity: 0.0;
+  background-image: url('../../../../assets/img/neukoelln.jpg');
+}
+
+::ng-deep #marker-kladow {
+  opacity: 0.0;
+  background-image: url('../../../../assets/img/kladow.jpeg');
+}
+
+::ng-deep #marker-mueggelheim {
+  opacity: 0.0;
+  background-image: url('../../../../assets/img/mueggelheim.jpeg');
+}
+
+::ng-deep #marker-franzoesisch-buchholz {
+  opacity: 0.0;
+  background-image: url('../../../../assets/img/franzoesisch-buchholz.jpg');
+}
+
+::ng-deep #marker-moabit {
+  opacity: 0.0;
+  background-image: url('../../../../assets/img/moabit.jpg');
+}
+
+::ng-deep #marker-graefekiez {
+  opacity: 0.0;
+  background-image: url('../../../../assets/img/graefekiez.jpg');
+}
+
+::ng-deep #marker-alt-hohenschoenhausen {
+  opacity: 0.0;
+  background-image: url('../../../../assets/img/alt-hohenschoenhausen.jpg');
 }

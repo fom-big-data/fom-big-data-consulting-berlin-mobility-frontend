@@ -34,6 +34,14 @@ export class SectionComponent implements OnInit {
   @Input() clearOthers = true;
   /** Whether or not an event should be emitted when marker is not visible anymore */
   @Input() emitOnLeave = false;
+
+  /** Opacity of active marker */
+  @Input() opacityActive = 1.0;
+  /** Opacity of passive marker */
+  @Input() opacityPassive = 0.3;
+  /** Default opacity */
+  @Input() opacityDefault = 1.0;
+
   /** Event emitter indicating section in viewport */
   @Output() sectionInViewportEventEmitter = new EventEmitter<{
     layers: string[],

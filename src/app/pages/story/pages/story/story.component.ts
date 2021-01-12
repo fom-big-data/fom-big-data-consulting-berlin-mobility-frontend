@@ -90,6 +90,8 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
 
   /** Markers for map named 'understanding' */
   popupMarkersUnderstanding = [];
+  /** Markers for map named 'problems' */
+  popupMarkersProblems = [];
   /** Markers for map named 'whitespots' */
   popupMarkersWhitespots = [];
 
@@ -189,8 +191,19 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
       {chapters: ['whitespots-u-bahn-2'], layers: ['isochrones-subway-15']},
       {chapters: ['whitespots-tram'], layers: ['isochrones-tram-15']},
       {chapters: ['whitespots-all'], layers: ['isochrones-all-15']},
-      {chapters: ['whitespots-all-2'], layers: ['isochrones-all-15']},
-      {chapters: ['whitespots-all-3'], layers: ['isochrones-all-15']}
+      {
+        chapters: ['whitespots-all-2'],
+        layers: ['isochrones-all-15'],
+        popupMarkers: [Place.GESUNDBRUNNEN, Place.ARNIMKIEZ, Place.TORSTRASSE, Place.POSTDAMER_PLATZ, Place.OSTKREUZ, Place.BAUMSCHULENWEG,
+          Place.NEUKOELLN]
+      },
+      {
+        chapters: ['whitespots-all-3'],
+        layers: ['isochrones-all-15'],
+        popupMarkers: [
+          Place.KLADOW, Place.MUEGGELHEIM, Place.FRANZOESISCH_BUCHHOLZ, Place.MOABIT, Place.GRAEFEKIEZ, Place.ALT_HOHENSCHOENHAUSEN
+        ]
+      }
     ];
 
     this.sectionsProblems.forEach(section => {
@@ -242,21 +255,24 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
         chapters: ['whitespots-marzahnhellersdorf'],
         layers: ['lines-tram', 'lines-bus', 'lines-subway'],
         popupMarkers: [Place.BUS_KLAUSDORFER, Place.BUS_LANDSBERGERZOSSENER, Place.BUS_TEUPITZER,
-          Place.TRAM_AHRENSFELDE, Place.TRAM_HELLERSDORF_U, Place.TRAM_STENDALER,Place.TRAM_STENDALERZOSSENER, Place.TRAM_ZOSSENER,
-          Place.TRAM_ALTEHELLERSDORFER,Place.TRAM_MICHENDORFER, Place.TRAM_LANDSBERGERZOSSENER,
-          Place.TRAM_BETRIEBSBAHNHOFMARZAHN,  Place.TRAM_BRODOWIENERRING, Place.TRAM_LANDSBERGERBLUMBERGER],
-        flyToLocation: Place.MARZAHN_HELLERSDORF_CLOSER},
+          Place.TRAM_AHRENSFELDE, Place.TRAM_HELLERSDORF_U, Place.TRAM_STENDALER, Place.TRAM_STENDALERZOSSENER, Place.TRAM_ZOSSENER,
+          Place.TRAM_ALTEHELLERSDORFER, Place.TRAM_MICHENDORFER, Place.TRAM_LANDSBERGERZOSSENER,
+          Place.TRAM_BETRIEBSBAHNHOFMARZAHN, Place.TRAM_BRODOWIENERRING, Place.TRAM_LANDSBERGERBLUMBERGER],
+        flyToLocation: Place.MARZAHN_HELLERSDORF_CLOSER
+      },
       {
         chapters: ['whitespots-marzahnhellersdorf-1'],
         layers: ['lines-tram', 'lines-bus', 'lines-light_rail', 'lines-subway'],
         popupMarkers: [Place.U_HELLERSDORF, Place.U_COTTBUSSER, Place.U_WUHLETAL],
-        flyToLocation: Place.MARZAHN_HELLERSDORF},
+        flyToLocation: Place.MARZAHN_HELLERSDORF
+      },
       {
         chapters: ['whitespots-marzahnhellersdorf-2'],
         layers: ['lines-tram', 'lines-bus', 'lines-light_rail', 'lines-subway'],
         popupMarkers: [Place.S_POELCHAUSTRASSE, Place.S_SPRINGPFUHL, Place.S_MARZAHN, Place.S_WUHLETAL,
           Place.U_HELLERSDORF, Place.U_COTTBUSSER, Place.U_WUHLETAL],
-        flyToLocation: Place.MARZAHN_HELLERSDORF},
+        flyToLocation: Place.MARZAHN_HELLERSDORF
+      },
     ];
 
     this.sectionsProblems.forEach(section => {
@@ -338,6 +354,8 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
           this.opacitiesProblems.set(layer, event.opacity);
         });
         this.opacitiesProblems = new Map(this.opacitiesProblems);
+
+        this.popupMarkersProblems = event.popupMarkers;
         break;
       }
 

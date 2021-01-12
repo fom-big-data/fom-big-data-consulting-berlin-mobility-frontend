@@ -18,14 +18,42 @@ export class Place {
   //
 
   /** District Charlottenburg */
-  static ZIP_10623_CHARLOTTENBURG = new Location('charlottenburg', '10623 Charlottenburg', 13.3189848, 52.5086571,);
+  static ZIP_10623_CHARLOTTENBURG = new Location('charlottenburg', '10623 Charlottenburg', 13.3189848, 52.5086571);
   /** District Buckow-Lichtenrade-Mariendorf-Marienfelde-Tempelhof */
-  static ZIP_12107_BUCKOW_LICHTENRADE_MARIENDORF_MARIENFELDE_TEMPELHOF = new Location('buckow-lichtenrade-mariendorf-marienfelde-tempelhof', '12107 Buckow-Lichtenrade-Mariendorf-Marienfelde-Tempelhof', 13.3511922, 52.4308308,);
+  static ZIP_12107_BUCKOW_LICHTENRADE_MARIENDORF_MARIENFELDE_TEMPELHOF = new Location('buckow-lichtenrade-mariendorf-marienfelde-tempelhof', '12107 Buckow-Lichtenrade-Mariendorf-Marienfelde-Tempelhof', 13.3511922, 52.4308308);
   /** District Kaulsdorf-Mahlsdorf */
-  static ZIP_12623_KAULSDORF_MAHLSDORF = new Location('kaulsdorf-mahlsdorf', '12623 Kaulsdorf-Mahlsdorf', 13.5863998, 52.5005195,);
+  static ZIP_12623_KAULSDORF_MAHLSDORF = new Location('kaulsdorf-mahlsdorf', '12623 Kaulsdorf-Mahlsdorf', 13.5863998, 52.5005195);
+
+  /** Area Gesundbrunnen */
+  static GESUNDBRUNNEN = new Location('gesundbrunnen', 'Gesundbrunnen', 13.3671742, 52.5503968);
+  /** Area Arnimkiez */
+  static ARNIMKIEZ = new Location('arnimkiez', 'Arnimkiez',13.4014224, 52.5511111);
+  /** Area Torstrasse */
+  static TORSTRASSE = new Location('torstrasse', 'Torstraße',13.3848972, 52.5265118);
+  /** Area Potsdamer PLatz */
+  static POSTDAMER_PLATZ = new Location('potsdamer-platz', 'Potsdamer Platz',13.3759441, 52.5096488);
+  /** Area Ostkreuz */
+  static OSTKREUZ = new Location('ostkreuz', 'Ostkreuz',13.4693263, 52.5031531);
+  /** Area Baumschulenweg */
+  static BAUMSCHULENWEG = new Location('baumschulenweg', 'Baumschulenweg',13.4875787, 52.4676707);
+  /** Area Neukoelln */
+  static NEUKOELLN = new Location('neukoelln', 'Neukölln',13.436502, 52.469093);
+
+  /** Area Kladow */
+  static KLADOW = new Location('kladow', 'Kladow',13.1129395,52.4625043);
+  /** Area Mueggelheim */
+  static MUEGGELHEIM = new Location('mueggelheim', 'Müggelheim',13.6500662,52.4052779);
+  /** Area Franzoesisch Buchholz */
+  static FRANZOESISCH_BUCHHOLZ = new Location('franzoesisch-buchholz', 'Französisch Buchholz',13.4054556,52.6113215);
+  /** Area Moabit */
+  static MOABIT = new Location('moabit', 'Moabit',13.3250589,52.5290551);
+  /** Area Graefekiez */
+  static GRAEFEKIEZ = new Location('graefekiez', 'Gräfekiez',13.4145386,52.4916955);
+  /** Area Alt Hohenschoenhausen */
+  static ALT_HOHENSCHOENHAUSEN = new Location('alt-hohenschoenhausen', 'Alt Hohenschönhausen',13.4820985,52.5486436);
 
   /** FOM */
-  static FOM = new Location('fom', 'FOM', 13.3161495, 52.5119408, 13,);
+  static FOM = new Location('fom', 'FOM', 13.3161495, 52.5119408, 13);
 
   //
   // Whitespots
@@ -110,7 +138,7 @@ export class Place {
   /** S-Bahn station Poelchaustraße */
   static S_POELCHAUSTRASSE = new Location('s-poelchaustrasse', 'S Poelchaustraße', 13.5355019, 52.5357114);
   /** S-Bahn station Springpfuhl */
-  static S_SPRINGPFUHL = new Location('s-springpfuhl', 'S Springpfuhl', 13.5361989, 52.5256553,);
+  static S_SPRINGPFUHL = new Location('s-springpfuhl', 'S Springpfuhl', 13.5361989, 52.5256553);
   /** S-Bahn station Landsberger Allee */
   static S_LANDSBERGER_ALLEE = new Location('s-landsberger-allee', 'S Landsberger Allee', 13.4566444, 52.5286552);
   /** S-Bahn station Storkower Straße */
