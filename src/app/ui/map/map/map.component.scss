@@ -221,6 +221,14 @@
   background-image: url('../../../../assets/img/tegel.jpg');
 }
 
+::ng-deep #marker-zoologischer-garten {
+  background-image: url('../../../../assets/img/zoologischer-garten.jpg');
+}
+
+::ng-deep #marker-siegessaeule {
+  background-image: url('../../../../assets/img/siegessaeule.jpg');
+}
+
 ::ng-deep #marker-gesundbrunnen {
   opacity: 0.0;
   background-image: url('../../../../assets/img/gesundbrunnen.jpg');

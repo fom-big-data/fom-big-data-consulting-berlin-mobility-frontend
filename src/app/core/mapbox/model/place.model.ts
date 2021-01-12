@@ -24,6 +24,13 @@ export class Place {
   /** District Kaulsdorf-Mahlsdorf */
   static ZIP_12623_KAULSDORF_MAHLSDORF = new Location('kaulsdorf-mahlsdorf', '12623 Kaulsdorf-Mahlsdorf', 13.5863998, 52.5005195);
 
+  /** FOM */
+  static FOM = new Location('fom', 'FOM', 13.3161495, 52.5119408, 13);
+  /** Area Zoologischer Garten */
+  static ZOOLOGISCHER_GARTEN = new Location('zoologischer-garten', 'Gesundbrunnen',13.3323673, 52.5073337);
+  /** Area Siegessaeule */
+  static SIEGESSAEULE = new Location('siegessaeule', 'Siegessäule',13.3501189, 52.5145434);
+
   /** Area Gesundbrunnen */
   static GESUNDBRUNNEN = new Location('gesundbrunnen', 'Gesundbrunnen', 13.3671742, 52.5503968);
   /** Area Arnimkiez */
@@ -51,9 +58,6 @@ export class Place {
   static GRAEFEKIEZ = new Location('graefekiez', 'Gräfekiez',13.4145386,52.4916955);
   /** Area Alt Hohenschoenhausen */
   static ALT_HOHENSCHOENHAUSEN = new Location('alt-hohenschoenhausen', 'Alt Hohenschönhausen',13.4820985,52.5486436);
-
-  /** FOM */
-  static FOM = new Location('fom', 'FOM', 13.3161495, 52.5119408, 13);
 
   //
   // Whitespots
