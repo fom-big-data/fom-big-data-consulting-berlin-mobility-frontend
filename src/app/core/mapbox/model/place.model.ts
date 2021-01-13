@@ -330,10 +330,19 @@ export class Place {
   /** Tram station Betriebsbahnhof Marzahn */
   static TRAM_BETRIEBSBAHNHOFMARZAHN = new Location(
     'tram-betriebsbahnhofmarzahn', 'Tram Betriebsbahnhof Marzahn', 13.581988, 52.548871);
-  /** Tram station Brudowiener Rind */
+  /** Tram station Brudowiener Ring */
   static TRAM_BRODOWIENERRING = new Location(
     'tram-brodowienerring', 'Tram Brodowiener Ring', 13.578159789319885, 52.54789287493665);
   /** Tram station Landsberger Strasse / Blumberger Strasse */
   static TRAM_LANDSBERGERBLUMBERGER = new Location(
     'tram-landsbergerblumberger', 'Tram Landberger Allee / Blumberger Damm', 13.572618345542136, 52.54640859789009);
+  /** Bahn station Stresow */
+  static SBAHN_STRESOW = new Location(,
+    's-stresow', 'S-Bahnstation Stresow', 13.2012605, 52.5324273);
+  /** Bahn station Ruhleben */
+  static UBAHN_RUHLEBEN = new Location(
+    'u-ruhleben', 'U-Bahnstation Ruhleben', 13.2390313, 52.525648);
+  /** Bahn station Stresow */
+  //static TRAM_BRODOWIENERRING = new Location(
+  //  'tram-brodowienerring', 'Tram Brodowiener Ring', 13.578159789319885, 52.54789287493665);
 }
