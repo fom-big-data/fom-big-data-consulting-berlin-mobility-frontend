@@ -117,7 +117,16 @@
   cursor: pointer;
 }
 
-// Groups
+// Groups (used in problems)
+
+::ng-deep div[id^='marker-auto-'],
+::ng-deep div[id^='marker-light-rail-'],
+::ng-deep div[id^='marker-subway-'],
+::ng-deep div[id^='marker-intermodal-'] {
+  opacity: 0.0;
+}
+
+// Groups (used in whitespots)
 
 ::ng-deep div[id^='marker-bus-'] {
   background-image: url('../../../../assets/img/bus.png');
@@ -135,11 +144,9 @@
   background-image: url('../../../../assets/img/tram.png');
 }
 
-// Specific
-
-::ng-deep #marker-fom {
-  background-image: url('../../../../assets/img/fom.jpg');
-}
+//
+//
+//
 
 ::ng-deep #marker-spreepark {
   background-image: url('../../../../assets/img/spreepark.jpg');
@@ -149,154 +156,238 @@
   background-image: url('../../../../assets/img/tierpark.jpg');
 }
 
-::ng-deep #marker-charlottenburg {
-  background-image: url('../../../../assets/img/10623_charlottenburg.jpg');
+//
+// Understanding
+//
+
+// Lebensraeume
+
+::ng-deep #marker-habitat-charlottenburg {
+  background-image: url('../../../../assets/img/charlottenburg.jpg');
 }
 
-::ng-deep #marker-auto-charlottenburg {
-  opacity: 0.0;
-  background-image: url('../../../../assets/img/10623_charlottenburg.jpg');
+::ng-deep #marker-habitat-buckow-lichtenrade-mariendorf-marienfelde-tempelhof {
+  background-image: url('../../../../assets/img/mariendorf.jpg');
 }
 
-::ng-deep #marker-buckow-lichtenrade-mariendorf-marienfelde-tempelhof {
-  background-image: url('../../../../assets/img/12107_mariendorf.jpg');
+::ng-deep #marker-habitat-kaulsdorf-mahlsdorf {
+  background-image: url('../../../../assets/img/mahlsdorf.jpg');
 }
 
-::ng-deep #marker-kaulsdorf-mahlsdorf {
-  background-image: url('../../../../assets/img/12623-mahlsdorf.jpg');
+// Arbeitsraeume
+
+::ng-deep #marker-working-space-siemensstadt {
+  background-image: url('../../../../assets/img/siemensstadt.jpg');
 }
 
-::ng-deep #marker-tegel {
-  background-image: url('../../../../assets/img/tegel.jpg');
+::ng-deep #marker-working-space-adlershof {
+  background-image: url('../../../../assets/img/adlershof.jpg');
 }
 
-::ng-deep #marker-spandau {
-  background-image: url('../../../../assets/img/spandau.jpg');
+::ng-deep #marker-working-space-humboldthain {
+  background-image: url('../../../../assets/img/humboldthain.jpg');
 }
 
-::ng-deep #marker-gewerbegebiet-britz {
-  background-image: url('../../../../assets/img/gewerbegebiet-britz.jpeg');
+::ng-deep #marker-working-space-euref {
+  background-image: url('../../../../assets/img/euref.jpg');
 }
 
-::ng-deep #marker-landsberger-allee {
-  background-image: url('../../../../assets/img/landsberger_allee.jpg');
+::ng-deep #marker-working-space-borsigturm {
+  background-image: url('../../../../assets/img/borsigturm.jpg');
 }
 
-::ng-deep #marker-charlottenburg-nord {
-  background-image: url('../../../../assets/img/tegel.jpg');
+::ng-deep #marker-working-space-marzahn {
+  background-image: url('../../../../assets/img/marzahn.jpg');
 }
 
-::ng-deep #marker-marzahnhellersdorf {
-  background-image: url('../../../../assets/img/marzahn-hellersdorf.jpg');
+::ng-deep #marker-working-space-htw {
+  background-image: url('../../../../assets/img/htw.jpg');
 }
 
-::ng-deep #marker-tec-marzahn {
-  background-image: url('../../../../assets/img/tec_marzahn.jpg');
-}
-
-::ng-deep #marker-tec-siemensstadt {
-  background-image: url('../../../../assets/img/tec_siemensstadt.jpg');
-}
-
-::ng-deep #marker-tec-adlershof {
-  background-image: url('../../../../assets/img/tec_adlershof.jpg');
-}
-
-::ng-deep #marker-tec-humboldthain {
-  background-image: url('../../../../assets/img/tec_humboldt.jpg');
-}
-
-::ng-deep #marker-tec-euref {
-  background-image: url('../../../../assets/img/tec_euref.jpg');
-}
-
-::ng-deep #marker-tec-borsigturm {
-  background-image: url('../../../../assets/img/tec_borsigturm.jpg');
-}
-
-::ng-deep #marker-tec-htw {
-  background-image: url('../../../../assets/img/tec_htw.jpg');
-}
-
-::ng-deep #marker-tec-mariendorf {
+::ng-deep #marker-working-space-mariendorf {
   background-image: url('../../../../assets/img/tec_mariendorf.jpg');
 }
 
-::ng-deep #marker-westhafen {
-  background-image: url('../../../../assets/img/tegel.jpg');
+//
+// Visibility
+//
+
+::ng-deep #marker-visibility-fom {
+  background-image: url('../../../../assets/img/fom.jpg');
 }
 
-::ng-deep #marker-zoologischer-garten {
+::ng-deep #marker-visibility-zoologischer-garten {
   background-image: url('../../../../assets/img/zoologischer-garten.jpg');
 }
 
-::ng-deep #marker-siegessaeule {
+::ng-deep #marker-visibility-siegessaeule {
   background-image: url('../../../../assets/img/siegessaeule.jpg');
 }
 
-::ng-deep #marker-gesundbrunnen {
-  opacity: 0.0;
-  background-image: url('../../../../assets/img/gesundbrunnen.jpg');
-}
+//
+// Problems
+//
 
-::ng-deep #marker-arnimkiez {
-  opacity: 0.0;
-  background-image: url('../../../../assets/img/arnimkiez.jpg');
-}
+// Auto
 
-::ng-deep #marker-torstrasse {
-  opacity: 0.0;
-  background-image: url('../../../../assets/img/torstrasse.jpg');
-}
-
-::ng-deep #marker-potsdamer-platz {
-  opacity: 0.0;
-  background-image: url('../../../../assets/img/potsdamer-platz.jpg');
-}
-
-::ng-deep #marker-ostkreuz {
-  opacity: 0.0;
-  background-image: url('../../../../assets/img/ostkreuz.jpg');
-}
-
-::ng-deep #marker-baumschulenweg {
-  opacity: 0.0;
-  background-image: url('../../../../assets/img/baumschulenweg.jpeg');
-}
-
-::ng-deep #marker-neukoelln {
-  opacity: 0.0;
-  background-image: url('../../../../assets/img/neukoelln.jpg');
-}
-
-::ng-deep #marker-kladow,
-::ng-deep #marker-auto-kladow {
-  opacity: 0.0;
-  background-image: url('../../../../assets/img/kladow.jpeg');
-}
-
-::ng-deep #marker-mueggelheim {
-  opacity: 0.0;
-  background-image: url('../../../../assets/img/mueggelheim.jpeg');
-}
-
-::ng-deep #marker-franzoesisch-buchholz,
 ::ng-deep #marker-auto-franzoesisch-buchholz {
-  opacity: 0.0;
   background-image: url('../../../../assets/img/franzoesisch-buchholz.jpg');
 }
 
-::ng-deep #marker-moabit {
-  opacity: 0.0;
+::ng-deep #marker-auto-kladow {
+  background-image: url('../../../../assets/img/kladow.jpeg');
+}
+
+::ng-deep #marker-auto-charlottenburg {
+  background-image: url('../../../../assets/img/charlottenburg.jpg');
+}
+
+// S-Bahn
+
+::ng-deep #marker-light-rail-gesundbrunnen {
+  background-image: url('../../../../assets/img/gesundbrunnen.jpg');
+}
+
+::ng-deep #marker-light-rail-friedrichstrasse {
+  background-image: url('../../../../assets/img/friedrichstrasse.jpeg');
+}
+
+::ng-deep #marker-light-rail-ostkreuz {
+  background-image: url('../../../../assets/img/ostkreuz.jpg');
+}
+
+::ng-deep #marker-light-rail-neukoelln {
+  background-image: url('../../../../assets/img/neukoelln.jpg');
+}
+
+::ng-deep #marker-light-rail-charlottenburg-nord {
+  background-image: url('../../../../assets/img/charlottenburg.jpg');
+}
+
+::ng-deep #marker-light-rail-weissensee {
+  background-image: url('../../../../assets/img/weissensee.jpg');
+}
+
+// U-Bahn
+
+::ng-deep #marker-subway-friedrichshain {
+  background-image: url('../../../../assets/img/friedrichshain.jpg');
+}
+
+::ng-deep #marker-subway-mitte {
+  background-image: url('../../../../assets/img/mitte.jpg');
+}
+
+::ng-deep #marker-subway-charlottenburg-wilmersdorf {
+  background-image: url('../../../../assets/img/charlottenburg-wilmersdorf.jpg');
+}
+
+::ng-deep #marker-subway-steglitz-zehlendorf {
+  background-image: url('../../../../assets/img/steglitz-zehlendorf.jpg');
+}
+
+::ng-deep #marker-subway-spandau {
+  background-image: url('../../../../assets/img/spandau.jpg');
+}
+
+::ng-deep #marker-subway-weissensee {
+  background-image: url('../../../../assets/img/weissensee.jpg');
+}
+
+// Intermodal
+
+::ng-deep #marker-intermodal-gesundbrunnen {
+  background-image: url('../../../../assets/img/gesundbrunnen.jpg');
+}
+
+::ng-deep #marker-intermodal-arnimkiez {
+  background-image: url('../../../../assets/img/arnimkiez.jpg');
+}
+
+::ng-deep #marker-intermodal-torstrasse {
+  background-image: url('../../../../assets/img/torstrasse.jpg');
+}
+
+::ng-deep #marker-intermodal-potsdamer-platz {
+  background-image: url('../../../../assets/img/potsdamer-platz.jpg');
+}
+
+::ng-deep #marker-intermodal-ostkreuz {
+  background-image: url('../../../../assets/img/ostkreuz.jpg');
+}
+
+::ng-deep #marker-intermodal-baumschulenweg {
+  background-image: url('../../../../assets/img/baumschulenweg.jpeg');
+}
+
+::ng-deep #marker-intermodal-neukoelln {
+  background-image: url('../../../../assets/img/neukoelln.jpg');
+}
+
+::ng-deep #marker-intermodal-kladow {
+  background-image: url('../../../../assets/img/kladow.jpeg');
+}
+
+::ng-deep #marker-intermodal-mueggelheim {
+  background-image: url('../../../../assets/img/mueggelheim.jpeg');
+}
+
+::ng-deep #marker-intermodal-franzoesisch-buchholz {
+  background-image: url('../../../../assets/img/franzoesisch-buchholz.jpg');
+}
+
+::ng-deep #marker-intermodal-moabit {
   background-image: url('../../../../assets/img/moabit.jpg');
 }
 
-::ng-deep #marker-graefekiez {
-  opacity: 0.0;
+::ng-deep #marker-intermodal-graefekiez {
   background-image: url('../../../../assets/img/graefekiez.jpg');
 }
 
-::ng-deep #marker-alt-hohenschoenhausen {
-  opacity: 0.0;
+::ng-deep #marker-intermodal-alt-hohenschoenhausen {
   background-image: url('../../../../assets/img/alt-hohenschoenhausen.jpg');
+}
+
+//
+// Whitespots
+//
+
+// Spandau
+
+::ng-deep #marker-whitespot-spandau {
+  background-image: url('../../../../assets/img/spandau.jpg');
+}
+
+// Charlottenburg Nord
+
+::ng-deep #marker-whitespot-charlottenburg-nord {
+  background-image: url('../../../../assets/img/tegel.jpg');
+}
+
+::ng-deep #marker-whitespot-beusselstrasse {
+  background-image: url('../../../../assets/img/beusselstrasse.jpg');
+}
+
+::ng-deep #marker-whitespot-jakob-kaiser-platz {
+  background-image: url('../../../../assets/img/jakob-kaiser-platz.jpg');
+}
+
+// Gewerbegebiet Gradestrasse
+
+::ng-deep #marker-whitespot-gewerbegebiet-gradestrasse {
+  background-image: url('../../../../assets/img/gewerbegebiet-gradestrasse.jpeg');
+}
+
+// Gewerbegebiet Landsberger Allee
+
+::ng-deep #marker-whitespot-landsberger-allee-close,
+::ng-deep #marker-whitespot-landsberger-allee {
+  background-image: url('../../../../assets/img/landsberger_allee.jpg');
+}
+
+// Gewerbegebiet Marzahn-Hellersdorf
+
+::ng-deep #marker-whitespot-marzahn-hellersdorf-close,
+::ng-deep #marker-whitespot-marzahn-hellersdorf {
+  background-image: url('../../../../assets/img/marzahn-hellersdorf.jpg');
 }

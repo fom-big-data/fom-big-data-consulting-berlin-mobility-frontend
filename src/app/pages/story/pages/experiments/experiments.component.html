@@ -11,60 +11,59 @@ SPANDAU<app-map [id]="'header'"
   <app-section-header #experiment id="experiment"
                       title="Work in Progress"></app-section-header>
   <ng-container>
-    <!--    <app-section [chapters]="['experiment']"></app-section>-->
+        <app-section [chapters]="['experiment']"></app-section>
 
-    <!--    <app-map class="full-width"-->
-    <!--             [id]="'map-summary-exp'"-->
-    <!--             [style]="mapBoxStyleEnum.SATELLITE_STREETS_V11"-->
-    <!--             [zoom]="11"-->
-    <!--             [boundingBox]="boudingBoxEnum.BERLIN"-->
-    <!--             [interactiveEnabled]=true-->
-    <!--             [fullScreenControlEnabled]=true-->
-    <!--             [parametrizeOpacityEnabled]=true-->
-    <!--             [initialOpacity]="20"-->
-    <!--             [hexResults]="[-->
-    <!--                         'isochrones-bus-15',-->
-    <!--                         'isochrones-light_rail-15',-->
-    <!--                         'isochrones-subway-15',-->
-    <!--                         'isochrones-tram-15',-->
-    <!--                         'isochrones-all-15'-->
-    <!--                      ]"-->
-    <!--             [hexAggregateProperty]="'mean_spatial_distance_15min'"-->
-    <!--             [hexColorRamp]="colorRampEnum.LUFTDATEN_COLOR_RAMP_ALARM"></app-map>-->
+        <app-map class="full-width"
+                 [id]="'map-summary-exp'"
+                 [style]="mapBoxStyleEnum.SATELLITE_STREETS_V11"
+                 [zoom]="11"
+                 [interactiveEnabled]=true
+                 [fullScreenControlEnabled]=true
+                 [parametrizeOpacityEnabled]=true
+                 [initialOpacity]="20"
+                 [hexResults]="[
+                             'isochrones-bus-15',
+                             'isochrones-light_rail-15',
+                             'isochrones-subway-15',
+                             'isochrones-tram-15',
+                             'isochrones-all-15'
+                          ]"
+                 [hexAggregateProperty]="'mean_spatial_distance_15min'"
+                 [hexColorRamp]="colorRampEnum.LUFTDATEN_COLOR_RAMP_ALARM"></app-map>
 
-    <!--    <app-map [id]="'inhabitants'" [style]="mapBoxStyleEnum.LIGHT_V10" [navigationControlEnabled]=true-->
-    <!--             [results]="['berlin-inhabitants', 'POI-retail-commercial', 'uber_mean_speed']"></app-map>-->
-    <!--    <app-map class="full-width"-->
-    <!--             [id]="'vbb-stations-s-u-bahn'"-->
-    <!--             [style]="mapBoxStyleEnum.DARK_V10"-->
-    <!--             [parametrizeOpacityEnabled]=true-->
-    <!--             [results]="['vbb-stations-s-u-bahn', 'nextbike-stations', 'jelbi-stations']"></app-map>-->
-    <!--    <app-map class="full-width"-->
-    <!--             [id]="'stations'"-->
-    <!--             [zoom]="9"-->
-    <!--             [style]="mapBoxStyleEnum.DARK_V10"-->
-    <!--             [fullScreenControlEnabled]=true-->
-    <!--             [parametrizeOpacityEnabled]=true-->
-    <!--             [results]="['stations-bus', 'stations-light_rail', 'stations-subway', 'stations-tram']">-->
-    <!--    </app-map>-->
+        <app-map [id]="'inhabitants'" [style]="mapBoxStyleEnum.LIGHT_V10" [navigationControlEnabled]=true
+                 [results]="['berlin-inhabitants', 'POI-retail-commercial', 'uber_mean_speed']"></app-map>
+        <app-map class="full-width"
+                 [id]="'vbb-stations-s-u-bahn'"
+                 [style]="mapBoxStyleEnum.DARK_V10"
+                 [parametrizeOpacityEnabled]=true
+                 [results]="['vbb-stations-s-u-bahn', 'nextbike-stations', 'jelbi-stations']"></app-map>
+        <app-map class="full-width"
+                 [id]="'stations'"
+                 [zoom]="9"
+                 [style]="mapBoxStyleEnum.DARK_V10"
+                 [fullScreenControlEnabled]=true
+                 [parametrizeOpacityEnabled]=true
+                 [results]="['stations-bus', 'stations-light_rail', 'stations-subway', 'stations-tram']">
+        </app-map>
 
-    <!--<app-map [id]="'isochrones-subway'" -->
-    <!--        [zoom]="9" -->
-    <!--        [style]="mapBoxStyleEnum.DARK_V10" -->
-    <!--        [fullScreenControlEnabled]=true-->
-    <!--        [parametrizeOpacityEnabled]=true-->
-    <!--        [results]="['isochrones-bus-60', 'isochrones-rail-60', 'isochrones-subway-60', 'isochrones-tram-60']">-->
-    <!--</app-map>-->
+    <app-map [id]="'isochrones-subway'"
+            [zoom]="9"
+            [style]="mapBoxStyleEnum.DARK_V10"
+            [fullScreenControlEnabled]=true
+            [parametrizeOpacityEnabled]=true
+            [results]="['isochrones-bus-60', 'isochrones-rail-60', 'isochrones-subway-60', 'isochrones-tram-60']">
+    </app-map>
 
-    <!--    <app-hexagon-map [id]="'isochrones-subway-hex'"-->
-    <!--                     [zoom]="9"-->
-    <!--                     [style]="mapBoxStyleEnum.LIGHT_V10"-->
-    <!--                     [fullScreenControlEnabled]=true-->
-    <!--                     [parametrizeOpacityEnabled]=true-->
-    <!--                     [initialOpacity]="75"-->
-    <!--                     [results]="['isochrones-bus-60', 'isochrones-rail-60', 'isochrones-subway-60', 'isochrones-tram-60']">-->
-    <!--    </app-hexagon-map>-->
-    <!--
+        <app-map [id]="'isochrones-subway-hex'"
+                         [zoom]="9"
+                         [style]="mapBoxStyleEnum.LIGHT_V10"
+                         [fullScreenControlEnabled]=true
+                         [parametrizeOpacityEnabled]=true
+                         [initialOpacity]="75"
+                         [results]="['isochrones-bus-60', 'isochrones-rail-60', 'isochrones-subway-60', 'isochrones-tram-60']">
+        </app-map>
+
         <app-map [id]="'distance-public-transport-stations'"
                  [zoom]="9"
                  [style]="mapBoxStyleEnum.DARK_V10"
@@ -81,24 +80,24 @@ SPANDAU<app-map [id]="'header'"
                  [parametrizeOpacityEnabled]=true
                  [results]="['plz-traffic', 'uber_mean_speed', 'isochrones-drive-15']">
         </app-map>
-<!--    &ndash;&gt;-->
-    <!--    <app-map class="full-width"-->
-    <!--             [id]="'maxspeed_car'"-->
-    <!--             [zoom]="9"-->
-    <!--             [style]="mapBoxStyleEnum.DARK_V10"-->
-    <!--             [fullScreenControlEnabled]=false-->
-    <!--             [parametrizeOpacityEnabled]=true-->
-    <!--             [results]="['allowed_car_speed']">-->
-    <!--    </app-map>-->
-    <!--
-        <app-hexagon-map [id]="'isochrones-subway-hex'"
+
+        <app-map class="full-width"
+                 [id]="'maxspeed_car'"
+                 [zoom]="9"
+                 [style]="mapBoxStyleEnum.DARK_V10"
+                 [fullScreenControlEnabled]=false
+                 [parametrizeOpacityEnabled]=true
+                 [results]="['allowed_car_speed']">
+        </app-map>
+
+        <app-map [id]="'isochrones-subway-hex'"
                          [zoom]="9"
                          [style]="mapBoxStyleEnum.LIGHT_V10"
                          [fullScreenControlEnabled]=true
                          [parametrizeOpacityEnabled]=true
                          [initialOpacity]="75"
                          [results]="['isochrones-bus-60', 'isochrones-rail-60', 'isochrones-subway-60', 'isochrones-tram-60']">
-        </app-hexagon-map>
+        </app-map>
 
         <app-map class="full-width"
                  [id]="'fom-distance'"
@@ -108,42 +107,42 @@ SPANDAU<app-map [id]="'header'"
                  [parametrizeOpacityEnabled]=true
                  [results]="['isochrones-subway-25-52.5119408-13.3161495', 'isochrones-walk-25-52.5119408-13.3161495']">
         </app-map>
-    -->
-    <!--    <app-map class="full-width"-->
-    <!--             [id]="'land-use'"-->
-    <!--             [zoom]="9"-->
-    <!--             [style]="mapBoxStyleEnum.DARK_V10"-->
-    <!--             [fullScreenControlEnabled]=true-->
-    <!--             [parametrizeOpacityEnabled]=true-->
-    <!--             [results]="['cemetery', 'garden', 'park', 'forest', 'wood', 'recreation_ground', 'water', 'sample-points']">-->
-    <!--    </app-map>-->
 
-    <!--    <app-map class="full-width"-->
-    <!--             [id]="'map-summary'"-->
-    <!--             [style]="mapBoxStyleEnum.SATELLITE_STREETS_V11"-->
-    <!--             [zoom]="11"-->
-    <!--             [interactiveEnabled]="true"-->
-    <!--             [results]="['isochrones-all-15']"></app-map>-->
+        <app-map class="full-width"
+                 [id]="'land-use'"
+                 [zoom]="9"
+                 [style]="mapBoxStyleEnum.DARK_V10"
+                 [fullScreenControlEnabled]=true
+                 [parametrizeOpacityEnabled]=true
+                 [results]="['cemetery', 'garden', 'park', 'forest', 'wood', 'recreation_ground', 'water', 'sample-points']">
+        </app-map>
 
-    <!--    <app-map class="full-width"-->
-    <!--             [id]="'map-summary-detailed'"-->
-    <!--             [style]="mapBoxStyleEnum.SATELLITE_STREETS_V11"-->
-    <!--             [zoom]="11"-->
-    <!--             [interactiveEnabled]="true"-->
-    <!--             [parametrizeOpacityEnabled]="true"-->
-    <!--             [results]="['isochrones-all-15', 'debug-banned-polygons']"-->
-    <!--             [debug]=true></app-map>-->
+        <app-map class="full-width"
+                 [id]="'map-summary'"
+                 [style]="mapBoxStyleEnum.SATELLITE_STREETS_V11"
+                 [zoom]="11"
+                 [interactiveEnabled]="true"
+                 [results]="['isochrones-all-15']"></app-map>
+
+        <app-map class="full-width"
+                 [id]="'map-summary-detailed'"
+                 [style]="mapBoxStyleEnum.SATELLITE_STREETS_V11"
+                 [zoom]="11"
+                 [interactiveEnabled]="true"
+                 [parametrizeOpacityEnabled]="true"
+                 [results]="['isochrones-all-15', 'debug-banned-polygons']"
+                 [debug]=true></app-map>
 
     <app-map class="full-width"
              [id]="'map-summary'"
              [style]="mapBoxStyleEnum.LIGHT_V10"
              [zoom]="11"
              [boundingBox]="boundingBoxEnum.BERLIN"
-             [popupMarkers]="[placeEnum.TEGEL, placeEnum.SPANDAU, placeEnum.GEWERBEGEBIET_BRITZ, placeEnum.LANDSBERGER_ALLEE, placeEnum.CHARLOTTENBURGNORD]"
+             [popupMarkers]="[placeEnum.WHITESPOT_SPANDAU, placeEnum.WHITESPOT_GEWERBEGEBIET_GRADESTRASSE, placeEnum.WHITESPOT_LANDSBERGER_ALLEE, placeEnum.WHITESPOT_CHARLOTTENBURGNORD]"
              [interactiveEnabled]="isDev"
              [fullScreenControlEnabled]="isDev"
              [parametrizeOpacityEnabled]=true
-             [flyableLocations]="[placeEnum.TEGEL, placeEnum.SPANDAU, placeEnum.GEWERBEGEBIET_BRITZ, placeEnum.LANDSBERGER_ALLEE, placeEnum.CHARLOTTENBURGNORD]"
+             [flyableLocations]="[placeEnum.WHITESPOT_SPANDAU, placeEnum.WHITESPOT_GEWERBEGEBIET_GRADESTRASSE, placeEnum.WHITESPOT_LANDSBERGER_ALLEE, placeEnum.WHITESPOT_CHARLOTTENBURGNORD]"
              [results]="['commercial','industrial', 'university', 'stations-subway', 'berlin-inhabitants-improved']"
              [hexResults]="['isochrones-all-15']"
              [hexAggregateProperty]="'mean_spatial_distance_15min'"

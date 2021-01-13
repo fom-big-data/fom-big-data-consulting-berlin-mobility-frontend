@@ -189,24 +189,43 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
    */
   private initializeStoryProblems() {
     this.sectionsProblems = [
-      {chapters: ['whitespots-bike'], layers: ['isochrones-bike-15']},
-      {chapters: ['whitespots-bus'], layers: ['isochrones-bus-15']},
-      {chapters: ['whitespots-s-bahn'], layers: ['isochrones-light_rail-15']},
-      {chapters: ['whitespots-u-bahn-1'], layers: ['isochrones-subway-15']},
-      {chapters: ['whitespots-u-bahn-2'], layers: ['isochrones-subway-15']},
-      {chapters: ['whitespots-tram'], layers: ['isochrones-tram-15']},
-      {chapters: ['whitespots-all'], layers: ['isochrones-all-15']},
+      {chapters: ['problems-bike'], layers: ['isochrones-bike-15']},
+      {chapters: ['problems-bus'], layers: ['isochrones-bus-15']},
       {
-        chapters: ['whitespots-all-2'],
-        layers: ['isochrones-all-15'],
-        popupMarkers: [Place.GESUNDBRUNNEN, Place.ARNIMKIEZ, Place.TORSTRASSE, Place.POSTDAMER_PLATZ, Place.OSTKREUZ, Place.BAUMSCHULENWEG,
-          Place.NEUKOELLN]
+        chapters: ['problems-s-bahn'], layers: ['isochrones-light_rail-15'],
+        popupMarkers: [
+          Place.LIGHT_RAIL_GESUNDBRUNNEN, Place.LIGHT_RAIL_FRIEDRICHSTRASSE, Place.LIGHT_RAIL_OSTKREUZ, Place.LIGHT_RAIL_NEUKOELLN,
+          Place.LIGHT_RAIL_CHARLOTTENBURG_NORD, Place.LIGHT_RAIL_WEISSENSEE
+        ]
       },
       {
-        chapters: ['whitespots-all-3'],
+        chapters: ['problems-u-bahn-1'], layers: ['isochrones-subway-15'],
+        popupMarkers: [
+          Place.SUBWAY_FRIEDRICHSHAIN, Place.SUBWAY_MITTE, Place.SUBWAY_CHARLOTTENBURG_WILMERSDORF
+        ]
+      },
+      {
+        chapters: ['problems-u-bahn-2'], layers: ['isochrones-subway-15'],
+        popupMarkers: [
+          Place.SUBWAY_STEGLITZ_ZEHLENDORF, Place.SUBWAY_SPANDAU, Place.SUBWAY_WEISSENSEE
+        ]
+      },
+      {chapters: ['problems-tram'], layers: ['isochrones-tram-15']},
+      {chapters: ['problems-all'], layers: ['isochrones-all-15']},
+      {
+        chapters: ['problems-all-2'],
         layers: ['isochrones-all-15'],
         popupMarkers: [
-          Place.KLADOW, Place.MUEGGELHEIM, Place.FRANZOESISCH_BUCHHOLZ, Place.MOABIT, Place.GRAEFEKIEZ, Place.ALT_HOHENSCHOENHAUSEN
+          Place.INTERMODAL_GESUNDBRUNNEN, Place.INTERMODAL_ARNIMKIEZ, Place.INTERMODAL_TORSTRASSE, Place.INTERMODAL_POSTDAMER_PLATZ,
+          Place.INTERMODAL_OSTKREUZ, Place.INTERMODAL_BAUMSCHULENWEG, Place.INTERMODAL_NEUKOELLN
+        ]
+      },
+      {
+        chapters: ['problems-all-3'],
+        layers: ['isochrones-all-15'],
+        popupMarkers: [
+          Place.INTERMODAL_KLADOW, Place.INTERMODAL_MUEGGELHEIM, Place.INTERMODAL_FRANZOESISCH_BUCHHOLZ, Place.INTERMODAL_MOABIT,
+          Place.INTERMODAL_GRAEFEKIEZ, Place.INTERMODAL_ALT_HOHENSCHOENHAUSEN
         ]
       }
     ];
@@ -221,22 +240,36 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
    */
   private initializeStoryWhitespots() {
     this.sectionsWhitespot = [
-      {chapters: ['whitespots-spandau'], layers: [], flyToLocation: Place.SPANDAU},
-      {chapters: ['whitespots-charlottenburg-nord-1'], layers: [], flyToLocation: Place.CHARLOTTENBURGNORD},
-      {chapters: ['whitespots-charlottenburg-nord-2'], layers: [], flyToLocation: Place.CHARLOTTENBURGNORD},
+      {chapters: ['whitespots-spandau'], layers: [], flyToLocation: Place.WHITESPOT_SPANDAU},
       {
-        chapters: ['whitespots-gewerbegebiet-britz-1'],
-        layers: ['lines-bus', 'lines-subway', 'lines-light_rail'],
-        popupMarkers: [Place.BUS_GRADESTRASSE, Place.BUS_EINTRAGSIEDLUNG, Place.U_ULLSTEINSTRASSE, Place.U_BLASCHKOALLEE,
-          Place.S_HERMANNSTRASSE],
-        flyToLocation: Place.GEWERBEGEBIET_BRITZ
+        chapters: ['whitespots-charlottenburg-nord-1'], layers: [],
+        popupMarkers: [
+          Place.WHITESPOT_BEUSSELSTRASSE,
+          Place.WHITESPOT_JAKOB_KAISER_PLATZ
+        ],
+        flyToLocation: Place.WHITESPOT_CHARLOTTENBURGNORD
       },
       {
-        chapters: ['whitespots-gewerbegebiet-britz-2'],
+        chapters: ['whitespots-charlottenburg-nord-2'],
+        layers: [],
+        popupMarkers: [
+          Place.WHITESPOT_BEUSSELSTRASSE,
+          Place.WHITESPOT_JAKOB_KAISER_PLATZ
+        ], flyToLocation: Place.WHITESPOT_CHARLOTTENBURGNORD
+      },
+      {
+        chapters: ['whitespots-gewerbegebiet-gradestrasse-1'],
         layers: ['lines-bus', 'lines-subway', 'lines-light_rail'],
         popupMarkers: [Place.BUS_GRADESTRASSE, Place.BUS_EINTRAGSIEDLUNG, Place.U_ULLSTEINSTRASSE, Place.U_BLASCHKOALLEE,
           Place.S_HERMANNSTRASSE],
-        flyToLocation: Place.GEWERBEGEBIET_BRITZ
+        flyToLocation: Place.WHITESPOT_GEWERBEGEBIET_GRADESTRASSE
+      },
+      {
+        chapters: ['whitespots-gewerbegebiet-gradestrasse-2'],
+        layers: ['lines-bus', 'lines-subway', 'lines-light_rail'],
+        popupMarkers: [Place.BUS_GRADESTRASSE, Place.BUS_EINTRAGSIEDLUNG, Place.U_ULLSTEINSTRASSE, Place.U_BLASCHKOALLEE,
+          Place.S_HERMANNSTRASSE],
+        flyToLocation: Place.WHITESPOT_GEWERBEGEBIET_GRADESTRASSE
       },
       {
         chapters: ['whitespots-landsberger-allee-1'],
@@ -247,36 +280,36 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
           Place.TRAM_HERZBERGSTRASSE_INDUSTRIEPARK, Place.TRAM_HERZBERGSTRASSE_SIEGFRIEDSTRASSE, Place.TRAM_EV_KRANKENHAUS_KEH,
           Place.TRAM_ALLEE_DER_KOSMONAUTEN_, Place.TRAM_BEILSTEINER_STRASSE, Place.TRAM_REINHARDSBRUNNER_STRASSE,
           Place.TRAM_MEERANER_STRASSE, Place.TRAM_KLEINGARTENANLAGE_BIELEFELDT],
-        flyToLocation: Place.LANDSBERGER_ALLEE_CLOSE
+        flyToLocation: Place.WHITESPOT_LANDSBERGER_ALLEE_CLOSE
       },
       {
         chapters: ['whitespots-landsberger-allee-2'],
         layers: ['lines-tram', 'lines-subway', 'lines-light_rail'],
         popupMarkers: [Place.S_POELCHAUSTRASSE, Place.S_SPRINGPFUHL, Place.S_LANDSBERGER_ALLEE, Place.S_STORKOWER_STRASSE,
           Place.U_MAGDALENENSTRASSE],
-        flyToLocation: Place.LANDSBERGER_ALLEE
+        flyToLocation: Place.WHITESPOT_LANDSBERGER_ALLEE
       },
       {
-        chapters: ['whitespots-marzahnhellersdorf'],
+        chapters: ['whitespots-marzahn-hellersdorf'],
         layers: ['lines-tram', 'lines-bus', 'lines-subway'],
         popupMarkers: [Place.BUS_KLAUSDORFER, Place.BUS_LANDSBERGERZOSSENER, Place.BUS_TEUPITZER,
           Place.TRAM_AHRENSFELDE, Place.TRAM_HELLERSDORF_U, Place.TRAM_STENDALER, Place.TRAM_STENDALERZOSSENER, Place.TRAM_ZOSSENER,
           Place.TRAM_ALTEHELLERSDORFER, Place.TRAM_MICHENDORFER, Place.TRAM_LANDSBERGERZOSSENER,
           Place.TRAM_BETRIEBSBAHNHOFMARZAHN, Place.TRAM_BRODOWIENERRING, Place.TRAM_LANDSBERGERBLUMBERGER],
-        flyToLocation: Place.MARZAHN_HELLERSDORF_CLOSER
+        flyToLocation: Place.WHITESPOT_MARZAHN_HELLERSDORF_CLOSER
       },
       {
-        chapters: ['whitespots-marzahnhellersdorf-1'],
+        chapters: ['whitespots-marzahn-hellersdorf-1'],
         layers: ['lines-tram', 'lines-bus', 'lines-light_rail', 'lines-subway'],
         popupMarkers: [Place.U_HELLERSDORF, Place.U_COTTBUSSER, Place.U_WUHLETAL],
-        flyToLocation: Place.MARZAHN_HELLERSDORF
+        flyToLocation: Place.WHITESPOT_MARZAHN_HELLERSDORF
       },
       {
-        chapters: ['whitespots-marzahnhellersdorf-2'],
+        chapters: ['whitespots-marzahn-hellersdorf-2'],
         layers: ['lines-tram', 'lines-bus', 'lines-light_rail', 'lines-subway'],
         popupMarkers: [Place.S_POELCHAUSTRASSE, Place.S_SPRINGPFUHL, Place.S_MARZAHN, Place.S_WUHLETAL,
           Place.U_HELLERSDORF, Place.U_COTTBUSSER, Place.U_WUHLETAL],
-        flyToLocation: Place.MARZAHN_HELLERSDORF
+        flyToLocation: Place.WHITESPOT_MARZAHN_HELLERSDORF
       },
     ];
 
@@ -374,9 +407,10 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
 
       case 'whitespots': {
         const initialLayers = ['isochrones-all-15', 'commercial', 'industrial', 'university'];
-        const initialPopupMarkers = [Place.SPANDAU, Place.CHARLOTTENBURGNORD, Place.GEWERBEGEBIET_BRITZ, Place.LANDSBERGER_ALLEE,
-          Place.MARZAHN_HELLERSDORF];
-
+        const initialPopupMarkers = [
+          Place.WHITESPOT_SPANDAU, Place.WHITESPOT_CHARLOTTENBURGNORD, Place.WHITESPOT_GEWERBEGEBIET_GRADESTRASSE,
+          Place.WHITESPOT_LANDSBERGER_ALLEE, Place.WHITESPOT_MARZAHN_HELLERSDORF
+        ];
         if (event.clearOthers) {
           this.opacitiesWhitespots.forEach((value: number, key: string) => {
             this.opacitiesWhitespots.set(key, 0);

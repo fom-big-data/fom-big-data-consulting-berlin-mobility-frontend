@@ -49,20 +49,20 @@
                    (sectionInViewportEventEmitter)="onLayerMarkerEventTriggered('understanding', $event)"></app-section>
       <app-section [height]="'500px'" [chapters]="['lebensraeume-dichte']"
                    [layers]="['berlin-inhabitants-improved']"
-                   [popupMarkers]="[placeEnum.ZIP_10623_CHARLOTTENBURG,
-                                    placeEnum.ZIP_12107_BUCKOW_LICHTENRADE_MARIENDORF_MARIENFELDE_TEMPELHOF,
-                                    placeEnum.ZIP_12623_KAULSDORF_MAHLSDORF]"
+                   [popupMarkers]="[placeEnum.HABITAT_CHARLOTTENBURG,
+                                    placeEnum.HABITAT_BUCKOW_LICHTENRADE_MARIENDORF_MARIENFELDE_TEMPELHOF,
+                                    placeEnum.HABITAT_KAULSDORF_MAHLSDORF]"
                    (sectionInViewportEventEmitter)="onLayerMarkerEventTriggered('understanding', $event)"></app-section>
       <app-section [height]="'500px'" [chapters]="['arbeitsraeume']"
                    [layers]="['commercial', 'industrial','university']"
-                   [popupMarkers]="[placeEnum.TEC_ADLERSHOF,
-                                    placeEnum.TEC_BORSIGTURM,
-                                    placeEnum.TEC_EUREF,
-                                    placeEnum.TEC_HUMBOLDTHAIN,
-                                    placeEnum.TEC_MARZAHN,
-                                    placeEnum.TEC_HTW,
-                                    placeEnum.TEC_MARIENDORF,
-                                    placeEnum.TEC_SIEMENSSTADT]"
+                   [popupMarkers]="[placeEnum.WORKING_SPACE_ADLERSHOF,
+                                    placeEnum.WORKING_SPACE_BORSIGTURM,
+                                    placeEnum.WORKING_SPACE_EUREF,
+                                    placeEnum.WORKING_SPACE_HUMBOLDTHAIN,
+                                    placeEnum.WORKING_SPACE_MARZAHN,
+                                    placeEnum.WORKING_SPACE_HTW,
+                                    placeEnum.WORKING_SPACE_MARIENDORF,
+                                    placeEnum.WORKING_SPACE_SIEMENSSTADT]"
                    (sectionInViewportEventEmitter)="onLayerMarkerEventTriggered('understanding', $event)"></app-section>
       <app-section [height]="'500px'" [chapters]="['strassen-infrastruktur']" [layers]="['allowed_car_speed']"
                    (sectionInViewportEventEmitter)="onLayerMarkerEventTriggered('understanding', $event)"></app-section>
@@ -137,9 +137,9 @@
                [height]="mapHeight"
                [style]="mapBoxStyleEnum.LIGHT_V10"
                [zoom]="11.5"
-               [center]="placeEnum.FOM"
+               [center]="placeEnum.VISIBILITY_FOM"
                [interactiveEnabled]=false
-               [popupMarkers]="[placeEnum.FOM, placeEnum.ZOOLOGISCHER_GARTEN, placeEnum.SIEGESSAEULE]"
+               [popupMarkers]="[placeEnum.VISIBILITY_FOM, placeEnum.VISIBILITY_ZOOLOGISCHER_GARTEN, placeEnum.VISIBILITY_SIEGESSAEULE]"
                [initialOpacity]="0"
                [opacities]="opacitiesVisibilityWalk"
                [results]="resultsVisibilityWalk">
@@ -166,9 +166,9 @@
                [height]="mapHeight"
                [style]="mapBoxStyleEnum.LIGHT_V10"
                [zoom]="10.5"
-               [center]="placeEnum.FOM"
+               [center]="placeEnum.VISIBILITY_FOM"
                [interactiveEnabled]=false
-               [popupMarkers]="[placeEnum.FOM]"
+               [popupMarkers]="[placeEnum.VISIBILITY_FOM]"
                [initialOpacity]="0"
                [opacities]="opacitiesVisibilityTransport"
                [results]="resultsVisibilityTransport">
@@ -190,10 +190,10 @@
 <div class="story-container">
   <ng-container>
     <app-section-header #problems id="problems" title="Probleme in der Infrastruktur erkennnen"></app-section-header>
-    <app-section [chapters]="['whitespots-intro']"></app-section>
+    <app-section [chapters]="['problems-intro']"></app-section>
     <div class="text-container">
       <app-section [height]="mapHeight"
-                   [chapters]="['whitespots-auto']"
+                   [chapters]="['problems-auto']"
                    [layers]="['isochrones-drive-15']"
                    [opacityActive]="'1.0'"
                    [opacityPassive]="'0.0'"

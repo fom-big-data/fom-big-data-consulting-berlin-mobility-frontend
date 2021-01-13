@@ -14,115 +14,176 @@ export class Place {
     'tierpark', 'Der Tierpark Berlin ist einer der beiden Zoologischen Gärten in Berlin.', 13.5313559, 52.5023038);
 
   //
-  // Districts
+  // Understanding
   //
 
-  /** District Charlottenburg */
-  static ZIP_10623_CHARLOTTENBURG = new Location('charlottenburg', '10623 Charlottenburg', 13.3189848, 52.5086571);
-  /** District Buckow-Lichtenrade-Mariendorf-Marienfelde-Tempelhof */
-  static ZIP_12107_BUCKOW_LICHTENRADE_MARIENDORF_MARIENFELDE_TEMPELHOF = new Location('buckow-lichtenrade-mariendorf-marienfelde-tempelhof', '12107 Buckow-Lichtenrade-Mariendorf-Marienfelde-Tempelhof', 13.3511922, 52.4308308);
-  /** District Kaulsdorf-Mahlsdorf */
-  static ZIP_12623_KAULSDORF_MAHLSDORF = new Location('kaulsdorf-mahlsdorf', '12623 Kaulsdorf-Mahlsdorf', 13.5863998, 52.5005195);
+  // Lebensraeume
+
+  /** Area Charlottenburg */
+  static HABITAT_CHARLOTTENBURG = new Location('habitat-charlottenburg', '10623 Charlottenburg', 13.3189848, 52.5086571);
+  /** Area Buckow-Lichtenrade-Mariendorf-Marienfelde-Tempelhof */
+  static HABITAT_BUCKOW_LICHTENRADE_MARIENDORF_MARIENFELDE_TEMPELHOF = new Location('habitat-buckow-lichtenrade-mariendorf-marienfelde-tempelhof', '12107 Buckow-Lichtenrade-Mariendorf-Marienfelde-Tempelhof', 13.3511922, 52.4308308);
+  /** Area Kaulsdorf-Mahlsdorf */
+  static HABITAT_KAULSDORF_MAHLSDORF = new Location('habitat-kaulsdorf-mahlsdorf', '12623 Kaulsdorf-Mahlsdorf', 13.5863998, 52.5005195);
+
+  // Arbeitsraeume
+
+  /* Siemensstadt*/
+  static WORKING_SPACE_SIEMENSSTADT = new Location(
+    'working-space-siemensstadt', 'Siemensstadt - Gewerbe und Technologie', 13.263056, 52.540556);
+  /* Adlershof */
+  static WORKING_SPACE_ADLERSHOF = new Location(
+    'working-space-adlershof', 'Adlershof "science at work" - Technoligie und Wissenschaftspark ',
+    13.535324, 52.431573);
+  /* Humboldthain */
+  static WORKING_SPACE_HUMBOLDTHAIN = new Location(
+    'working-space-humboldthain', 'Humboldthain - Gewerbe Technologie und Gründerzentrum ',
+    13.385895, 52.542607);
+  /* KATHIS CAMPUS .. EUREF */
+  static WORKING_SPACE_EUREF = new Location(
+    'working-space-euref', 'EUREF - Technologie und Gewerbepark', 13.357011, 52.481595);
+  /* Borsigturm */
+  static WORKING_SPACE_BORSIGTURM = new Location(
+    'working-space-borsigturm', 'Borsigturm - Gewerbe, Technologie und Gründerzentrum ', 13.282722, 52.581781);
+  /* Marzahn Gewerbepark */
+  static WORKING_SPACE_MARZAHN = new Location(
+    'working-space-marzahn', 'ECONOPARK - Gewerbe und Innovationspark', 13.546844, 52.558557);
+  /* Campus HTW */
+  static WORKING_SPACE_HTW = new Location(
+    'working-space-htw', 'Campus Adlershof - Wissenschafts und Gründerzentrum', 13.526841, 52.458344);
+  /* Mariendorf */
+  static WORKING_SPACE_MARIENDORF = new Location(
+    'working-space-mariendorf', 'Mariendorf - Gewerbe und Technologiepark', 13.374298, 52.438594);
+
+  //
+  // Visibility
+  //
 
   /** FOM */
-  static FOM = new Location('fom', 'FOM', 13.3161495, 52.5119408, 13);
-  /** Area Zoologischer Garten */
-  static ZOOLOGISCHER_GARTEN = new Location('zoologischer-garten', 'Gesundbrunnen',13.3323673, 52.5073337);
-  /** Area Siegessaeule */
-  static SIEGESSAEULE = new Location('siegessaeule', 'Siegessäule',13.3501189, 52.5145434);
-
-  /** Area Gesundbrunnen */
-  static GESUNDBRUNNEN = new Location('gesundbrunnen', 'Gesundbrunnen', 13.3671742, 52.5503968);
-  /** Area Arnimkiez */
-  static ARNIMKIEZ = new Location('arnimkiez', 'Arnimkiez',13.4014224, 52.5511111);
-  /** Area Torstrasse */
-  static TORSTRASSE = new Location('torstrasse', 'Torstraße',13.3848972, 52.5265118);
-  /** Area Potsdamer PLatz */
-  static POSTDAMER_PLATZ = new Location('potsdamer-platz', 'Potsdamer Platz',13.3759441, 52.5096488);
-  /** Area Ostkreuz */
-  static OSTKREUZ = new Location('ostkreuz', 'Ostkreuz',13.4693263, 52.5031531);
-  /** Area Baumschulenweg */
-  static BAUMSCHULENWEG = new Location('baumschulenweg', 'Baumschulenweg',13.4875787, 52.4676707);
-  /** Area Neukoelln */
-  static NEUKOELLN = new Location('neukoelln', 'Neukölln',13.436502, 52.469093);
+  static VISIBILITY_FOM = new Location('visibility-fom', 'FOM', 13.3161495, 52.5119408, 13);
+  /** Zoologischer Garten */
+  static VISIBILITY_ZOOLOGISCHER_GARTEN = new Location('visibility-zoologischer-garten', 'Gesundbrunnen', 13.3323673, 52.5073337);
+  /** Siegessaeule */
+  static VISIBILITY_SIEGESSAEULE = new Location('visibility-siegessaeule', 'Siegessäule', 13.3501189, 52.5145434);
 
   //
   // Problems
   //
 
-  /** Auto Franzoesisch Buchholz */
-  static AUTO_FRANZOESISCH_BUCHHOLZ = new Location('auto-franzoesisch-buchholz', 'Französisch Buchholz',13.4054556,52.6113215);
-  /** AUTO Kladow */
-  static AUTO_KLADOW = new Location('auto-kladow', 'Kladow',13.1129395,52.4625043);
-  /** Auto Charlottenburg */
-  static AUTO_CHARLOTTENBURG = new Location('auto-charlottenburg', 'Charlottenburg', 13.3189848, 52.5086571)
+  // Auto
 
-  /** Area Kladow */
-  static KLADOW = new Location('kladow', 'Kladow',13.1129395,52.4625043);
-  /** Area Mueggelheim */
-  static MUEGGELHEIM = new Location('mueggelheim', 'Müggelheim',13.6500662,52.4052779);
-  /** Area Franzoesisch Buchholz */
-  static FRANZOESISCH_BUCHHOLZ = new Location('franzoesisch-buchholz', 'Französisch Buchholz',13.4054556,52.6113215);
-  /** Area Moabit */
-  static MOABIT = new Location('moabit', 'Moabit',13.3250589,52.5290551);
-  /** Area Graefekiez */
-  static GRAEFEKIEZ = new Location('graefekiez', 'Gräfekiez',13.4145386,52.4916955);
-  /** Area Alt Hohenschoenhausen */
-  static ALT_HOHENSCHOENHAUSEN = new Location('alt-hohenschoenhausen', 'Alt Hohenschönhausen',13.4820985,52.5486436);
+  /** Auto Franzoesisch Buchholz */
+  static AUTO_FRANZOESISCH_BUCHHOLZ = new Location('auto-franzoesisch-buchholz', 'Französisch Buchholz', 13.4054556, 52.6113215);
+  /** Auto Kladow */
+  static AUTO_KLADOW = new Location('auto-kladow', 'Kladow', 13.1129395, 52.4625043);
+  /** Auto Charlottenburg */
+  static AUTO_CHARLOTTENBURG = new Location('auto-charlottenburg', 'Charlottenburg', 13.3189848, 52.5086571);
+
+  // S-Bahn
+
+  /** Gesundbrunnen */
+  static LIGHT_RAIL_GESUNDBRUNNEN = new Location('light-rail-gesundbrunnen', 'Gesundbrunnen', 13.3671742, 52.5503968);
+  /** S Friedrichsstrasse */
+  static LIGHT_RAIL_FRIEDRICHSTRASSE = new Location('light-rail-friedrichstrasse', 'Friedrichstraße', 13.3869776, 52.5202894);
+  /** S Ostkreuz */
+  static LIGHT_RAIL_OSTKREUZ = new Location('light-rail-ostkreuz', 'Ostkreuz', 13.4693263, 52.5031531);
+  /** Neukoelln */
+  static LIGHT_RAIL_NEUKOELLN = new Location('light-rail-neukoelln', 'Neukölln', 13.436502, 52.46909);
+  /** Charlottenburg Nord */
+  static LIGHT_RAIL_CHARLOTTENBURG_NORD = new Location('light-rail-charlottenburg-nord', 'Charlottenburg Nord', 13.303615, 52.5459212);
+  /** Weissensee */
+  static LIGHT_RAIL_WEISSENSEE = new Location('light-rail-weissensee', 'Weißensee', 13.4475312, 52.5506711);
+
+  // U-Bahn
+
+  /** Friedrichshain */
+  static SUBWAY_FRIEDRICHSHAIN = new Location('subway-friedrichshain', 'Friedrichshain', 13.4207508, 52.5085327);
+  /** Mitte */
+  static SUBWAY_MITTE = new Location('subway-mitte', 'Mitte', 13.2954024, 52.533177);
+  /** Charlottenburg-Wilmersdorf */
+  static SUBWAY_CHARLOTTENBURG_WILMERSDORF = new Location(
+    'subway-charlottenburg-wilmersdorf', 'Charlottenburg-Wilmersdorf', 13.1938725, 52.5079568);
+
+  /** Steglitz Zehlendorf */
+  static SUBWAY_STEGLITZ_ZEHLENDORF = new Location('subway-steglitz-zehlendorf', 'Steglitz-Zehlendorf', 13.0899491, 52.4294523);
+  /** Spandau */
+  static SUBWAY_SPANDAU = new Location('subway-spandau', 'Spandau', 13.1256895, 52.5192793);
+  /** Weissensee */
+  static SUBWAY_WEISSENSEE = new Location('subway-weissensee', 'Weißensee', 13.4475312, 52.5506711);
+
+  // Intermodal
+
+  /**  Gesundbrunnen */
+  static INTERMODAL_GESUNDBRUNNEN = new Location('intermodal-gesundbrunnen', 'Gesundbrunnen', 13.3671742, 52.5503968);
+  /**  Arnimkiez */
+  static INTERMODAL_ARNIMKIEZ = new Location('intermodal-arnimkiez', 'Arnimkiez', 13.4014224, 52.5511111);
+  /**  Torstrasse */
+  static INTERMODAL_TORSTRASSE = new Location('intermodal-torstrasse', 'Torstraße', 13.3848972, 52.5265118);
+  /**  Potsdamer PLatz */
+  static INTERMODAL_POSTDAMER_PLATZ = new Location('intermodal-potsdamer-platz', 'Potsdamer Platz', 13.3759441, 52.5096488);
+  /**  Ostkreuz */
+  static INTERMODAL_OSTKREUZ = new Location('intermodal-ostkreuz', 'Ostkreuz', 13.4693263, 52.5031531);
+  /**  Baumschulenweg */
+  static INTERMODAL_BAUMSCHULENWEG = new Location('intermodal-baumschulenweg', 'Baumschulenweg', 13.4875787, 52.4676707);
+  /**  Neukoelln */
+  static INTERMODAL_NEUKOELLN = new Location('intermodal-neukoelln', 'Neukölln', 13.436502, 52.469093);
+
+  /**  Kladow */
+  static INTERMODAL_KLADOW = new Location('intermodal-kladow', 'Kladow', 13.1129395, 52.4625043);
+  /**  Mueggelheim */
+  static INTERMODAL_MUEGGELHEIM = new Location('intermodal-mueggelheim', 'Müggelheim', 13.6500662, 52.4052779);
+  /**  Franzoesisch Buchholz */
+  static INTERMODAL_FRANZOESISCH_BUCHHOLZ = new Location(
+    'intermodal-franzoesisch-buchholz', 'Französisch Buchholz', 13.4054556, 52.6113215);
+  /**  Moabit */
+  static INTERMODAL_MOABIT = new Location('intermodal-moabit', 'Moabit', 13.3250589, 52.5290551);
+  /**  Graefekiez */
+  static INTERMODAL_GRAEFEKIEZ = new Location('intermodal-graefekiez', 'Gräfekiez', 13.4145386, 52.4916955);
+  /**  Alt Hohenschoenhausen */
+  static INTERMODAL_ALT_HOHENSCHOENHAUSEN = new Location(
+    'intermodal-alt-hohenschoenhausen', 'Alt Hohenschönhausen', 13.4820985, 52.5486436);
 
   //
   // Whitespots
   //
 
-  /** Tegel */
-  static TEGEL = new Location('tegel', 'Der Flughafen Berlin-Tegel „Otto Lilienthal“ war bis zum 8. November 2020 ein internationaler Verkehrsflughafen in Berlin-Tegel.', 13.301036953926086, 52.54451612539228);
-  /** Gewerbegebiet Britz */
-  static GEWERBEGEBIET_BRITZ = new Location('gewerbegebiet-britz', 'Gewerbegebiet Gradestraße', 13.41184437274933, 52.45105343499185, 12.0);
+  // Spandau
+
   /** Siemensstadt */
-  static SPANDAU = new Location('spandau', 'tbd', 13.225531, 52.527586);
+  static WHITESPOT_SPANDAU = new Location('whitespot-spandau', 'tbd', 13.225531, 52.527586);
+
+  // Charlottenburg Nord
+
+  /** Charlottenburg Nord */
+  static WHITESPOT_CHARLOTTENBURGNORD = new Location('whitespot-charlottenburg-nord', 'Charlottenburg Nord', 13.303615, 52.5459212);
+  /** Beusselstrasse */
+  static WHITESPOT_BEUSSELSTRASSE = new Location('whitespot-beusselstrasse', 'Beusselstraße', 13.3287218, 52.5343357);
+  /** Jakob-Kaiser-Platz */
+  static WHITESPOT_JAKOB_KAISER_PLATZ = new Location('whitespot-jakob-kaiser-platz', 'Jakob-Kaiser-Platz', 13.2918199, 52.5364933);
+
+  // Gewerbegebiet Gradestrasse
+
+  /** Gewerbegebiet Gradestrasse */
+  static WHITESPOT_GEWERBEGEBIET_GRADESTRASSE = new Location(
+    'whitespot-gewerbegebiet-gradestrasse', 'Gewerbegebiet Gradestraße', 13.41184437274933, 52.45105343499185, 12.0);
+
+  // Gewerbegebiet Landsberger Allee
+
   /** Landsberger Allee */
-  static LANDSBERGER_ALLEE_CLOSE = new Location(
-    'landsberger-allee-close', 'Gewerbegebiet Landsberger Allee', 13.511579632759094, 52.53283375135081, 12.5);
+  static WHITESPOT_LANDSBERGER_ALLEE_CLOSE = new Location(
+    'whitespot-landsberger-allee-close', 'Gewerbegebiet Landsberger Allee', 13.511579632759094, 52.53283375135081, 12.5);
   /** Landsberger Allee */
-  static LANDSBERGER_ALLEE = new Location('landsberger-allee', 'Gewerbegebiet Landsberger Allee', 13.511579632759094, 52.53283375135081);
-  /** Westhafen */
-  static CHARLOTTENBURGNORD = new Location('charlottenburg-nord', 'tbd', 13.303615, 52.5459212);
-  /** Hellersdorf */
-  static MARZAHN_HELLERSDORF_CLOSER = new Location('marzahnhellersdorf', 'tbd', 13.59452260037462, 52.546943747075595, 12.5);
-  /** Hellersdorf */
-  static MARZAHN_HELLERSDORF = new Location('marzahnhellersdorf', 'tbd', 13.59452260037462, 52.546943747075595);
+  static WHITESPOT_LANDSBERGER_ALLEE = new Location(
+    'whitespot-landsberger-allee', 'Gewerbegebiet Landsberger Allee', 13.511579632759094, 52.53283375135081);
 
+  // Gewerbegebiet Marzahn-Hellersdorf
 
-  //
-  // Chemical and Retail
-  //
-
-  /* SIEMENSSTADT*/
-  static TEC_SIEMENSSTADT = new Location(
-    'tec-siemensstadt', 'Siemensstadt - Gewerbe und Technologie', 13.263056, 52.540556);
-  /* ADLERSHOF */
-  static TEC_ADLERSHOF = new Location(
-    'tec-adlershof', 'Adlershof "science at work" - Technoligie und Wissenschaftspark ',
-    13.535324, 52.431573);
-  /* HUMBOLDTHAIN */
-  static TEC_HUMBOLDTHAIN = new Location(
-    'tec-humboldthain', 'Humboldthain - Gewerbe Technologie und Gründerzentrum ',
-    13.385895, 52.542607);
-  /* KATHIS CAMPUS .. EUREF*/
-  static TEC_EUREF = new Location(
-    'tec-euref', 'EUREF - Technologie und Gewerbepark', 13.357011, 52.481595);
-  /* BORSIGTURM*/
-  static TEC_BORSIGTURM = new Location(
-    'tec-borsigturm', 'Borsigturm - Gewerbe, Technologie und Gründerzentrum ', 13.282722, 52.581781);
-  /* MARZAHN GEWERBEPARK */
-  static TEC_MARZAHN = new Location(
-    'tec-marzahn', 'ECONOPARK - Gewerbe und Innovationspark', 13.546844, 52.558557);
-  /* CAMPUS HTW */
-  static TEC_HTW = new Location(
-    'tec-htw', 'Campus Adlershof - Wissenschafts und Gründerzentrum', 13.526841, 52.458344);
-  /* MARIENDORF */
-  static TEC_MARIENDORF = new Location(
-    'tec-mariendorf', 'Mariendorf - Gewerbe und Technologiepark', 13.374298, 52.438594);
+  /** Marzahn-Hellersdorf */
+  static WHITESPOT_MARZAHN_HELLERSDORF_CLOSER = new Location(
+    'whitespot-marzahn-hellersdorf-closer', 'Marzahn-Hellersdorf', 13.59452260037462, 52.546943747075595, 12.5);
+  /** Marzahn-Hellersdorf */
+  static WHITESPOT_MARZAHN_HELLERSDORF = new Location(
+    'whitespot-marzahn-hellersdorf', 'Marzahn-Hellersdorf', 13.59452260037462, 52.546943747075595);
 
   //
   // Bus
