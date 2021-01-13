@@ -22,6 +22,14 @@
   font-weight: 700;
 }
 
+::ng-deep ul {
+  list-style-type: none;
+}
+
+::ng-deep hr {
+  border-width: 0;
+}
+
 //
 // Error
 //
