@@ -184,11 +184,9 @@ export class MapComponent implements OnChanges, AfterViewInit {
     }
 
     if (this.flyToLocation != null) {
-      console.log(`to location ${this.flyToBoundingBox}`);
       this.flyableLocationSubject.next(this.flyToLocation);
     }
     if (this.flyToBoundingBox != null) {
-      console.log(`to bounding box ${this.flyToBoundingBox}`);
       this.flyableBoundingBoxSubject.next(this.flyToBoundingBox);
     }
   }
