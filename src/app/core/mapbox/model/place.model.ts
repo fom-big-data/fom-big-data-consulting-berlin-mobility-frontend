@@ -162,6 +162,8 @@ export class Place {
   /** Persona Peter */
   static PERSONA_PETER = new Location(
     'persona-peter', 'Peter Peters', 13.303615, 52.5459212);
+  static POLIZEIAKADEMIE = new Location(
+      'polizeiakademie', 'Polizeiakademie', 13.1947344, 52.5405663);
   /** Hauptbahnhof */
   static WHITESPOT_HAUPTBAHNHOF = new Location('whitespot-hauptbahnhof', 'Hauptbahnhof', 13.3606472, 52.5250966);
   /** Beusselstrasse */
@@ -241,14 +243,15 @@ export class Place {
   static S_MARZAHN = new Location('s-marzahn', 'S Marzahn', 13.541288892810723, 52.543613874069685);
   /** S-Bahn station Wuhletalstraße */
   static S_WUHLETAL = new Location('s-wuhletal', 'S Wuhletal', 13.577991920021807, 52.512607512439565);
+  /** Bahn station Stresow */
+  static S_STRESOW = new Location('s-stresow', 'S Stresow', 13.2012605, 52.5324273);
 
   //
   // U-Bahn
   //
 
   /** U-Bahn station Blaschkoallee */
-  static U_BLASCHKOALLEE = new Location(
-    'u-blaschkoallee', 'U Blaschkoallee', 13.448983, 52.4527097);
+  static U_BLASCHKOALLEE = new Location('u-blaschkoallee', 'U Blaschkoallee', 13.448983, 52.4527097);
   /** U-Bahn station Ullsteinstrasse */
   static U_ULLSTEINSTRASSE = new Location('u-ullsteinstrasse', 'U Ullsteinstraße', 13.384133, 52.452835);
   /** U-Bahn station Hellersdorf */
@@ -259,6 +262,8 @@ export class Place {
   static U_MAGDALENENSTRASSE = new Location('u-magdalenenstrasse', 'U Magdalenenstraße', 13.4873591, 52.5124398);
   /** U Wuhletalstr */
   static U_WUHLETAL = new Location('u-wuhletal', 'U Wuhletal', 13.57522325860481, 52.512871516295945);
+  /** U Ruhleben */
+  static U_RUHLEBEN = new Location('u-ruhleben', 'U Ruhleben', 13.2390313, 52.525648);
 
   //
   // Tram
@@ -336,12 +341,7 @@ export class Place {
   /** Tram station Landsberger Strasse / Blumberger Strasse */
   static TRAM_LANDSBERGERBLUMBERGER = new Location(
     'tram-landsbergerblumberger', 'Tram Landberger Allee / Blumberger Damm', 13.572618345542136, 52.54640859789009);
-  /** Bahn station Stresow */
-  static SBAHN_STRESOW = new Location(
-    's-stresow', 'S-Bahnstation Stresow', 13.2012605, 52.5324273);
-  /** Bahn station Ruhleben */
-  static UBAHN_RUHLEBEN = new Location(
-    'u-ruhleben', 'U-Bahnstation Ruhleben', 13.2390313, 52.525648);
+
   /** Bahn station Stresow */
   //static TRAM_BRODOWIENERRING = new Location(
   //  'tram-brodowienerring', 'Tram Brodowiener Ring', 13.578159789319885, 52.54789287493665);

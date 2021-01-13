@@ -246,10 +246,18 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
       {
         chapters: ['whitespots-spandau-persona'],
         layers: [],
-        popupMarkers: [Place.PERSONA_BEN, Place.WHITESPOT_SPANDAU],
+        popupMarkers: [
+          Place.PERSONA_BEN,
+          Place.WHITESPOT_SPANDAU,
+          Place.POLIZEIAKADEMIE],
         flyToBoundingBox: BoundingBox.BERLIN
       },
-      {chapters: ['whitespots-spandau'], layers: [], popupMarkers: [Place.WHITESPOT_SPANDAU], flyToLocation: Place.WHITESPOT_SPANDAU},
+      {chapters: ['whitespots-spandau'], layers: [],
+      popupMarkers: [
+        Place.U_RUHLEBEN,
+        Place.S_STRESOW,
+        Place.WHITESPOT_SPANDAU],
+      flyToLocation: Place.WHITESPOT_SPANDAU},
       {
         chapters: ['whitespots-charlottenburg-persona'], layers: [],
         popupMarkers: [Place.PERSONA_PETER, Place.WHITESPOT_HAUPTBAHNHOF],
