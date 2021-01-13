@@ -358,6 +358,14 @@
   background-image: url('../../../../assets/img/persona-ben.png');
 }
 
+::ng-deep #marker-whitespot-persona-ben-target {
+  background-image: url('../../../../assets/img/spandau.jpg');
+}
+
+::ng-deep #marker-whitespot-polizeiakademie {
+  background-image: url('../../../../assets/img/spandau.jpg');
+}
+
 ::ng-deep #marker-whitespot-spandau {
   background-image: url('../../../../assets/img/spandau.jpg');
 }
@@ -370,6 +378,10 @@
 
 ::ng-deep #marker-whitespot-persona-peter {
   background-image: url('../../../../assets/img/persona-peter.png');
+}
+
+::ng-deep #marker-whitespot-persona-peter-target {
+  background-image: url('../../../../assets/img/hauptbahnhof.jpg');
 }
 
 ::ng-deep #marker-whitespot-hauptbahnhof {
@@ -394,6 +406,10 @@
   background-image: url('../../../../assets/img/persona-tim.png');
 }
 
+::ng-deep #marker-whitespot-persona-tim-target {
+  background-image: url('../../../../assets/img/gewerbegebiet-gradestrasse.jpeg');
+}
+
 ::ng-deep #marker-whitespot-gewerbegebiet-gradestrasse {
   background-image: url('../../../../assets/img/gewerbegebiet-gradestrasse.jpeg');
 }
@@ -404,9 +420,13 @@
   background-image: url('../../../../assets/img/persona-hanna.png');
 }
 
+::ng-deep #marker-whitespot-persona-hanna-target {
+  background-image: url('../../../../assets/img/landsberger-allee.jpg');
+}
+
 ::ng-deep #marker-whitespot-landsberger-allee-close,
 ::ng-deep #marker-whitespot-landsberger-allee {
-  background-image: url('../../../../assets/img/landsberger_allee.jpg');
+  background-image: url('../../../../assets/img/landsberger-allee.jpg');
 }
 
 // Gewerbegebiet Marzahn-Hellersdorf

@@ -93,7 +93,9 @@ export class SectionComponent implements OnInit, OnChanges {
    * Handles on-changes lifecycle phase
    */
   ngOnChanges(changes: SimpleChanges) {
-    this.popupMarkers.reverse();
+    if (this.popupMarkers != null) {
+      this.popupMarkers.reverse();
+    }
   }
 
   //
