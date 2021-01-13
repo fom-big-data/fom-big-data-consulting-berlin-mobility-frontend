@@ -17,6 +17,12 @@
   cursor: pointer;
 }
 
+::ng-deep .out-of-focus .marker-label {
+  color: #bdbdbd !important;
+  transition: color 0.5s;
+  transition-timing-function: ease-in;
+}
+
 ::ng-deep .todo {
   background: #fff59d;
   font-weight: 700;
@@ -42,13 +48,16 @@
   color: lightgray;
 }
 
-.in-focus {
-  opacity: 1;
-  transition: opacity 0.3s ease-in;
+::ng-deep .in-focus {
+  color: #212121 !important;
+  transition: color 0.5s;
+  transition-timing-function: ease-in;
 }
 
-.out-of-focus {
-  opacity: 0.2;
+::ng-deep .out-of-focus {
+  color: #bdbdbd !important;
+  transition: color 0.5s;
+  transition-timing-function: ease-in;
 }
 
 //
