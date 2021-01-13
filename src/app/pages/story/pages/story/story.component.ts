@@ -247,20 +247,23 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
         chapters: ['whitespots-spandau-persona'],
         layers: [],
         popupMarkers: [
-          Place.PERSONA_BEN,
-          Place.WHITESPOT_SPANDAU,
-          Place.POLIZEIAKADEMIE],
+          Place.WHITESPOT_PERSONA_BEN,
+          Place.WHITESPOT_PERSONA_BEN_TARGET,
+          Place.POLIZEIAKADEMIE
+        ],
         flyToBoundingBox: BoundingBox.BERLIN
       },
-      {chapters: ['whitespots-spandau'], layers: [],
-      popupMarkers: [
-        Place.U_RUHLEBEN,
-        Place.S_STRESOW,
-        Place.WHITESPOT_SPANDAU],
-      flyToLocation: Place.WHITESPOT_SPANDAU},
       {
-        chapters: ['whitespots-charlottenburg-persona'], layers: [],
-        popupMarkers: [Place.PERSONA_PETER, Place.WHITESPOT_HAUPTBAHNHOF],
+        chapters: ['whitespots-spandau'], layers: [],
+        popupMarkers: [
+          Place.U_RUHLEBEN,
+          Place.S_STRESOW,
+          Place.WHITESPOT_SPANDAU],
+        flyToLocation: Place.WHITESPOT_SPANDAU
+      },
+      {
+        chapters: ['whitespots-charlottenburg-nord-persona'], layers: [],
+        popupMarkers: [Place.WHITESPOT_PERSONA_PETER, Place.WHITESPOT_PERSONA_PETER_TARGET],
         flyToBoundingBox: BoundingBox.BERLIN
       },
       {
@@ -285,7 +288,7 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
       {
         chapters: ['whitespots-gewerbegebiet-gradestrasse-persona'],
         layers: [],
-        popupMarkers: [Place.PERSONA_TIM, Place.WHITESPOT_GEWERBEGEBIET_GRADESTRASSE],
+        popupMarkers: [Place.WHITESPOT_PERSONA_TIM, Place.WHITESPOT_PERSONA_TIM_TARGET],
         flyToBoundingBox: BoundingBox.BERLIN
       },
       {
@@ -309,7 +312,7 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
       {
         chapters: ['whitespots-landsberger-allee-persona'],
         layers: [],
-        popupMarkers: [Place.PERSONA_HANNA, Place.WHITESPOT_LANDSBERGER_ALLEE],
+        popupMarkers: [Place.WHITESPOT_PERSONA_HANNA, Place.WHITESPOT_PERSONA_HANNA_TARGET],
         flyToBoundingBox: BoundingBox.BERLIN
       },
       {
@@ -335,8 +338,8 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
       {
         chapters: ['whitespots-marzahn-hellersdorf-persona'],
         layers: [],
-        popupMarkers: [Place.PERSONA_BIRGIT],
-        flyToLocation: Place.PERSONA_BIRGIT
+        popupMarkers: [Place.WHITESPOT_PERSONA_BIRGIT],
+        flyToLocation: Place.WHITESPOT_PERSONA_BIRGIT
       },
       {
         chapters: ['whitespots-marzahn-hellersdorf'],

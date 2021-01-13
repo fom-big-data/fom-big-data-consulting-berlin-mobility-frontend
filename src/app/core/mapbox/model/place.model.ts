@@ -150,8 +150,10 @@ export class Place {
   // Spandau
 
   /** Persona Ben */
-  static PERSONA_BEN = new Location(
-    'persona-ben', 'Ben Bäcker', 13.3671742, 52.5503968);
+  static WHITESPOT_PERSONA_BEN = new Location(
+    'whitespot-persona-ben', 'Ben Bäcker', 13.3671742, 52.5503968);
+  /** Siemensstadt */
+  static WHITESPOT_PERSONA_BEN_TARGET = new Location('whitespot-spandau', 'tbd', 13.225531, 52.527586);
   /** Siemensstadt */
   static WHITESPOT_SPANDAU = new Location('whitespot-spandau', 'tbd', 13.225531, 52.527586);
 
@@ -160,12 +162,12 @@ export class Place {
   /** Charlottenburg Nord */
 
   /** Persona Peter */
-  static PERSONA_PETER = new Location(
-    'persona-peter', 'Peter Peters', 13.303615, 52.5459212);
+  static WHITESPOT_PERSONA_PETER = new Location(
+    'whitespot-persona-peter', 'Peter Peters', 13.303615, 52.5459212);
   static POLIZEIAKADEMIE = new Location(
       'polizeiakademie', 'Polizeiakademie', 13.1947344, 52.5405663);
   /** Hauptbahnhof */
-  static WHITESPOT_HAUPTBAHNHOF = new Location('whitespot-hauptbahnhof', 'Hauptbahnhof', 13.3606472, 52.5250966);
+  static WHITESPOT_PERSONA_PETER_TARGET = new Location('whitespot-hauptbahnhof', 'Hauptbahnhof', 13.3606472, 52.5250966);
   /** Beusselstrasse */
   static WHITESPOT_CHARLOTTENBURG_NORD = new Location('whitespot-charlottenburg-nord', 'Charlottenburg Nord', 13.303615, 52.5459212);
   /** Beusselstrasse */
@@ -176,8 +178,11 @@ export class Place {
   // Gewerbegebiet Gradestrasse
 
   /** Persona Tim */
-  static PERSONA_TIM = new Location(
-    'persona-tim', 'Tim ', 13.3213383, 52.4798632);
+  static WHITESPOT_PERSONA_TIM = new Location(
+    'whitespot-persona-tim', 'Tim ', 13.3213383, 52.4798632);
+  /** Gewerbegebiet Gradestrasse */
+  static WHITESPOT_PERSONA_TIM_TARGET = new Location(
+    'whitespot-gewerbegebiet-gradestrasse', 'Gewerbegebiet Gradestraße', 13.41184437274933, 52.45105343499185, 12.0);
   /** Gewerbegebiet Gradestrasse */
   static WHITESPOT_GEWERBEGEBIET_GRADESTRASSE = new Location(
     'whitespot-gewerbegebiet-gradestrasse', 'Gewerbegebiet Gradestraße', 13.41184437274933, 52.45105343499185, 12.0);
@@ -185,8 +190,11 @@ export class Place {
   // Gewerbegebiet Landsberger Allee
 
   /** Persona Hanna */
-  static PERSONA_HANNA = new Location(
-    'persona-hanna', 'Hanna Habicht', 13.3440572, 52.5362224);
+  static WHITESPOT_PERSONA_HANNA = new Location(
+    'whitespot-persona-hanna', 'Hanna Habicht', 13.3440572, 52.5362224, 12.5);
+  static WHITESPOT_PERSONA_HANNA_TARGET = new Location(
+    'whitespot-landsberger-allee-close', 'Gewerbegebiet Landsberger Allee', 13.511579632759094, 52.53283375135081, 12.5);
+  /** Landsberger Allee */
   static WHITESPOT_LANDSBERGER_ALLEE_CLOSE = new Location(
     'whitespot-landsberger-allee-close', 'Gewerbegebiet Landsberger Allee', 13.511579632759094, 52.53283375135081, 12.5);
   /** Landsberger Allee */
@@ -196,8 +204,8 @@ export class Place {
   // Gewerbegebiet Marzahn-Hellersdorf
 
   /** Persona Birgit */
-  static PERSONA_BIRGIT = new Location(
-    'persona-birgit', 'Birgit Bohne', 13.59452260037462, 52.546943747075595, 12.0);
+  static WHITESPOT_PERSONA_BIRGIT = new Location(
+    'whitespot-persona-birgit', 'Birgit Bohne', 13.59452260037462, 52.546943747075595, 12.0);
   /** Marzahn-Hellersdorf */
   static WHITESPOT_MARZAHN_HELLERSDORF_CLOSER = new Location(
     'whitespot-marzahn-hellersdorf-closer', 'Marzahn-Hellersdorf', 13.59452260037462, 52.546943747075595, 12.5);
@@ -343,6 +351,6 @@ export class Place {
     'tram-landsbergerblumberger', 'Tram Landberger Allee / Blumberger Damm', 13.572618345542136, 52.54640859789009);
 
   /** Bahn station Stresow */
-  //static TRAM_BRODOWIENERRING = new Location(
+  // static TRAM_BRODOWIENERRING = new Location(
   //  'tram-brodowienerring', 'Tram Brodowiener Ring', 13.578159789319885, 52.54789287493665);
 }
