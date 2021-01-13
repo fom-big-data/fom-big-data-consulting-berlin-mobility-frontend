@@ -105,11 +105,13 @@ export class Place {
     'subway-charlottenburg-wilmersdorf', 'Charlottenburg-Wilmersdorf', 13.1938725, 52.5079568);
 
   /** Steglitz Zehlendorf */
-  static SUBWAY_STEGLITZ_ZEHLENDORF = new Location('subway-steglitz-zehlendorf', 'Steglitz-Zehlendorf', 13.0899491, 52.4294523);
+  static SUBWAY_STEGLITZ_ZEHLENDORF = new Location('subway-steglitz-zehlendorf', 'Steglitz-Zehlendorf', 13.2404481, 52.4449916);
   /** Spandau */
   static SUBWAY_SPANDAU = new Location('subway-spandau', 'Spandau', 13.1256895, 52.5192793);
   /** Weissensee */
   static SUBWAY_WEISSENSEE = new Location('subway-weissensee', 'Weißensee', 13.4475312, 52.5506711);
+  /** Hönow */
+  static SUBWAY_HOENOW = new Location('subway-Hoenow', 'Hönow', 13.6321753, 52.5381537);
 
   // Intermodal
 
