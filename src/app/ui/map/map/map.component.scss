@@ -362,6 +362,10 @@
   background-image: url('../../../../assets/img/spandau.jpg');
 }
 
+::ng-deep #marker-label-polizeiakademie {
+  background-image: url('../../../../assets/img/polizeiakademie.jpg');
+}
+
 // Charlottenburg Nord
 
 ::ng-deep #marker-whitespot-persona-peter {
