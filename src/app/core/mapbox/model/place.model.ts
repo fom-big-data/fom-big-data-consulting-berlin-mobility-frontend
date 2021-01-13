@@ -337,7 +337,7 @@ export class Place {
   static TRAM_LANDSBERGERBLUMBERGER = new Location(
     'tram-landsbergerblumberger', 'Tram Landberger Allee / Blumberger Damm', 13.572618345542136, 52.54640859789009);
   /** Bahn station Stresow */
-  static SBAHN_STRESOW = new Location(,
+  static SBAHN_STRESOW = new Location(
     's-stresow', 'S-Bahnstation Stresow', 13.2012605, 52.5324273);
   /** Bahn station Ruhleben */
   static UBAHN_RUHLEBEN = new Location(
