@@ -70,7 +70,7 @@ export class Place {
   /** FOM */
   static VISIBILITY_FOM = new Location('visibility-fom', 'FOM', 13.3161495, 52.5119408, 13);
   /** Zoologischer Garten */
-  static VISIBILITY_ZOOLOGISCHER_GARTEN = new Location('visibility-zoologischer-garten', 'Gesundbrunnen', 13.3323673, 52.5073337);
+  static VISIBILITY_ZOOLOGISCHER_GARTEN = new Location('visibility-zoologischer-garten', 'Zoologischer Garten', 13.3323673, 52.5073337);
   /** Siegessaeule */
   static VISIBILITY_SIEGESSAEULE = new Location('visibility-siegessaeule', 'Siegessäule', 13.3501189, 52.5145434);
 
