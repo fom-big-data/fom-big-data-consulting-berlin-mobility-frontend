@@ -354,11 +354,23 @@
 
 // Spandau
 
+::ng-deep #marker-persona-ben {
+  background-image: url('../../../../assets/img/persona-ben.png');
+}
+
 ::ng-deep #marker-whitespot-spandau {
   background-image: url('../../../../assets/img/spandau.jpg');
 }
 
 // Charlottenburg Nord
+
+::ng-deep #marker-persona-peter {
+  background-image: url('../../../../assets/img/persona-peter.png');
+}
+
+::ng-deep #marker-whitespot-hauptbahnhof {
+  background-image: url('../../../../assets/img/hauptbahnhof.jpg');
+}
 
 ::ng-deep #marker-whitespot-charlottenburg-nord {
   background-image: url('../../../../assets/img/tegel.jpg');
@@ -374,11 +386,19 @@
 
 // Gewerbegebiet Gradestrasse
 
+::ng-deep #marker-persona-tim {
+  background-image: url('../../../../assets/img/persona-tim.png');
+}
+
 ::ng-deep #marker-whitespot-gewerbegebiet-gradestrasse {
   background-image: url('../../../../assets/img/gewerbegebiet-gradestrasse.jpeg');
 }
 
 // Gewerbegebiet Landsberger Allee
+
+::ng-deep #marker-persona-hanna {
+  background-image: url('../../../../assets/img/persona-hanna.png');
+}
 
 ::ng-deep #marker-whitespot-landsberger-allee-close,
 ::ng-deep #marker-whitespot-landsberger-allee {
@@ -386,6 +406,10 @@
 }
 
 // Gewerbegebiet Marzahn-Hellersdorf
+
+::ng-deep #marker-persona-birgit {
+  background-image: url('../../../../assets/img/persona-birgit.png');
+}
 
 ::ng-deep #marker-whitespot-marzahn-hellersdorf-close,
 ::ng-deep #marker-whitespot-marzahn-hellersdorf {

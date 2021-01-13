@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../../../environments/environment';
 import {Location} from '../../../../core/mapbox/model/location.model';
@@ -12,7 +12,7 @@ import {BoundingBox} from '../../../../ui/map/model/bounding-box.model';
   templateUrl: './section.component.html',
   styleUrls: ['./section.component.scss']
 })
-export class SectionComponent implements OnInit {
+export class SectionComponent implements OnInit, OnChanges {
 
   /** Height of the section */
   @Input() height = '100%';
@@ -83,10 +83,17 @@ export class SectionComponent implements OnInit {
   //
 
   /**
-   * Handles on-init phase
+   * Handles on-init lifecycle phase
    */
   ngOnInit() {
     this.initializeSections();
+  }
+
+  /**
+   * Handles on-changes lifecycle phase
+   */
+  ngOnChanges(changes: SimpleChanges) {
+    this.popupMarkers.reverse();
   }
 
   //
