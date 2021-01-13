@@ -111,7 +111,7 @@ export class Place {
   /** Weissensee */
   static SUBWAY_WEISSENSEE = new Location('subway-weissensee', 'Weißensee', 13.4475312, 52.5506711);
   /** Hönow */
-  static SUBWAY_HOENOW = new Location('subway-Hoenow', 'Hönow', 13.6321753, 52.5381537);
+  static SUBWAY_HOENOW = new Location('subway-hoenow', 'Hönow', 13.6321753, 52.5381537);
 
   // Intermodal
 
