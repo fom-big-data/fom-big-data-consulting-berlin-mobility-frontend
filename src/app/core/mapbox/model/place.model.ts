@@ -231,10 +231,13 @@ export class Place {
       'whitespot-persona-birgit-wohn', 'Birgit Bohne', 13.59452260037462, 52.546943747075595, 14.0);
 
   static WHITESPOT_PERSONA_BIRGIT_DRK = new Location(
-      'whitespot-persona-birgit-drk', 'Birgit Bohne', 13.558501031950275, 52.554278450261236);
+      'whitespot-persona-birgit-drk', 'Deutsche Rote Kreuz e.V.', 13.558501031950275, 52.554278450261236);
 
   static WHITESPOT_PERSONA_BIRGIT_KLUB74 = new Location(
-      'whitespot-persona-birgit-klub74', 'Birgit Bohne', 13.595416869561534, 52.522847169685264);
+      'whitespot-persona-birgit-klub74', 'Nachbarschafthilfe Klub 74 e.V.', 13.595416869561534, 52.522847169685264);
+
+  static WHITESPOT_PERSONA_BIRGIT_ALTMARZAHN = new Location(
+      'whitespot-persona-birgit-altmarzahn', 'Alt Marzahner Dorf', 13.562854041532109, 52.54352213467471);
 
   //
   // Bus
