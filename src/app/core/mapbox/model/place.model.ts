@@ -48,6 +48,14 @@ export class Place {
   /* Marzahn Gewerbepark */
   static WORKING_SPACE_MARZAHN = new Location(
     'working-space-marzahn', 'ECONOPARK - Gewerbe und Innovationspark', 13.546844, 52.558557);
+
+  static WORKING_SPACE_MARZAHN_HARRY = new Location(
+     'working-space-marzahn-harry', 'Harry', 13.548192922913174, 52.55513177643416);
+  static WORKING_SPACE_MARZAHN_COLA = new Location(
+      'working-space-marzahn-cola', 'Coca Cola', 13.5401520290791, 52.566204694518305 );
+  static WORKING_SPACE_MARZAHN_WUERTH = new Location(
+      'working-space-marzahn-wuerth', 'Würth', 13.543296423175628, 52.55425058250681);
+
   /* Campus HTW */
   static WORKING_SPACE_HTW = new Location(
     'working-space-htw', 'Campus Adlershof - Wissenschafts und Gründerzentrum', 13.526841, 52.458344);
@@ -208,13 +216,25 @@ export class Place {
 
   /** Persona Birgit */
   static WHITESPOT_PERSONA_BIRGIT = new Location(
-    'whitespot-persona-birgit', 'Birgit Bohne', 13.59452260037462, 52.546943747075595, 12.0);
+    'whitespot-persona-birgit', 'Birgit Bohne', 13.59452260037462, 52.546943747075595, 11.5);
   /** Marzahn-Hellersdorf */
   static WHITESPOT_MARZAHN_HELLERSDORF_CLOSER = new Location(
     'whitespot-marzahn-hellersdorf-closer', 'Marzahn-Hellersdorf', 13.59452260037462, 52.546943747075595, 12.5);
   /** Marzahn-Hellersdorf */
   static WHITESPOT_MARZAHN_HELLERSDORF = new Location(
     'whitespot-marzahn-hellersdorf', 'Marzahn-Hellersdorf', 13.59452260037462, 52.546943747075595);
+
+  static WHITESPOT_PERSONA_BIRGIT_TARGET = new Location(
+     'whitespot-persona-birgit-target', 'Gärten der Welt', 13.57286916853386, 52.53846946086898);
+
+  static WHITESPOT_PERSONA_BIRGIT_WOHN = new Location(
+      'whitespot-persona-birgit-wohn', 'Birgit Bohne', 13.59452260037462, 52.546943747075595, 14.0);
+
+  static WHITESPOT_PERSONA_BIRGIT_DRK = new Location(
+      'whitespot-persona-birgit-drk', 'Birgit Bohne', 13.558501031950275, 52.554278450261236);
+
+  static WHITESPOT_PERSONA_BIRGIT_KLUB74 = new Location(
+      'whitespot-persona-birgit-klub74', 'Birgit Bohne', 13.595416869561534, 52.522847169685264);
 
   //
   // Bus
@@ -235,6 +255,9 @@ export class Place {
   /** Bus station Landsberger Strasse / Zossener Strasse */
   static BUS_LANDSBERGERZOSSENER = new Location(
     'bus-landsbergerzossener', 'Bus Landsberger Chaussee/Zossener Str. ', 13.587965102633826, 52.54923683160367);
+
+  static BUS_ALTEHELLERSDORFER = new Location(
+     'bus-altehellersdorfer', 'Bus Alte-Hellersdorfer', 13.59222729530772, 52.54504439880684);
 
   //
   // S-Bahn
@@ -352,6 +375,7 @@ export class Place {
   /** Tram station Landsberger Strasse / Blumberger Strasse */
   static TRAM_LANDSBERGERBLUMBERGER = new Location(
     'tram-landsbergerblumberger', 'Tram Landberger Allee / Blumberger Damm', 13.572618345542136, 52.54640859789009);
+
 
   /** Bahn station Stresow */
   // static TRAM_BRODOWIENERRING = new Location(

@@ -208,6 +208,18 @@
   background-image: url('../../../../assets/img/tec_mariendorf.jpg');
 }
 
+::ng-deep #marker-working-space-marzahn-cola {
+  background-image: url('../../../../assets/img/coca-cola.png');
+}coca-cola.png
+
+::ng-deep #marker-working-space-marzahn-harry {
+  background-image: url('../../../../assets/img/harry.jpg');
+}
+
+::ng-deep #marker-working-space-marzahn-wuerth {
+  background-image: url('../../../../assets/img/wuerth.png');
+}
+
 //
 // Visibility
 //
@@ -436,6 +448,21 @@
 }
 
 ::ng-deep #marker-whitespot-marzahn-hellersdorf-close,
+::ng-deep #marker-whitespot-persona-birgit-target,
 ::ng-deep #marker-whitespot-marzahn-hellersdorf {
   background-image: url('../../../../assets/img/marzahn-hellersdorf.jpg');
 }
+
+::ng-deep #marker-whitespot-persona-birgit-wohn {
+  background-image: url('../../../../assets/img/birgit-bohne-wohn.jpg');
+}
+
+::ng-deep #marker-whitespot-persona-birgit-drk {
+  background-image: url('../../../../assets/img/drk.png');
+}
+
+::ng-deep #marker-whitespot-persona-birgit-klub74 {
+  background-image: url('../../../../assets/img/klub74.jpg');
+}
+
+
