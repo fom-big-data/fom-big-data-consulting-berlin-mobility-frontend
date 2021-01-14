@@ -16,6 +16,19 @@
   max-width: 200px;
 }
 
+::ng-deep .mapboxgl-popup-anchor-left {
+  padding-left: 15px;
+}
+::ng-deep .mapboxgl-popup-anchor-right {
+  padding-right: 15px;
+}
+::ng-deep .mapboxgl-popup-anchor-top {
+  padding-top: 15px;
+}
+::ng-deep .mapboxgl-popup-anchor-bottom {
+  padding-bottom: 15px;
+}
+
 //
 // Legend
 //
@@ -210,7 +223,7 @@
 
 ::ng-deep #marker-working-space-marzahn-cola {
   background-image: url('../../../../assets/img/coca-cola.png');
-}coca-cola.png
+}
 
 ::ng-deep #marker-working-space-marzahn-harry {
   background-image: url('../../../../assets/img/harry.jpg');
