@@ -261,25 +261,24 @@
 
 <div class="story-container">
   <app-section-header #whitespots id="whitespots"
-                      title="Wichtige White Spots"></app-section-header>
+                      title="Lösungsansätze entwickeln"></app-section-header>
   <app-section [chapters]="['whitespots-viw']" [flyToBoundingBox]="boundingBoxEnum.BERLIN"
                (sectionInViewportEventEmitter)="onLayerMarkerEventTriggered('whitespots', $event)"></app-section>
 
-  <!--  <app-map class="full-width"-->
-  <!--           [id]="'map-whitespots-overview'"-->
-  <!--           [style]="mapBoxStyleEnum.LIGHT_V10"-->
-  <!--           [zoom]="11"-->
-  <!--           [boundingBox]="boundingBoxEnum.BERLIN"-->
-  <!--           [popupMarkers]="popupMarkersWhitespots"-->
-  <!--           [interactiveEnabled]="isDev"-->
-  <!--           [fullScreenControlEnabled]="isDev"-->
-  <!--           [flyToBoundingBox]="flyToBoundingBoxWhitespots"-->
-  <!--           [results]="['commercial','industrial', 'university']"-->
-  <!--           [hexResults]="['isochrones-all-15']"-->
-  <!--           [hexAggregateProperty]="'mean_spatial_distance_15min'"-->
-  <!--           [hexBinLimit]="'3'"-->
-  <!--           [hexBinThreshold]="'1000'"-->
-  <!--           [hexColorRamp]="colorRampEnum.LUFTDATEN_COLOR_RAMP_ALARM"></app-map>-->
+    <app-map class="full-width"
+             [id]="'map-whitespots-overview'"
+             [style]="mapBoxStyleEnum.LIGHT_V10"
+             [zoom]="11"
+             [boundingBox]="boundingBoxEnum.BERLIN"
+             [popupMarkers]="popupMarkersWhitespotsOverview"
+             [interactiveEnabled]="isDev"
+             [fullScreenControlEnabled]="isDev"
+             [results]="['commercial','industrial', 'university']"
+             [hexResults]="['isochrones-all-15']"
+             [hexAggregateProperty]="'mean_spatial_distance_15min'"
+             [hexBinLimit]="'3'"
+             [hexBinThreshold]="'1000'"
+             [hexColorRamp]="colorRampEnum.LUFTDATEN_COLOR_RAMP_ALARM"></app-map>
 
   <div class="text-container">
     <app-section *ngFor="let section of sectionsWhitespot"

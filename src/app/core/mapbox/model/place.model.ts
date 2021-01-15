@@ -50,11 +50,11 @@ export class Place {
     'working-space-marzahn', 'ECONOPARK - Gewerbe und Innovationspark', 13.546844, 52.558557);
 
   static WORKING_SPACE_MARZAHN_HARRY = new Location(
-     'working-space-marzahn-harry', 'Harry', 13.548192922913174, 52.55513177643416);
+    'working-space-marzahn-harry', 'Harry', 13.548192922913174, 52.55513177643416);
   static WORKING_SPACE_MARZAHN_COLA = new Location(
-      'working-space-marzahn-cola', 'Coca Cola', 13.5401520290791, 52.566204694518305 );
+    'working-space-marzahn-cola', 'Coca Cola', 13.5401520290791, 52.566204694518305);
   static WORKING_SPACE_MARZAHN_WUERTH = new Location(
-      'working-space-marzahn-wuerth', 'Würth', 13.543296423175628, 52.55425058250681);
+    'working-space-marzahn-wuerth', 'Würth', 13.543296423175628, 52.55425058250681);
 
   /* Campus HTW */
   static WORKING_SPACE_HTW = new Location(
@@ -96,7 +96,7 @@ export class Place {
   /** S Ostkreuz */
   static LIGHT_RAIL_OSTKREUZ = new Location('light-rail-ostkreuz', 'Ostkreuz', 13.4693263, 52.5031531);
   /** Neukoelln */
-  static LIGHT_RAIL_NEUKOELLN = new Location('light-rail-neukoelln', 'Neukölln', 13.436502, 52.46909);
+  static LIGHT_RAIL_NEUKOELLN = new Location('light-rail-neukoelln', 'Neukölln', 13.4379686, 52.4396199);
   /** Charlottenburg Nord */
   static LIGHT_RAIL_CHARLOTTENBURG_NORD = new Location('light-rail-charlottenburg-nord', 'Charlottenburg Nord', 13.303615, 52.5459212);
   /** Weissensee */
@@ -104,13 +104,13 @@ export class Place {
 
   // U-Bahn
 
-  /** Friedrichshain */
-  static SUBWAY_FRIEDRICHSHAIN = new Location('subway-friedrichshain', 'Friedrichshain', 13.4207508, 52.5085327);
-  /** Mitte */
-  static SUBWAY_MITTE = new Location('subway-mitte', 'Mitte', 13.2954024, 52.533177);
-  /** Charlottenburg-Wilmersdorf */
+  /** Friedrichshain (U Warschauer Strasse) */
+  static SUBWAY_FRIEDRICHSHAIN = new Location('subway-friedrichshain', 'U Warschauer Straße', 13.4468831, 52.5050437);
+  /** Kreuzberg (U Hallesches Tor) */
+  static SUBWAY_KREUZBERG = new Location('subway-kreuzberg', 'U Hallesches Tor', 13.3886345, 52.4977724);
+  /** Charlottenburg-Wilmersdorf (U Wittenbergplatz) */
   static SUBWAY_CHARLOTTENBURG_WILMERSDORF = new Location(
-    'subway-charlottenburg-wilmersdorf', 'Charlottenburg-Wilmersdorf', 13.1938725, 52.5079568);
+    'subway-charlottenburg-wilmersdorf', 'U Wittenbergplatz', 13.3408113, 52.5018422);
 
   /** Steglitz Zehlendorf */
   static SUBWAY_STEGLITZ_ZEHLENDORF = new Location('subway-steglitz-zehlendorf', 'Steglitz-Zehlendorf', 13.2404481, 52.4449916);
@@ -157,6 +157,24 @@ export class Place {
   // Whitespots
   //
 
+  // Overview
+
+  /** Persona Ben */
+  static WHITESPOT_OVERVIEW_PERSONA_BEN = new Location(
+    'whitespot-overview-persona-ben', 'Ben Bäcker', 13.3671742, 52.5503968);
+  /** Persona Peter */
+  static WHITESPOT_OVERVIEW_PERSONA_PETER = new Location(
+    'whitespot-overview-persona-peter', 'Peter Peters', 13.303615, 52.5459212);
+  /** Persona Tim */
+  static WHITESPOT_OVERVIEW_PERSONA_TIM = new Location(
+    'whitespot-overview-persona-tim', 'Tim Timmich', 13.3213383, 52.4798632);
+  /** Persona Hanna */
+  static WHITESPOT_OVERVIEW_PERSONA_HANNA = new Location(
+    'whitespot-overview-persona-hanna', 'Hanna Habicht', 13.3440572, 52.5362224, 12.5);
+  /** Persona Birgit */
+  static WHITESPOT_OVERVIEW_PERSONA_BIRGIT = new Location(
+    'whitespot-overview-persona-birgit', 'Birgit Bohne', 13.59452260037462, 52.546943747075595);
+
   // Spandau
 
   /** Persona Ben */
@@ -187,7 +205,7 @@ export class Place {
 
   /** Persona Tim */
   static WHITESPOT_PERSONA_TIM = new Location(
-    'whitespot-persona-tim', 'Tim ', 13.3213383, 52.4798632);
+    'whitespot-persona-tim', 'Tim Timmich', 13.3213383, 52.4798632);
   /** Gewerbegebiet Gradestrasse */
   static WHITESPOT_PERSONA_TIM_TARGET = new Location(
     'whitespot-persona-tim-target', 'Gewerbegebiet Gradestraße', 13.41184437274933, 52.45105343499185, 12.0);
@@ -222,25 +240,25 @@ export class Place {
     'whitespot-marzahn-hellersdorf', 'Marzahn-Hellersdorf', 13.59452260037462, 52.546943747075595);
 
   static WHITESPOT_PERSONA_BIRGIT_TARGET = new Location(
-     'whitespot-persona-birgit-target', 'Gärten der Welt', 13.57286916853386, 52.53846946086898);
+    'whitespot-persona-birgit-target', 'Gärten der Welt', 13.57286916853386, 52.53846946086898);
 
   static WHITESPOT_PERSONA_BIRGIT_WOHN = new Location(
-      'whitespot-persona-birgit-wohn', 'Birgit Bohne', 13.59452260037462, 52.546943747075595, 12.0);
+    'whitespot-persona-birgit-wohn', 'Birgit Bohne', 13.59452260037462, 52.546943747075595, 12.0);
 
   static WHITESPOT_PERSONA_BIRGIT_DRK = new Location(
-      'whitespot-persona-birgit-drk', 'Deutsche Rote Kreuz e.V.', 13.558501031950275, 52.554278450261236);
+    'whitespot-persona-birgit-drk', 'Deutsche Rote Kreuz e.V.', 13.558501031950275, 52.554278450261236);
 
   static WHITESPOT_PERSONA_BIRGIT_KLUB74 = new Location(
-      'whitespot-persona-birgit-klub74', 'Nachbarschafthilfe Klub 74 e.V.', 13.595416869561534, 52.522847169685264);
+    'whitespot-persona-birgit-klub74', 'Nachbarschafthilfe Klub 74 e.V.', 13.595416869561534, 52.522847169685264);
 
   static WHITESPOT_PERSONA_BIRGIT_ALTMARZAHN = new Location(
-      'whitespot-persona-birgit-altmarzahn', 'Alt Marzahner Dorf', 13.562854041532109, 52.54352213467471);
+    'whitespot-persona-birgit-altmarzahn', 'Alt Marzahner Dorf', 13.562854041532109, 52.54352213467471);
 
   static WHITESPOT_PERSONA_BIRGIT_NACHWUCHS = new Location(
-    'whitespot-persona-birgit-nachwuchs', 'Enkel von Birget Bohne',  13.54139863357947,  52.43725732943624);
+    'whitespot-persona-birgit-nachwuchs', 'Enkel von Birget Bohne', 13.54139863357947, 52.43725732943624);
 
   static WHITESPOT_PERSONA_BIRGIT_ALEXANDERPLATZ = new Location(
-    'whitespot-persona-birgit-alexanderplatz', 'Alexanderplatz', 13.412945416046771,  52.52299528510253);
+    'whitespot-persona-birgit-alexanderplatz', 'Alexanderplatz', 13.412945416046771, 52.52299528510253);
 
   // Bus
   //
@@ -262,7 +280,7 @@ export class Place {
     'bus-landsbergerzossener', 'Bus Landsberger Chaussee/Zossener Str. ', 13.587965102633826, 52.54923683160367);
 
   static BUS_ALTEHELLERSDORFER = new Location(
-     'bus-altehellersdorfer', 'Bus Alte-Hellersdorfer', 13.59222729530772, 52.54504439880684);
+    'bus-altehellersdorfer', 'Bus Alte-Hellersdorfer', 13.59222729530772, 52.54504439880684);
 //Spandau Bus
   static BUS_FREIHEIT = new Location('bus-freiheit', 'Freiheit 16-34', 13.22333603718653, 52.531232222346034);
 
@@ -300,11 +318,6 @@ export class Place {
   static BUS_HINCKELDEY = new Location('bus-hinckeldey', 'Hinckeldeybrücke', 13.300330520546476, 52.547003111217045);
 
   static BUS_WELTLINGER = new Location('bus-weltlinger', 'Weltlingerbrücke', 13.300330520546476, 52.547003111217045);
-
-
-
-
-
 
 
   //

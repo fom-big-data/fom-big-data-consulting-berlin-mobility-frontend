@@ -96,6 +96,8 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
   popupMarkersProblems = [];
   /** Markers for map named 'whitespots' */
   popupMarkersWhitespots = [];
+  /** Markers for map named 'whitespots-overview' */
+  popupMarkersWhitespotsOverview = [];
 
   /** Fly-to location for map named 'whitespots' */
   flyToLocationWhitespots: Location;
@@ -128,6 +130,7 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnInit() {
     this.initializeStoryVisibility();
     this.initializeStoryProblems();
+    this.initializeStoryWhitespotsOverview();
     this.initializeStoryWhitespots();
   }
 
@@ -203,7 +206,7 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
       {
         chapters: ['problems-u-bahn-1'], layers: ['isochrones-subway-15'],
         popupMarkers: [
-          Place.SUBWAY_FRIEDRICHSHAIN, Place.SUBWAY_MITTE, Place.SUBWAY_CHARLOTTENBURG_WILMERSDORF
+          Place.SUBWAY_FRIEDRICHSHAIN, Place.SUBWAY_KREUZBERG, Place.SUBWAY_CHARLOTTENBURG_WILMERSDORF
         ]
       },
       {
@@ -235,6 +238,15 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
     this.sectionsProblems.forEach(section => {
       this.resultsProblems.push(...section.layers);
     });
+  }
+
+
+  /**
+   * Initializes story named 'whitespots-overview'
+   */
+  private initializeStoryWhitespotsOverview() {
+    this.popupMarkersWhitespotsOverview.push(Place.WHITESPOT_OVERVIEW_PERSONA_BEN, Place.WHITESPOT_OVERVIEW_PERSONA_PETER,
+      Place.WHITESPOT_OVERVIEW_PERSONA_TIM, Place.WHITESPOT_OVERVIEW_PERSONA_HANNA, Place.WHITESPOT_OVERVIEW_PERSONA_BIRGIT);
   }
 
   /**
@@ -386,7 +398,7 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
         popupMarkers: [Place.WHITESPOT_PERSONA_BIRGIT, Place.WHITESPOT_PERSONA_BIRGIT_TARGET,
           Place.WHITESPOT_PERSONA_BIRGIT_DRK, Place.WHITESPOT_PERSONA_BIRGIT_KLUB74, Place.WHITESPOT_PERSONA_BIRGIT_NACHWUCHS,
           Place.WHITESPOT_PERSONA_BIRGIT_ALEXANDERPLATZ],
-          flyToBoundingBox: BoundingBox.BERLIN
+        flyToBoundingBox: BoundingBox.BERLIN
       },
       {
         chapters: ['whitespots-marzahn-hellersdorf'],
@@ -394,7 +406,9 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
         popupMarkers: [
 
           Place.WHITESPOT_PERSONA_BIRGIT, Place.WHITESPOT_PERSONA_BIRGIT_TARGET,
+
           Place.WHITESPOT_PERSONA_BIRGIT_DRK, Place.WHITESPOT_PERSONA_BIRGIT_KLUB74, Place.WHITESPOT_PERSONA_BIRGIT_ALTMARZAHN,
+
 
           Place.BUS_KLAUSDORFER, Place.BUS_LANDSBERGERZOSSENER, Place.BUS_TEUPITZER, Place.BUS_ALTEHELLERSDORFER,
           Place.TRAM_ZOSSENER, Place.TRAM_ALTEHELLERSDORFER, Place.TRAM_MICHENDORFER, Place.TRAM_LANDSBERGERZOSSENER,
@@ -419,6 +433,7 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
       this.resultsProblems.push(...section.layers);
     });
   }
+
 
   //
   // Actions
