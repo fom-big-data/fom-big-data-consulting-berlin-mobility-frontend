@@ -265,7 +265,9 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
           Place.BUS_TELTOWER_STR,
           Place.BUS_STRESOW,
           Place.BUS_RUHLEBEN2,
-          Place.BUS_WERKRING],
+          Place.BUS_WERKRING,
+          Place.S_SPANDAU,
+          Place.S_PICHELSDORF],
         flyToLocation: Place.WHITESPOT_POLIZEIAKADEMIE
       },
       {

@@ -292,8 +292,11 @@ export class Place {
   /** Bahn station Stresow */
   static S_STRESOW = new Location('s-stresow', 'S Stresow', 13.2012605, 52.5324273);
   /** Beusselstrasse */
-  static S_BEUSSELSTRASSE = new Location('s-beusselstrasse', 'Beusselstraße', 13.3287218, 52.5343357);
-
+  static S_BEUSSELSTRASSE = new Location('s-beusselstrasse', 'S Beusselstraße', 13.3287218, 52.5343357);
+  /** Pichelsdorf */
+  static S_PICHELSDORF = new Location('s-pichelsdorf', 'S Pichelsdorf', 13.228805059040575, 52.51048444416288);
+  /** Pichelsdorf */
+  static S_SPANDAU = new Location('s-spandau', 'S Spandau', 13.228805059040575, 52.51048444416288);
 
   //
   // U-Bahn
