@@ -342,30 +342,7 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
         ],
         flyToLocation: Place.WHITESPOT_CHARLOTTENBURG_NORD
       },
-      {
-        chapters: ['whitespots-gewerbegebiet-gradestrasse-persona'],
-        layers: [],
-        popupMarkers: [Place.WHITESPOT_PERSONA_TIM, Place.WHITESPOT_PERSONA_TIM_TARGET],
-        flyToBoundingBox: BoundingBox.BERLIN
-      },
-      {
-        chapters: ['whitespots-gewerbegebiet-gradestrasse-1'],
-        layers: ['lines-bus', 'lines-subway', 'lines-light_rail'],
-        popupMarkers: [
-          Place.WHITESPOT_GEWERBEGEBIET_GRADESTRASSE, Place.BUS_GRADESTRASSE, Place.BUS_EINTRAGSIEDLUNG, Place.U_ULLSTEINSTRASSE,
-          Place.U_BLASCHKOALLEE, Place.S_HERMANNSTRASSE
-        ],
-        flyToLocation: Place.WHITESPOT_GEWERBEGEBIET_GRADESTRASSE
-      },
-      {
-        chapters: ['whitespots-gewerbegebiet-gradestrasse-2'],
-        layers: ['lines-bus', 'lines-subway', 'lines-light_rail'],
-        popupMarkers: [
-          Place.WHITESPOT_GEWERBEGEBIET_GRADESTRASSE, Place.BUS_GRADESTRASSE, Place.BUS_EINTRAGSIEDLUNG, Place.U_ULLSTEINSTRASSE,
-          Place.U_BLASCHKOALLEE, Place.S_HERMANNSTRASSE
-        ],
-        flyToLocation: Place.WHITESPOT_GEWERBEGEBIET_GRADESTRASSE
-      },
+
       {
         chapters: ['whitespots-landsberger-allee-persona'],
         layers: [],
@@ -410,8 +387,8 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
           Place.WHITESPOT_PERSONA_BIRGIT_DRK, Place.WHITESPOT_PERSONA_BIRGIT_KLUB74, Place.WHITESPOT_PERSONA_BIRGIT_ALTMARZAHN,
 
 
-          Place.BUS_KLAUSDORFER, Place.BUS_LANDSBERGERZOSSENER, Place.BUS_TEUPITZER, Place.BUS_ALTEHELLERSDORFER,
-          Place.TRAM_ZOSSENER, Place.TRAM_ALTEHELLERSDORFER, Place.TRAM_MICHENDORFER, Place.TRAM_LANDSBERGERZOSSENER,
+          Place.BUS_KLAUSDORFER, Place.BUS_LANDSBERGERZOSSENER, Place.BUS_ALTEHELLERSDORFER,
+          Place.TRAM_ZOSSENER, Place.TRAM_ALTEHELLERSDORFER, Place.TRAM_MICHENDORFER,
 
           Place.S_POELCHAUSTRASSE, Place.S_SPRINGPFUHL, Place.S_MARZAHN, Place.S_WUHLETAL, Place.S_MEHROWER,
           Place.U_HELLERSDORF, Place.U_COTTBUSSER, Place.U_WUHLETAL
@@ -425,6 +402,31 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
           Place.S_POELCHAUSTRASSE, Place.S_SPRINGPFUHL, Place.S_MARZAHN, Place.S_WUHLETAL, Place.S_MEHROWER,
           Place.U_HELLERSDORF, Place.U_COTTBUSSER, Place.U_WUHLETAL, Place.WHITESPOT_PERSONA_BIRGIT_BVG],
         flyToLocation: Place.WHITESPOT_PERSONA_BIRGIT_WOHN,
+      },
+
+      {
+        chapters: ['whitespots-gewerbegebiet-gradestrasse-persona'],
+        layers: [],
+        popupMarkers: [Place.WHITESPOT_PERSONA_TIM, Place.WHITESPOT_PERSONA_TIM_TARGET],
+        flyToBoundingBox: BoundingBox.BERLIN
+      },
+      {
+        chapters: ['whitespots-gewerbegebiet-gradestrasse-1'],
+        layers: ['lines-bus', 'lines-subway', 'lines-light_rail'],
+        popupMarkers: [
+          Place.WHITESPOT_GEWERBEGEBIET_GRADESTRASSE, Place.BUS_GRADESTRASSE, Place.BUS_EINTRAGSIEDLUNG, Place.U_ULLSTEINSTRASSE,
+          Place.U_BLASCHKOALLEE, Place.S_HERMANNSTRASSE
+        ],
+        flyToLocation: Place.WHITESPOT_GEWERBEGEBIET_GRADESTRASSE
+      },
+      {
+        chapters: ['whitespots-gewerbegebiet-gradestrasse-2'],
+        layers: ['lines-bus', 'lines-subway', 'lines-light_rail'],
+        popupMarkers: [
+          Place.WHITESPOT_GEWERBEGEBIET_GRADESTRASSE, Place.BUS_GRADESTRASSE, Place.BUS_EINTRAGSIEDLUNG, Place.U_ULLSTEINSTRASSE,
+          Place.U_BLASCHKOALLEE, Place.S_HERMANNSTRASSE
+        ],
+        flyToLocation: Place.WHITESPOT_GEWERBEGEBIET_GRADESTRASSE
       },
 
     ];
