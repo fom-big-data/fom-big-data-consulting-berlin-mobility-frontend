@@ -384,8 +384,8 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
         chapters: ['whitespots-marzahn-hellersdorf-persona'],
         layers: [],
         popupMarkers: [Place.WHITESPOT_PERSONA_BIRGIT, Place.WHITESPOT_PERSONA_BIRGIT_TARGET,
-          Place.WORKING_SPACE_MARZAHN ,Place.WORKING_SPACE_MARZAHN_COLA,Place.WORKING_SPACE_MARZAHN_HARRY, Place.WORKING_SPACE_MARZAHN_WUERTH,
-          Place.WHITESPOT_PERSONA_BIRGIT_DRK, Place.WHITESPOT_PERSONA_BIRGIT_KLUB74, Place.WHITESPOT_PERSONA_BIRGIT_NACHWUCHS, Place.WHITESPOT_PERSONA_BIRGIT_ALEXANDERPLATZ],
+          Place.WHITESPOT_PERSONA_BIRGIT_DRK, Place.WHITESPOT_PERSONA_BIRGIT_KLUB74, Place.WHITESPOT_PERSONA_BIRGIT_NACHWUCHS,
+          Place.WHITESPOT_PERSONA_BIRGIT_ALEXANDERPLATZ],
         flyToLocation: Place.WHITESPOT_PERSONA_BIRGIT
       },
       {
@@ -393,14 +393,14 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
         layers: ['lines-tram', 'lines-bus', 'lines-subway'],
         popupMarkers: [
 
-          Place.WHITESPOT_PERSONA_BIRGIT_WOHN, Place.WHITESPOT_PERSONA_BIRGIT_TARGET,
+          Place.WHITESPOT_PERSONA_BIRGIT, Place.WHITESPOT_PERSONA_BIRGIT_TARGET,
           Place.WORKING_SPACE_MARZAHN ,Place.WORKING_SPACE_MARZAHN_COLA,Place.WORKING_SPACE_MARZAHN_HARRY, Place.WORKING_SPACE_MARZAHN_WUERTH,
           Place.WHITESPOT_PERSONA_BIRGIT_DRK, Place.WHITESPOT_PERSONA_BIRGIT_KLUB74, Place.WHITESPOT_PERSONA_BIRGIT_ALTMARZAHN,
 
           Place.BUS_KLAUSDORFER, Place.BUS_LANDSBERGERZOSSENER, Place.BUS_TEUPITZER, Place.BUS_ALTEHELLERSDORFER,
           Place.TRAM_ZOSSENER, Place.TRAM_ALTEHELLERSDORFER, Place.TRAM_MICHENDORFER, Place.TRAM_LANDSBERGERZOSSENER
         ],
-        flyToLocation: Place.WHITESPOT_PERSONA_BIRGIT_WOHN
+        flyToLocation: Place.WHITESPOT_PERSONA_BIRGIT
       },
       {
         chapters: ['whitespots-marzahn-hellersdorf-1'],

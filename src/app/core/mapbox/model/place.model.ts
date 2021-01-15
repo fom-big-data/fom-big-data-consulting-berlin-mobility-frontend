@@ -213,7 +213,7 @@ export class Place {
 
   /** Persona Birgit */
   static WHITESPOT_PERSONA_BIRGIT = new Location(
-    'whitespot-persona-birgit', 'Birgit Bohne', 13.59452260037462, 52.546943747075595, 11.5);
+    'whitespot-persona-birgit', 'Birgit Bohne', 13.59452260037462, 52.546943747075595);
   /** Marzahn-Hellersdorf */
   static WHITESPOT_MARZAHN_HELLERSDORF_CLOSER = new Location(
     'whitespot-marzahn-hellersdorf-closer', 'Marzahn-Hellersdorf', 13.59452260037462, 52.546943747075595, 12.5);
