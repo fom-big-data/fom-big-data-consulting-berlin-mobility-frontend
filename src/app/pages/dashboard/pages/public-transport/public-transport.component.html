@@ -1,1 +1,26 @@
-<p>public-transport works!</p>
+<div [id]="'opnv_map_container_container'">
+  <div [id]="'opnv_map_container'">
+  <app-map [id]="'opnv_map'"
+           [interactiveEnabled]=true
+           [scrollZoomEnabled]=true
+           [height]="'70vh'"
+           [boundingBox]="boundingBoxEnum.BERLIN"
+           [style]="mapBoxStyleEnum.DARK_V10"
+           [results]="['lines-bus',
+                       'lines-light_rail',
+                       'lines-subway',
+                       'lines-tram']"
+           [multiLegend]="true"
+           [parametrizeOpacityEnabled]="true"
+           [multiLegendContents]="{'lines-bus':  {'rgba(137, 56, 143, 0.5)':'Bus'},
+                                   'lines-light_rail': {'#03894C':'S-Bahn'},
+                                   'lines-subway': {'#0860A6':'U-Bahn'},
+                                   'lines-tram': {'#E02B25':'Tram'}}"
+           [multiLegendGradient]="{'lines-bus': false,
+                                   'lines-light_rail': false,
+                                   'lines-subway': false,
+                                   'lines-tram': false}">
+
+         </app-map>
+</div>
+</div>

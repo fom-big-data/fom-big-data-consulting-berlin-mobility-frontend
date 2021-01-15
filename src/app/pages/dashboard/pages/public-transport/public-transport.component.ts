@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {MapBoxStyle} from '../../../../core/mapbox/model/map-box-style.enum';
+import {ThemePalette} from '@angular/material/core';
+import {environment} from '../../../../../environments/environment';
+import {BoundingBox} from '../../../../ui/map/model/bounding-box.model';
+
 
 @Component({
   selector: 'app-public-transport',
@@ -6,6 +11,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./public-transport.component.scss']
 })
 export class PublicTransportComponent implements OnInit {
+
+    boundingBoxEnum = BoundingBox;
+
+    mapBoxStyleEnum = MapBoxStyle;
 
   constructor() { }
 
