@@ -327,6 +327,7 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
           Place.WHITESPOT_CHARLOTTENBURG_NORD,
           Place.S_BEUSSELSTRASSE,
           Place.U_JAKOB_KAISER_PLATZ,
+          Place.U_KURTSCHUMACHER,
           Place.BUS_FRIEDRICH_OLBERT,
           Place.BUS_BUCHHOLZWEG,
           Place.BUS_STIEFRING,
