@@ -163,9 +163,9 @@ export class Place {
   static WHITESPOT_PERSONA_BEN = new Location(
     'whitespot-persona-ben', 'Ben Bäcker', 13.3671742, 52.5503968);
   /** Polizeiakademie */
-  static WHITESPOT_PERSONA_BEN_TARGET = new Location('whitespot-persona-ben-target', 'Polizeiakademie', 13.1947344, 52.5405663);
+  static WHITESPOT_PERSONA_BEN_TARGET = new Location('whitespot-persona-ben-target', 'Polizeiakademie', 13.2251673, 52.5261955, 12.0);
   /** Polizeiakademie */
-  static WHITESPOT_POLIZEIAKADEMIE = new Location('whitespot-polizeiakademie', 'Polizeiakademie', 13.1947344, 52.5405663);
+  static WHITESPOT_POLIZEIAKADEMIE = new Location('whitespot-polizeiakademie', 'Polizeiakademie', 13.2251673, 52.5261955, 12.0);
   /** Siemensstadt */
   static WHITESPOT_SPANDAU = new Location('whitespot-spandau', 'Spandau', 13.225531, 52.527586);
 

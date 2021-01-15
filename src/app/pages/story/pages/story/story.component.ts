@@ -249,11 +249,13 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
         popupMarkers: [
           Place.WHITESPOT_PERSONA_BEN,
           Place.WHITESPOT_PERSONA_BEN_TARGET,
+          Place.WHITESPOT_POLIZEIAKADEMIE
         ],
         flyToBoundingBox: BoundingBox.BERLIN
       },
       {
-        chapters: ['whitespots-spandau'], layers: [],
+        chapters: ['whitespots-spandau'],
+        layers: ['lines-subway', 'lines-light_rail'],
         popupMarkers: [
           Place.U_RUHLEBEN,
           Place.S_STRESOW,
@@ -266,7 +268,7 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
         flyToBoundingBox: BoundingBox.BERLIN
       },
       {
-        chapters: ['whitespots-charlottenburg-nord-1'], layers: [],
+        chapters: ['whitespots-charlottenburg-nord-1'], layers: ['lines-subway', 'lines-light_rail'],
         popupMarkers: [
           Place.WHITESPOT_CHARLOTTENBURG_NORD,
           Place.WHITESPOT_BEUSSELSTRASSE,
@@ -276,7 +278,7 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
       },
       {
         chapters: ['whitespots-charlottenburg-nord-2'],
-        layers: [],
+        layers: ['lines-subway', 'lines-light_rail'],
         popupMarkers: [
           Place.WHITESPOT_CHARLOTTENBURG_NORD,
           Place.WHITESPOT_BEUSSELSTRASSE,
