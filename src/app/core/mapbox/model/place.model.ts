@@ -96,7 +96,7 @@ export class Place {
   /** S Ostkreuz */
   static LIGHT_RAIL_OSTKREUZ = new Location('light-rail-ostkreuz', 'Ostkreuz', 13.4693263, 52.5031531);
   /** Neukoelln */
-  static LIGHT_RAIL_NEUKOELLN = new Location('light-rail-neukoelln', 'Neukölln', 13.436502, 52.46909);
+  static LIGHT_RAIL_NEUKOELLN = new Location('light-rail-neukoelln', 'Neukölln',13.4379686, 52.4396199);
   /** Charlottenburg Nord */
   static LIGHT_RAIL_CHARLOTTENBURG_NORD = new Location('light-rail-charlottenburg-nord', 'Charlottenburg Nord', 13.303615, 52.5459212);
   /** Weissensee */
@@ -104,13 +104,13 @@ export class Place {
 
   // U-Bahn
 
-  /** Friedrichshain */
-  static SUBWAY_FRIEDRICHSHAIN = new Location('subway-friedrichshain', 'Friedrichshain', 13.4207508, 52.5085327);
-  /** Mitte */
-  static SUBWAY_MITTE = new Location('subway-mitte', 'Mitte', 13.2954024, 52.533177);
-  /** Charlottenburg-Wilmersdorf */
+  /** Friedrichshain (U Warschauer Strasse) */
+  static SUBWAY_FRIEDRICHSHAIN = new Location('subway-friedrichshain', 'U Warschauer Straße',13.4468831, 52.5050437);
+  /** Kreuzberg (U Hallesches Tor) */
+  static SUBWAY_KREUZBERG = new Location('subway-kreuzberg', 'U Hallesches Tor',13.3886345,52.4977724);
+  /** Charlottenburg-Wilmersdorf (U Wittenbergplatz) */
   static SUBWAY_CHARLOTTENBURG_WILMERSDORF = new Location(
-    'subway-charlottenburg-wilmersdorf', 'Charlottenburg-Wilmersdorf', 13.1938725, 52.5079568);
+    'subway-charlottenburg-wilmersdorf', 'U Wittenbergplatz',13.3408113,52.5018422);
 
   /** Steglitz Zehlendorf */
   static SUBWAY_STEGLITZ_ZEHLENDORF = new Location('subway-steglitz-zehlendorf', 'Steglitz-Zehlendorf', 13.2404481, 52.4449916);

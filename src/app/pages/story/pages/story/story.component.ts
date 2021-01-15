@@ -203,7 +203,7 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
       {
         chapters: ['problems-u-bahn-1'], layers: ['isochrones-subway-15'],
         popupMarkers: [
-          Place.SUBWAY_FRIEDRICHSHAIN, Place.SUBWAY_MITTE, Place.SUBWAY_CHARLOTTENBURG_WILMERSDORF
+          Place.SUBWAY_FRIEDRICHSHAIN, Place.SUBWAY_KREUZBERG, Place.SUBWAY_CHARLOTTENBURG_WILMERSDORF
         ]
       },
       {
