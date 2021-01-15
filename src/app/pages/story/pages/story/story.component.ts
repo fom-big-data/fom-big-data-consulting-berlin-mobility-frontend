@@ -423,7 +423,7 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
         layers: ['lines-tram', 'lines-bus', 'lines-light_rail', 'lines-subway'],
         popupMarkers: [Place.WHITESPOT_PERSONA_BIRGIT_WOHN, Place.U_HELLERSDORF, Place.U_COTTBUSSER, Place.U_WUHLETAL,
           Place.S_POELCHAUSTRASSE, Place.S_SPRINGPFUHL, Place.S_MARZAHN, Place.S_WUHLETAL, Place.S_MEHROWER,
-          Place.U_HELLERSDORF, Place.U_COTTBUSSER, Place.U_WUHLETAL],
+          Place.U_HELLERSDORF, Place.U_COTTBUSSER, Place.U_WUHLETAL, Place.WHITESPOT_PERSONA_BIRGIT_BVG],
         flyToLocation: Place.WHITESPOT_PERSONA_BIRGIT_WOHN,
       },
 

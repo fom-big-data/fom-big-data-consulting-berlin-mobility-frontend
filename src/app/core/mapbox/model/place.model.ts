@@ -260,6 +260,11 @@ export class Place {
   static WHITESPOT_PERSONA_BIRGIT_ALEXANDERPLATZ = new Location(
     'whitespot-persona-birgit-alexanderplatz', 'Alexanderplatz', 13.412945416046771, 52.52299528510253);
 
+  static WHITESPOT_PERSONA_BIRGIT_BVG = new Location(
+    'whitespot-persona-birgit-bvg', 'Betriebsbahnhof Marzahn', 13.579477162617334, 52.546736009531344);
+
+
+
   // Bus
   //
 
