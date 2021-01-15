@@ -279,7 +279,8 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
         flyToBoundingBox: BoundingBox.BERLIN
       },
       {
-        chapters: ['whitespots-charlottenburg-nord-1'], layers: [
+        chapters: ['whitespots-charlottenburg-nord-1'],
+        layers: [
           'lines-subway',
           'lines-light_rail',
           'lines-bus'],
@@ -294,17 +295,38 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
           Place.BUS_PLOETZENSEE,
           Place.BUS_SEESTRASSE,
           Place.BUS_THATER,
-          Place.BUS_WIRMER
+          Place.BUS_WIRMER,
+          Place.BUS_GLOEDE,
+          Place.BUS_REICHWEIN,
+          Place.BUS_GOERDELER,
+          Place.BUS_HINCKELDEY,
+          Place.BUS_WELTLINGER
         ],
         flyToLocation: Place.WHITESPOT_CHARLOTTENBURG_NORD
       },
       {
         chapters: ['whitespots-charlottenburg-nord-2'],
-        layers: ['lines-subway', 'lines-light_rail'],
+        layers: [
+          'lines-subway',
+          'lines-light_rail',
+          'lines-bus'],
         popupMarkers: [
+          Place.WHITESPOT_TXL,
           Place.WHITESPOT_CHARLOTTENBURG_NORD,
           Place.S_BEUSSELSTRASSE,
-          Place.U_JAKOB_KAISER_PLATZ
+          Place.U_JAKOB_KAISER_PLATZ,
+          Place.BUS_FRIEDRICH_OLBERT,
+          Place.BUS_BUCHHOLZWEG,
+          Place.BUS_STIEFRING,
+          Place.BUS_PLOETZENSEE,
+          Place.BUS_SEESTRASSE,
+          Place.BUS_THATER,
+          Place.BUS_WIRMER,
+          Place.BUS_GLOEDE,
+          Place.BUS_REICHWEIN,
+          Place.BUS_GOERDELER,
+          Place.BUS_HINCKELDEY,
+          Place.BUS_WELTLINGER
         ],
         flyToLocation: Place.WHITESPOT_CHARLOTTENBURG_NORD
       },

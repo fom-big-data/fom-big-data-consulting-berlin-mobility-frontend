@@ -182,7 +182,7 @@ export class Place {
   /** Whitespot charlottenburg */
   static WHITESPOT_CHARLOTTENBURG_NORD = new Location('whitespot-charlottenburg-nord', 'Charlottenburg Nord', 13.310465698608695, 52.543342208865575, 12.8);
   static WHITESPOT_TXL = new Location('whitespot-txl', 'TXL', 13.296066363610175, 52.55027531560123, 12.8);
-  
+
   // Gewerbegebiet Gradestrasse
 
   /** Persona Tim */
@@ -286,13 +286,18 @@ export class Place {
 
   static BUS_WIRMER = new Location('bus-wirmer', 'Wirmerzeile', 13.302974090206936, 52.537237451913825);
 
-/*
-Gloedenpfad 52.53977832031618, 13.302451903601597
-Reichweindamm 52.53608607250622, 13.300656887145744
-Goredelerdamm 52.53529200015053, 13.29801331745621
-Hinckeldey 52.547003111217045, 13.300330520546476
-weltlinger 52.53989741995311, 13.29501074450458
-*/
+  static BUS_GLOEDE = new Location('bus-gloede', 'Gloedenpfad', 13.302451903601597, 52.53977832031618);
+
+  static BUS_REICHWEIN = new Location('bus-reichwein', 'Reichweindamm', 13.300656887145744, 52.53608607250622);
+
+  static BUS_GOERDELER = new Location('bus-goerdeler', 'Goerdelerdamm', 13.29801331745621, 52.53529200015053);
+
+  static BUS_HINCKELDEY = new Location('bus-hinckeldey', 'Hinckeldeybrücke', 13.300330520546476, 52.547003111217045);
+
+  static BUS_WELTLINGER = new Location('bus-weltlinger', 'Weltlingerbrücke', 13.300330520546476, 52.547003111217045);
+
+
+
 
 
 
