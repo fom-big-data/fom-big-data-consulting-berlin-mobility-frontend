@@ -28,17 +28,8 @@
   background: #ddd;
   color: #333 !important;
 }
-/*
-#opnv_map_container{
-  grid-area: map;
-}
 
-#opnv_map_container_container app-legend{
-  grid-area: legend;
-}
-*/
-
-::ng-deep app-map>div:first-child{
+::ng-deep #opnv_map_container_container app-map>div:first-child{
     grid-area: map;
     box-shadow: 0 0px 20px -10px black;
 }
