@@ -255,7 +255,10 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
       },
       {
         chapters: ['whitespots-spandau'],
-        layers: ['lines-subway', 'lines-light_rail','lines-bus'],
+        layers: [
+          'lines-subway',
+          'lines-light_rail',
+          'lines-bus'],
         popupMarkers: [
           Place.U_RUHLEBEN,
           Place.S_STRESOW,
@@ -276,11 +279,21 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
         flyToBoundingBox: BoundingBox.BERLIN
       },
       {
-        chapters: ['whitespots-charlottenburg-nord-1'], layers: ['lines-subway', 'lines-light_rail'],
+        chapters: ['whitespots-charlottenburg-nord-1'], layers: [
+          'lines-subway',
+          'lines-light_rail',
+          'lines-bus'],
         popupMarkers: [
           Place.WHITESPOT_CHARLOTTENBURG_NORD,
           Place.S_BEUSSELSTRASSE,
-          Place.U_JAKOB_KAISER_PLATZ
+          Place.U_JAKOB_KAISER_PLATZ,
+          Place.BUS_FRIEDRICH_OLBERT,
+          Place.BUS_BUCHHOLZWEG,
+          Place.BUS_STIEFRING,
+          Place.BUS_PLOETZENSEE,
+          Place.BUS_SEESTRASSE,
+          Place.BUS_THATER,
+          Place.BUS_WIRMER
         ],
         flyToLocation: Place.WHITESPOT_CHARLOTTENBURG_NORD
       },

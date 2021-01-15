@@ -260,15 +260,40 @@ export class Place {
 //Spandau Bus
   static BUS_FREIHEIT = new Location('bus-freiheit', 'Freiheit 16-34', 13.22333603718653, 52.531232222346034);
 
-  static BUS_RUHLEBEN = new Location('bus-ruhleben', 'Ruhleben Güter', 13.223893936667837, 52.52901310165168);
+  static BUS_RUHLEBEN = new Location('bus-ruhleben', 'Ruhleben Güterbahnhof', 13.223893936667837, 52.52901310165168);
 
   static BUS_TELTOWER_STR = new Location('bus-teltower', 'Teltower Str.', 13.214452560830292, 52.527394378184354);
 
   static BUS_STRESOW = new Location('bus-stresow', 'Stresowplatz', 13.534182173918694, 52.208444412595366);
 
-  static BUS_RUHLEBEN2 = new Location('bus-ruhleben2', 'Ruhlebener Str. / Grunewaldstr.', 13.204710777671, 52.531049475502634);
+  static BUS_RUHLEBEN2 = new Location('bus-ruhleben2', 'Ruhlebener Str./Grunewaldstr.', 13.204710777671, 52.531049475502634);
 
   static BUS_WERKRING = new Location('bus-werkring', 'Werkring', 13.240158852340576, 52.52937861163229);
+
+// TXL Busse
+  static BUS_FRIEDRICH_OLBERT = new Location('bus-friedrich', 'Friedrich-Olbricht-Damm/Saatwinkler Damm', 13.31272741869019, 52.54791491442076);
+
+  static BUS_BUCHHOLZWEG = new Location('bus-buchholzweg', 'Buchholzweg', 13.318590196866316, 52.54700947215529);
+
+  static BUS_STIEFRING = new Location('bus-stiefring', 'Stiefring', 13.31263435871914, 52.54545319961817);
+
+  static BUS_PLOETZENSEE = new Location('bus-ploetzensee', 'Gedenkstätte Plötzensee', 13.324127265143765, 52.54222729536093);
+
+  static BUS_SEESTRASSE = new Location('bus-seestrasse', 'Seestr. / Beusselstr.', 13.326378185024835, 52.538373966380085);
+
+  static BUS_THATER = new Location('bus-thater', 'Thaters Privatweg', 13.310349976007355, 52.53963937037642);
+
+  static BUS_WIRMER = new Location('bus-wirmer', 'Wirmerzeile', 13.302974090206936, 52.537237451913825);
+
+/*
+Gloedenpfad 52.53977832031618, 13.302451903601597
+Reichweindamm 52.53608607250622, 13.300656887145744
+Goredelerdamm 52.53529200015053, 13.29801331745621
+Hinckeldey 52.547003111217045, 13.300330520546476
+weltlinger 52.53989741995311, 13.29501074450458
+*/
+
+
 
 
   //
@@ -296,7 +321,7 @@ export class Place {
   /** Pichelsdorf */
   static S_PICHELSDORF = new Location('s-pichelsdorf', 'S Pichelsdorf', 13.228805059040575, 52.51048444416288);
   /** Pichelsdorf */
-  static S_SPANDAU = new Location('s-spandau', 'S Spandau', 13.228805059040575, 52.51048444416288);
+  static S_SPANDAU = new Location('s-spandau', 'S Spandau', 13.19805413688166, 52.534679412475896);
 
   //
   // U-Bahn
@@ -317,7 +342,9 @@ export class Place {
   /** U Ruhleben */
   static U_RUHLEBEN = new Location('u-ruhleben', 'U Ruhleben', 13.2390313, 52.525648);
   /** Jakob-Kaiser-Platz */
-  static U_JAKOB_KAISER_PLATZ = new Location('u-jakob-kaiser-platz', 'Jakob-Kaiser-Platz', 13.2918199, 52.5364933);
+  static U_JAKOB_KAISER_PLATZ = new Location('u-jakob-kaiser-platz', 'U Jakob-Kaiser-Platz', 13.2918199, 52.5364933);
+  /** Jakob-Kaiser-Platz */
+  static U_HALEMWEG = new Location('u-halemweg', 'U Halemweg', 13.286051345326404, 52.536625161329795);
 
 
   //
