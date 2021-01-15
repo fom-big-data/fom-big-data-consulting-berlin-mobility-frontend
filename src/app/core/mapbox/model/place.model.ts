@@ -225,7 +225,7 @@ export class Place {
      'whitespot-persona-birgit-target', 'Gärten der Welt', 13.57286916853386, 52.53846946086898);
 
   static WHITESPOT_PERSONA_BIRGIT_WOHN = new Location(
-      'whitespot-persona-birgit-wohn', 'Birgit Bohne', 13.59452260037462, 52.546943747075595, 14.0);
+      'whitespot-persona-birgit-wohn', 'Birgit Bohne', 13.59452260037462, 52.546943747075595, 12.0);
 
   static WHITESPOT_PERSONA_BIRGIT_DRK = new Location(
       'whitespot-persona-birgit-drk', 'Deutsche Rote Kreuz e.V.', 13.558501031950275, 52.554278450261236);
@@ -236,7 +236,12 @@ export class Place {
   static WHITESPOT_PERSONA_BIRGIT_ALTMARZAHN = new Location(
       'whitespot-persona-birgit-altmarzahn', 'Alt Marzahner Dorf', 13.562854041532109, 52.54352213467471);
 
-  //
+  static WHITESPOT_PERSONA_BIRGIT_NACHWUCHS = new Location(
+    'whitespot-persona-birgit-nachwuchs', 'Enkel von Birget Bohne',  13.418019066226332,  52.52129168277187);
+
+  static WHITESPOT_PERSONA_BIRGIT_ALEXANDERPLATZ = new Location(
+    'whitespot-persona-birgit-alexanderplatz', 'Alexanderplatz', 13.412945416046771,  52.52299528510253);
+
   // Bus
   //
 
