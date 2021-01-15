@@ -70,7 +70,7 @@ export class Place {
   /** FOM */
   static VISIBILITY_FOM = new Location('visibility-fom', 'FOM', 13.3161495, 52.5119408, 13);
   /** Zoologischer Garten */
-  static VISIBILITY_ZOOLOGISCHER_GARTEN = new Location('visibility-zoologischer-garten', 'Gesundbrunnen', 13.3323673, 52.5073337);
+  static VISIBILITY_ZOOLOGISCHER_GARTEN = new Location('visibility-zoologischer-garten', 'Zoologischer Garten', 13.3323673, 52.5073337);
   /** Siegessaeule */
   static VISIBILITY_SIEGESSAEULE = new Location('visibility-siegessaeule', 'Siegessäule', 13.3501189, 52.5145434);
 
@@ -163,9 +163,9 @@ export class Place {
   static WHITESPOT_PERSONA_BEN = new Location(
     'whitespot-persona-ben', 'Ben Bäcker', 13.3671742, 52.5503968);
   /** Polizeiakademie */
-  static WHITESPOT_PERSONA_BEN_TARGET = new Location('whitespot-persona-ben-target', 'Polizeiakademie', 13.1947344, 52.5405663);
+  static WHITESPOT_PERSONA_BEN_TARGET = new Location('whitespot-persona-ben-target', 'Polizeiakademie', 13.2251673, 52.5261955, 12.5);
   /** Polizeiakademie */
-  static WHITESPOT_POLIZEIAKADEMIE = new Location('whitespot-polizeiakademie', 'Polizeiakademie', 13.1947344, 52.5405663);
+  static WHITESPOT_POLIZEIAKADEMIE = new Location('whitespot-polizeiakademie', 'Polizeiakademie', 13.2251673, 52.5261955, 12.5);
   /** Siemensstadt */
   static WHITESPOT_SPANDAU = new Location('whitespot-spandau', 'Spandau', 13.225531, 52.527586);
 
@@ -179,12 +179,9 @@ export class Place {
   static WHITESPOT_PERSONA_PETER_TARGET = new Location('whitespot-persona-peter-target', 'Hauptbahnhof', 13.3606472, 52.5250966);
 
 
-  /** Beusselstrasse */
-  static WHITESPOT_CHARLOTTENBURG_NORD = new Location('whitespot-charlottenburg-nord', 'Charlottenburg Nord', 13.303615, 52.5459212);
-  /** Beusselstrasse */
-  static WHITESPOT_BEUSSELSTRASSE = new Location('whitespot-beusselstrasse', 'Beusselstraße', 13.3287218, 52.5343357);
-  /** Jakob-Kaiser-Platz */
-  static WHITESPOT_JAKOB_KAISER_PLATZ = new Location('whitespot-jakob-kaiser-platz', 'Jakob-Kaiser-Platz', 13.2918199, 52.5364933);
+  /** Whitespot charlottenburg */
+  static WHITESPOT_CHARLOTTENBURG_NORD = new Location('whitespot-charlottenburg-nord', 'Charlottenburg Nord', 13.310465698608695, 52.543342208865575, 12.8);
+  static WHITESPOT_TXL = new Location('whitespot-txl', 'TXL', 13.296066363610175, 52.55027531560123, 12.8);
 
   // Gewerbegebiet Gradestrasse
 
@@ -261,6 +258,49 @@ export class Place {
 
   static BUS_ALTEHELLERSDORFER = new Location(
      'bus-altehellersdorfer', 'Bus Alte-Hellersdorfer', 13.59222729530772, 52.54504439880684);
+//Spandau Bus
+  static BUS_FREIHEIT = new Location('bus-freiheit', 'Freiheit 16-34', 13.22333603718653, 52.531232222346034);
+
+  static BUS_RUHLEBEN = new Location('bus-ruhleben', 'Ruhleben Güterbahnhof', 13.223893936667837, 52.52901310165168);
+
+  static BUS_TELTOWER_STR = new Location('bus-teltower', 'Teltower Str.', 13.214452560830292, 52.527394378184354);
+
+  static BUS_STRESOW = new Location('bus-stresow', 'Stresowplatz', 13.534182173918694, 52.208444412595366);
+
+  static BUS_RUHLEBEN2 = new Location('bus-ruhleben2', 'Ruhlebener Str./Grunewaldstr.', 13.204710777671, 52.531049475502634);
+
+  static BUS_WERKRING = new Location('bus-werkring', 'Werkring', 13.240158852340576, 52.52937861163229);
+
+// TXL Busse
+  static BUS_FRIEDRICH_OLBERT = new Location('bus-friedrich', 'Friedrich-Olbricht-Damm/Saatwinkler Damm', 13.31272741869019, 52.54791491442076);
+
+  static BUS_BUCHHOLZWEG = new Location('bus-buchholzweg', 'Buchholzweg', 13.318590196866316, 52.54700947215529);
+
+  static BUS_STIEFRING = new Location('bus-stiefring', 'Stiefring', 13.31263435871914, 52.54545319961817);
+
+  static BUS_PLOETZENSEE = new Location('bus-ploetzensee', 'Gedenkstätte Plötzensee', 13.324127265143765, 52.54222729536093);
+
+  static BUS_SEESTRASSE = new Location('bus-seestrasse', 'Seestr. / Beusselstr.', 13.326378185024835, 52.538373966380085);
+
+  static BUS_THATER = new Location('bus-thater', 'Thaters Privatweg', 13.310349976007355, 52.53963937037642);
+
+  static BUS_WIRMER = new Location('bus-wirmer', 'Wirmerzeile', 13.302974090206936, 52.537237451913825);
+
+  static BUS_GLOEDE = new Location('bus-gloede', 'Gloedenpfad', 13.302451903601597, 52.53977832031618);
+
+  static BUS_REICHWEIN = new Location('bus-reichwein', 'Reichweindamm', 13.300656887145744, 52.53608607250622);
+
+  static BUS_GOERDELER = new Location('bus-goerdeler', 'Goerdelerdamm', 13.29801331745621, 52.53529200015053);
+
+  static BUS_HINCKELDEY = new Location('bus-hinckeldey', 'Hinckeldeybrücke', 13.300330520546476, 52.547003111217045);
+
+  static BUS_WELTLINGER = new Location('bus-weltlinger', 'Weltlingerbrücke', 13.300330520546476, 52.547003111217045);
+
+
+
+
+
+
 
   //
   // S-Bahn
@@ -282,6 +322,12 @@ export class Place {
   static S_WUHLETAL = new Location('s-wuhletal', 'S Wuhletal', 13.577991920021807, 52.512607512439565);
   /** Bahn station Stresow */
   static S_STRESOW = new Location('s-stresow', 'S Stresow', 13.2012605, 52.5324273);
+  /** Beusselstrasse */
+  static S_BEUSSELSTRASSE = new Location('s-beusselstrasse', 'S Beusselstraße', 13.3287218, 52.5343357);
+  /** Pichelsdorf */
+  static S_PICHELSDORF = new Location('s-pichelsdorf', 'S Pichelsdorf', 13.228805059040575, 52.51048444416288);
+  /** Pichelsdorf */
+  static S_SPANDAU = new Location('s-spandau', 'S Spandau', 13.19805413688166, 52.534679412475896);
 
   //
   // U-Bahn
@@ -301,6 +347,11 @@ export class Place {
   static U_WUHLETAL = new Location('u-wuhletal', 'U Wuhletal', 13.57522325860481, 52.512871516295945);
   /** U Ruhleben */
   static U_RUHLEBEN = new Location('u-ruhleben', 'U Ruhleben', 13.2390313, 52.525648);
+  /** Jakob-Kaiser-Platz */
+  static U_JAKOB_KAISER_PLATZ = new Location('u-jakob-kaiser-platz', 'U Jakob-Kaiser-Platz', 13.2918199, 52.5364933);
+  /** Jakob-Kaiser-Platz */
+  static U_HALEMWEG = new Location('u-halemweg', 'U Halemweg', 13.286051345326404, 52.536625161329795);
+
 
   //
   // Tram

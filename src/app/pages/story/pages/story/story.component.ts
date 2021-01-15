@@ -249,15 +249,28 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
         popupMarkers: [
           Place.WHITESPOT_PERSONA_BEN,
           Place.WHITESPOT_PERSONA_BEN_TARGET,
+          Place.WHITESPOT_POLIZEIAKADEMIE
         ],
         flyToBoundingBox: BoundingBox.BERLIN
       },
       {
-        chapters: ['whitespots-spandau'], layers: [],
+        chapters: ['whitespots-spandau'],
+        layers: [
+          'lines-subway',
+          'lines-light_rail',
+          'lines-bus'],
         popupMarkers: [
           Place.U_RUHLEBEN,
           Place.S_STRESOW,
-          Place.WHITESPOT_POLIZEIAKADEMIE],
+          Place.WHITESPOT_POLIZEIAKADEMIE,
+          Place.BUS_FREIHEIT,
+          Place.BUS_RUHLEBEN,
+          Place.BUS_TELTOWER_STR,
+          Place.BUS_STRESOW,
+          Place.BUS_RUHLEBEN2,
+          Place.BUS_WERKRING,
+          Place.S_SPANDAU,
+          Place.S_PICHELSDORF],
         flyToLocation: Place.WHITESPOT_POLIZEIAKADEMIE
       },
       {
@@ -266,21 +279,54 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
         flyToBoundingBox: BoundingBox.BERLIN
       },
       {
-        chapters: ['whitespots-charlottenburg-nord-1'], layers: [],
+        chapters: ['whitespots-charlottenburg-nord-1'],
+        layers: [
+          'lines-subway',
+          'lines-light_rail',
+          'lines-bus'],
         popupMarkers: [
+          Place.WHITESPOT_TXL,
           Place.WHITESPOT_CHARLOTTENBURG_NORD,
-          Place.WHITESPOT_BEUSSELSTRASSE,
-          Place.WHITESPOT_JAKOB_KAISER_PLATZ
+          Place.S_BEUSSELSTRASSE,
+          Place.U_JAKOB_KAISER_PLATZ,
+          Place.BUS_FRIEDRICH_OLBERT,
+          Place.BUS_BUCHHOLZWEG,
+          Place.BUS_STIEFRING,
+          Place.BUS_PLOETZENSEE,
+          Place.BUS_SEESTRASSE,
+          Place.BUS_THATER,
+          Place.BUS_WIRMER,
+          Place.BUS_GLOEDE,
+          Place.BUS_REICHWEIN,
+          Place.BUS_GOERDELER,
+          Place.BUS_HINCKELDEY,
+          Place.BUS_WELTLINGER
         ],
         flyToLocation: Place.WHITESPOT_CHARLOTTENBURG_NORD
       },
       {
         chapters: ['whitespots-charlottenburg-nord-2'],
-        layers: [],
+        layers: [
+          'lines-subway',
+          'lines-light_rail',
+          'lines-bus'],
         popupMarkers: [
+          Place.WHITESPOT_TXL,
           Place.WHITESPOT_CHARLOTTENBURG_NORD,
-          Place.WHITESPOT_BEUSSELSTRASSE,
-          Place.WHITESPOT_JAKOB_KAISER_PLATZ
+          Place.S_BEUSSELSTRASSE,
+          Place.U_JAKOB_KAISER_PLATZ,
+          Place.BUS_FRIEDRICH_OLBERT,
+          Place.BUS_BUCHHOLZWEG,
+          Place.BUS_STIEFRING,
+          Place.BUS_PLOETZENSEE,
+          Place.BUS_SEESTRASSE,
+          Place.BUS_THATER,
+          Place.BUS_WIRMER,
+          Place.BUS_GLOEDE,
+          Place.BUS_REICHWEIN,
+          Place.BUS_GOERDELER,
+          Place.BUS_HINCKELDEY,
+          Place.BUS_WELTLINGER
         ],
         flyToLocation: Place.WHITESPOT_CHARLOTTENBURG_NORD
       },
