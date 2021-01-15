@@ -333,6 +333,8 @@ export class Place {
   static S_PICHELSDORF = new Location('s-pichelsdorf', 'S Pichelsdorf', 13.228805059040575, 52.51048444416288);
   /** Pichelsdorf */
   static S_SPANDAU = new Location('s-spandau', 'S Spandau', 13.19805413688166, 52.534679412475896);
+  /**MehrowerAllee */
+  static S_MEHROWER = new Location('s-mehrower', 'S Mehrower Allee', 13.55344152150757, 52.55755976209149);
 
   //
   // U-Bahn

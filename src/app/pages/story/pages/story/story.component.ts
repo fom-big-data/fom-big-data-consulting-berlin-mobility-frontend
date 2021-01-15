@@ -390,31 +390,29 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
       },
       {
         chapters: ['whitespots-marzahn-hellersdorf'],
-        layers: ['lines-tram', 'lines-bus', 'lines-subway'],
+        layers: ['lines-tram', 'lines-bus', 'lines-light_rail', 'lines-subway'],
         popupMarkers: [
 
           Place.WHITESPOT_PERSONA_BIRGIT, Place.WHITESPOT_PERSONA_BIRGIT_TARGET,
-          Place.WORKING_SPACE_MARZAHN ,Place.WORKING_SPACE_MARZAHN_COLA,Place.WORKING_SPACE_MARZAHN_HARRY, Place.WORKING_SPACE_MARZAHN_WUERTH,
           Place.WHITESPOT_PERSONA_BIRGIT_DRK, Place.WHITESPOT_PERSONA_BIRGIT_KLUB74, Place.WHITESPOT_PERSONA_BIRGIT_ALTMARZAHN,
 
           Place.BUS_KLAUSDORFER, Place.BUS_LANDSBERGERZOSSENER, Place.BUS_TEUPITZER, Place.BUS_ALTEHELLERSDORFER,
-          Place.TRAM_ZOSSENER, Place.TRAM_ALTEHELLERSDORFER, Place.TRAM_MICHENDORFER, Place.TRAM_LANDSBERGERZOSSENER
+          Place.TRAM_ZOSSENER, Place.TRAM_ALTEHELLERSDORFER, Place.TRAM_MICHENDORFER, Place.TRAM_LANDSBERGERZOSSENER,
+
+          Place.S_POELCHAUSTRASSE, Place.S_SPRINGPFUHL, Place.S_MARZAHN, Place.S_WUHLETAL, Place.S_MEHROWER,
+          Place.U_HELLERSDORF, Place.U_COTTBUSSER, Place.U_WUHLETAL
         ],
         flyToLocation: Place.WHITESPOT_PERSONA_BIRGIT_WOHN
       },
       {
         chapters: ['whitespots-marzahn-hellersdorf-1'],
         layers: ['lines-tram', 'lines-bus', 'lines-light_rail', 'lines-subway'],
-        popupMarkers: [Place.WHITESPOT_PERSONA_BIRGIT_WOHN, Place.U_HELLERSDORF, Place.U_COTTBUSSER, Place.U_WUHLETAL],
-        flyToLocation: Place.WHITESPOT_MARZAHN_HELLERSDORF
-      },
-      {
-        chapters: ['whitespots-marzahn-hellersdorf-2'],
-        layers: ['lines-tram', 'lines-bus', 'lines-light_rail', 'lines-subway'],
-        popupMarkers: [Place.WHITESPOT_PERSONA_BIRGIT_WOHN, Place.S_POELCHAUSTRASSE, Place.S_SPRINGPFUHL, Place.S_MARZAHN, Place.S_WUHLETAL,
+        popupMarkers: [Place.WHITESPOT_PERSONA_BIRGIT_WOHN, Place.U_HELLERSDORF, Place.U_COTTBUSSER, Place.U_WUHLETAL,
+          Place.S_POELCHAUSTRASSE, Place.S_SPRINGPFUHL, Place.S_MARZAHN, Place.S_WUHLETAL, Place.S_MEHROWER,
           Place.U_HELLERSDORF, Place.U_COTTBUSSER, Place.U_WUHLETAL],
-        flyToLocation: Place.WHITESPOT_MARZAHN_HELLERSDORF
+        flyToLocation: Place.WHITESPOT_PERSONA_BIRGIT_WOHN,
       },
+
     ];
 
     this.sectionsProblems.forEach(section => {
