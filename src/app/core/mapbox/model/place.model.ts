@@ -237,7 +237,7 @@ export class Place {
       'whitespot-persona-birgit-altmarzahn', 'Alt Marzahner Dorf', 13.562854041532109, 52.54352213467471);
 
   static WHITESPOT_PERSONA_BIRGIT_NACHWUCHS = new Location(
-    'whitespot-persona-birgit-nachwuchs', 'Enkel von Birget Bohne',  13.418019066226332,  52.52129168277187);
+    'whitespot-persona-birgit-nachwuchs', 'Enkel von Birget Bohne',  13.54139863357947,  52.43725732943624);
 
   static WHITESPOT_PERSONA_BIRGIT_ALEXANDERPLATZ = new Location(
     'whitespot-persona-birgit-alexanderplatz', 'Alexanderplatz', 13.412945416046771,  52.52299528510253);
