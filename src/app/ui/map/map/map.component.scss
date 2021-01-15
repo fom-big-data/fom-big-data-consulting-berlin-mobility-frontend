@@ -16,6 +16,23 @@
   max-width: 200px;
 }
 
+::ng-deep .mapboxgl-popup-close-button {
+  display: none;
+}
+
+::ng-deep .mapboxgl-popup-content {
+  font-size: 1.1em;
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+
+  box-shadow: 0 2px 1px -1px rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 1px 3px 0 rgba(0, 0, 0, .12);
+}
+
 ::ng-deep .mapboxgl-popup-anchor-left {
   padding-left: 15px;
 }
@@ -296,15 +313,15 @@
 // U-Bahn
 
 ::ng-deep #marker-subway-friedrichshain {
-  background-image: url('../../../../assets/img/friedrichshain.jpg');
+  background-image: url('../../../../assets/img/warschauer-strasse.jpeg');
 }
 
-::ng-deep #marker-subway-mitte {
-  background-image: url('../../../../assets/img/mitte.jpg');
+::ng-deep #marker-subway-kreuzberg {
+  background-image: url('../../../../assets/img/hallesches-tor.jpg');
 }
 
 ::ng-deep #marker-subway-charlottenburg-wilmersdorf {
-  background-image: url('../../../../assets/img/charlottenburg-wilmersdorf.jpg');
+  background-image: url('../../../../assets/img/wittenbergplatz.jpg');
 }
 
 ::ng-deep #marker-subway-steglitz-zehlendorf {
@@ -384,7 +401,7 @@
 }
 
 ::ng-deep #marker-whitespot-persona-ben-target {
-  background-image: url('../../../../assets/img/spandau.jpg');
+  background-image: url('../../../../assets/img/polizeiakademie.jpeg');
 }
 
 ::ng-deep #marker-whitespot-polizeiakademie {
