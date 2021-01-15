@@ -261,6 +261,19 @@ export class Place {
 
   static BUS_ALTEHELLERSDORFER = new Location(
      'bus-altehellersdorfer', 'Bus Alte-Hellersdorfer', 13.59222729530772, 52.54504439880684);
+//Spandau Bus
+  static BUS_FREIHEIT = new Location('bus-freiheit', 'Freiheit 16-34', 13.22333603718653, 52.531232222346034);
+
+  static BUS_RUHLEBEN = new Location('bus-ruhleben', 'Ruhleben Güter', 13.223893936667837, 52.52901310165168);
+
+  static BUS_TELTOWER_STR = new Location('bus-teltower', 'Teltower Str.', 13.214452560830292, 52.527394378184354);
+
+  static BUS_STRESOW = new Location('bus-stresow', 'Stresowplatz', 13.534182173918694, 52.208444412595366);
+
+  static BUS_RUHLEBEN2 = new Location('bus-ruhleben2', 'Ruhlebener Str. / Grunewaldstr.', 13.204710777671, 52.531049475502634);
+
+  static BUS_WERKRING = new Location('bus-werkring', 'Werkring', 13.240158852340576, 52.52937861163229);
+
 
   //
   // S-Bahn

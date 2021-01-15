@@ -255,11 +255,17 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
       },
       {
         chapters: ['whitespots-spandau'],
-        layers: ['lines-subway', 'lines-light_rail'],
+        layers: ['lines-subway', 'lines-light_rail','lines-bus'],
         popupMarkers: [
           Place.U_RUHLEBEN,
           Place.S_STRESOW,
-          Place.WHITESPOT_POLIZEIAKADEMIE],
+          Place.WHITESPOT_POLIZEIAKADEMIE,
+          Place.BUS_FREIHEIT,
+          Place.BUS_RUHLEBEN,
+          Place.BUS_TELTOWER_STR,
+          Place.BUS_STRESOW,
+          Place.BUS_RUHLEBEN2,
+          Place.BUS_WERKRING],
         flyToLocation: Place.WHITESPOT_POLIZEIAKADEMIE
       },
       {
