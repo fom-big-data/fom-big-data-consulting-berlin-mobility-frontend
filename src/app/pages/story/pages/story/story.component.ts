@@ -284,6 +284,7 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
           'lines-light_rail',
           'lines-bus'],
         popupMarkers: [
+          Place.WHITESPOT_TXL,
           Place.WHITESPOT_CHARLOTTENBURG_NORD,
           Place.S_BEUSSELSTRASSE,
           Place.U_JAKOB_KAISER_PLATZ,
