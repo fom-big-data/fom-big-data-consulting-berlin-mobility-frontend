@@ -199,6 +199,7 @@ export class Place {
 
   /** Whitespot charlottenburg */
   static WHITESPOT_CHARLOTTENBURG_NORD = new Location('whitespot-charlottenburg-nord', 'Charlottenburg Nord', 13.310465698608695, 52.543342208865575, 12.8);
+  static WHITESPOT_CHARLOTTENBURG_NORD2 = new Location('whitespot-charlottenburg-nord', 'Charlottenburg Nord', 13.310465698608695, 52.543342208865575, 12);
   static WHITESPOT_TXL = new Location('whitespot-txl', 'TXL', 13.296066363610175, 52.55027531560123, 12.8);
 
   // Gewerbegebiet Gradestrasse

@@ -340,7 +340,7 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
           Place.BUS_HINCKELDEY,
           Place.BUS_WELTLINGER
         ],
-        flyToLocation: Place.WHITESPOT_CHARLOTTENBURG_NORD
+        flyToLocation: Place.WHITESPOT_CHARLOTTENBURG_NORD2
       },
 
       {
