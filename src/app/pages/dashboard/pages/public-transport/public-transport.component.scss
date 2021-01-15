@@ -15,8 +15,18 @@
   ". legend slider ."
   ". legend slider ."
   ". legend slider ."
+  ". legend slider ."
+  ". legend slider ."
+  ". legend slider ."
+  ". legend slider ."
+  ". legend slider ."
+  ". legend slider ."
+  ". legend slider ."
+  ". legend slider ."
+  ". legend slider ."
   ". legend slider .";
-
+  background: #ddd;
+  color: #333 !important;
 }
 /*
 #opnv_map_container{
@@ -30,6 +40,7 @@
 
 ::ng-deep app-map>div:first-child{
     grid-area: map;
+    box-shadow: 0 0px 20px -10px black;
 }
 
 ::ng-deep #opnv_map_container_container app-legend{
@@ -46,7 +57,7 @@
     display: block;
     font-size: 20pt;
     font-weight: 400;
-    color: #666;
+    color: #444;
     line-height: 1.8em;
 
 }
@@ -65,5 +76,8 @@
 ::ng-deep app-map>div:nth-child(1n+2){
     grid-column-start: 3;
     height: 50px;
+}
 
+::ng-deep app-map>div:nth-child(1n+2) .layer-label{
+    display: none
 }

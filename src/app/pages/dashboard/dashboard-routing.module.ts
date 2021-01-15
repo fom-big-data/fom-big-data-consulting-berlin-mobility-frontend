@@ -15,8 +15,8 @@ const routes: Routes = [
       {path: 'bike-traffic', component: BikeTrafficComponent},
       {path: 'micro-mobility', component: MicroMobilityComponent},
       {path: 'intermodal-traffic', component: IntermodalTrafficComponent},
-      {path: '', redirectTo: 'individual-traffic', pathMatch: 'full'},
-      {path: '**', redirectTo: 'individual-traffic'}
+      {path: '', redirectTo: 'public-transport', pathMatch: 'full'},
+      {path: '**', redirectTo: 'public-transport'}
     ]
   }
 ];

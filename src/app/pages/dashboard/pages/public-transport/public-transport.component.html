@@ -1,25 +1,46 @@
 <div [id]="'opnv_map_container_container'">
   <div [id]="'opnv_map_container'">
   <app-map [id]="'opnv_map'"
-           [interactiveEnabled]=true
-           [scrollZoomEnabled]=true
+           [interactiveEnabled]="true"
+           [scrollZoomEnabled]="true"
            [height]="'70vh'"
            [boundingBox]="boundingBoxEnum.BERLIN"
-           [style]="mapBoxStyleEnum.DARK_V10"
+           [style]="mapBoxStyleEnum.LIGHT_V10"
+           [hexBinLimit]="'3'"
+           [hexBinThreshold]="'1000'"
+           [initialOpacity]="20"
            [results]="['lines-bus',
                        'lines-light_rail',
                        'lines-subway',
                        'lines-tram']"
+           [hexResults]="['isochrones-bus-15',
+           'isochrones-light_rail-15',
+           'isochrones-subway-15',
+           'isochrones-tram-15',
+           'isochrones-all-15']"
+           [hexAggregateProperty]="'mean_spatial_distance_15min'"
            [multiLegend]="true"
            [parametrizeOpacityEnabled]="true"
            [multiLegendContents]="{'lines-bus':  {'rgba(137, 56, 143, 0.5)':'Bus'},
                                    'lines-light_rail': {'#03894C':'S-Bahn'},
                                    'lines-subway': {'#0860A6':'U-Bahn'},
-                                   'lines-tram': {'#E02B25':'Tram'}}"
+                                   'lines-tram': {'#E02B25':'Tram'},
+                                   'isochrones-bus-15': {'rgba(150, 0, 132, 0.6)': '1.0 km', 'rgba(249, 168, 37, 0.6)':'15 Min. Isochrone Bus', 'rgba(12, 123, 104, 0.6)': '8.0 km'},
+                                   'isochrones-light_rail-15': {'rgba(150, 0, 132, 0.6)': '1.0 km', 'rgba(249, 168, 37, 0.6)':'15 Min. Isochrone S-Bahn', 'rgba(12, 123, 104, 0.6)': '8.0 km'},
+                                   'isochrones-subway-15': {'rgba(150, 0, 132, 0.6)': '1.0 km', 'rgba(249, 168, 37, 0.6)':'15 Min. Isochrone U-Bahn', 'rgba(12, 123, 104, 0.6)': '8.0 km'},
+                                   'isochrones-tram-15': {'rgba(150, 0, 132, 0.6)': '1.0 km', 'rgba(249, 168, 37, 0.6)':'15 Min. Isochrone Straßenbahn', 'rgba(12, 123, 104, 0.6)': '8.0 km'},
+                                   'isochrones-all-15': {'rgba(150, 0, 132, 0.6)': '1.0 km', 'rgba(249, 168, 37, 0.6)':'15 Min. Isochrone ÖPNV Gesamt', 'rgba(12, 123, 104, 0.6)': '8.0 km'}
+                                 }"
            [multiLegendGradient]="{'lines-bus': false,
                                    'lines-light_rail': false,
                                    'lines-subway': false,
-                                   'lines-tram': false}">
+                                   'lines-tram': false,
+                                   'isochrones-bus-15': true,
+                                   'isochrones-light_rail-15': true,
+                                   'isochrones-subway-15': true,
+                                   'isochrones-tram-15': true,
+                                   'isochrones-all-15': true
+                                 }">
 
          </app-map>
 </div>
