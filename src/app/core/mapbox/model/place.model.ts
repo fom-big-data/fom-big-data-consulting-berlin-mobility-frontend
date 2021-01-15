@@ -163,9 +163,9 @@ export class Place {
   static WHITESPOT_PERSONA_BEN = new Location(
     'whitespot-persona-ben', 'Ben Bäcker', 13.3671742, 52.5503968);
   /** Polizeiakademie */
-  static WHITESPOT_PERSONA_BEN_TARGET = new Location('whitespot-persona-ben-target', 'Polizeiakademie', 13.2251673, 52.5261955, 12.0);
+  static WHITESPOT_PERSONA_BEN_TARGET = new Location('whitespot-persona-ben-target', 'Polizeiakademie', 13.2251673, 52.5261955, 12.5);
   /** Polizeiakademie */
-  static WHITESPOT_POLIZEIAKADEMIE = new Location('whitespot-polizeiakademie', 'Polizeiakademie', 13.2251673, 52.5261955, 12.0);
+  static WHITESPOT_POLIZEIAKADEMIE = new Location('whitespot-polizeiakademie', 'Polizeiakademie', 13.2251673, 52.5261955, 12.5);
   /** Siemensstadt */
   static WHITESPOT_SPANDAU = new Location('whitespot-spandau', 'Spandau', 13.225531, 52.527586);
 
@@ -179,12 +179,8 @@ export class Place {
   static WHITESPOT_PERSONA_PETER_TARGET = new Location('whitespot-persona-peter-target', 'Hauptbahnhof', 13.3606472, 52.5250966);
 
 
-  /** Beusselstrasse */
-  static WHITESPOT_CHARLOTTENBURG_NORD = new Location('whitespot-charlottenburg-nord', 'Charlottenburg Nord', 13.303615, 52.5459212);
-  /** Beusselstrasse */
-  static WHITESPOT_BEUSSELSTRASSE = new Location('whitespot-beusselstrasse', 'Beusselstraße', 13.3287218, 52.5343357);
-  /** Jakob-Kaiser-Platz */
-  static WHITESPOT_JAKOB_KAISER_PLATZ = new Location('whitespot-jakob-kaiser-platz', 'Jakob-Kaiser-Platz', 13.2918199, 52.5364933);
+  /** Whitespot charlottenburg */
+  static WHITESPOT_CHARLOTTENBURG_NORD = new Location('whitespot-charlottenburg-nord', 'Charlottenburg Nord', 13.303615, 52.5459212, 12.5);
 
   // Gewerbegebiet Gradestrasse
 
@@ -295,6 +291,9 @@ export class Place {
   static S_WUHLETAL = new Location('s-wuhletal', 'S Wuhletal', 13.577991920021807, 52.512607512439565);
   /** Bahn station Stresow */
   static S_STRESOW = new Location('s-stresow', 'S Stresow', 13.2012605, 52.5324273);
+  /** Beusselstrasse */
+  static S_BEUSSELSTRASSE = new Location('s-beusselstrasse', 'Beusselstraße', 13.3287218, 52.5343357);
+
 
   //
   // U-Bahn
@@ -314,6 +313,9 @@ export class Place {
   static U_WUHLETAL = new Location('u-wuhletal', 'U Wuhletal', 13.57522325860481, 52.512871516295945);
   /** U Ruhleben */
   static U_RUHLEBEN = new Location('u-ruhleben', 'U Ruhleben', 13.2390313, 52.525648);
+  /** Jakob-Kaiser-Platz */
+  static U_JAKOB_KAISER_PLATZ = new Location('u-jakob-kaiser-platz', 'Jakob-Kaiser-Platz', 13.2918199, 52.5364933);
+
 
   //
   // Tram

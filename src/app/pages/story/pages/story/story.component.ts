@@ -277,8 +277,8 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
         chapters: ['whitespots-charlottenburg-nord-1'], layers: ['lines-subway', 'lines-light_rail'],
         popupMarkers: [
           Place.WHITESPOT_CHARLOTTENBURG_NORD,
-          Place.WHITESPOT_BEUSSELSTRASSE,
-          Place.WHITESPOT_JAKOB_KAISER_PLATZ
+          Place.S_BEUSSELSTRASSE,
+          Place.U_JAKOB_KAISER_PLATZ
         ],
         flyToLocation: Place.WHITESPOT_CHARLOTTENBURG_NORD
       },
@@ -287,8 +287,8 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
         layers: ['lines-subway', 'lines-light_rail'],
         popupMarkers: [
           Place.WHITESPOT_CHARLOTTENBURG_NORD,
-          Place.WHITESPOT_BEUSSELSTRASSE,
-          Place.WHITESPOT_JAKOB_KAISER_PLATZ
+          Place.S_BEUSSELSTRASSE,
+          Place.U_JAKOB_KAISER_PLATZ
         ],
         flyToLocation: Place.WHITESPOT_CHARLOTTENBURG_NORD
       },
