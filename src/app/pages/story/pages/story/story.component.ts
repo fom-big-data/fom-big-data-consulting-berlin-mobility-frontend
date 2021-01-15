@@ -386,7 +386,7 @@ export class StoryComponent implements OnInit, AfterViewInit, OnDestroy {
         popupMarkers: [Place.WHITESPOT_PERSONA_BIRGIT, Place.WHITESPOT_PERSONA_BIRGIT_TARGET,
           Place.WHITESPOT_PERSONA_BIRGIT_DRK, Place.WHITESPOT_PERSONA_BIRGIT_KLUB74, Place.WHITESPOT_PERSONA_BIRGIT_NACHWUCHS,
           Place.WHITESPOT_PERSONA_BIRGIT_ALEXANDERPLATZ],
-          flyToBoundingBox: BoundingBox.BERLIN
+          flyToBoundingBox: BoundingBox.BERLIN4
       },
       {
         chapters: ['whitespots-marzahn-hellersdorf'],
